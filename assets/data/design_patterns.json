@@ -1,0 +1,20 @@
+[
+    {
+        "id": "creational",
+        "title": "Creational",
+        "color": "0xFFF3D250",
+        "patterns": []
+    },
+    {
+        "id": "structural",
+        "title": "Structural",
+        "color": "0xFF90CCF4",
+        "patterns": []
+    },
+    {
+        "id": "behavioral",
+        "title": "Behavioral",
+        "color": "0xFFF78888",
+        "patterns": []
+    }
+]
