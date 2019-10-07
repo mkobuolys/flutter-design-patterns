@@ -24,6 +24,7 @@ flutter:
   assets:
     - assets/
     - assets/data/
+    - assets/markdown/
   fonts:
     - family: Roboto
       fonts:

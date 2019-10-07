@@ -3,7 +3,14 @@
         "id": "creational",
         "title": "Creational",
         "color": "0xFFF3D250",
-        "patterns": []
+        "patterns": [
+            {
+                "id": "introduction",
+                "title": "Introduction",
+                "description": "Laborum qui ea velit sint officia culpa aute ad sint fugiat excepteur ex pariatur consectetur.",
+                "route": "/introduction"
+            }
+        ]
     },
     {
         "id": "structural",
