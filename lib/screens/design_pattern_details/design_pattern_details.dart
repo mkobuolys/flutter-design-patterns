@@ -9,7 +9,7 @@ import 'package:flutter_design_patterns/data/models/design_pattern.dart';
 import 'package:flutter_design_patterns/data/repositories/markdown_repository.dart';
 import 'package:flutter_design_patterns/screens/design_pattern_details/widgets/design_pattern_details_header.dart';
 import 'package:flutter_design_patterns/widgets/fade_slide_transition.dart';
-import 'package:flutter_design_patterns/widgets/platform_back_button.dart';
+import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
 
 class DesignPatternDetails extends StatefulWidget {
   final DesignPattern designPattern;
