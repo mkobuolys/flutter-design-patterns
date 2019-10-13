@@ -1,17 +1,17 @@
-## Class diagram:
+## Class diagram
 
 ![Singleton Class Diagram](resource:assets/images/singleton/singleton.png)
 
 ## Implementation
 
-### Class diagram:
+### Class diagram
 The diagram shows only the Singleton implementation by definition (_ExampleStateByDefinition_ class). This class diagram is selected because it represents a general Singleton's class diagram the most accurately.
 
 ![Singleton Implementation Class Diagram](resource:assets/images/singleton/singleton_implementation.png)
 
 ### ExampleStateBase
 
-A base class for the abstraction of example's state which contains only a single text property with its initial value and methods to operate it.
+A base class for the abstraction of example's state which contains an initial text value, a single text property and methods to operate it.
 
 ``` 
 abstract class ExampleStateBase {
@@ -31,7 +31,7 @@ abstract class ExampleStateBase {
 }
 ```
 
-### Example's state implementations:
+### Example's state implementations
 
 Example's state is implemented in 3 different ways:
 
