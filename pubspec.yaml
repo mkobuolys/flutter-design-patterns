@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   font_awesome_flutter: ^8.5.0
-  flutter_markdown: ^0.2.0
+  flutter_markdown:
+    git:
+      url: https://github.com/flutter/flutter_markdown.git
+      ref: master
 
   cupertino_icons: ^0.1.2
 
@@ -25,6 +28,7 @@ flutter:
     - assets/
     - assets/data/
     - assets/markdown/
+    - assets/images/singleton/
   fonts:
     - family: Roboto
       fonts:

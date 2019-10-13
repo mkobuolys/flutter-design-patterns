@@ -1,5 +1,9 @@
+import 'package:meta/meta.dart';
+
 abstract class ExampleStateBase {
+  @protected
   String initialText;
+  @protected
   String stateText;
   String get currentText => stateText;
 
