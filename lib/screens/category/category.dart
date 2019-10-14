@@ -6,7 +6,7 @@ import 'package:flutter_design_patterns/data/models/design_pattern_category.dart
 import 'package:flutter_design_patterns/screens/category/widgets/design_pattern_card.dart';
 import 'package:flutter_design_patterns/widgets/coming_soon.dart';
 import 'package:flutter_design_patterns/widgets/fade_slide_transition.dart';
-import 'package:flutter_design_patterns/widgets/platform_back_button.dart';
+import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
 
 class Category extends StatefulWidget {
   final DesignPatternCategory category;
