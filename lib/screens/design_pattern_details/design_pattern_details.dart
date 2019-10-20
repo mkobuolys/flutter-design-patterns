@@ -84,6 +84,9 @@ class _DesignPatternDetailsState extends State<DesignPatternDetails>
 
   void onBottomNavigationBarItemTap(int index) {
     setState(() {
+      _appBarElevation = 0.0;
+      _appBarTitleOpacity = 0.0;
+      _bottomNavigationBarElevation = 4.0;
       _tabController.index = index;
     });
   }
