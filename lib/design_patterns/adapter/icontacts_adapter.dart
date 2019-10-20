@@ -1,5 +1,5 @@
 import 'package:flutter_design_patterns/design_patterns/adapter/contact.dart';
 
-abstract class IContactsAccessor {
+abstract class IContactsAdapter {
   List<Contact> getContacts();
 }

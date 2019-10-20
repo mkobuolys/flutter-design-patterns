@@ -3,18 +3,18 @@ class XmlContactsApi {
   <?xml version="1.0"?>
   <contacts>
     <contact>
-      <fullname>John Doe</fullname>
-      <email>johndoe@email.com</email>
+      <fullname>John Doe (XML)</fullname>
+      <email>johndoe@xml.com</email>
       <favourite>false</favourite>
     </contact>
     <contact>
-      <fullname>Jane Doe</fullname>
-      <email>janedoe@email.com</email>
+      <fullname>Emma Doe (XML)</fullname>
+      <email>emmadoe@xml.com</email>
       <favourite>true</favourite>
     </contact>
     <contact>
-      <fullname>John Roe</fullname>
-      <email>johnroe@email.com</email>
+      <fullname>Michael Roe (XML)</fullname>
+      <email>michaelroe@xml.com</email>
       <favourite>true</favourite>
     </contact>
   </contacts>
