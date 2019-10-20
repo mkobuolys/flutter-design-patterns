@@ -16,7 +16,14 @@
         "id": "structural",
         "title": "Structural",
         "color": "0xFF90CCF4",
-        "patterns": []
+        "patterns": [
+            {
+                "id": "adapter",
+                "title": "Adapter",
+                "description": "Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.",
+                "route": "/adapter"
+            }
+        ]
     },
     {
         "id": "behavioral",
