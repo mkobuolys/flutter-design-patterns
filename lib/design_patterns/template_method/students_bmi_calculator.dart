@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
 
-abstract class StudentsBmiCalculationTemplate {
+abstract class StudentsBmiCalculator {
   List<Student> calculateBmiAndReturnStudentList() {
     var studentList = getStudentsData();
     studentList = doStudentsFiltering(studentList);

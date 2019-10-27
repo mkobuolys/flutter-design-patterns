@@ -1,13 +1,15 @@
-import 'package:flutter_design_patterns/design_patterns/template_method/apis/xml_students_api.dart';
+import 'package:meta/meta.dart';
 import 'package:xml/xml.dart' as xml;
 
+import 'package:flutter_design_patterns/design_patterns/template_method/apis/xml_students_api.dart';
 import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/students_bmi_calculation_template.dart';
+import 'package:flutter_design_patterns/design_patterns/template_method/students_bmi_calculator.dart';
 
-class StudentsXmlBmiCalculator extends StudentsBmiCalculationTemplate {
+class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
   final XmlStudentsApi _api = XmlStudentsApi();
 
   @override
+  @protected
   List<Student> getStudentsData() {
     var studentsXml = _api.getStudentsXml();
     var xmlDocument = xml.parse(studentsXml);
