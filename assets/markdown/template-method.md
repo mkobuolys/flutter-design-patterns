@@ -9,7 +9,7 @@ The class diagram below shows the implementation of **Template Method** design p
 
 ![Template Method Implementation Class Diagram](resource:assets/images/template_method/template_method_implementation.png)
 
-The main class in the diagram is *StudentsBmiCalculator*. Its primary purpose is to define a template of the BMI calculation algorithm which returns a list of *Student* objects (with the calculated BMI for each student) as a result via *calculateBmiAndReturnStudentList()* method. This abstract class is used as a template (base class) for the concrete implementations of the students' BMI calculation algorithm - *StudentsXmlBmiCalculator*, *StudentsJsonBmiCalculator* and *TeenageStudentsJsonBmiCalculator*.*StudentsXmlBmiCalculator* uses the *XmlStudentsApi* to retrieve students information as an XML string and returns it as a list of *Student* objects via overridden *getStudentsData()* method. Both of the other two implementations (*StudentsJsonBmiCalculator* and *TeenageStudentsJsonBmiCalculator*) uses the *JsonStudentsApi* to retrieve students information in JSON format and returns the parsed data via overridden *getStudentsData()* method. However, *TeenageStudentsJsonBmiCalculator* additionally reimplements (overrides) the *doStudentsFiltering()* hook method to filter out not teenage students before calculating the BMI values.*StudentsSection* UI widget uses the *StudentsBmiCalculator* abstraction to retrieve and represent the calculated results in *TemplateMethodExample* widget.
+The main class in the diagram is *StudentsBmiCalculator*. Its primary purpose is to define a template of the BMI calculation algorithm which returns a list of *Student* objects (with the calculated BMI for each student) as a result via *calculateBmiAndReturnStudentList()* method. This abstract class is used as a template (base class) for the concrete implementations of the students' BMI calculation algorithm - *StudentsXmlBmiCalculator*, *StudentsJsonBmiCalculator* and *TeenageStudentsJsonBmiCalculator*. *StudentsXmlBmiCalculator* uses the *XmlStudentsApi* to retrieve students information as an XML string and returns it as a list of *Student* objects via the overridden *getStudentsData()* method. Both of the other two implementations (*StudentsJsonBmiCalculator* and *TeenageStudentsJsonBmiCalculator*) uses the *JsonStudentsApi* to retrieve students information in JSON format and returns the parsed data via the overridden *getStudentsData()* method. However, *TeenageStudentsJsonBmiCalculator* additionally reimplements (overrides) the *doStudentsFiltering()* hook method to filter out not teenage students before calculating the BMI values. *StudentsSection* UI widget uses the *StudentsBmiCalculator* abstraction to retrieve and represent the calculated results in *TemplateMethodExample* widget.
 
 ### StudentsBmiCalculator
 
@@ -117,7 +117,7 @@ class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
 
 ### TeenageStudentsJsonBmiCalculator
 
-A concrete implementation of the BMI calculation algorithm which uses *JsonStudentsApi* to retrieve data and implements the *getStudentsData()* method. Additionaly, the *doStudentsFiltering()* hook method is overridden to filter out not teenage students.
+A concrete implementation of the BMI calculation algorithm which uses *JsonStudentsApi* to retrieve data and implements the *getStudentsData()* method. Additionally, the *doStudentsFiltering()* hook method is overridden to filter out not teenage students.
 
 ``` 
 class TeenageStudentsJsonBmiCalculator extends StudentsBmiCalculator {
