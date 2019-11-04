@@ -4,12 +4,12 @@ import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/design_patterns/composite/ifile.dart';
 import 'package:flutter_design_patterns/helpers/file_size_converter.dart';
 
-class FileBase extends StatelessWidget implements IFile {
+class File extends StatelessWidget implements IFile {
   final String title;
   final int size;
   final IconData icon;
 
-  const FileBase(this.title, this.size, this.icon);
+  const File(this.title, this.size, this.icon);
 
   @override
   int getSize() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/file_base.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/file.dart';
 
-class TextFile extends FileBase {
+class TextFile extends File {
   TextFile(String title, int size) : super(title, size, Icons.description);
 }
