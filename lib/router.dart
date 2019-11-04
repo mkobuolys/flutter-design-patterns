@@ -7,6 +7,7 @@ import 'package:flutter_design_patterns/screens/category/category.dart';
 import 'package:flutter_design_patterns/screens/design_pattern_details/design_pattern_details.dart';
 import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/template_method/template_method_example.dart';
 
@@ -36,6 +37,11 @@ class Router {
           settings,
           AdapterExample(),
         );
+      case _DesignPatternRoutes.compositeRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          CompositeExample(),
+        );
       // Behavioral
       case _DesignPatternRoutes.templateMethodRoute:
         return _buildDesignPatternDetailsPageRoute(
@@ -64,7 +70,8 @@ class Router {
 }
 
 class _DesignPatternRoutes {
-  static const String singletonRoute = '/singleton';
   static const String adapterRoute = '/adapter';
+  static const String compositeRoute = '/composite';
+  static const String singletonRoute = '/singleton';
   static const String templateMethodRoute = '/template-method';
 }
