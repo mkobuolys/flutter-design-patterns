@@ -14,7 +14,7 @@ The class diagram below shows the implementation of **Composite** design pattern
 * *getSize()* -  returns size of the file; 
 * *render()* - renders the component's UI.
 
-*File* class implements the *getSize()* and *render()* methods, additionally contains *title*, *size* and *icon* properties. *Directory* implements the same required methods, but it also contains *title*, *isInitiallyExpanded* and *files* list, containing the *IFile* objects, defines *addFile()* method, which allows to add *IFile* objects to the directory (*files* list). *AudioFile*, *ImageFile*, *TextFile* and *VideoFile* classes extend the *File* class to specify a concrete type of the file.
+*File* class implements the *getSize()* and *render()* methods, additionally contains *title*, *size* and *icon* properties. *Directory* implements the same required methods, but it also contains *title*, *isInitiallyExpanded* and *files* list, containing the *IFile* objects, defines *addFile()* method, which allows adding *IFile* objects to the directory (*files* list). *AudioFile*, *ImageFile*, *TextFile* and *VideoFile* classes extend the *File* class to specify a concrete type of the file.
 
 ### IFile
 
@@ -95,7 +95,7 @@ class VideoFile extends File {
 
 ### Directory
 
-A concrete implementation of the *IFile* interface which matches the *composite* class in the Composite design pattern. Similarly as in *File* class, *render()* returns directory's UI widget which is used in the example screen. However, in this class *getSize()* method calculates the directory size by calling the *getSize()* method for each item in the *files* list and adding up the results. This is the main idea of the Composite design pattern which allows the composite class to treat all the elements in the containing list uniformly as long as they implement the same interface.
+A concrete implementation of the *IFile* interface which matches the *composite* class in the Composite design pattern. Similar as in *File* class, *render()* returns directory's UI widget which is used in the example screen. However, in this class *getSize()* method calculates the directory size by calling the *getSize()* method for each item in the *files* list and adding up the results. This is the main idea of the Composite design pattern which allows the composite class to treat all the elements in the containing list uniformly as long as they implement the same interface.
 
 ``` 
 class Directory extends StatelessWidget implements IFile {
