@@ -8,7 +8,7 @@ import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/
 import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/video_file.dart';
 
 class CompositeExample extends StatelessWidget {
-  Directory buildMediaDirectory() {
+  Widget buildMediaDirectory() {
     var musicDirectory = Directory('Music');
     musicDirectory.addFile(AudioFile('Darude - Sandstorm.mp3', 2612453));
     musicDirectory.addFile(AudioFile('Toto - Africa.mp3', 3219811));
