@@ -30,6 +30,7 @@ flutter:
     - assets/data/
     - assets/markdown/
     - assets/images/adapter/
+    - assets/images/composite/
     - assets/images/singleton/
     - assets/images/template_method/
   fonts:
