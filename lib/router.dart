@@ -9,6 +9,7 @@ import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/strategy/strategy_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/template_method/template_method_example.dart';
 
 class Router {
@@ -43,6 +44,11 @@ class Router {
           CompositeExample(),
         );
       // Behavioral
+      case _DesignPatternRoutes.strategyRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          StrategyExample(),
+        );
       case _DesignPatternRoutes.templateMethodRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -73,5 +79,6 @@ class _DesignPatternRoutes {
   static const String adapterRoute = '/adapter';
   static const String compositeRoute = '/composite';
   static const String singletonRoute = '/singleton';
+  static const String strategyRoute = '/strategy';
   static const String templateMethodRoute = '/template-method';
 }
