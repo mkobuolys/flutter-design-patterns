@@ -5,6 +5,9 @@ import 'package:flutter_design_patterns/design_patterns/strategy/order/package_s
 
 class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
   @override
+  String label = 'Parcel terminal shipping';
+
+  @override
   double calculate(Order order) {
     var finalShippingPrice = 0.0;
 

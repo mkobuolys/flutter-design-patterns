@@ -3,6 +3,9 @@ import 'package:flutter_design_patterns/design_patterns/strategy/order/order.dar
 
 class PriorityShippingStrategy implements IShippingCostsStrategy {
   @override
+  String label = 'Priority shipping';
+
+  @override
   double calculate(Order order) {
     return 9.99;
   }
