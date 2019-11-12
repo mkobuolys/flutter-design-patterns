@@ -6,17 +6,17 @@
 
 ### Class diagram
 
-The class diagram below shows the implementation of **Strategy** design pattern.
+The class diagram below shows the implementation of the **Strategy** design pattern.
 
 ![Strategy Implementation Class Diagram](resource:assets/images/strategy/strategy_implementation.png)
 
 _IShippingCostsStrategy_ defines a common interface for all the specific strategies:
 
 - _label_ - a text label of the strategy which is used in UI;
-- _calculate()_ - method to calculate shipping costs for the order.
+- _calculate()_ - method to calculate shipping costs for the order. It uses information from the Order class object passed as a parameter.
 
-_IShippingCostsStrategy_ uses _Order_ class in the _calculate()_ method. This class stores order items (a list of _OrderItem_ objects), returns the order value via _price_ getter method and lets adding new order items using _addOrderItem()_. _OrderItem_ class uses _PackageSize_ enumeration class to define the package size for the parcel, also defines _title_ and _price_ properties of the order item.
 _InStorePickupStrategy_, _ParcelTerminalShippingStrategy_ and _PriorityShippingStrategy_ are concrete implementations of the _IShippingCostsStrategy_ interface. Each of the strategies provides a specific algorithm for the shipping costs calculation and defines it in the _calculate()_ method.
+
 _StrategyExample_ widget stores all different shipping costs calculation strategies in the _shippingCostsStrategyList_ variable.
 
 ### IShippingCostsStrategy
@@ -145,7 +145,7 @@ enum PackageSize {
 
 ### Example
 
-- _StrategyExample_ - implements the example widget. It contains a list of different shipping strategies **shippingCostsStrategyList* and provides it to the \_ShippingOptions* widget where the index of a specific strategy is selected by triggering the **setSelectedStrategyIndex()_ method. Then, the selected strategy is injected into the \_OrderSummary_ widget where the final price of the order is calculated.
+- _StrategyExample_ - implements the example widget of the Strategy design pattern. It contains a list of different shipping strategies (_shippingCostsStrategyList_) and provides it to the _ShippingOptions_ widget where the index of a specific strategy is selected by triggering the _setSelectedStrategyIndex()_ method. Then, the selected strategy is injected into the _OrderSummary_ widget where the final price of the order is calculated.
 
 ```
 class StrategyExample extends StatefulWidget {
@@ -287,7 +287,7 @@ class ShippingOptions extends StatelessWidget {
 }
 ```
 
-- _OrderSummary_ - uses the injected shipping strategy of type _IShippingCostsStrategy_ for the final order's price calculation. The widget only cares about the type of a shipping strategy, but not its specific implementation. Hence, we can provide different shipping costs calculation strategies of type \__IShippingCostsStrategy_ without making any changes to the UI.
+- _OrderSummary_ - uses the injected shipping strategy of type _IShippingCostsStrategy_ for the final order's price calculation. The widget only cares about the type of a shipping strategy, but not its specific implementation. Hence, we can provide different shipping costs calculation strategies of type _IShippingCostsStrategy_ without making any changes to the UI.
 
 ```
 class OrderSummary extends StatelessWidget {
