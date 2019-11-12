@@ -9,13 +9,10 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
 
   @override
   double calculate(Order order) {
-    var finalShippingPrice = 0.0;
-
-    for (var item in order.items) {
-      finalShippingPrice += _getOrderItemShippingPrice(item);
-    }
-
-    return finalShippingPrice;
+    return order.items.fold<double>(
+      0.0,
+      (sum, item) => sum + _getOrderItemShippingPrice(item),
+    );
   }
 
   double _getOrderItemShippingPrice(OrderItem orderItem) {

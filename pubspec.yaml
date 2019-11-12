@@ -33,6 +33,7 @@ flutter:
     - assets/images/adapter/
     - assets/images/composite/
     - assets/images/singleton/
+    - assets/images/strategy/
     - assets/images/template_method/
   fonts:
     - family: Roboto

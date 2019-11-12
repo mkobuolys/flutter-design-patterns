@@ -10,6 +10,15 @@ The class diagram below shows the implementation of **Strategy** design pattern.
 
 ![Strategy Implementation Class Diagram](resource:assets/images/strategy/strategy_implementation.png)
 
+_IShippingCostsStrategy_ defines a common interface for all the specific strategies:
+
+- _label_ - a text label of the strategy which is used in UI;
+- _calculate()_ - method to calculate shipping costs for the order.
+
+_IShippingCostsStrategy_ uses _Order_ class in the _calculate()_ method. This class stores order items (a list of _OrderItem_ objects), returns the order value via _price_ getter method and lets adding new order items using _addOrderItem()_. _OrderItem_ class uses _PackageSize_ enumeration class to define the package size for the parcel, also defines _title_ and _price_ properties of the order item.
+_InStorePickupStrategy_, _ParcelTerminalShippingStrategy_ and _PriorityShippingStrategy_ are concrete implementations of the _IShippingCostsStrategy_ interface. Each of the strategies provides a specific algorithm for the shipping costs calculation and defines it in the _calculate()_ method.
+_StrategyExample_ widget stores all different shipping costs calculation strategies in the _shippingCostsStrategyList_ variable.
+
 ### IShippingCostsStrategy
 
 An interface which defines methods and properties to be implemented by all supported algorithms. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
@@ -46,13 +55,10 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
 
   @override
   double calculate(Order order) {
-    var finalShippingPrice = 0.0;
-
-    for (var item in order.items) {
-      finalShippingPrice += _getOrderItemShippingPrice(item);
-    }
-
-    return finalShippingPrice;
+    return order.items.fold<double>(
+      0.0,
+      (sum, item) => sum + _getOrderItemShippingPrice(item),
+    );
   }
 
   double _getOrderItemShippingPrice(OrderItem orderItem) {
@@ -96,7 +102,7 @@ class Order {
   final List<OrderItem> items = List<OrderItem>();
 
   double get price =>
-      items.fold(0.0, (sum, orderItem) => sum += orderItem.price);
+      items.fold(0.0, (sum, orderItem) => sum + orderItem.price);
 
   void addOrderItem(OrderItem orderItem) {
     items.add(orderItem);
@@ -126,7 +132,7 @@ class OrderItem {
 
 ### PackageSize
 
-A special kind of class - _enumeration_ - to define different package size of the order item .
+A special kind of class - _enumeration_ - to define different package size of the order item.
 
 ```
 enum PackageSize {
