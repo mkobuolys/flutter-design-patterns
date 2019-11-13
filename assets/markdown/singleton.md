@@ -5,6 +5,7 @@
 ## Implementation
 
 ### Class diagram
+
 The diagram shows only the Singleton implementation by definition (_ExampleStateByDefinition_ class). This class diagram is selected because it represents a general Singleton's class diagram the most accurately.
 
 ![Singleton Implementation Class Diagram](resource:assets/images/singleton/singleton_implementation.png)
@@ -13,7 +14,7 @@ The diagram shows only the Singleton implementation by definition (_ExampleState
 
 A base class for the abstraction of example's state which contains an initial text value, a single text property and methods to operate it.
 
-``` 
+```
 abstract class ExampleStateBase {
   @protected
   String initialText;
@@ -35,9 +36,9 @@ abstract class ExampleStateBase {
 
 Example's state is implemented in 3 different ways:
 
-* ExampleStateByDefinition - example's state is a Singleton which is implemented by definition.
+- ExampleStateByDefinition - example's state is a Singleton which is implemented by definition.
 
-``` 
+```
 class ExampleStateByDefinition extends ExampleStateBase {
   static ExampleStateByDefinition _instance;
 
@@ -57,9 +58,9 @@ class ExampleStateByDefinition extends ExampleStateBase {
 }
 ```
 
-* ExampleState - example's state is a Singleton which is implemented using the Dart language capabilities.
+- ExampleState - example's state is a Singleton which is implemented using the Dart language capabilities.
 
-``` 
+```
 class ExampleState extends ExampleStateBase {
   static final ExampleState _instance = ExampleState._internal();
 
@@ -75,9 +76,9 @@ class ExampleState extends ExampleStateBase {
 }
 ```
 
-* ExampleStateWithoutSingleton - example's state is implemented without using a Singleton design pattern.
+- ExampleStateWithoutSingleton - example's state is implemented without using a Singleton design pattern.
 
-``` 
+```
 class ExampleStateWithoutSingleton extends ExampleStateBase {
   ExampleStateWithoutSingleton() {
     initialText =
@@ -92,7 +93,7 @@ class ExampleStateWithoutSingleton extends ExampleStateBase {
 
 Example uses all three different implementations of the state. Singleton implementations (_ExampleStateByDefinition_ and _ExampleState_) create a new state object only on the first creation of the _SingletonExample_ widget, but the _ExampleStateWithoutSingleton_ instance is created on each creation of the _SingletonExample_ widget.
 
-``` 
+```
 class SingletonExample extends StatefulWidget {
   @override
   _SingletonExampleState createState() => _SingletonExampleState();
@@ -159,4 +160,3 @@ class _SingletonExampleState extends State<SingletonExample> {
   }
 }
 ```
-
