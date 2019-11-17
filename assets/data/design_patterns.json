@@ -1,53 +1,59 @@
 [
-    {
-        "id": "creational",
-        "title": "Creational",
-        "color": "0xFFF3D250",
-        "patterns": [
-            {
-                "id": "singleton",
-                "title": "Singleton",
-                "description": "Ensure a class only has one instance, and provide a global point of access to it.",
-                "route": "/singleton"
-            }
-        ]
-    },
-    {
-        "id": "structural",
-        "title": "Structural",
-        "color": "0xFF90CCF4",
-        "patterns": [
-            {
-                "id": "adapter",
-                "title": "Adapter",
-                "description": "Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.",
-                "route": "/adapter"
-            },
-            {
-                "id": "composite",
-                "title": "Composite",
-                "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.",
-                "route": "/composite"
-            }
-        ]
-    },
-    {
-        "id": "behavioral",
-        "title": "Behavioral",
-        "color": "0xFFF78888",
-        "patterns": [
-            {
-                "id": "strategy",
-                "title": "Strategy",
-                "description": "Define a family of algorithms, encapsulate each one, and make them interchange­able. Strategy lets the algorithm vary independently from clients that use it.",
-                "route": "/strategy"
-            },
-            {
-                "id": "template-method",
-                "title": "Template Method",
-                "description": "Define the skeleton of an algorithm in an operation, deferring some steps to sub­classes. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.",
-                "route": "/template-method"
-            }
-        ]
-    }
+  {
+    "id": "creational",
+    "title": "Creational",
+    "color": "0xFFF3D250",
+    "patterns": [
+      {
+        "id": "singleton",
+        "title": "Singleton",
+        "description": "Ensure a class only has one instance, and provide a global point of access to it.",
+        "route": "/singleton"
+      }
+    ]
+  },
+  {
+    "id": "structural",
+    "title": "Structural",
+    "color": "0xFF90CCF4",
+    "patterns": [
+      {
+        "id": "adapter",
+        "title": "Adapter",
+        "description": "Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.",
+        "route": "/adapter"
+      },
+      {
+        "id": "composite",
+        "title": "Composite",
+        "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.",
+        "route": "/composite"
+      }
+    ]
+  },
+  {
+    "id": "behavioral",
+    "title": "Behavioral",
+    "color": "0xFFF78888",
+    "patterns": [
+      {
+        "id": "state",
+        "title": "State",
+        "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.",
+        "route": "/state"
+      },
+      {
+        "id": "strategy",
+        "title": "Strategy",
+        "description": "Define a family of algorithms, encapsulate each one, and make them interchange­able. Strategy lets the algorithm vary independently from clients that use it.",
+        "route": "/strategy"
+      },
+      {
+        "id": "template-method",
+        "title": "Template Method",
+        "description": "Define the skeleton of an algorithm in an operation, deferring some steps to sub­classes. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.",
+        "route": "/template-method"
+      }
+    ]
+  }
 ]
