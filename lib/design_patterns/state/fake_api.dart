@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
 
 class FakeApi {
-  Future<List<String>> getRandomNames() async {
+  Future<List<String>> getNames() async {
     return Future.delayed(
       const Duration(seconds: 2),
       () {

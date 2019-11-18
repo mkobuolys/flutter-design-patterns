@@ -13,7 +13,7 @@ class LoadingState implements IState {
   @override
   Future nextState(StateContext context) async {
     try {
-      var resultList = await _api.getRandomNames();
+      var resultList = await _api.getNames();
 
       if (resultList.isEmpty) {
         context.setState(NoResultsState());
