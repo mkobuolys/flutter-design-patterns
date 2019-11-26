@@ -32,6 +32,7 @@ flutter:
     - assets/markdown/
     - assets/images/adapter/
     - assets/images/composite/
+    - assets/images/facade/
     - assets/images/singleton/
     - assets/images/state/
     - assets/images/strategy/

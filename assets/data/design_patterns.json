@@ -28,6 +28,12 @@
         "title": "Composite",
         "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.",
         "route": "/composite"
+      },
+      {
+        "id": "facade",
+        "title": "Facade",
+        "description": "Provide an unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.",
+        "route": "/facade"
       }
     ]
   },
