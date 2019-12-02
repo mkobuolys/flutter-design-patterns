@@ -1,8 +1,8 @@
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/non_terminal/add.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/non_terminal/product.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/non_terminal/substract.dart';
+import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/add.dart';
+import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/product.dart';
+import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/substract.dart';
 import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/terminal/number.dart';
 import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
 
@@ -16,10 +16,10 @@ class ExpressionHelpers {
       if (_isOperator(symbol)) {
         var rightExpression = expressionStack.removeLast();
         var leftExpression = expressionStack.removeLast();
-        var nonTerminalExpression =
-            _getNonTerminalExpression(symbol, leftExpression, rightExpression);
+        var nonterminalExpression =
+            _getNonterminalExpression(symbol, leftExpression, rightExpression);
 
-        expressionStack.addLast(nonTerminalExpression);
+        expressionStack.addLast(nonterminalExpression);
       } else {
         var numberExpression = Number(int.parse(symbol));
 
@@ -34,7 +34,7 @@ class ExpressionHelpers {
     return _operators.contains(symbol);
   }
 
-  static IExpression _getNonTerminalExpression(
+  static IExpression _getNonterminalExpression(
     String symbol,
     IExpression leftExpression,
     IExpression rightExpression,
