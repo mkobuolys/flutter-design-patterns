@@ -1,3 +1,4 @@
+import 'package:flutter_design_patterns/design_patterns/interpreter/expression_context.dart';
 import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
 
 class Number implements IExpression {
@@ -6,7 +7,7 @@ class Number implements IExpression {
   const Number(this.number);
 
   @override
-  int interpret() {
+  int interpret(ExpressionContext context) {
     return number;
   }
 }

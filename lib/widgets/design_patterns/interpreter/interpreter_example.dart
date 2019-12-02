@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expression_context.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/expression_section.dart';
 
 class InterpreterExample extends StatefulWidget {
@@ -10,7 +9,6 @@ class InterpreterExample extends StatefulWidget {
 }
 
 class _InterpreterExampleState extends State<InterpreterExample> {
-  final ExpressionContext _expressionContext = ExpressionContext();
   final List<String> _postfixExpressions = [
     '20 3 5 * - 2 3 * +',
     '1 1 1 1 1 + + + * 2 -',
@@ -28,10 +26,7 @@ class _InterpreterExampleState extends State<InterpreterExample> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             for (var postfixExpression in _postfixExpressions)
-              ExpressionSection(
-                expressionContext: _expressionContext,
-                postfixExpression: postfixExpression,
-              ),
+              ExpressionSection(postfixExpression),
           ],
         ),
       ),
