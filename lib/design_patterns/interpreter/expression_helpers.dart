@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/add.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/product.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/substract.dart';
+import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/multiply.dart';
+import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/subtract.dart';
 import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/terminal/number.dart';
 import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
 
@@ -46,10 +46,10 @@ class ExpressionHelpers {
         expression = Add(leftExpression, rightExpression);
         break;
       case '-':
-        expression = Substract(leftExpression, rightExpression);
+        expression = Subtract(leftExpression, rightExpression);
         break;
       case '*':
-        expression = Product(leftExpression, rightExpression);
+        expression = Multiply(leftExpression, rightExpression);
         break;
       default:
         throw Exception('Expression is not defined.');
