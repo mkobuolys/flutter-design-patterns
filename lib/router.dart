@@ -9,6 +9,7 @@ import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/facade/facade_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/interpreter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/state/state_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/strategy/strategy_example.dart';
@@ -51,6 +52,11 @@ class Router {
           FacadeExample(),
         );
       // Behavioral
+      case _DesignPatternRoutes.interpreterRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          InterpreterExample(),
+        );
       case _DesignPatternRoutes.stateRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -91,6 +97,7 @@ class _DesignPatternRoutes {
   static const String adapterRoute = '/adapter';
   static const String compositeRoute = '/composite';
   static const String facadeRoute = '/facade';
+  static const String interpreterRoute = '/interpreter';
   static const String singletonRoute = '/singleton';
   static const String stateRoute = '/state';
   static const String strategyRoute = '/strategy';

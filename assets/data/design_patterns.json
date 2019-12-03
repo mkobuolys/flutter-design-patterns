@@ -43,6 +43,12 @@
     "color": "0xFFF78888",
     "patterns": [
       {
+        "id": "interpreter",
+        "title": "Interpreter",
+        "description": "Given a language, define a representation for its grammar along with an inter­preter that uses the representation to interpret sentences in the language.",
+        "route": "/interpreter"
+      },
+      {
         "id": "state",
         "title": "State",
         "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.",
