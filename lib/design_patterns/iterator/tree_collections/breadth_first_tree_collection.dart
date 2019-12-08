@@ -8,7 +8,13 @@ class BreadthFirstTreeCollection implements ITreeCollection {
 
   const BreadthFirstTreeCollection(this.graph);
 
-  ITreeIterator getIterator() {
+  @override
+  ITreeIterator createIterator() {
     return BreadthFirstIterator(this);
+  }
+
+  @override
+  String getTitle() {
+    return 'Breadth-first';
   }
 }

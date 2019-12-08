@@ -8,7 +8,13 @@ class DepthFirstTreeCollection implements ITreeCollection {
 
   const DepthFirstTreeCollection(this.graph);
 
-  ITreeIterator getIterator() {
+  @override
+  ITreeIterator createIterator() {
     return DepthFirstIterator(this);
+  }
+
+  @override
+  String getTitle() {
+    return 'Depth-first';
   }
 }

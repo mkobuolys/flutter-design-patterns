@@ -14,11 +14,10 @@ class PlatformButton extends StatelessWidget {
     @required this.child,
     @required this.materialColor,
     @required this.materialTextColor,
-    @required this.onPressed,
+    this.onPressed,
   })  : assert(child != null),
         assert(materialColor != null),
-        assert(materialTextColor != null),
-        assert(onPressed != null);
+        assert(materialTextColor != null);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +26,8 @@ class PlatformButton extends StatelessWidget {
             child: child,
             color: materialColor,
             textColor: materialTextColor,
+            disabledColor: Colors.grey,
+            disabledTextColor: Colors.white,
             onPressed: onPressed,
           )
         : CupertinoButton.filled(

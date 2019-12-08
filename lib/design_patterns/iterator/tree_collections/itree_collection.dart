@@ -1,5 +1,6 @@
 import 'package:flutter_design_patterns/design_patterns/iterator/tree_iterators/itree_iterator.dart';
 
 abstract class ITreeCollection {
-  ITreeIterator getIterator();
+  ITreeIterator createIterator();
+  String getTitle();
 }
