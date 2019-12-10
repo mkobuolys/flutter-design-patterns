@@ -34,6 +34,7 @@ flutter:
     - assets/images/composite/
     - assets/images/facade/
     - assets/images/interpreter/
+    - assets/images/iterator/
     - assets/images/singleton/
     - assets/images/state/
     - assets/images/strategy/

@@ -49,6 +49,12 @@
         "route": "/interpreter"
       },
       {
+        "id": "iterator",
+        "title": "Iterator",
+        "description": "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.",
+        "route": "/iterator"
+      },
+      {
         "id": "state",
         "title": "State",
         "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.",
