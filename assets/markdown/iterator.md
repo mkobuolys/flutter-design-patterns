@@ -10,7 +10,22 @@ The class diagram below shows the implementation of **Iterator** design pattern.
 
 ![Iterator Implementation Class Diagram](resource:assets/images/iterator/iterator_implementation.png)
 
-Text
+_ITreeCollection_ defines a common interface for all the specific tree collections:
+
+- _createIterator()_ - creates an iterator for the specific tree collection;
+- _getTitle()_ - returns the title of the tree collection which is used in the UI.
+
+_DepthFirstTreeCollection_ and _BreadthFirstTreeCollection_ are concrete implementations of the _ITreeCollection_ interface. _DepthFirstTreeCollection_ creates the _DepthFirstIterator_ while _BreadthFirstTreeCollection_ creates the _BreadthFirstIterator_. Also, both of these collections stores the _Graph_ object to save the tree data structure itself.
+
+_ITreeIterator_ defines a common interface for all specific iterators of the tree collection:
+
+- _hasNext()_ - returns true if the iterator did not reach the end of the collection yet;
+- _getNext()_ - returns the next value of the collection;
+- _reset()_ - resets the iterator and sets the current position of it to the beginning.
+
+_DepthFirstIterator_ and _BreadthFirstIterator_ are concrete implementations of the _ITreeIterator_ interface. _DepthFirstIterator_ implements the **depth-first** algorithm to traverse the tree collection. Correspondingly, _BreadthFirstIterator_ implements the **breadth-first** algorithm. The main difference between these two algorithms is the order in which all of the nodes are visited. Hence, the depth-first algorithm is implemented using the **stack** data structure while the breadth-first algorithm uses the **queue** data structure to store nodes (vertices) which should be visited next.
+
+_IteratorExample_ references both interfaces - _ITreeCollection_ and _ITreeIterator_ - to specify the required tree collection and create an appropriate iterator for it.
 
 ### Graph
 
@@ -203,7 +218,8 @@ class BreadthFirstIterator implements ITreeIterator {
 
 ### Example
 
-_IteratorExample_ widget...
+_IteratorExample_ widget is responsible for building the tree (graph) using the _Graph_ class and contains a list of tree collection objects. After selecting the specific tree collection from the list and triggering the _traverseTree()_ method, an appropriate iterator of that particular tree collection is created and used to traverse the tree data structure.
+As you can see in the _traverseTree()_ method, all the implementation details of the tree collection's traversal are hidden from the client, it only uses the _hasNext()_ and _getNext()_ methods defined by the _ITreeIterator_ interface to iterate through all of the vertices (nodes) of the built _Graph_ object (tree).
 
 ```
 class IteratorExample extends StatefulWidget {
