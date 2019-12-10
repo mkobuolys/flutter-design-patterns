@@ -6,7 +6,7 @@
 
 ### Class diagram
 
-The class diagram below shows the implementation of **Iterator** design pattern.
+The class diagram below shows the implementation of the **Iterator** design pattern.
 
 ![Iterator Implementation Class Diagram](resource:assets/images/iterator/iterator_implementation.png)
 
@@ -19,7 +19,7 @@ _DepthFirstTreeCollection_ and _BreadthFirstTreeCollection_ are concrete impleme
 
 _ITreeIterator_ defines a common interface for all specific iterators of the tree collection:
 
-- _hasNext()_ - returns true if the iterator did not reach the end of the collection yet;
+- _hasNext()_ - returns true if the iterator did not reach the end of the collection yet, otherwise false;
 - _getNext()_ - returns the next value of the collection;
 - _reset()_ - resets the iterator and sets the current position of it to the beginning.
 
@@ -29,7 +29,7 @@ _IteratorExample_ references both interfaces - _ITreeCollection_ and _ITreeItera
 
 ### Graph
 
-A class which stores the adjacency list of the graph. It is stored as a map data structure where the key represents the node's id and the value is a list of vertices (ids of other nodes) adjacent to the vertex of that id (key). Also, this class defines the _addEdge()_ method to add an edge to the adjacency list.
+A class which stores the adjacency list of the graph. It is stored as a map data structure where the key represents the node's (vertix) id and the value is a list of vertices (ids of other nodes) adjacent to the vertex of that id (key). Also, this class defines the _addEdge()_ method to add an edge to the adjacency list.
 
 ```
 class Graph {
