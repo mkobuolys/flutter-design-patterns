@@ -4,9 +4,14 @@ import 'package:flutter_design_patterns/design_patterns/factory_method/custom_di
 
 class AndroidAlertDialog extends CustomDialog {
   @override
+  String getTitle() {
+    return 'Android Alert Dialog';
+  }
+
+  @override
   Widget create(BuildContext context) {
     return AlertDialog(
-      title: Text('Android Alert Dialog'),
+      title: Text(getTitle()),
       content: Text('This is the material-style alert dialog!'),
       actions: <Widget>[
         FlatButton(
@@ -14,7 +19,7 @@ class AndroidAlertDialog extends CustomDialog {
           onPressed: () {
             Navigator.of(context).pop();
           },
-        ),
+        )
       ],
     );
   }
