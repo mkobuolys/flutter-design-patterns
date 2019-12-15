@@ -9,6 +9,7 @@ import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/facade/facade_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/factory_method/factory_method_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/interpreter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/iterator/iterator_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example.dart';
@@ -31,6 +32,11 @@ class Router {
           ),
         );
       // Creational
+      case _DesignPatternRoutes.factoryMethodRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          FactoryMethodExample(),
+        );
       case _DesignPatternRoutes.singletonRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -103,6 +109,7 @@ class _DesignPatternRoutes {
   static const String adapterRoute = '/adapter';
   static const String compositeRoute = '/composite';
   static const String facadeRoute = '/facade';
+  static const String factoryMethodRoute = '/factory-method';
   static const String interpreterRoute = '/interpreter';
   static const String iteratorRoute = '/iterator';
   static const String singletonRoute = '/singleton';
