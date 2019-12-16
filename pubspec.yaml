@@ -33,6 +33,7 @@ flutter:
     - assets/images/adapter/
     - assets/images/composite/
     - assets/images/facade/
+    - assets/images/factory_method/
     - assets/images/interpreter/
     - assets/images/iterator/
     - assets/images/singleton/
