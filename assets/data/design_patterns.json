@@ -5,6 +5,12 @@
     "color": "0xFFF3D250",
     "patterns": [
       {
+        "id": "factory-method",
+        "title": "Factory Method",
+        "description": "Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to sub­classes.",
+        "route": "/factory-method"
+      },
+      {
         "id": "singleton",
         "title": "Singleton",
         "description": "Ensure a class only has one instance, and provide a global point of access to it.",
