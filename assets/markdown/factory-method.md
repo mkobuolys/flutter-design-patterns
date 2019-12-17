@@ -10,7 +10,17 @@ The class diagram below shows the implementation of the **Factory Method** desig
 
 ![Factory Method Implementation Class Diagram](resource:assets/images/factory_method/factory_method_implementation.png)
 
-Text
+_CustomDialog_ is an abstract class which is used as a base class for all the specific alert dialogs:
+
+- _getTitle()_ - an abstract method which returns the title of the alert dialog. Used in the UI;
+- _create()_ - an abstract method which returns the specific implementation (UI component/widget) of the alert dialog;
+- _show()_ - calls the _create()_ method to build (create) the alert dialog and show it in the UI.
+
+_AndroidAlertDialog_ and _IosAlertDialog_ are concrete classes which extend the _CustomDialog_ class and implement its abstract methods. _AndroidAlertDialog_ creates a Material style alert dialog of type _AlertDialog_ while the _IosAlertDialog_ creates a Cupertino style alert dialog of type _CupertinoAlertDialog_.
+
+_Widget_, _CupertinoAlertDialog_ and _AlertDialog_ are already implemented classes (widgets) of the Flutter library.
+
+_FactoryMethodExample_ contains the _CustomDialog_ class to show the specific alert dialog of that type using the _show()_ method.
 
 ### CustomDialog
 
