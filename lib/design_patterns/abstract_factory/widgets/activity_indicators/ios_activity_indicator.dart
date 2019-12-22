@@ -5,7 +5,6 @@ import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets
 class IosActivityIndicator implements IActivityIndicator {
   @override
   Widget render() {
-    // TODO: implement render
-    return null;
+    return CupertinoActivityIndicator();
   }
 }

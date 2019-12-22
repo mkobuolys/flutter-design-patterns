@@ -5,7 +5,11 @@ import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets
 class AndroidActivityIndicator implements IActivityIndicator {
   @override
   Widget render() {
-    // TODO: implement render
-    return null;
+    return CircularProgressIndicator(
+      backgroundColor: Color(0xFFECECEC),
+      valueColor: AlwaysStoppedAnimation<Color>(
+        Colors.black.withOpacity(0.65),
+      ),
+    );
   }
 }
