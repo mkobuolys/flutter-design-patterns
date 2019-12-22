@@ -8,6 +8,11 @@ import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets
 
 class MaterialWidgetsFactory implements IWidgetsFactory {
   @override
+  String getTitle() {
+    return 'Android widgets';
+  }
+
+  @override
   IActivityIndicator createActivityIndicator() {
     return AndroidActivityIndicator();
   }

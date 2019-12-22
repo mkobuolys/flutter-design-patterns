@@ -8,6 +8,11 @@ import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets
 
 class CupertinoWidgetsFactory implements IWidgetsFactory {
   @override
+  String getTitle() {
+    return 'iOS widgets';
+  }
+
+  @override
   IActivityIndicator createActivityIndicator() {
     return IosActivityIndicator();
   }
