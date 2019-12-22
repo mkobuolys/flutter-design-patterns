@@ -5,6 +5,12 @@
     "color": "0xFFF3D250",
     "patterns": [
       {
+        "id": "abstract-factory",
+        "title": "Abstract Factory",
+        "description": "Provide an interface for creating families of related or dependent objects without specifying their concrete classes.",
+        "route": "/abstract-factory"
+      },
+      {
         "id": "factory-method",
         "title": "Factory Method",
         "description": "Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to sub­classes.",
