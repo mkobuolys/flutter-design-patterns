@@ -6,6 +6,7 @@ import 'package:flutter_design_patterns/data/models/design_pattern_category.dart
 import 'package:flutter_design_patterns/screens/category/category.dart';
 import 'package:flutter_design_patterns/screens/design_pattern_details/design_pattern_details.dart';
 import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/abstract_factory/abstract_factory_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/facade/facade_example.dart';
@@ -32,6 +33,11 @@ class Router {
           ),
         );
       // Creational
+      case _DesignPatternRoutes.abstractFactoryRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          AbstractFactoryExample(),
+        );
       case _DesignPatternRoutes.factoryMethodRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -106,6 +112,7 @@ class Router {
 }
 
 class _DesignPatternRoutes {
+  static const String abstractFactoryRoute = '/abstract-factory';
   static const String adapterRoute = '/adapter';
   static const String compositeRoute = '/composite';
   static const String facadeRoute = '/facade';

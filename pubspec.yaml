@@ -30,6 +30,7 @@ flutter:
     - assets/
     - assets/data/
     - assets/markdown/
+    - assets/images/abstract_factory/
     - assets/images/adapter/
     - assets/images/composite/
     - assets/images/facade/
