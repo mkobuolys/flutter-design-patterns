@@ -6,7 +6,7 @@
 
 ### Class diagram
 
-The class diagram below shows the implementation of **Abstract Factory** design pattern.
+The class diagram below shows the implementation of the **Abstract Factory** design pattern.
 
 ![Abstract Factory Implementation Class Diagram](resource:assets/images/abstract_factory/abstract_factory_implementation.png)
 
