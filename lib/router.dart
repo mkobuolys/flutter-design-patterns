@@ -8,6 +8,7 @@ import 'package:flutter_design_patterns/screens/design_pattern_details/design_pa
 import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/abstract_factory/abstract_factory_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/command/command_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/facade/facade_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/factory_method/factory_method_example.dart';
@@ -65,6 +66,11 @@ class Router {
           FacadeExample(),
         );
       // Behavioral
+      case _DesignPatternRoutes.commandRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          CommandExample(),
+        );
       case _DesignPatternRoutes.interpreterRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -114,6 +120,7 @@ class Router {
 class _DesignPatternRoutes {
   static const String abstractFactoryRoute = '/abstract-factory';
   static const String adapterRoute = '/adapter';
+  static const String commandRoute = '/command';
   static const String compositeRoute = '/composite';
   static const String facadeRoute = '/facade';
   static const String factoryMethodRoute = '/factory-method';
