@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
+import 'package:flutter_design_patterns/design_patterns/command/command.dart';
 import 'package:flutter_design_patterns/design_patterns/command/command_history.dart';
 import 'package:flutter_design_patterns/design_patterns/command/commands/change_color_command.dart';
 import 'package:flutter_design_patterns/design_patterns/command/commands/change_height_command.dart';
@@ -21,25 +22,20 @@ class _CommandExampleState extends State<CommandExample> {
 
   void _changeColor() {
     var command = ChangeColorCommand(_shape);
-
-    setState(() {
-      command.execute();
-      _commandHistory.add(command);
-    });
+    _executeCommand(command);
   }
 
   void _changeHeight() {
     var command = ChangeHeightCommand(_shape);
-
-    setState(() {
-      command.execute();
-      _commandHistory.add(command);
-    });
+    _executeCommand(command);
   }
 
   void _changeWidth() {
     var command = ChangeWidthCommand(_shape);
+    _executeCommand(command);
+  }
 
+  void _executeCommand(Command command) {
     setState(() {
       command.execute();
       _commandHistory.add(command);
