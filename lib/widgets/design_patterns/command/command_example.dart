@@ -84,7 +84,7 @@ class _CommandExampleState extends State<CommandExample> {
             ),
             Divider(),
             PlatformButton(
-              child: Text("Undo"),
+              child: Text('Undo'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _commandHistory.isEmpty ? null : _undo,
