@@ -9,7 +9,9 @@ class ChangeColorCommand implements Command {
   Shape shape;
   Color previousColor;
 
-  ChangeColorCommand(this.shape, this.previousColor);
+  ChangeColorCommand(this.shape) {
+    previousColor = shape.color;
+  }
 
   @override
   void execute() {

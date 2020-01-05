@@ -3,24 +3,26 @@ import 'package:faker/faker.dart';
 import 'package:flutter_design_patterns/design_patterns/command/command.dart';
 import 'package:flutter_design_patterns/design_patterns/command/shape.dart';
 
-class ChangeTextCommand implements Command {
+class ChangeHeightCommand implements Command {
   Shape shape;
-  String previousText;
+  double previousHeight;
 
-  ChangeTextCommand(this.shape, this.previousText);
+  ChangeHeightCommand(this.shape) {
+    previousHeight = shape.height;
+  }
 
   @override
   void execute() {
-    shape.text = faker.lorem.word();
+    shape.height = random.integer(150, min: 50).toDouble();
   }
 
   @override
   String getTitle() {
-    return 'Change text';
+    return 'Change height';
   }
 
   @override
   void undo() {
-    shape.text = previousText;
+    shape.height = previousHeight;
   }
 }
