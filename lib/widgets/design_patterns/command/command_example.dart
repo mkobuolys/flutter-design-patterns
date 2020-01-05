@@ -83,16 +83,11 @@ class _CommandExampleState extends State<CommandExample> {
               onPressed: _changeWidth,
             ),
             Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                PlatformButton(
-                  child: Text("Undo"),
-                  materialColor: Colors.black,
-                  materialTextColor: Colors.white,
-                  onPressed: _commandHistory.isEmpty ? null : _undo,
-                ),
-              ],
+            PlatformButton(
+              child: Text("Undo"),
+              materialColor: Colors.black,
+              materialTextColor: Colors.white,
+              onPressed: _commandHistory.isEmpty ? null : _undo,
             ),
             const SizedBox(height: spaceM),
             Row(
