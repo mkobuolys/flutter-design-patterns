@@ -1,22 +1,19 @@
 import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/shape.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/memento.dart';
+import 'package:flutter_design_patterns/design_patterns/memento/memento/imemento.dart';
+import 'package:flutter_design_patterns/design_patterns/memento/memento/memento.dart';
 
 class Originator {
-  Shape _state;
+  Shape state;
 
-  Memento createMemento() {
-    return Memento(_state);
+  Originator() {
+    state = Shape.initial();
   }
 
-  void restore(Memento memento) {
-    _state = memento.getState();
+  IMemento createMemento() {
+    return Memento(state);
   }
 
-  Shape getState() {
-    return _state;
-  }
-
-  void setState(Shape state) {
-    _state = state;
+  void restore(IMemento memento) {
+    state = memento.getState();
   }
 }

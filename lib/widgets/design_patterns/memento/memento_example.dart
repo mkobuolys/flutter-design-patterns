@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command.dart';
 import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command_history.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/change_color_command.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/change_height_command.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/change_width_command.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/shape.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/memento/command_history_column.dart';
+import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
+import 'package:flutter_design_patterns/design_patterns/memento/originator.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/memento/shape_container.dart';
 import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
 
@@ -18,20 +15,10 @@ class MementoExample extends StatefulWidget {
 
 class _MementoExampleState extends State<MementoExample> {
   final CommandHistory _commandHistory = CommandHistory();
-  final Shape _shape = Shape.initial();
+  final Originator _originator = Originator();
 
-  void _changeColor() {
-    var command = ChangeColorCommand(_shape);
-    _executeCommand(command);
-  }
-
-  void _changeHeight() {
-    var command = ChangeHeightCommand(_shape);
-    _executeCommand(command);
-  }
-
-  void _changeWidth() {
-    var command = ChangeWidthCommand(_shape);
+  void _randomiseProperties() {
+    var command = RandomisePropertiesCommand(_originator);
     _executeCommand(command);
   }
 
@@ -57,26 +44,14 @@ class _MementoExampleState extends State<MementoExample> {
         child: Column(
           children: <Widget>[
             ShapeContainer(
-              shape: _shape,
+              originator: _originator,
             ),
             const SizedBox(height: spaceM),
             PlatformButton(
-              child: Text('Change color'),
+              child: Text('Randomise properties'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
-              onPressed: _changeColor,
-            ),
-            PlatformButton(
-              child: Text('Change height'),
-              materialColor: Colors.black,
-              materialTextColor: Colors.white,
-              onPressed: _changeHeight,
-            ),
-            PlatformButton(
-              child: Text('Change width'),
-              materialColor: Colors.black,
-              materialTextColor: Colors.white,
-              onPressed: _changeWidth,
+              onPressed: _randomiseProperties,
             ),
             Divider(),
             PlatformButton(
@@ -86,13 +61,6 @@ class _MementoExampleState extends State<MementoExample> {
               onPressed: _commandHistory.isEmpty ? null : _undo,
             ),
             const SizedBox(height: spaceM),
-            Row(
-              children: <Widget>[
-                CommandHistoryColumn(
-                  commandList: _commandHistory.commandHistoryList,
-                ),
-              ],
-            ),
           ],
         ),
       ),
