@@ -1,4 +1,4 @@
-abstract class Command {
+abstract class ICommand {
   void execute();
   void undo();
 }

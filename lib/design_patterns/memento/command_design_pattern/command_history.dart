@@ -1,13 +1,13 @@
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command.dart';
+import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/icommand.dart';
 
 class CommandHistory {
-  final ListQueue<Command> _commandList = ListQueue<Command>();
+  final ListQueue<ICommand> _commandList = ListQueue<ICommand>();
 
   bool get isEmpty => _commandList.isEmpty;
 
-  void add(Command command) {
+  void add(ICommand command) {
     _commandList.add(command);
   }
 

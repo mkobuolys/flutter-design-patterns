@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command.dart';
+import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/icommand.dart';
 import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command_history.dart';
 import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
 import 'package:flutter_design_patterns/design_patterns/memento/originator.dart';
@@ -22,7 +22,7 @@ class _MementoExampleState extends State<MementoExample> {
     _executeCommand(command);
   }
 
-  void _executeCommand(Command command) {
+  void _executeCommand(ICommand command) {
     setState(() {
       command.execute();
       _commandHistory.add(command);
