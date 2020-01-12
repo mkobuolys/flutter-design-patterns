@@ -2,16 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/shape.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/originator.dart';
 
 class ShapeContainer extends StatelessWidget {
-  final Originator originator;
+  final Shape shape;
 
   const ShapeContainer({
-    @required this.originator,
-  }) : assert(originator != null);
-
-  Shape get _shape => originator.state;
+    @required this.shape,
+  }) : assert(shape != null);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +17,10 @@ class ShapeContainer extends StatelessWidget {
       child: Center(
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 500),
-          height: _shape.height,
-          width: _shape.width,
+          height: shape.height,
+          width: shape.width,
           decoration: BoxDecoration(
-            color: _shape.color,
+            color: shape.color,
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Icon(

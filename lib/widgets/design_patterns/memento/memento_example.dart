@@ -44,7 +44,7 @@ class _MementoExampleState extends State<MementoExample> {
         child: Column(
           children: <Widget>[
             ShapeContainer(
-              originator: _originator,
+              shape: _originator.state,
             ),
             const SizedBox(height: spaceM),
             PlatformButton(
