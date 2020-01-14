@@ -174,7 +174,7 @@ class Originator {
 
 ### Example
 
-_MementoExample _ contains _CommandHistory_ and _Originator_ objects. Also, this widget contains a _PlatformButton_ component which uses the _RandomisePropertiesCommand_ to randomise property values of the shape. After the command's execution, it is added to the command history list stored in the _CommandHistory_ object. If the command history is not empty, the _Undo_ button is enabled and the last command could be undone.
+_MementoExample_ contains _CommandHistory_ and _Originator_ objects. Also, this widget contains a _PlatformButton_ component which uses the _RandomisePropertiesCommand_ to randomise property values of the shape. After the command's execution, it is added to the command history list stored in the _CommandHistory_ object. If the command history is not empty, the _Undo_ button is enabled and the last command could be undone.
 
 As you can see in this example, the client code (UI elements, command history, etc.) isn’t coupled to any specific command class because it works with it via the _ICommand_ interface.
 
