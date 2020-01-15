@@ -38,6 +38,7 @@ flutter:
     - assets/images/factory_method/
     - assets/images/interpreter/
     - assets/images/iterator/
+    - assets/images/memento/
     - assets/images/singleton/
     - assets/images/state/
     - assets/images/strategy/

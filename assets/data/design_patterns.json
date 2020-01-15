@@ -73,6 +73,12 @@
         "route": "/iterator"
       },
       {
+        "id": "memento",
+        "title": "Memento",
+        "description": "Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.",
+        "route": "/memento"
+      },
+      {
         "id": "state",
         "title": "State",
         "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.",
