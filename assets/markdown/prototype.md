@@ -157,7 +157,7 @@ class Rectangle extends Shape {
 
 _PrototypeExample_ contains a couple of _Shape_ objects - _Circle_ and _Rectangle_. By pressing the _Randomise properties_ button, the values of shape's properties are randomised (the _randomiseProperties()_ method is called on the shape). Also, if the _Clone_ button is pressed, the _clone()_ method is called on the shape and a copy of that particular shape is crated with the exact same values of all the properties.
 
-The _PrototypeExample_ does not care about the specific type of the shape object as long as it extends the _Shape_ abstract class and implements all of its abstract methods. As a result, the _clone()_ method could be called on any shape, all of its properties are copied even though these are different on different shapes e.g. the circle has only the _radius_ property which is specific for that particular shape, while the rectangle has two different properties - _height_ and _width_.
+The _PrototypeExample_ does not care about the specific type of shape object as long as it extends the _Shape_ abstract class and implements all of its abstract methods. As a result, the _clone()_ method could be called on any shape, all of its properties are copied even though these are different on different shapes e.g. the circle has only the _radius_ property which is specific for that particular shape, while the rectangle has two different properties - _height_ and _width_.
 
 ```
 class PrototypeExample extends StatefulWidget {
