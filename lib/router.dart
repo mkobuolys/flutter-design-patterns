@@ -15,6 +15,7 @@ import 'package:flutter_design_patterns/widgets/design_patterns/factory_method/f
 import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/interpreter_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/iterator/iterator_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/memento/memento_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/prototype/prototype_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/state/state_example.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/strategy/strategy_example.dart';
@@ -44,6 +45,11 @@ class Router {
         return _buildDesignPatternDetailsPageRoute(
           settings,
           FactoryMethodExample(),
+        );
+      case _DesignPatternRoutes.prototypeRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          PrototypeExample(),
         );
       case _DesignPatternRoutes.singletonRoute:
         return _buildDesignPatternDetailsPageRoute(
@@ -133,6 +139,7 @@ class _DesignPatternRoutes {
   static const String interpreterRoute = '/interpreter';
   static const String iteratorRoute = '/iterator';
   static const String mementoRoute = '/memento';
+  static const String prototypeRoute = '/prototype';
   static const String singletonRoute = '/singleton';
   static const String stateRoute = '/state';
   static const String strategyRoute = '/strategy';
