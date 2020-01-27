@@ -39,7 +39,7 @@ class _ProxyExampleState extends State<ProxyExample> {
         child: Column(
           children: <Widget>[
             Text(
-              'Press the list tile to see more information about the customer',
+              'Press on the list tile to see more information about the customer',
               style: Theme.of(context).textTheme.subhead,
               textAlign: TextAlign.center,
             ),
