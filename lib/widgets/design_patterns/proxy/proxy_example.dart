@@ -38,6 +38,12 @@ class _ProxyExampleState extends State<ProxyExample> {
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
           children: <Widget>[
+            Text(
+              'Press the list tile to see more information about the customer',
+              style: Theme.of(context).textTheme.subhead,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: spaceL),
             for (var customer in _customerList)
               Card(
                 child: ListTile(
@@ -48,6 +54,7 @@ class _ProxyExampleState extends State<ProxyExample> {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+                  trailing: Icon(Icons.info_outline),
                   title: Text(customer.name),
                   onTap: () => _showCustomerDetails(customer),
                 ),
