@@ -49,6 +49,8 @@ class CustomerDetails {
 
 ### ICustomerDetailsService
 
+An interface which defines the _getCustomerDetails()_ method to be implemented by the customer details service and its proxy. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+
 ```
 abstract class ICustomerDetailsService {
   Future<CustomerDetails> getCustomerDetails(String id);
@@ -56,6 +58,8 @@ abstract class ICustomerDetailsService {
 ```
 
 ### CustomerDetailsService
+
+A specific implementation of the _ICustomerDetailsService_ interface - the real customer details service. The _getCustomerDetails()_ method mocks the real behaviour of the service and generates random values of customer details.
 
 ```
 class CustomerDetailsService implements ICustomerDetailsService {
@@ -76,6 +80,8 @@ class CustomerDetailsService implements ICustomerDetailsService {
 ```
 
 ### CustomerDetailsServiceProxy
+
+A specific implementation of the _ICustomerDetailsService_ interface - a proxy for the real customer details service. Before making a call to the customer details service, the proxy service checks whether the customer details are already fetched and saved in the cache. If yes, the customer details object is returned from the cache, otherwise, a request is sent to the real customer service and its value is saved to the cache and returned.
 
 ```
 class CustomerDetailsServiceProxy implements ICustomerDetailsService {
@@ -100,6 +106,8 @@ class CustomerDetailsServiceProxy implements ICustomerDetailsService {
 ```
 
 ### Example
+
+_ProxyExample_ contains the proxy object of the real customer details service. When the user wants to see customer details, the _showDialog()_ method is triggered (via the _showCustomerDetails()_ method) which opens the dialog window of type _CustomerDetailsDialog_ and passes the proxy object via its constructor as well as the selected customer's information - the _Customer_ object.
 
 ```
 class ProxyExample extends StatefulWidget {
@@ -161,3 +169,70 @@ class _ProxyExampleState extends State<ProxyExample> {
   }
 }
 ```
+
+The _CustomerDetailsDialog_ class uses the passed proxy service on its state's initialisation, hence loading details of the selected customer.
+
+```
+class CustomerDetailsDialog extends StatefulWidget {
+  final Customer customer;
+  final ICustomerDetailsService service;
+
+  const CustomerDetailsDialog({
+    @required this.customer,
+    @required this.service,
+  })  : assert(customer != null),
+        assert(service != null);
+
+  @override
+  _CustomerDetailsDialogState createState() => _CustomerDetailsDialogState();
+}
+
+class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
+  @override
+  void initState() {
+    super.initState();
+
+    widget.service
+        .getCustomerDetails(widget.customer.id)
+        .then((CustomerDetails customerDetails) => setState(() {
+              widget.customer.details = customerDetails;
+            }));
+  }
+
+  void _closeDialog() {
+    Navigator.of(context).pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(widget.customer.name),
+      content: Container(
+        height: 200.0,
+        child: widget.customer.details == null
+            ? Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: lightBackgroundColor,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.black.withOpacity(0.65),
+                  ),
+                ),
+              )
+            : CustomerDetailsColumn(
+                customerDetails: widget.customer.details,
+              ),
+      ),
+      actions: <Widget>[
+        PlatformButton(
+          child: Text('Close'),
+          materialColor: Colors.black,
+          materialTextColor: Colors.white,
+          onPressed: _closeDialog,
+        ),
+      ],
+    );
+  }
+}
+```
+
+The _CustomerDetailsDialog_ class does not care about the specific type of customer details service as long as it implements the _ICustomerDetailsService_ interface. As a result, an additional caching layer could be used by sending the request through the proxy service, hence improving the general performance of the application, possibly saving some additional network data and reducing the number of requests sent to the real customer details service as well. Also, if you want to call the real customer details service directly, you can just simply pass it via the _CustomerDetailsDialog_ constructor - no additional changes are needed in the UI code since both the real service and its proxy implements the same interface.
