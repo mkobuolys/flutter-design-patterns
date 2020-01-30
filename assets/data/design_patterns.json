@@ -52,6 +52,12 @@
         "title": "Facade",
         "description": "Provide an unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.",
         "route": "/facade"
+      },
+      {
+        "id": "proxy",
+        "title": "Proxy",
+        "description": "Provide a surrogate or placeholder for another object to control access to it.",
+        "route": "/proxy"
       }
     ]
   },

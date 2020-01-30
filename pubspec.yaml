@@ -40,6 +40,7 @@ flutter:
     - assets/images/iterator/
     - assets/images/memento/
     - assets/images/prototype/
+    - assets/images/proxy/
     - assets/images/singleton/
     - assets/images/state/
     - assets/images/strategy/
