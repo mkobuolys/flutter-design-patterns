@@ -10,6 +10,18 @@ The class diagram below shows the implementation of the **Proxy** design pattern
 
 ![Proxy Implementation Class Diagram](resource:assets/images/proxy/proxy_implementation.png)
 
+_Customer_ class is used to store information about the customer. One of its properties is the _CustomerDetails_ which stores additional data about the customer e.g. its email, hobby and position.
+
+_ICustomerDetailsService_ is an abstract class which is used as an interface for the customer details service:
+
+- _getCustomerDetails()_ - an abstract method which returns details for the specific customer.
+
+_CustomerDetailsService_ is the "real" customer details service which implements the abstract class _ICustomerDetailsService_ and its methods.
+
+_CustomerDetailsServiceProxy_ is a proxy service which contains the cache (dictionary object) and sends the request to the real _CustomerDetailsService_ only if the customer details object is not available in the cache.
+
+_ProxyExample_ initialises and contains the proxy object of the real customer details service. When a user selects the option to see more details about the customer, the dialog window appears and loads details about the customer. If the details object is already stored inside the cache, the proxy service returns that object instantly. Otherwise, a request is sent to the real customer details service and the details object is returned from there.
+
 ### Customer
 
 A simple class to store information about the customer: its id, name and details. Also, the constructor generates random id and name values when initialising the Customer object.
