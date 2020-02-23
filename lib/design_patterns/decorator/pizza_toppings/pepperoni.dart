@@ -3,12 +3,12 @@ import 'package:flutter_design_patterns/design_patterns/decorator/pizza_decorato
 
 class Pepperoni extends PizzaDecorator {
   Pepperoni(Pizza pizza) : super(pizza) {
-    description = "Pepperoni";
+    description = 'Pepperoni';
   }
 
   @override
   String getDescription() {
-    return "${pizza.getDescription()}, $description";
+    return '${pizza.getDescription()}\n- $description';
   }
 
   @override
