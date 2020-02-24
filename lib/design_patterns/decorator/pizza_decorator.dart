@@ -1,6 +1,6 @@
 import 'package:flutter_design_patterns/design_patterns/decorator/pizza.dart';
 
-class PizzaDecorator extends Pizza {
+abstract class PizzaDecorator extends Pizza {
   final Pizza pizza;
 
   PizzaDecorator(this.pizza);
