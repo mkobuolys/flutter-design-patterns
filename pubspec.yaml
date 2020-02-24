@@ -34,6 +34,7 @@ flutter:
     - assets/images/adapter/
     - assets/images/command/
     - assets/images/composite/
+    - assets/images/decorator/
     - assets/images/facade/
     - assets/images/factory_method/
     - assets/images/interpreter/
