@@ -48,6 +48,12 @@
         "route": "/composite"
       },
       {
+        "id": "decorator",
+        "title": "Decorator",
+        "description": "Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.",
+        "route": "/decorator"
+      },
+      {
         "id": "facade",
         "title": "Facade",
         "description": "Provide an unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.",
