@@ -6,4 +6,6 @@ abstract class EntityBase {
   EntityBase() {
     id = faker.guid.guid();
   }
+
+  EntityBase.fromJson(Map<String, dynamic> json) : id = json['id'];
 }

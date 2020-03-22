@@ -5,6 +5,11 @@ class SqlStorage implements IStorage {
   Map<Type, List<EntityBase>> fileStorage = Map<Type, List<EntityBase>>();
 
   @override
+  String getTitle() {
+    return 'SQL Storage';
+  }
+
+  @override
   List<T> fetchAll<T extends EntityBase>() {
     return fileStorage.containsKey(T) ? fileStorage[T] : List<T>();
   }

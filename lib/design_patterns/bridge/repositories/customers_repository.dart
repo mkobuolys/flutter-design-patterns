@@ -15,6 +15,6 @@ class CustomersRepository implements IRepository {
 
   @override
   void save(EntityBase entityBase) {
-    storage.store(entityBase);
+    storage.store<Customer>(entityBase);
   }
 }
