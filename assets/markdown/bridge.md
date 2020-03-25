@@ -10,7 +10,7 @@ The class diagram below shows the implementation of the **Bridge** design patter
 
 ![Bridge Implementation Class Diagram](resource:assets/images/bridge/bridge_implementation.png)
 
-_Shape_ is an abstract class which is used as a base class for all the entity classes. The class contains an _id_ property and a named constructor _EntityBase.fromJson_ to map the JSON object to the class field.
+The _EntityBase_ is an abstract class which is used as a base class for all the entity classes. The class contains an _id_ property and a named constructor _EntityBase.fromJson_ to map the JSON object to the class field.
 
 _Customer_ and _Order_ are concrete entities which extend the abstract class _EntityBase_. _Customer_ class contains _name_ and _email_ properties, _Customer.fromJson_ named constructor to map the JSON object to class fields and a _toJson()_ method to map class fields to the corresponding JSON map object. _Order_ class contain _dishes_ (a list of dishes of that order) and _total_ fields, a named constructor _Order.fromJson_ and a _toJson()_ method respectively.
 
