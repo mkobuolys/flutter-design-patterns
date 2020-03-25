@@ -255,9 +255,9 @@ class SqlStorage implements IStorage {
 
 ### Example
 
-_BridgeExample_ contains a list of storages - instances of _SqlStorage_ and _FileStorage_. Also, it initialises _Customer_ and _Order_ repositories. In the repositories the concrete type of storage could be interchanged by triggering the _onSelectedCustomerStorageIndexChanged()_ for the _CustomersRepository_ and _onSelectedOrderStorageIndexChanged()_ for the _OrdersRepository_ respectively.
+_BridgeExample_ contains a list of storages - instances of _SqlStorage_ and _FileStorage_ classes. Also, it initialises _Customer_ and _Order_ repositories. In the repositories the concrete type of storage could be interchanged by triggering the _onSelectedCustomerStorageIndexChanged()_ for the _CustomersRepository_ and _onSelectedOrderStorageIndexChanged()_ for the _OrdersRepository_ respectively.
 
-The concrete repository does not care about the specific type of storage as long as it implements the _IStorage_ interface and all of its abstract methods. As a result, the abstraction (repository) is separated from its concrete implementation (storage) - the concrete implementation of the storage could be changed for the repository at run-time, the repository does not depend on its implementation details.
+The concrete repository does not care about the specific type of storage it uses as long as the storage implements the IStorage interface and all of its abstract methods. As a result, the abstraction (repository) is separated from the implementor (storage) - the concrete implementation of the storage could be changed for the repository at run-time, the repository does not depend on its implementation details.
 
 ```
 class BridgeExample extends StatefulWidget {
