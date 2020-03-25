@@ -255,8 +255,6 @@ class SqlStorage implements IStorage {
 
 ### Example
 
-_BridgeExample_ initialises and contains both - customer and order - repositories which are used to retrieve the corresponding data. Additionally, the storage type of these repositories could be changed between the _FileStorage_ and _SqlStorage_ separately and at the run-time.
-
 _BridgeExample_ contains a list of storages - instances of _SqlStorage_ and _FileStorage_. Also, it initialises _Customer_ and _Order_ repositories. In the repositories the concrete type of storage could be interchanged by triggering the _onSelectedCustomerStorageIndexChanged()_ for the _CustomersRepository_ and _onSelectedOrderStorageIndexChanged()_ for the _OrdersRepository_ respectively.
 
 The concrete repository does not care about the specific type of storage as long as it implements the _IStorage_ interface and all of its abstract methods. As a result, the abstraction (repository) is separated from its concrete implementation (storage) - the concrete implementation of the storage could be changed for the repository at run-time, the repository does not depend on its implementation details.
