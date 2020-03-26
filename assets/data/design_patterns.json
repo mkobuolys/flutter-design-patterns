@@ -42,6 +42,12 @@
         "route": "/adapter"
       },
       {
+        "id": "bridge",
+        "title": "Bridge",
+        "description": "Decouple an abstraction from its implementation so that the two can vary independently.",
+        "route": "/bridge"
+      },
+      {
         "id": "composite",
         "title": "Composite",
         "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.",

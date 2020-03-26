@@ -32,6 +32,7 @@ flutter:
     - assets/markdown/
     - assets/images/abstract_factory/
     - assets/images/adapter/
+    - assets/images/bridge/
     - assets/images/command/
     - assets/images/composite/
     - assets/images/decorator/
