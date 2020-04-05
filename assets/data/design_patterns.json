@@ -11,6 +11,12 @@
         "route": "/abstract-factory"
       },
       {
+        "id": "builder",
+        "title": "Builder",
+        "description": "Separate the construction of a complex object from its representation so that the same construction process can create different representations.",
+        "route": "/builder"
+      },
+      {
         "id": "factory-method",
         "title": "Factory Method",
         "description": "Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to sub­classes.",
