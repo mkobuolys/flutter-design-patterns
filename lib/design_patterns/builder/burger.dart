@@ -1,12 +1,8 @@
-import 'package:meta/meta.dart';
-
 import 'package:flutter_design_patterns/design_patterns/builder/ingredient.dart';
 
 class Burger {
-  final double price;
   final List<Ingredient> _ingredients = [];
-
-  Burger({@required this.price}) : assert(price != null);
+  double _price;
 
   void addIngredient(Ingredient ingredient) {
     _ingredients.add(ingredient);
@@ -25,6 +21,10 @@ class Burger {
   }
 
   String getFormattedPrice() {
-    return '\$${price.toStringAsFixed(2)}';
+    return '\$${_price.toStringAsFixed(2)}';
+  }
+
+  void setPrice(double price) {
+    _price = price;
   }
 }

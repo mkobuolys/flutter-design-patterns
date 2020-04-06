@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/design_patterns/builder/burger.dart';
-import 'package:flutter_design_patterns/design_patterns/builder/burger_builder.dart';
+import 'package:flutter_design_patterns/design_patterns/builder/burger_builders/index.dart';
+import 'package:flutter_design_patterns/design_patterns/builder/burger_maker.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/builder/burger_information/burger_information_column.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/builder/burger_menu_item.dart';
 
@@ -12,7 +13,7 @@ class BuilderExample extends StatefulWidget {
 }
 
 class _BuilderExampleState extends State<BuilderExample> {
-  final BurgerBuilder _burgerBuilder = BurgerBuilder();
+  final BurgerMaker _burgerMaker = BurgerMaker(HamburgerBuilder());
   final List<BurgerMenuItem> _burgerMenuItems = [];
 
   BurgerMenuItem _selectedBurgerMenuItem;
@@ -25,30 +26,37 @@ class _BuilderExampleState extends State<BuilderExample> {
     _burgerMenuItems.addAll([
       BurgerMenuItem(
         label: 'Hamburger',
-        prepareBurger: _burgerBuilder.prepareHamburger,
+        burgerBuilder: HamburgerBuilder(),
       ),
       BurgerMenuItem(
         label: 'Cheeseburger',
-        prepareBurger: _burgerBuilder.prepareCheeseburger,
+        burgerBuilder: CheeseburgerBuilder(),
       ),
       BurgerMenuItem(
         label: 'Big Mac\u00AE',
-        prepareBurger: _burgerBuilder.prepareBigMac,
+        burgerBuilder: BigMacBuilder(),
       ),
       BurgerMenuItem(
         label: 'McChicken\u00AE',
-        prepareBurger: _burgerBuilder.prepareMcChicken,
+        burgerBuilder: McChickenBuilder(),
       )
     ]);
 
     _selectedBurgerMenuItem = _burgerMenuItems[0];
-    _selectedBurger = _selectedBurgerMenuItem.prepareBurger();
+    _selectedBurger = _prepareSelectedBurger();
+  }
+
+  Burger _prepareSelectedBurger() {
+    _burgerMaker.prepareBurger();
+
+    return _burgerMaker.getBurger();
   }
 
   void _onBurgerMenuItemChanged(BurgerMenuItem selectedItem) {
     setState(() {
       _selectedBurgerMenuItem = selectedItem;
-      _selectedBurger = selectedItem.prepareBurger();
+      _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
+      _selectedBurger = _prepareSelectedBurger();
     });
   }
 

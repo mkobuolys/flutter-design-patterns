@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 
+import 'package:flutter_design_patterns/design_patterns/builder/burger_builder_base.dart';
+
 class BurgerMenuItem {
   final String label;
-  final Function prepareBurger;
+  final BurgerBuilderBase burgerBuilder;
 
   BurgerMenuItem({
     @required this.label,
-    @required this.prepareBurger,
+    @required this.burgerBuilder,
   })  : assert(label != null),
-        assert(prepareBurger != null);
+        assert(burgerBuilder != null);
 }
