@@ -33,6 +33,7 @@ flutter:
     - assets/images/abstract_factory/
     - assets/images/adapter/
     - assets/images/bridge/
+    - assets/images/builder/
     - assets/images/command/
     - assets/images/composite/
     - assets/images/decorator/
