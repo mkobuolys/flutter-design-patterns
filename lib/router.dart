@@ -6,23 +6,7 @@ import 'package:flutter_design_patterns/data/models/design_pattern_category.dart
 import 'package:flutter_design_patterns/screens/category/category.dart';
 import 'package:flutter_design_patterns/screens/design_pattern_details/design_pattern_details.dart';
 import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/abstract_factory/abstract_factory_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/adapter/adapter_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/bridge_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/command/command_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/composite_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/decorator/decorator_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/facade/facade_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/factory_method/factory_method_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/interpreter_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/iterator/iterator_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/memento/memento_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/prototype/prototype_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/proxy/proxy_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/state/state_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/strategy_example.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/template_method/template_method_example.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/index.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -43,6 +27,11 @@ class Router {
         return _buildDesignPatternDetailsPageRoute(
           settings,
           AbstractFactoryExample(),
+        );
+      case _DesignPatternRoutes.builderRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          BuilderExample(),
         );
       case _DesignPatternRoutes.factoryMethodRoute:
         return _buildDesignPatternDetailsPageRoute(
@@ -151,6 +140,7 @@ class _DesignPatternRoutes {
   static const String abstractFactoryRoute = '/abstract-factory';
   static const String adapterRoute = '/adapter';
   static const String bridgeRoute = '/bridge';
+  static const String builderRoute = '/builder';
   static const String commandRoute = '/command';
   static const String compositeRoute = '/composite';
   static const String decoratorRoute = '/decorator';
