@@ -74,6 +74,11 @@ class Router {
           settings,
           FacadeExample(),
         );
+      case _DesignPatternRoutes.flyweightRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          FlyweightExample(),
+        );
       case _DesignPatternRoutes.proxyRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -146,6 +151,7 @@ class _DesignPatternRoutes {
   static const String decoratorRoute = '/decorator';
   static const String facadeRoute = '/facade';
   static const String factoryMethodRoute = '/factory-method';
+  static const String flyweightRoute = '/flyweight';
   static const String interpreterRoute = '/interpreter';
   static const String iteratorRoute = '/iterator';
   static const String mementoRoute = '/memento';
