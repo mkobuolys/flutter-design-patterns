@@ -27,7 +27,7 @@ class ShippingOptions extends StatelessWidget {
           children: <Widget>[
             Text(
               'Select shipping type:',
-              style: Theme.of(context).textTheme.subhead,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
             for (var i = 0; i < shippingOptions.length; i++)
               RadioListTile<int>(

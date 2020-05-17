@@ -204,7 +204,7 @@ class _StrategyExampleState extends State<StrategyExample> {
                     children: <Widget>[
                       Text(
                         'Your order is empty',
-                        style: Theme.of(context).textTheme.title,
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                     ],
                   ),
@@ -267,7 +267,7 @@ class ShippingOptions extends StatelessWidget {
           children: <Widget>[
             Text(
               'Select shipping type:',
-              style: Theme.of(context).textTheme.subhead,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
             for (var i = 0; i < shippingOptions.length; i++)
               RadioListTile<int>(
@@ -313,7 +313,7 @@ class OrderSummary extends StatelessWidget {
           children: <Widget>[
             Text(
               'Order summary',
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.headline6,
             ),
             const Divider(),
             OrderSummaryRow(

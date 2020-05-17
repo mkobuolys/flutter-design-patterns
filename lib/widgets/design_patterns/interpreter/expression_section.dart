@@ -42,7 +42,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
       children: <Widget>[
         Text(
           widget.postfixExpression,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(height: spaceM),
         AnimatedCrossFade(
@@ -59,7 +59,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
               for (var solutionStep in _solutionSteps)
                 Text(
                   solutionStep,
-                  style: Theme.of(context).textTheme.subtitle,
+                  style: Theme.of(context).textTheme.subtitle2,
                 )
             ],
           ),

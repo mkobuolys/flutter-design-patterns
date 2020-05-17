@@ -22,12 +22,12 @@ class OrderSummaryRow extends StatelessWidget {
         Text(label,
             style: Theme.of(context)
                 .textTheme
-                .subhead
+                .subtitle1
                 .copyWith(fontFamily: fontFamily)),
         Text('\$${value.toStringAsFixed(2)}',
             style: Theme.of(context)
                 .textTheme
-                .subhead
+                .subtitle1
                 .copyWith(fontFamily: fontFamily)),
       ],
     );

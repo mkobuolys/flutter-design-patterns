@@ -88,7 +88,7 @@ class _BridgeExampleState extends State<BridgeExample> {
               children: <Widget>[
                 Text(
                   'Select customers storage:',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             ),
@@ -107,14 +107,14 @@ class _BridgeExampleState extends State<BridgeExample> {
                 ? CustomersDatatable(customers: _customers)
                 : Text(
                     '0 customers found',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.subtitle2,
                   ),
             Divider(),
             Row(
               children: <Widget>[
                 Text(
                   'Select orders storage:',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             ),
@@ -133,7 +133,7 @@ class _BridgeExampleState extends State<BridgeExample> {
                 ? OrdersDatatable(orders: _orders)
                 : Text(
                     '0 orders found',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.subtitle2,
                   ),
           ],
         ),

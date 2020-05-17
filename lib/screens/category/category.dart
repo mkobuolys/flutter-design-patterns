@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
 import 'package:flutter_design_patterns/screens/category/widgets/design_pattern_card.dart';
-import 'package:flutter_design_patterns/widgets/coming_soon.dart';
 import 'package:flutter_design_patterns/widgets/fade_slide_transition.dart';
 import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
 
@@ -127,7 +126,7 @@ class _CategoryState extends State<Category>
                                   widget.category.title,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .title
+                                      .headline6
                                       .copyWith(
                                         fontSize: 32.0,
                                         color: Colors.white,
@@ -156,17 +155,6 @@ class _CategoryState extends State<Category>
                                   designPattern: widget.category.patterns[i],
                                 ),
                               ),
-                            ),
-                          if (widget.category.patterns.isEmpty)
-                            FadeSlideTransition(
-                              controller: _fadeSlideAnimationController,
-                              slideAnimationTween: Tween<Offset>(
-                                begin: Offset(0.0, 0.5),
-                                end: Offset(0.0, 0.0),
-                              ),
-                              begin: 0.0,
-                              end: _listAnimationIntervalStart,
-                              child: ComingSoon(),
                             ),
                         ],
                       ),

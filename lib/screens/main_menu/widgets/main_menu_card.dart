@@ -16,7 +16,7 @@ class MainMenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var contentHeader = Text(
       category.title,
-      style: Theme.of(context).textTheme.title.copyWith(
+      style: Theme.of(context).textTheme.headline6.copyWith(
             fontSize: 26.0,
             color: Colors.white,
           ),
@@ -26,7 +26,7 @@ class MainMenuCard extends StatelessWidget {
       category.patterns.length == 1
           ? '${category.patterns.length} pattern'
           : '${category.patterns.length} patterns',
-      style: Theme.of(context).textTheme.subhead.copyWith(
+      style: Theme.of(context).textTheme.subtitle1.copyWith(
             color: Colors.white,
           ),
     );

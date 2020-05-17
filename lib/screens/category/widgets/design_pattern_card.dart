@@ -16,14 +16,14 @@ class DesignPatternCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var contentHeader = Text(
       designPattern.title,
-      style: Theme.of(context).textTheme.title.copyWith(
+      style: Theme.of(context).textTheme.headline6.copyWith(
             fontSize: 26.0,
           ),
       overflow: TextOverflow.ellipsis,
     );
     var contentText = Text(
       designPattern.description,
-      style: Theme.of(context).textTheme.body1,
+      style: Theme.of(context).textTheme.bodyText2,
       textAlign: TextAlign.justify,
       overflow: TextOverflow.ellipsis,
       maxLines: 2,

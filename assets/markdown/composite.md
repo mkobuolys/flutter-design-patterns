@@ -52,13 +52,13 @@ class File extends StatelessWidget implements IFile {
       child: ListTile(
         title: Text(
           title,
-          style: Theme.of(context).textTheme.body2,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
         leading: Icon(icon),
         trailing: Text(
           FileSizeConverter.bytesToString(size),
           style:
-              Theme.of(context).textTheme.body1.copyWith(color: Colors.black54),
+              Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.black54),
         ),
         dense: true,
       ),

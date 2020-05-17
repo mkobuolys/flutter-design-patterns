@@ -13,7 +13,7 @@ class MainMenuHeader extends StatelessWidget {
         children: <Widget>[
           Text(
             'Flutter\nDesign Patterns',
-            style: Theme.of(context).textTheme.display1,
+            style: Theme.of(context).textTheme.headline4,
           ),
           const SizedBox(height: spaceM),
           Row(
@@ -21,7 +21,7 @@ class MainMenuHeader extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Created with Flutter and',
-                style: Theme.of(context).textTheme.headline,
+                style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(width: spaceM),
               Padding(

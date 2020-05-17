@@ -522,7 +522,7 @@ class _BuilderExampleState extends State<BuilderExample> {
               children: <Widget>[
                 Text(
                   'Select menu item:',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             ),
@@ -543,7 +543,7 @@ class _BuilderExampleState extends State<BuilderExample> {
               children: <Widget>[
                 Text(
                   'Information:',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             ),

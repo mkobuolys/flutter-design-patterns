@@ -40,7 +40,7 @@ class _ProxyExampleState extends State<ProxyExample> {
           children: <Widget>[
             Text(
               'Press on the list tile to see more information about the customer',
-              style: Theme.of(context).textTheme.subhead,
+              style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: spaceL),

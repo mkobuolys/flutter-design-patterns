@@ -26,7 +26,7 @@ class Box extends StatelessWidget {
           children: <Widget>[
             Text(
               nodeId.toString(),
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: spaceM),
             if (child != null) child,

@@ -386,7 +386,7 @@ class _DecoratorExampleState extends State<DecoratorExample> {
               children: <Widget>[
                 Text(
                   'Select your pizza:',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             ),

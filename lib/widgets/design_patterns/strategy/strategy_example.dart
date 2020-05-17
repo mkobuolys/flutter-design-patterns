@@ -68,7 +68,7 @@ class _StrategyExampleState extends State<StrategyExample> {
                     children: <Widget>[
                       Text(
                         'Your order is empty',
-                        style: Theme.of(context).textTheme.title,
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                     ],
                   ),

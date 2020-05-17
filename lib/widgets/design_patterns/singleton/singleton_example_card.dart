@@ -18,7 +18,7 @@ class SingletonExampleCard extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: Theme.of(context).textTheme.body2,
+            style: Theme.of(context).textTheme.bodyText1,
             textAlign: TextAlign.center,
           ),
         ),
