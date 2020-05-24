@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ishape.dart';
+import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
 
-class PositionedShape extends StatelessWidget {
-  final IShape shape;
+class PositionedShapeWrapper extends StatelessWidget {
+  final IPositionedShape shape;
 
-  const PositionedShape({
+  const PositionedShapeWrapper({
     @required this.shape,
   }) : assert(shape != null);
 
@@ -23,10 +23,9 @@ class PositionedShape extends StatelessWidget {
     var sizeHeight = MediaQuery.of(context).size.height;
     var sizeWidth = MediaQuery.of(context).size.width;
 
-    return Positioned(
-      bottom: _getPosition(sizeHeight, 192.0),
-      left: _getPosition(sizeWidth, 16.0),
-      child: shape.render(),
+    return shape.render(
+      _getPosition(sizeWidth, 16.0),
+      _getPosition(sizeHeight, 192.0),
     );
   }
 }

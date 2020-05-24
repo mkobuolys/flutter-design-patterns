@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ishape.dart';
+import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
 import 'package:flutter_design_patterns/design_patterns/flyweight/shape_type.dart';
 import 'package:flutter_design_patterns/design_patterns/flyweight/shapes/index.dart';
 
 class ShapeFactory {
-  IShape createShape(ShapeType shapeType) {
+  IPositionedShape createShape(ShapeType shapeType) {
     switch (shapeType) {
       case ShapeType.Circle:
         return Circle(

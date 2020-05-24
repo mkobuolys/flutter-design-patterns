@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ishape.dart';
+import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
 import 'package:flutter_design_patterns/design_patterns/flyweight/shape_factory.dart';
 import 'package:flutter_design_patterns/design_patterns/flyweight/shape_flyweight_factory.dart';
 import 'package:flutter_design_patterns/design_patterns/flyweight/shape_type.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/flyweight/positioned_shape.dart';
+import 'package:flutter_design_patterns/widgets/design_patterns/flyweight/positioned_shape_wrapper.dart';
 
 class FlyweightExample extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
   final ShapeFactory shapeFactory = ShapeFactory();
 
   ShapeFlyweightFactory _shapeFlyweightFactory;
-  List<IShape> _shapesList;
+  List<IPositionedShape> _shapesList;
 
   int _shapeInstancesCount = 0;
   bool _useFlyweightFactory = false;
@@ -37,7 +37,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
 
   void _buildShapesList() {
     var shapeInstancesCount = 0;
-    _shapesList = List<IShape>();
+    _shapesList = List<IPositionedShape>();
 
     for (var i = 0; i < SHAPES_COUNT; i++) {
       var shapeType = _getRandomShapeType();
@@ -75,7 +75,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
     return Stack(
       children: <Widget>[
         for (var shape in _shapesList)
-          PositionedShape(
+          PositionedShapeWrapper(
             shape: shape,
           ),
         Column(
