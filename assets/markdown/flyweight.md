@@ -6,7 +6,7 @@
 
 ### Class diagram
 
-The class diagram below shows the implementation of **Flyweight** design pattern.
+The class diagram below shows the implementation of the **Flyweight** design pattern:
 
 ![Flyweight Implementation Class Diagram](resource:assets/images/flyweight/flyweight_implementation.png)
 
@@ -14,7 +14,7 @@ The _ShapeType_ is an enumerator class defining possible shape types - Circle an
 
 The _IPositionedShape_ is an abstract class which is used as an interface for the specific shape classes:
 
-- _render()_ - renders the shape - returns the positioned shape widget. Also, **extrinsic** state (x and y coordinates) are passed to this method to render the shape in the exact position.
+- _render()_ - renders the shape - returns the positioned shape widget. Also, the **extrinsic** state (x and y coordinates) are passed to this method to render the shape in the exact position.
 
 _Circle_ and _Square_ are concrete positioned shape classes which implement the abstract class _IPositionedShape_. Both of these shapes have their own **intrinsic** state: circle defines _color_ and _diameter_ properties while square contains _color_, _width_ properties and a getter _height_ which returns the same value as _width_.
 
