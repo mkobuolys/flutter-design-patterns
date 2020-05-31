@@ -7,6 +7,7 @@ export 'composite/composite_example.dart';
 export 'decorator/decorator_example.dart';
 export 'facade/facade_example.dart';
 export 'factory_method/factory_method_example.dart';
+export 'flyweight/flyweight_example.dart';
 export 'interpreter/interpreter_example.dart';
 export 'iterator/iterator_example.dart';
 export 'memento/memento_example.dart';

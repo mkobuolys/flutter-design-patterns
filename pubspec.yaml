@@ -36,6 +36,7 @@ flutter:
     - assets/images/decorator/
     - assets/images/facade/
     - assets/images/factory_method/
+    - assets/images/flyweight/
     - assets/images/interpreter/
     - assets/images/iterator/
     - assets/images/memento/
