@@ -85,6 +85,11 @@ class Router {
           ProxyExample(),
         );
       // Behavioral
+      case _DesignPatternRoutes.chainOfResponsibilityRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          ChainOfResponsibilityExample(),
+        );
       case _DesignPatternRoutes.commandRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -146,6 +151,7 @@ class _DesignPatternRoutes {
   static const String adapterRoute = '/adapter';
   static const String bridgeRoute = '/bridge';
   static const String builderRoute = '/builder';
+  static const String chainOfResponsibilityRoute = '/chain-of-responsibility';
   static const String commandRoute = '/command';
   static const String compositeRoute = '/composite';
   static const String decoratorRoute = '/decorator';
