@@ -112,11 +112,11 @@ class _DesignPatternDetailsState extends State<DesignPatternDetails>
           unselectedItemColor: Colors.black45,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              title: Text('Description'),
+              label: 'Description',
               icon: Icon(FontAwesomeIcons.fileAlt),
             ),
             BottomNavigationBarItem(
-              title: Text('Example'),
+              label: 'Example',
               icon: Icon(FontAwesomeIcons.lightbulb),
             ),
           ],
