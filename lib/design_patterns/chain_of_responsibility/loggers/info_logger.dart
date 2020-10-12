@@ -4,10 +4,9 @@ import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/
 import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/services/external_logging_service.dart';
 
 class InfoLogger extends LoggerBase {
-  final LogBloc logBloc;
   ExternalLoggingService externalLoggingService;
 
-  InfoLogger(this.logBloc, [LoggerBase nextLogger])
+  InfoLogger(LogBloc logBloc, [LoggerBase nextLogger])
       : super(LogLevel.Info, nextLogger) {
     externalLoggingService = ExternalLoggingService(logBloc);
   }

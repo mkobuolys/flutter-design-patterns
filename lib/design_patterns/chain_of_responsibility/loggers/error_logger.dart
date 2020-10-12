@@ -4,10 +4,9 @@ import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/
 import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/services/mail_service.dart';
 
 class ErrorLogger extends LoggerBase {
-  final LogBloc logBloc;
   MailService mailService;
 
-  ErrorLogger(this.logBloc, [LoggerBase nextLogger])
+  ErrorLogger(LogBloc logBloc, [LoggerBase nextLogger])
       : super(LogLevel.Error, nextLogger) {
     mailService = MailService(logBloc);
   }
