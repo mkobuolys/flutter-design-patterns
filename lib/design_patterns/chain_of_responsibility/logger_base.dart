@@ -5,18 +5,17 @@ import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/
 abstract class LoggerBase {
   @protected
   final LogLevel logLevel;
-  @protected
-  final LoggerBase nextLogger;
+  final LoggerBase _nextLogger;
 
-  const LoggerBase(this.logLevel, [this.nextLogger]);
+  const LoggerBase(this.logLevel, [this._nextLogger]);
 
   void logMessage(LogLevel level, String message) {
     if (logLevel <= level) {
       log(message);
     }
 
-    if (nextLogger != null) {
-      nextLogger.logMessage(level, message);
+    if (_nextLogger != null) {
+      _nextLogger.logMessage(level, message);
     }
   }
 
