@@ -14,7 +14,7 @@ class LogMessage {
   })  : assert(logLevel != null),
         assert(message != null);
 
-  String get logLevelString =>
+  String get _logLevelString =>
       logLevel.toString().split('.').last.toUpperCase();
 
   Color _getLogEntryColor() {
@@ -32,7 +32,7 @@ class LogMessage {
 
   Widget getFormattedMessage() {
     return Text(
-      '$logLevelString: $message',
+      '$_logLevelString: $message',
       style: TextStyle(
         color: _getLogEntryColor(),
       ),
