@@ -8,7 +8,7 @@ import 'package:flutter_design_patterns/screens/design_pattern_details/design_pa
 import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
 import 'package:flutter_design_patterns/widgets/design_patterns/index.dart';
 
-class Router {
+class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case initialRoute:
@@ -85,6 +85,11 @@ class Router {
           ProxyExample(),
         );
       // Behavioral
+      case _DesignPatternRoutes.chainOfResponsibilityRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          ChainOfResponsibilityExample(),
+        );
       case _DesignPatternRoutes.commandRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -146,6 +151,7 @@ class _DesignPatternRoutes {
   static const String adapterRoute = '/adapter';
   static const String bridgeRoute = '/bridge';
   static const String builderRoute = '/builder';
+  static const String chainOfResponsibilityRoute = '/chain-of-responsibility';
   static const String commandRoute = '/command';
   static const String compositeRoute = '/composite';
   static const String decoratorRoute = '/decorator';

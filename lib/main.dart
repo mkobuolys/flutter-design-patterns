@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/router.dart';
+import 'package:flutter_design_patterns/app_router.dart';
 import 'package:flutter_design_patterns/themes.dart';
 
 class App extends StatelessWidget {
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Design Patterns App',
       theme: lightTheme,
-      onGenerateRoute: Router.generateRoute,
+      onGenerateRoute: AppRouter.generateRoute,
       initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
     );
