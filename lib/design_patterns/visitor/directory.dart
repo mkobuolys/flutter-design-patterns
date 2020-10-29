@@ -9,18 +9,19 @@ class Directory extends StatelessWidget implements IFile {
   final String title;
   final bool isInitiallyExpanded;
 
-  final List<IFile> files = List<IFile>();
+  final List<IFile> _files = List<IFile>();
+  List<IFile> get files => _files;
 
   Directory(this.title, {this.isInitiallyExpanded = false});
 
   void addFile(IFile file) {
-    files.add(file);
+    _files.add(file);
   }
 
   @override
   int getSize() {
     var sum = 0;
-    files.forEach((IFile file) => sum += file.getSize());
+    _files.forEach((IFile file) => sum += file.getSize());
     return sum;
   }
 
@@ -35,7 +36,7 @@ class Directory extends StatelessWidget implements IFile {
         child: ExpansionTile(
           leading: Icon(Icons.folder),
           title: Text("$title (${FileSizeConverter.bytesToString(getSize())})"),
-          children: files.map((IFile file) => file.render(context)).toList(),
+          children: _files.map((IFile file) => file.render(context)).toList(),
           initiallyExpanded: isInitiallyExpanded,
         ),
       ),
@@ -48,7 +49,7 @@ class Directory extends StatelessWidget implements IFile {
   }
 
   @override
-  void accept(IVisitor visitor) {
-    // TODO: implement accept
+  String accept(IVisitor visitor) {
+    return visitor.visitDirectory(this);
   }
 }

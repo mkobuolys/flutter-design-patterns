@@ -4,10 +4,13 @@ import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
 import 'package:flutter_design_patterns/design_patterns/visitor/file.dart';
 
 class VideoFile extends File {
-  VideoFile(String title, int size) : super(title, size, Icons.movie);
+  final String directedBy;
+
+  const VideoFile(String title, this.directedBy, String fileExtension, int size)
+      : super(title, fileExtension, size, Icons.movie);
 
   @override
-  void accept(IVisitor visitor) {
-    // TODO: implement accept
+  String accept(IVisitor visitor) {
+    return visitor.visitVideoFile(this);
   }
 }

@@ -4,10 +4,13 @@ import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
 import 'package:flutter_design_patterns/design_patterns/visitor/file.dart';
 
 class ImageFile extends File {
-  ImageFile(String title, int size) : super(title, size, Icons.image);
+  final String resolution;
+
+  const ImageFile(String title, this.resolution, String fileExtension, int size)
+      : super(title, fileExtension, size, Icons.image);
 
   @override
-  void accept(IVisitor visitor) {
-    // TODO: implement accept
+  String accept(IVisitor visitor) {
+    return visitor.visitImageFile(this);
   }
 }

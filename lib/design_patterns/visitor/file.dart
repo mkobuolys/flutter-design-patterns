@@ -6,10 +6,11 @@ import 'package:flutter_design_patterns/helpers/file_size_converter.dart';
 
 abstract class File extends StatelessWidget implements IFile {
   final String title;
+  final String fileExtension;
   final int size;
   final IconData icon;
 
-  const File(this.title, this.size, this.icon);
+  const File(this.title, this.fileExtension, this.size, this.icon);
 
   @override
   int getSize() {
@@ -22,7 +23,7 @@ abstract class File extends StatelessWidget implements IFile {
       padding: const EdgeInsets.only(left: paddingS),
       child: ListTile(
         title: Text(
-          title,
+          '$title.$fileExtension',
           style: Theme.of(context).textTheme.bodyText1,
         ),
         leading: Icon(icon),
