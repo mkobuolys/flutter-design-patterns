@@ -23,36 +23,63 @@ class _VisitorExampleState extends State<VisitorExample> {
   IFile _buildMediaDirectory() {
     var musicDirectory = Directory('Music');
     musicDirectory.addFile(
-        AudioFile('Before the Storm', 'Darude - Sandstorm', 'mp3', 2612453));
-    musicDirectory
-        .addFile(AudioFile('Toto IV', 'Toto - Africa', 'mp3', 3219811));
-    musicDirectory.addFile(AudioFile(
-        'Bag Raiders', 'Bag Raiders - Shooting Stars', 'mp3', 3811214));
+      AudioFile('Darude - Sandstorm', 'Before the Storm', 'mp3', 2612453),
+    );
+    musicDirectory.addFile(
+      AudioFile('Toto - Africa', 'Toto IV', 'mp3', 3219811),
+    );
+    musicDirectory.addFile(
+      AudioFile('Bag Raiders - Shooting Stars', 'Bag Raiders', 'mp3', 3811214),
+    );
 
     var moviesDirectory = Directory('Movies');
-    moviesDirectory
-        .addFile(VideoFile('The Matrix', 'The Wachowskis', 'avi', 951495532));
     moviesDirectory.addFile(
-        VideoFile('Pulp Fiction', 'Quentin Tarantino', 'mp4', 1251495532));
+      VideoFile('The Matrix', 'The Wachowskis', 'avi', 951495532),
+    );
+    moviesDirectory.addFile(
+      VideoFile('Pulp Fiction', 'Quentin Tarantino', 'mp4', 1251495532),
+    );
 
     var catPicturesDirectory = Directory('Cats');
-    catPicturesDirectory.addFile(ImageFile('Cat 1', '640x480', 'jpg', 844497));
-    catPicturesDirectory.addFile(ImageFile('Cat 2', '1280x720', 'jpg', 975363));
-    catPicturesDirectory
-        .addFile(ImageFile('Cat 3', '1920x1080', 'png', 1975363));
+    catPicturesDirectory.addFile(
+      ImageFile('Cat 1', '640x480', 'jpg', 844497),
+    );
+    catPicturesDirectory.addFile(
+      ImageFile('Cat 2', '1280x720', 'jpg', 975363),
+    );
+    catPicturesDirectory.addFile(
+      ImageFile('Cat 3', '1920x1080', 'png', 1975363),
+    );
 
     var picturesDirectory = Directory('Pictures');
     picturesDirectory.addFile(catPicturesDirectory);
-    picturesDirectory
-        .addFile(ImageFile('Not a cat', '2560x1440', 'png', 2971361));
+    picturesDirectory.addFile(
+      ImageFile('Not a cat', '2560x1440', 'png', 2971361),
+    );
 
     var mediaDirectory = Directory('Media', isInitiallyExpanded: true);
     mediaDirectory.addFile(musicDirectory);
     mediaDirectory.addFile(moviesDirectory);
     mediaDirectory.addFile(picturesDirectory);
-    mediaDirectory.addFile(Directory('New Folder'));
-    mediaDirectory.addFile(TextFile('Nothing suspicious there', 'txt', 430791));
-    mediaDirectory.addFile(TextFile('TeamTrees', 'txt', 1042));
+    mediaDirectory.addFile(
+      Directory('New Folder'),
+    );
+    mediaDirectory.addFile(
+      TextFile(
+        'Nothing suspicious there',
+        'Just a normal text file without any sensitive information.',
+        'txt',
+        430791,
+      ),
+    );
+    mediaDirectory.addFile(
+      TextFile(
+        'TeamTrees',
+        'Team Trees, also known as #teamtrees, is a collaborative fundraiser that managed to raise 20 million U.S. dollars before 2020 to plant 20 million trees.',
+        'txt',
+        1042,
+      ),
+    );
 
     return mediaDirectory;
   }
