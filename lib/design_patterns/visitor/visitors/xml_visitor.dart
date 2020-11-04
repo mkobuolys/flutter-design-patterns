@@ -9,13 +9,14 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitAudioFile(AudioFile file) {
-    return '<audio>'.indentAndAddNewLine(1) +
-        '<title>${file.title}</title>'.indentAndAddNewLine(2) +
-        '<album>${file.albumTitle}</album>'.indentAndAddNewLine(2) +
-        '<extension>${file.fileExtension}</extension>'.indentAndAddNewLine(2) +
-        '<size>${FileSizeConverter.bytesToString(file.getSize())}</size>'
-            .indentAndAddNewLine(2) +
-        '</audio>'.indentAndAddNewLine(1);
+    var fileInfo = <String, String>{
+      'title': file.title,
+      'album': file.albumTitle,
+      'extension': file.fileExtension,
+      'size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile('audio', fileInfo);
   }
 
   @override
@@ -33,13 +34,14 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitImageFile(ImageFile file) {
-    return '<image>'.indentAndAddNewLine(1) +
-        '<title>${file.title}</title>'.indentAndAddNewLine(2) +
-        '<resolution>${file.resolution}</resolution>'.indentAndAddNewLine(2) +
-        '<extension>${file.fileExtension}</extension>'.indentAndAddNewLine(2) +
-        '<size>${FileSizeConverter.bytesToString(file.getSize())}</size>'
-            .indentAndAddNewLine(2) +
-        '</image>'.indentAndAddNewLine(1);
+    var fileInfo = <String, String>{
+      'title': file.title,
+      'resolution': file.resolution,
+      'extension': file.fileExtension,
+      'size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile('image', fileInfo);
   }
 
   @override
@@ -48,23 +50,38 @@ class XmlVisitor implements IVisitor {
         ? '${file.content.substring(0, 30)}...'
         : file.content;
 
-    return '<text>'.indentAndAddNewLine(1) +
-        '<title>${file.title}</title>'.indentAndAddNewLine(2) +
-        '<preview>$fileContentPreview</preview>'.indentAndAddNewLine(2) +
-        '<extension>${file.fileExtension}</extension>'.indentAndAddNewLine(2) +
-        '<size>${FileSizeConverter.bytesToString(file.getSize())}</size>'
-            .indentAndAddNewLine(2) +
-        '</text>'.indentAndAddNewLine(1);
+    var fileInfo = <String, String>{
+      'title': file.title,
+      'preview': fileContentPreview,
+      'extension': file.fileExtension,
+      'size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile('text', fileInfo);
   }
 
   @override
   String visitVideoFile(VideoFile file) {
-    return '<video>'.indentAndAddNewLine(1) +
-        '<title>${file.title}</title>'.indentAndAddNewLine(2) +
-        '<directed_by>${file.directedBy}</directed_by>'.indentAndAddNewLine(2) +
-        '<extension>${file.fileExtension}</extension>'.indentAndAddNewLine(2) +
-        '<size>${FileSizeConverter.bytesToString(file.getSize())}</size>'
-            .indentAndAddNewLine(2) +
-        '</video>'.indentAndAddNewLine(1);
+    var fileInfo = <String, String>{
+      'title': file.title,
+      'directed_by': file.directedBy,
+      'extension': file.fileExtension,
+      'size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile('video', fileInfo);
+  }
+
+  String _formatFile(String type, Map<String, String> fileInfo) {
+    String formattedFile = '<$type>'.indentAndAddNewLine(2);
+
+    for (var entry in fileInfo.entries) {
+      formattedFile +=
+          '<${entry.key}>${entry.value}</${entry.key}>'.indentAndAddNewLine(4);
+    }
+
+    formattedFile += '</$type>'.indentAndAddNewLine(2);
+
+    return formattedFile;
   }
 }

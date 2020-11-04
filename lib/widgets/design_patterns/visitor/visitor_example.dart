@@ -122,8 +122,8 @@ class _VisitorExampleState extends State<VisitorExample> {
   }
 
   void _showFilesDialog() {
-    IVisitor selectedVisitor = visitorsList[_selectedVisitorIndex];
-    String filesText = _rootDirectory.accept(selectedVisitor);
+    var selectedVisitor = visitorsList[_selectedVisitorIndex];
+    var filesText = _rootDirectory.accept(selectedVisitor);
 
     showDialog<void>(
       context: context,

@@ -9,12 +9,14 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitAudioFile(AudioFile file) {
-    return '${file.title}:'.indentAndAddNewLine(0) +
-        'Type: Audio'.indentAndAddNewLine(2) +
-        'Album: ${file.albumTitle}'.indentAndAddNewLine(2) +
-        'Extension: ${file.fileExtension}'.indentAndAddNewLine(2) +
-        'Size: ${FileSizeConverter.bytesToString(file.getSize())}'
-            .indentAndAddNewLine(2);
+    var fileInfo = <String, String>{
+      'Type': 'Audio',
+      'Album': file.albumTitle,
+      'Extension': file.fileExtension,
+      'Size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile(file.title, fileInfo);
   }
 
   @override
@@ -30,12 +32,14 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitImageFile(ImageFile file) {
-    return '${file.title}:'.indentAndAddNewLine(0) +
-        'Type: Image'.indentAndAddNewLine(2) +
-        'Resolution: ${file.resolution}'.indentAndAddNewLine(2) +
-        'Extension: ${file.fileExtension}'.indentAndAddNewLine(2) +
-        'Size: ${FileSizeConverter.bytesToString(file.getSize())}'
-            .indentAndAddNewLine(2);
+    var fileInfo = <String, String>{
+      'Type': 'Image',
+      'Resolution': file.resolution,
+      'Extension': file.fileExtension,
+      'Size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile(file.title, fileInfo);
   }
 
   @override
@@ -44,21 +48,35 @@ class HumanReadableVisitor implements IVisitor {
         ? '${file.content.substring(0, 30)}...'
         : file.content;
 
-    return '${file.title}:'.indentAndAddNewLine(0) +
-        'Type: Text'.indentAndAddNewLine(2) +
-        'Preview: $fileContentPreview'.indentAndAddNewLine(2) +
-        'Extension: ${file.fileExtension}'.indentAndAddNewLine(2) +
-        'Size: ${FileSizeConverter.bytesToString(file.getSize())}'
-            .indentAndAddNewLine(2);
+    var fileInfo = <String, String>{
+      'Type': 'Text',
+      'Preview': fileContentPreview,
+      'Extension': file.fileExtension,
+      'Size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile(file.title, fileInfo);
   }
 
   @override
   String visitVideoFile(VideoFile file) {
-    return '${file.title}:'.indentAndAddNewLine(0) +
-        'Type: Video'.indentAndAddNewLine(2) +
-        'Directed by: ${file.directedBy}'.indentAndAddNewLine(2) +
-        'Extension: ${file.fileExtension}'.indentAndAddNewLine(2) +
-        'Size: ${FileSizeConverter.bytesToString(file.getSize())}'
-            .indentAndAddNewLine(2);
+    var fileInfo = <String, String>{
+      'Type': 'Video',
+      'Directed by': file.directedBy,
+      'Extension': file.fileExtension,
+      'Size': FileSizeConverter.bytesToString(file.getSize()),
+    };
+
+    return _formatFile(file.title, fileInfo);
+  }
+
+  String _formatFile(String title, Map<String, String> fileInfo) {
+    String formattedFile = '$title:\n';
+
+    for (var entry in fileInfo.entries) {
+      formattedFile += '${entry.key}: ${entry.value}'.indentAndAddNewLine(2);
+    }
+
+    return formattedFile;
   }
 }
