@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
@@ -7,12 +8,18 @@ import 'package:flutter_design_patterns/helpers/file_size_converter.dart';
 
 class Directory extends StatelessWidget implements IFile {
   final String title;
+  final int level;
   final bool isInitiallyExpanded;
 
   final List<IFile> _files = List<IFile>();
   List<IFile> get files => _files;
 
-  Directory(this.title, {this.isInitiallyExpanded = false});
+  Directory({
+    @required this.title,
+    @required this.level,
+    this.isInitiallyExpanded = false,
+  })  : assert(title != null),
+        assert(level != null);
 
   void addFile(IFile file) {
     _files.add(file);
