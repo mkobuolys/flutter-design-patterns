@@ -125,6 +125,11 @@ class AppRouter {
           settings,
           TemplateMethodExample(),
         );
+      case _DesignPatternRoutes.visitorRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          VisitorExample(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => MainMenu(),
@@ -167,4 +172,5 @@ class _DesignPatternRoutes {
   static const String stateRoute = '/state';
   static const String strategyRoute = '/strategy';
   static const String templateMethodRoute = '/template-method';
+  static const String visitorRoute = '/visitor';
 }

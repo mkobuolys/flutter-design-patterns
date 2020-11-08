@@ -47,6 +47,7 @@ flutter:
     - assets/images/state/
     - assets/images/strategy/
     - assets/images/template_method/
+    - assets/images/visitor/
   fonts:
     - family: Roboto
       fonts:
