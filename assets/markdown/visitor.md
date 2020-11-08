@@ -411,7 +411,7 @@ class XmlVisitor implements IVisitor {
 
 ### Example
 
-_VisitorExample_ widget contains the _buildMediaDirectory()_ method which builds the file structure for the example. Also, it contains a list of different visitors and provides it to the _FilesVisitorSelection_ widget where the index of a specific visitor is selected by triggering the _setSelectedVisitorIndex()_ method.
+The _VisitorExample_ widget contains the _buildMediaDirectory()_ method which builds the file structure for the example. Also, it contains a list of different visitors and provides it to the _FilesVisitorSelection_ widget where the index of a specific visitor is selected by triggering the _setSelectedVisitorIndex()_ method.
 
 When exporting files' information and providing it in the modal via the _showFilesDialog()_ method, the example widget does not care about the concrete selected visitor as long as it implements the _IVisitor_ interface. The selected visitor is just applied to the whole file structure by passing it as a parameter to the _accept()_ method, hence retrieving the formatted files' structure as text and providing it to the opened _FilesDialog_ modal.
 
