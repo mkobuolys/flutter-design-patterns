@@ -12,7 +12,7 @@ The class diagram below shows the implementation of the **Visitor** design patte
 
 _IFile_ defines a common interface for both _File_ and _Directory_ classes:
 
-- _getSize()_ - returns size of the file;
+- _getSize()_ - returns the size of the file;
 - _render()_ - renders the component's UI;
 - _accept()_ - delegates request to a visitor.
 
@@ -20,7 +20,7 @@ _File_ class implements the _getSize()_ and _render()_ methods, additionally con
 
 _AudioFile_, _ImageFile_, _TextFile_ and _VideoFile_ are concrete file classes implementing the _accept()_ method from _IFile_ interface and containing some additional information about the specific file.
 
-_Directory_ implements the same required methods as _File_, but it also contains _title_, _level_, _isInitiallyExpanded_ properties and _files_ list, containing the _IFile_ objects. It also defines _addFile()_ method, which allows adding _IFile_ objects to the directory (_files_ list). Similarly as in specific file classes, _accept()_ method is implemented here as well.
+_Directory_ implements the same required methods as _File_, but it also contains _title_, _level_, _isInitiallyExpanded_ properties and _files_ list, containing the _IFile_ objects. It also defines the _addFile()_ method, which allows adding _IFile_ objects to the directory (_files_ list). Similarly as in specific file classes, _accept()_ method is implemented here as well.
 
 _IVisitor_ defines a common interface for the specific visitor classes:
 
