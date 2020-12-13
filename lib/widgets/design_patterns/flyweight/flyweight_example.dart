@@ -37,7 +37,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
 
   void _buildShapesList() {
     var shapeInstancesCount = 0;
-    _shapesList = List<IPositionedShape>();
+    _shapesList = <IPositionedShape>[];
 
     for (var i = 0; i < SHAPES_COUNT; i++) {
       var shapeType = _getRandomShapeType();

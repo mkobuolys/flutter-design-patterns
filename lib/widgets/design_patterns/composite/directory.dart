@@ -8,7 +8,7 @@ class Directory extends StatelessWidget implements IFile {
   final String title;
   final bool isInitiallyExpanded;
 
-  final List<IFile> files = List<IFile>();
+  final List<IFile> files = [];
 
   Directory(this.title, [this.isInitiallyExpanded = false]);
 
@@ -33,7 +33,7 @@ class Directory extends StatelessWidget implements IFile {
         padding: const EdgeInsets.only(left: paddingS),
         child: ExpansionTile(
           leading: Icon(Icons.folder),
-          title: Text("$title (${FileSizeConverter.bytesToString(getSize())})"),
+          title: Text('$title (${FileSizeConverter.bytesToString(getSize())})'),
           children: files.map((IFile file) => file.render(context)).toList(),
           initiallyExpanded: isInitiallyExpanded,
         ),

@@ -58,11 +58,14 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
               ),
       ),
       actions: <Widget>[
-        PlatformButton(
-          child: Text('Close'),
-          materialColor: Colors.black,
-          materialTextColor: Colors.white,
-          onPressed: _closeDialog,
+        Visibility(
+          visible: widget.customer.details != null,
+          child: PlatformButton(
+            child: Text('Close'),
+            materialColor: Colors.black,
+            materialTextColor: Colors.white,
+            onPressed: _closeDialog,
+          ),
         ),
       ],
     );

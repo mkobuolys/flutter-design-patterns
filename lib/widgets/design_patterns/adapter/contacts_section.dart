@@ -17,11 +17,12 @@ class ContactsSection extends StatefulWidget {
   })  : assert(adapter != null),
         assert(headerText != null);
 
+  @override
   _ContactsSectionState createState() => _ContactsSectionState();
 }
 
 class _ContactsSectionState extends State<ContactsSection> {
-  final List<Contact> contacts = List<Contact>();
+  final List<Contact> contacts = [];
 
   void _getContacts() {
     setState(() {
@@ -36,33 +37,44 @@ class _ContactsSectionState extends State<ContactsSection> {
       children: <Widget>[
         Text(widget.headerText),
         const SizedBox(height: spaceM),
-        Stack(
-          children: <Widget>[
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
-              opacity: contacts.length > 0 ? 1.0 : 0.0,
-              child: Column(
-                children: <Widget>[
-                  for (var contact in contacts)
-                    ContactCard(
-                      contact: contact,
-                    )
-                ],
-              ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 250),
-              opacity: contacts.length == 0 ? 1.0 : 0.0,
-              child: PlatformButton(
-                child: Text('Get contacts'),
-                materialColor: Colors.black,
-                materialTextColor: Colors.white,
-                onPressed: _getContacts,
-              ),
-            ),
-          ],
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          child: _ContactsSectionContent(
+            contacts: contacts,
+            onPressed: _getContacts,
+          ),
         ),
       ],
     );
+  }
+}
+
+class _ContactsSectionContent extends StatelessWidget {
+  final List<Contact> contacts;
+  final VoidCallback onPressed;
+
+  const _ContactsSectionContent({
+    @required this.contacts,
+    @required this.onPressed,
+  })  : assert(contacts != null),
+        assert(onPressed != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return contacts.isEmpty
+        ? PlatformButton(
+            child: Text('Get contacts'),
+            materialColor: Colors.black,
+            materialTextColor: Colors.white,
+            onPressed: onPressed,
+          )
+        : Column(
+            children: <Widget>[
+              for (var contact in contacts)
+                ContactCard(
+                  contact: contact,
+                )
+            ],
+          );
   }
 }

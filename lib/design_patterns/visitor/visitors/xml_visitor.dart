@@ -21,12 +21,11 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitDirectory(Directory directory) {
-    bool isRootDirectory = directory.level == 0;
-
-    String directoryText = isRootDirectory ? '<files>\n' : '';
+    var isRootDirectory = directory.level == 0;
+    var directoryText = isRootDirectory ? '<files>\n' : '';
 
     for (var file in directory.files) {
-      directoryText += "${file.accept(this)}";
+      directoryText += '${file.accept(this)}';
     }
 
     return isRootDirectory ? '$directoryText</files>\n' : directoryText;
@@ -46,7 +45,7 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitTextFile(TextFile file) {
-    String fileContentPreview = file.content.length > 30
+    var fileContentPreview = file.content.length > 30
         ? '${file.content.substring(0, 30)}...'
         : file.content;
 
@@ -73,7 +72,7 @@ class XmlVisitor implements IVisitor {
   }
 
   String _formatFile(String type, Map<String, String> fileInfo) {
-    String formattedFile = '<$type>'.indentAndAddNewLine(2);
+    var formattedFile = '<$type>'.indentAndAddNewLine(2);
 
     for (var entry in fileInfo.entries) {
       formattedFile +=

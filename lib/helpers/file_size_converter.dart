@@ -8,6 +8,6 @@ class FileSizeConverter {
       len /= 1024;
     }
 
-    return "${len.toStringAsFixed(2)} ${sizes[order]}";
+    return '${len.toStringAsFixed(2)} ${sizes[order]}';
   }
 }

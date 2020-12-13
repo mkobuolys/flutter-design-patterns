@@ -12,7 +12,7 @@ class StateExample extends StatefulWidget {
 }
 
 class _StateExampleState extends State<StateExample> {
-  var _stateContext = StateContext();
+  final StateContext _stateContext = StateContext();
 
   Future<void> _changeState() async {
     await _stateContext.nextState();

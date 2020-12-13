@@ -1,5 +1,5 @@
 class ExpressionContext {
-  final List<String> _solutionSteps = List<String>();
+  final List<String> _solutionSteps = [];
 
   List<String> getSolutionSteps() {
     return _solutionSteps;

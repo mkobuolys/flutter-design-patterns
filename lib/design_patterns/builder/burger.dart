@@ -13,7 +13,7 @@ class Burger {
   }
 
   String getFormattedAllergens() {
-    var allergens = Set<String>();
+    var allergens = <String>{};
 
     _ingredients.forEach((x) => allergens.addAll(x.getAllergens()));
 

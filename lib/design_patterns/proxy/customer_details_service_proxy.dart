@@ -3,8 +3,7 @@ import 'package:flutter_design_patterns/design_patterns/proxy/icustomer_details_
 
 class CustomerDetailsServiceProxy implements ICustomerDetailsService {
   final ICustomerDetailsService service;
-  final Map<String, CustomerDetails> customerDetailsCache =
-      Map<String, CustomerDetails>();
+  final Map<String, CustomerDetails> customerDetailsCache = {};
 
   CustomerDetailsServiceProxy(this.service);
 

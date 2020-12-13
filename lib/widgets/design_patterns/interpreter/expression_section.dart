@@ -18,10 +18,10 @@ class ExpressionSection extends StatefulWidget {
 
 class _ExpressionSectionState extends State<ExpressionSection> {
   final ExpressionContext _expressionContext = ExpressionContext();
-  final List<String> _solutionSteps = List<String>();
+  final List<String> _solutionSteps = [];
 
   void _solvePrefixExpression() {
-    var solutionSteps = List<String>();
+    var solutionSteps = <String>[];
     var expression =
         ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
     var result = expression.interpret(_expressionContext);

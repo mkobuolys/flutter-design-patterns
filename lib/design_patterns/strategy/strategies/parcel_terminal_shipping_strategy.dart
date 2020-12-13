@@ -26,7 +26,7 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
       case PackageSize.XL:
         return 3.49;
       default:
-        throw new Exception(
+        throw Exception(
             "Unknown shipping price for the package of size '${orderItem.packageSize}'.");
     }
   }

@@ -67,7 +67,7 @@ class _CategoryState extends State<Category>
       body: Stack(
         children: <Widget>[
           Hero(
-            tag: "${widget.category.id}_background",
+            tag: '${widget.category.id}_background',
             child: Container(
               color: Color(widget.category.color),
             ),

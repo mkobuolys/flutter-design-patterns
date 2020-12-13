@@ -126,7 +126,7 @@ class _DesignPatternDetailsState extends State<DesignPatternDetails>
       body: Stack(
         children: <Widget>[
           Hero(
-            tag: "${widget.designPattern.id}_background",
+            tag: '${widget.designPattern.id}_background',
             child: Container(
               color: lightBackgroundColor,
             ),
@@ -204,7 +204,7 @@ class _DesignPatternDetailsState extends State<DesignPatternDetails>
                                 child: FutureBuilder(
                                   future:
                                       repository.get(widget.designPattern.id),
-                                  initialData: "",
+                                  initialData: '',
                                   builder: (_, AsyncSnapshot<String> snapshot) {
                                     if (snapshot.hasData) {
                                       return MarkdownBody(

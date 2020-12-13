@@ -1,4 +1,4 @@
-import 'package:xml/xml.dart' as xml;
+import 'package:xml/xml.dart';
 
 import 'package:flutter_design_patterns/design_patterns/adapter/apis/xml_contacts_api.dart';
 import 'package:flutter_design_patterns/design_patterns/adapter/contact.dart';
@@ -16,8 +16,8 @@ class XmlContactsAdapter implements IContactsAdapter {
   }
 
   List<Contact> _parseContactsXml(String contactsXml) {
-    var xmlDocument = xml.parse(contactsXml);
-    var contactsList = List<Contact>();
+    var xmlDocument = XmlDocument.parse(contactsXml);
+    var contactsList = <Contact>[];
 
     for (var xmlElement in xmlDocument.findAllElements('contact')) {
       var fullName = xmlElement.findElements('fullname').single.text;

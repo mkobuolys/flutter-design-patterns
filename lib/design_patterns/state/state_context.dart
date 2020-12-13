@@ -5,7 +5,7 @@ import 'package:flutter_design_patterns/design_patterns/state/states/loading_sta
 import 'package:flutter_design_patterns/design_patterns/state/states/no_results_state.dart';
 
 class StateContext {
-  StreamController<IState> _stateStream = StreamController<IState>();
+  final StreamController<IState> _stateStream = StreamController<IState>();
   Sink<IState> get _inState => _stateStream.sink;
   Stream<IState> get outState => _stateStream.stream;
 

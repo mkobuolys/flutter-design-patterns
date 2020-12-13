@@ -10,9 +10,7 @@ class ExampleStateByDefinition extends ExampleStateBase {
   }
 
   static ExampleStateByDefinition getState() {
-    if (_instance == null) {
-      _instance = ExampleStateByDefinition._internal();
-    }
+    _instance ??= ExampleStateByDefinition._internal();
 
     return _instance;
   }

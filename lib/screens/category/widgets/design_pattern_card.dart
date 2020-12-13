@@ -36,7 +36,7 @@ class DesignPatternCard extends StatelessWidget {
 
     return SelectionCard(
       backgroundColor: lightBackgroundColor,
-      backgroundHeroTag: "${designPattern.id}_background",
+      backgroundHeroTag: '${designPattern.id}_background',
       contentHeader: contentHeader,
       contentText: contentText,
       onTap: onSelectionCardTap,

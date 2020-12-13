@@ -21,10 +21,10 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitDirectory(Directory directory) {
-    String directoryText = "";
+    var directoryText = '';
 
     for (var file in directory.files) {
-      directoryText += "${file.accept(this)}";
+      directoryText += '${file.accept(this)}';
     }
 
     return directoryText;
@@ -44,7 +44,7 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitTextFile(TextFile file) {
-    String fileContentPreview = file.content.length > 30
+    var fileContentPreview = file.content.length > 30
         ? '${file.content.substring(0, 30)}...'
         : file.content;
 
@@ -71,7 +71,7 @@ class HumanReadableVisitor implements IVisitor {
   }
 
   String _formatFile(String title, Map<String, String> fileInfo) {
-    String formattedFile = '$title:\n';
+    var formattedFile = '$title:\n';
 
     for (var entry in fileInfo.entries) {
       formattedFile += '${entry.key}: ${entry.value}'.indentAndAddNewLine(2);

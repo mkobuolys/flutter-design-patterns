@@ -51,13 +51,13 @@ class _SingletonExampleState extends State<SingletonExample> {
               ),
             const SizedBox(height: spaceL),
             PlatformButton(
-              child: Text("Change states\' text to 'Singleton'"),
+              child: Text("Change states' text to 'Singleton'"),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _setTextValues,
             ),
             PlatformButton(
-              child: Text("Reset"),
+              child: Text('Reset'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _reset,

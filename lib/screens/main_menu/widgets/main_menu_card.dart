@@ -38,7 +38,7 @@ class MainMenuCard extends StatelessWidget {
 
     return SelectionCard(
       backgroundColor: Color(category.color),
-      backgroundHeroTag: "${category.id}_background",
+      backgroundHeroTag: '${category.id}_background',
       contentHeader: contentHeader,
       contentText: contentText,
       onTap: onSelectionCardTap,

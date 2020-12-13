@@ -6,7 +6,7 @@ import 'package:flutter_design_patterns/design_patterns/flyweight/shape_type.dar
 
 class ShapeFlyweightFactory {
   final ShapeFactory shapeFactory;
-  final Map<ShapeType, IPositionedShape> shapesMap = Map<ShapeType, IPositionedShape>();
+  final Map<ShapeType, IPositionedShape> shapesMap = {};
 
   ShapeFlyweightFactory({
     @required this.shapeFactory,

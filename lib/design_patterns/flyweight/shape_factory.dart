@@ -18,7 +18,7 @@ class ShapeFactory {
           width: 10.0,
         );
       default:
-        throw new Exception("Shape type '$shapeType' is not supported.");
+        throw Exception("Shape type '$shapeType' is not supported.");
     }
   }
 }

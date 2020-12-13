@@ -26,7 +26,7 @@ class _FacadeExampleState extends State<FacadeExample> {
 
   void _changeHomeCinemaMode(bool activated) {
     if (activated) {
-      _smartHomeFacade.startMovie(_smartHomeState, "Movie title");
+      _smartHomeFacade.startMovie(_smartHomeState, 'Movie title');
     } else {
       _smartHomeFacade.stopMovie(_smartHomeState);
     }

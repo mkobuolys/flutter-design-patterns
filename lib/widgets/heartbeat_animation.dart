@@ -10,6 +10,7 @@ class HeartbeatAnimation extends StatefulWidget {
   })  : assert(child != null),
         super(key: key);
 
+  @override
   _HeartbeatAnimationState createState() => _HeartbeatAnimationState();
 }
 

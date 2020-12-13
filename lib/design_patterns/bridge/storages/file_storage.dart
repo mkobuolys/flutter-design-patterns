@@ -3,7 +3,7 @@ import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
 import 'package:flutter_design_patterns/design_patterns/bridge/json_helper.dart';
 
 class FileStorage implements IStorage {
-  Map<Type, List<String>> fileStorage = Map<Type, List<String>>();
+  final Map<Type, List<String>> fileStorage = {};
 
   @override
   String getTitle() {
@@ -18,13 +18,13 @@ class FileStorage implements IStorage {
       return files.map<T>((f) => JsonHelper.deserialiseObject<T>(f)).toList();
     }
 
-    return List<T>();
+    return [];
   }
 
   @override
   void store<T extends EntityBase>(T entityBase) {
     if (!fileStorage.containsKey(T)) {
-      fileStorage[T] = List<String>();
+      fileStorage[T] = [];
     }
 
     fileStorage[T].add(JsonHelper.serialiseObject(entityBase));

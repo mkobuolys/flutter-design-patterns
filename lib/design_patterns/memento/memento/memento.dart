@@ -8,6 +8,7 @@ class Memento extends IMemento {
     _state = Shape.copy(shape);
   }
 
+  @override
   Shape getState() {
     return _state;
   }

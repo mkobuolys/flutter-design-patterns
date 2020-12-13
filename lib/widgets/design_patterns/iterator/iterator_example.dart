@@ -15,7 +15,7 @@ class IteratorExample extends StatefulWidget {
 }
 
 class _IteratorExampleState extends State<IteratorExample> {
-  final List<ITreeCollection> treeCollections = List<ITreeCollection>();
+  final List<ITreeCollection> treeCollections = [];
 
   int _selectedTreeCollectionIndex = 0;
   int _currentNodeIndex = 0;
