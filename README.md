@@ -13,7 +13,7 @@ If you are new to Flutter, please first follow the [Flutter Setup](https://flutt
 ### Building and installing the Flutter Design Patterns app
 
 ```
-git clone https://github.com/MangirdasKazlauskas/flutter-design-patterns.git
+git clone https://github.com/mkobuolys/flutter-design-patterns.git
 cd flutter-design-patterns
 flutter run
 ```
