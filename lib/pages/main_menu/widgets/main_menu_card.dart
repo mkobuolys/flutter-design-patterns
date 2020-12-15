@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
+import 'package:flutter_design_patterns/pages/category/category_page.dart';
 import 'package:flutter_design_patterns/widgets/selection_card.dart';
 
 class MainMenuCard extends StatelessWidget {
@@ -32,7 +32,7 @@ class MainMenuCard extends StatelessWidget {
     );
     var onSelectionCardTap = () => Navigator.pushNamed(
           context,
-          categoryRoute,
+          CategoryPage.route,
           arguments: category,
         );
 

@@ -7,25 +7,26 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/data/models/design_pattern.dart';
 import 'package:flutter_design_patterns/data/repositories/markdown_repository.dart';
-import 'package:flutter_design_patterns/screens/design_pattern_details/widgets/design_pattern_details_header.dart';
+import 'package:flutter_design_patterns/pages/design_pattern_details/widgets/design_pattern_details_header.dart';
 import 'package:flutter_design_patterns/widgets/fade_slide_transition.dart';
 import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
 
-class DesignPatternDetails extends StatefulWidget {
+class DesignPatternDetailsPage extends StatefulWidget {
   final DesignPattern designPattern;
   final Widget example;
 
-  const DesignPatternDetails({
+  const DesignPatternDetailsPage({
     @required this.designPattern,
     @required this.example,
   })  : assert(designPattern != null),
         assert(example != null);
 
   @override
-  _DesignPatternDetailsState createState() => _DesignPatternDetailsState();
+  _DesignPatternDetailsPageState createState() =>
+      _DesignPatternDetailsPageState();
 }
 
-class _DesignPatternDetailsState extends State<DesignPatternDetails>
+class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
     with TickerProviderStateMixin {
   final MarkdownRepository repository = MarkdownRepository();
 

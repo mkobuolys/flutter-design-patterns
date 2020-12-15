@@ -3,24 +3,26 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
-import 'package:flutter_design_patterns/screens/category/widgets/design_pattern_card.dart';
+import 'package:flutter_design_patterns/pages/category/widgets/design_pattern_card.dart';
 import 'package:flutter_design_patterns/widgets/fade_slide_transition.dart';
 import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
 
-class Category extends StatefulWidget {
+class CategoryPage extends StatefulWidget {
+  static const String route = '/category';
+
   final DesignPatternCategory category;
 
-  const Category({
+  const CategoryPage({
     @required this.category,
     Key key,
   })  : assert(category != null),
         super(key: key);
 
   @override
-  _CategoryState createState() => _CategoryState();
+  _CategoryPageState createState() => _CategoryPageState();
 }
 
-class _CategoryState extends State<Category>
+class _CategoryPageState extends State<CategoryPage>
     with SingleTickerProviderStateMixin {
   final double _listAnimationIntervalStart = 0.65;
   final double _preferredAppBarHeight = 56.0;

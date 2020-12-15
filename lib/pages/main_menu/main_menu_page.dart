@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
 import 'package:flutter_design_patterns/data/repositories/design_pattern_categories_repository.dart';
-import 'package:flutter_design_patterns/screens/main_menu/widgets/main_menu_header.dart';
-import 'package:flutter_design_patterns/screens/main_menu/widgets/main_menu_card.dart';
+import 'package:flutter_design_patterns/pages/main_menu/widgets/main_menu_header.dart';
+import 'package:flutter_design_patterns/pages/main_menu/widgets/main_menu_card.dart';
 
-class MainMenu extends StatelessWidget {
+class MainMenuPage extends StatelessWidget {
+  static const String route = '/main-menu';
+
   final DesignPatternCategoriesRepository repository =
       DesignPatternCategoriesRepository();
 
