@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_design_patterns/widgets/image_view.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -209,6 +210,25 @@ class _DesignPatternDetailsState extends State<DesignPatternDetails>
                                     if (snapshot.hasData) {
                                       return MarkdownBody(
                                         data: snapshot.data,
+                                        imageBuilder: (uri) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              print('tapped');
+                                              Navigator.of(context).push(
+                                                PageRouteBuilder(
+                                                  pageBuilder: (context,
+                                                          animation,
+                                                          secondaryAnimation) =>
+                                                      ImageView(uri: uri),
+                                                ),
+                                              );
+                                            },
+                                            child: Hero(
+                                              tag: uri,
+                                              child: Image.asset(uri.path),
+                                            ),
+                                          );
+                                        },
                                       );
                                     }
 
