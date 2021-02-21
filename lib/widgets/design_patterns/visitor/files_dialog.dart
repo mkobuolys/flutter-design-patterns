@@ -17,9 +17,9 @@ class FilesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Files'),
+      title: const Text('Files'),
       content: ScrollConfiguration(
-        behavior: ScrollBehavior(),
+        behavior: const ScrollBehavior(),
         child: SingleChildScrollView(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -29,10 +29,10 @@ class FilesDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         PlatformButton(
-          child: Text('Close'),
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: () => closeDialog(context),
+          child: const Text('Close'),
         ),
       ],
     );

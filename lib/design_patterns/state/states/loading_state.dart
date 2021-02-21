@@ -13,7 +13,7 @@ class LoadingState implements IState {
   @override
   Future nextState(StateContext context) async {
     try {
-      var resultList = await _api.getNames();
+      final resultList = await _api.getNames();
 
       if (resultList.isEmpty) {
         context.setState(NoResultsState());
@@ -27,7 +27,7 @@ class LoadingState implements IState {
 
   @override
   Widget render() {
-    return CircularProgressIndicator(
+    return const CircularProgressIndicator(
       backgroundColor: Colors.transparent,
       valueColor: AlwaysStoppedAnimation<Color>(
         Colors.black,

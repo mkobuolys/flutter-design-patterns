@@ -23,7 +23,7 @@ class ShapeContainer extends StatelessWidget {
             color: shape.color,
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: Icon(
+          child: const Icon(
             Icons.star,
             color: Colors.white,
           ),

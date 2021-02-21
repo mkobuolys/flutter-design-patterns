@@ -9,8 +9,8 @@ class SelectionCard extends StatelessWidget {
   final Text contentText;
   final VoidCallback onTap;
 
-  final double selectionCardHeight = 112.0;
-  final double selectionCardBorderRadius = 10.0;
+  double get selectionCardHeight => 112.0;
+  double get selectionCardBorderRadius => 10.0;
 
   const SelectionCard({
     @required this.backgroundColor,
@@ -26,7 +26,7 @@ class SelectionCard extends StatelessWidget {
         assert(onTap != null),
         super(key: key);
 
-  BorderRadiusGeometry get _selectionCardBorderRadius =>
+  BorderRadius get _selectionCardBorderRadius =>
       BorderRadius.circular(selectionCardBorderRadius);
 
   @override
@@ -54,8 +54,11 @@ class SelectionCard extends StatelessWidget {
             highlightColor: Colors.transparent,
             splashColor: Colors.black12,
             borderRadius: _selectionCardBorderRadius,
+            onTap: onTap,
             child: Container(
               padding: const EdgeInsets.all(paddingL),
+              height: selectionCardHeight,
+              width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,10 +67,7 @@ class SelectionCard extends StatelessWidget {
                   contentText,
                 ],
               ),
-              height: selectionCardHeight,
-              width: double.infinity,
             ),
-            onTap: onTap,
           ),
         ),
       ],

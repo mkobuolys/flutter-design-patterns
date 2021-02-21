@@ -42,7 +42,7 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.customer.name),
-      content: Container(
+      content: SizedBox(
         height: 200.0,
         child: widget.customer.details == null
             ? Center(
@@ -61,10 +61,10 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
         Visibility(
           visible: widget.customer.details != null,
           child: PlatformButton(
-            child: Text('Close'),
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: _closeDialog,
+            child: const Text('Close'),
           ),
         ),
       ],

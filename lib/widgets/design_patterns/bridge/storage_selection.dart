@@ -7,7 +7,7 @@ class StorageSelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int> onChanged;
 
-  StorageSelection({
+  const StorageSelection({
     @required this.storages,
     @required this.selectedIndex,
     @required this.onChanged,

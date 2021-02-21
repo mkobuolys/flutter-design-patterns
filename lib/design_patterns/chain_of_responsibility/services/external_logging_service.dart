@@ -8,7 +8,7 @@ class ExternalLoggingService {
   ExternalLoggingService(this.logBloc);
 
   void logMessage(LogLevel logLevel, String message) {
-    var logMessage = LogMessage(logLevel: logLevel, message: message);
+    final logMessage = LogMessage(logLevel: logLevel, message: message);
 
     // Send log message to the external logging service
 

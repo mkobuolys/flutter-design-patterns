@@ -9,21 +9,21 @@ class XmlContactsAdapter implements IContactsAdapter {
 
   @override
   List<Contact> getContacts() {
-    var contactsXml = _api.getContactsXml();
-    var contactsList = _parseContactsXml(contactsXml);
+    final contactsXml = _api.getContactsXml();
+    final contactsList = _parseContactsXml(contactsXml);
 
     return contactsList;
   }
 
   List<Contact> _parseContactsXml(String contactsXml) {
-    var xmlDocument = XmlDocument.parse(contactsXml);
-    var contactsList = <Contact>[];
+    final xmlDocument = XmlDocument.parse(contactsXml);
+    final contactsList = <Contact>[];
 
-    for (var xmlElement in xmlDocument.findAllElements('contact')) {
-      var fullName = xmlElement.findElements('fullname').single.text;
-      var email = xmlElement.findElements('email').single.text;
-      var favouriteString = xmlElement.findElements('favourite').single.text;
-      var favourite = favouriteString.toLowerCase() == 'true';
+    for (final xmlElement in xmlDocument.findAllElements('contact')) {
+      final fullName = xmlElement.findElements('fullname').single.text;
+      final email = xmlElement.findElements('email').single.text;
+      final favouriteString = xmlElement.findElements('favourite').single.text;
+      final favourite = favouriteString.toLowerCase() == 'true';
 
       contactsList.add(Contact(
         fullName: fullName,

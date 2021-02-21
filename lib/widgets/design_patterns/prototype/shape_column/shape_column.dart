@@ -36,7 +36,7 @@ class ShapeColumn extends StatelessWidget {
             SizedShapeColumn(
               label: 'Cloned shape',
               child: shapeClone == null
-                  ? SizedBox(
+                  ? const SizedBox(
                       height: 120.0,
                       width: 120.0,
                       child: Placeholder(),
@@ -46,16 +46,16 @@ class ShapeColumn extends StatelessWidget {
           ],
         ),
         PlatformButton(
-          child: Text('Randomise properties'),
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: onRandomisePropertiesPressed,
+          child: const Text('Randomise properties'),
         ),
         PlatformButton(
-          child: Text('Clone'),
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: onClonePressed,
+          child: const Text('Clone'),
         ),
       ],
     );

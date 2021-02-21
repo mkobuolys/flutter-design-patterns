@@ -6,6 +6,7 @@ class BurgerMaker {
 
   BurgerMaker(this.burgerBuilder);
 
+  // ignore: use_setters_to_change_properties
   void changeBurgerBuilder(BurgerBuilderBase burgerBuilder) {
     this.burgerBuilder = burgerBuilder;
   }

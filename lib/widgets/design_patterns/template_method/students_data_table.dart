@@ -18,7 +18,7 @@ class StudentsDataTable extends StatelessWidget {
         horizontalMargin: marginM,
         headingRowHeight: spaceXL,
         dataRowHeight: spaceXL,
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text(
               'Name',
@@ -65,7 +65,7 @@ class StudentsDataTable extends StatelessWidget {
                 DataCell(
                   Text(
                     student.bmi.toStringAsFixed(2),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ],

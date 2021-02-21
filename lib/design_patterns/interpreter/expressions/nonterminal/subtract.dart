@@ -9,9 +9,9 @@ class Subtract implements IExpression {
 
   @override
   int interpret(ExpressionContext context) {
-    var left = leftExpression.interpret(context);
-    var right = rightExpression.interpret(context);
-    var result = left - right;
+    final left = leftExpression.interpret(context);
+    final right = rightExpression.interpret(context);
+    final result = left - right;
     context.addSolutionStep('-', left, right, result);
 
     return result;

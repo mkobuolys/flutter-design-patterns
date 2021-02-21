@@ -13,7 +13,7 @@ class CustomerDetailsServiceProxy implements ICustomerDetailsService {
       return customerDetailsCache[id];
     }
 
-    var customerDetails = await service.getCustomerDetails(id);
+    final customerDetails = await service.getCustomerDetails(id);
     customerDetailsCache[id] = customerDetails;
 
     return customerDetails;

@@ -13,7 +13,7 @@ class CommandHistory {
 
   void undo() {
     if (_commandList.isNotEmpty) {
-      var command = _commandList.removeLast();
+      final command = _commandList.removeLast();
       command.undo();
     }
   }

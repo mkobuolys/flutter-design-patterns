@@ -63,10 +63,10 @@ class _ContactsSectionContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return contacts.isEmpty
         ? PlatformButton(
-            child: Text('Get contacts'),
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: onPressed,
+            child: const Text('Get contacts'),
           )
         : Column(
             children: <Widget>[

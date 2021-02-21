@@ -36,7 +36,7 @@ class _CategoryPageState extends State<CategoryPage>
   void initState() {
     super.initState();
     _fadeSlideAnimationController = AnimationController(
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     )..forward();
 
@@ -80,10 +80,9 @@ class _CategoryPageState extends State<CategoryPage>
                 FadeSlideTransition(
                   controller: _fadeSlideAnimationController,
                   slideAnimationTween: Tween<Offset>(
-                    begin: Offset(0.0, 0.5),
-                    end: Offset(0.0, 0.0),
+                    begin: const Offset(0.0, 0.5),
+                    end: const Offset(0.0, 0.0),
                   ),
-                  begin: 0.0,
                   end: _listAnimationIntervalStart,
                   child: PreferredSize(
                     preferredSize: Size.fromHeight(_preferredAppBarHeight),
@@ -95,7 +94,7 @@ class _CategoryPageState extends State<CategoryPage>
                       ),
                       backgroundColor: Color(widget.category.color),
                       elevation: _appBarElevation,
-                      leading: PlatformBackButton(
+                      leading: const PlatformBackButton(
                         color: Colors.white,
                       ),
                     ),
@@ -103,7 +102,7 @@ class _CategoryPageState extends State<CategoryPage>
                 ),
                 Expanded(
                   child: ScrollConfiguration(
-                    behavior: ScrollBehavior(),
+                    behavior: const ScrollBehavior(),
                     child: SingleChildScrollView(
                       controller: _scrollController,
                       padding: const EdgeInsets.fromLTRB(
@@ -117,10 +116,9 @@ class _CategoryPageState extends State<CategoryPage>
                           FadeSlideTransition(
                             controller: _fadeSlideAnimationController,
                             slideAnimationTween: Tween<Offset>(
-                              begin: Offset(0.0, 0.5),
-                              end: Offset(0.0, 0.0),
+                              begin: const Offset(0.0, 0.5),
+                              end: const Offset(0.0, 0.0),
                             ),
-                            begin: 0.0,
                             end: _listAnimationIntervalStart,
                             child: Row(
                               children: <Widget>[
@@ -144,13 +142,12 @@ class _CategoryPageState extends State<CategoryPage>
                             FadeSlideTransition.staggered(
                               controller: _fadeSlideAnimationController,
                               slideAnimationTween: Tween<Offset>(
-                                begin: Offset(0.0, 0.1),
-                                end: Offset(0.0, 0.0),
+                                begin: const Offset(0.0, 0.1),
+                                end: const Offset(0.0, 0.0),
                               ),
                               singleItemDurationInterval: 0.05,
                               index: i,
                               begin: _listAnimationIntervalStart,
-                              end: 1.0,
                               child: Container(
                                 margin: const EdgeInsets.only(top: marginL),
                                 child: DesignPatternCard(

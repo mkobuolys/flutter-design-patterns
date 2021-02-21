@@ -17,16 +17,16 @@ class BurgerInformationColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        BurgerInformationLabel('Price'),
+        const BurgerInformationLabel('Price'),
         Text(burger.getFormattedPrice()),
-        SizedBox(height: spaceM),
-        BurgerInformationLabel('Ingredients'),
+        const SizedBox(height: spaceM),
+        const BurgerInformationLabel('Ingredients'),
         Text(
           burger.getFormattedIngredients(),
           textAlign: TextAlign.justify,
         ),
-        SizedBox(height: spaceM),
-        BurgerInformationLabel('Allergens'),
+        const SizedBox(height: spaceM),
+        const BurgerInformationLabel('Allergens'),
         Text(
           burger.getFormattedAllergens(),
           textAlign: TextAlign.justify,

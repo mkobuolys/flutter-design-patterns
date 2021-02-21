@@ -6,12 +6,10 @@ class ExampleStateByDefinition extends ExampleStateBase {
   ExampleStateByDefinition._internal() {
     initialText = "A new 'ExampleStateByDefinition' instance has been created.";
     stateText = initialText;
-    print(stateText);
   }
 
+  // ignore: prefer_constructors_over_static_methods
   static ExampleStateByDefinition getState() {
-    _instance ??= ExampleStateByDefinition._internal();
-
-    return _instance;
+    return _instance ??= ExampleStateByDefinition._internal();
   }
 }

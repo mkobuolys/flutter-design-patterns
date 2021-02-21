@@ -45,7 +45,7 @@ class _DecoratorExampleState extends State<DecoratorExample> {
 
   void _setChipSelected(int index, bool selected) {
     setState(() {
-      _pizzaToppingsDataMap[index].setSelected(selected);
+      _pizzaToppingsDataMap[index].setSelected(isSelected: selected);
     });
   }
 
@@ -58,7 +58,7 @@ class _DecoratorExampleState extends State<DecoratorExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(

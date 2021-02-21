@@ -42,7 +42,7 @@ class Circle extends Shape {
             color: color,
             shape: BoxShape.circle,
           ),
-          child: Icon(
+          child: const Icon(
             Icons.star,
             color: Colors.white,
           ),

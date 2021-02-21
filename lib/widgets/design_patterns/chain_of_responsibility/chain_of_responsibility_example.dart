@@ -48,35 +48,35 @@ class _ChainOfResponsibilityExampleState
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
           children: <Widget>[
             PlatformButton(
-              child: Text('Log debug'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logDebug(randomLog),
+              child: const Text('Log debug'),
             ),
             PlatformButton(
-              child: Text('Log info'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logInfo(randomLog),
+              child: const Text('Log info'),
             ),
             PlatformButton(
-              child: Text('Log error'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logError(randomLog),
+              child: const Text('Log error'),
             ),
-            Divider(),
+            const Divider(),
             Row(
               children: <Widget>[
                 Expanded(
                   child: StreamBuilder<List<LogMessage>>(
-                    initialData: [],
+                    initialData: const [],
                     stream: logBloc.outLogStream,
                     builder: (_, AsyncSnapshot<List<LogMessage>> snapshot) =>
                         LogMessagesColumn(logMessages: snapshot.data),

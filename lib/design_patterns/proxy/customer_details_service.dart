@@ -9,9 +9,9 @@ class CustomerDetailsService implements ICustomerDetailsService {
     return Future.delayed(
       const Duration(seconds: 2),
       () {
-        var email = faker.internet.email();
-        var hobby = faker.sport.name();
-        var position = faker.job.title();
+        final email = faker.internet.email();
+        final hobby = faker.sport.name();
+        final position = faker.job.title();
 
         return CustomerDetails(id, email, hobby, position);
       },

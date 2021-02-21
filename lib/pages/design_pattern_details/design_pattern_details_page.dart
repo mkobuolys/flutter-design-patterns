@@ -45,7 +45,7 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
     super.initState();
 
     _fadeSlideAnimationController = AnimationController(
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     )..forward();
 
@@ -70,7 +70,6 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
 
     _tabController = TabController(
       length: 2,
-      initialIndex: 0,
       vsync: this,
     );
   }
@@ -98,20 +97,19 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
       bottomNavigationBar: FadeSlideTransition(
         controller: _fadeSlideAnimationController,
         slideAnimationTween: Tween<Offset>(
-          begin: Offset(0.0, 1.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 1.0),
+          end: const Offset(0.0, 0.0),
         ),
         begin: _contentAnimationIntervalStart,
-        end: 1.0,
         child: BottomNavigationBar(
           currentIndex: _tabController.index,
           backgroundColor: lightBackgroundColor,
           elevation: _bottomNavigationBarElevation,
-          selectedIconTheme: IconThemeData(size: 20.0),
+          selectedIconTheme: const IconThemeData(size: 20.0),
           selectedItemColor: Colors.black,
-          unselectedIconTheme: IconThemeData(size: 20.0),
+          unselectedIconTheme: const IconThemeData(size: 20.0),
           unselectedItemColor: Colors.black45,
-          items: <BottomNavigationBarItem>[
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               label: 'Description',
               icon: Icon(FontAwesomeIcons.fileAlt),
@@ -138,10 +136,9 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                 FadeSlideTransition(
                   controller: _fadeSlideAnimationController,
                   slideAnimationTween: Tween<Offset>(
-                    begin: Offset(0.0, 0.5),
-                    end: Offset(0.0, 0.0),
+                    begin: const Offset(0.0, 0.5),
+                    end: const Offset(0.0, 0.0),
                   ),
-                  begin: 0.0,
                   end: _contentAnimationIntervalStart,
                   child: PreferredSize(
                     preferredSize: Size.fromHeight(_preferredAppBarHeight),
@@ -151,14 +148,14 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                         duration: const Duration(milliseconds: 250),
                         child: Text(
                           widget.designPattern.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                           ),
                         ),
                       ),
                       backgroundColor: lightBackgroundColor,
                       elevation: _appBarElevation,
-                      leading: PlatformBackButton(
+                      leading: const PlatformBackButton(
                         color: Colors.black,
                       ),
                     ),
@@ -167,10 +164,10 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: <Widget>[
                       ScrollConfiguration(
-                        behavior: ScrollBehavior(),
+                        behavior: const ScrollBehavior(),
                         child: SingleChildScrollView(
                           controller: _scrollController,
                           padding: const EdgeInsets.fromLTRB(
@@ -184,10 +181,9 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                               FadeSlideTransition(
                                 controller: _fadeSlideAnimationController,
                                 slideAnimationTween: Tween<Offset>(
-                                  begin: Offset(0.0, 0.25),
-                                  end: Offset(0.0, 0.0),
+                                  begin: const Offset(0.0, 0.25),
+                                  end: const Offset(0.0, 0.0),
                                 ),
-                                begin: 0.0,
                                 end: _contentAnimationIntervalStart,
                                 child: DesignPatternDetailsHeader(
                                   designPattern: widget.designPattern,
@@ -197,11 +193,10 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                               FadeSlideTransition(
                                 controller: _fadeSlideAnimationController,
                                 slideAnimationTween: Tween<Offset>(
-                                  begin: Offset(0.0, 0.01),
-                                  end: Offset(0.0, 0.0),
+                                  begin: const Offset(0.0, 0.01),
+                                  end: const Offset(0.0, 0.0),
                                 ),
                                 begin: _contentAnimationIntervalStart,
-                                end: 1.0,
                                 child: FutureBuilder(
                                   future:
                                       repository.get(widget.designPattern.id),

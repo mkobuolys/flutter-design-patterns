@@ -17,7 +17,7 @@ class MainMenuPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ScrollConfiguration(
-          behavior: ScrollBehavior(),
+          behavior: const ScrollBehavior(),
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(paddingL),
             child: Column(
@@ -26,14 +26,13 @@ class MainMenuPage extends StatelessWidget {
                 MainMenuHeader(),
                 FutureBuilder<List<DesignPatternCategory>>(
                   future: repository.get(),
-                  initialData: [],
+                  initialData: const [],
                   builder: (
                     _,
                     AsyncSnapshot<List<DesignPatternCategory>> snapshot,
                   ) {
                     if (snapshot.hasData) {
                       return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           for (var category in snapshot.data)
                             Container(

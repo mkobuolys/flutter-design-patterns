@@ -11,15 +11,16 @@ class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
   @override
   @protected
   List<Student> getStudentsData() {
-    var studentsXml = _api.getStudentsXml();
-    var xmlDocument = XmlDocument.parse(studentsXml);
-    var studentsList = <Student>[];
+    final studentsXml = _api.getStudentsXml();
+    final xmlDocument = XmlDocument.parse(studentsXml);
+    final studentsList = <Student>[];
 
-    for (var xmlElement in xmlDocument.findAllElements('student')) {
-      var fullName = xmlElement.findElements('fullname').single.text;
-      var age = int.parse(xmlElement.findElements('age').single.text);
-      var height = double.parse(xmlElement.findElements('height').single.text);
-      var weight = int.parse(xmlElement.findElements('weight').single.text);
+    for (final xmlElement in xmlDocument.findAllElements('student')) {
+      final fullName = xmlElement.findElements('fullname').single.text;
+      final age = int.parse(xmlElement.findElements('age').single.text);
+      final height =
+          double.parse(xmlElement.findElements('height').single.text);
+      final weight = int.parse(xmlElement.findElements('weight').single.text);
 
       studentsList.add(Student(
         fullName: fullName,

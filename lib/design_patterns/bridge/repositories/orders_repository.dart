@@ -15,6 +15,6 @@ class OrdersRepository implements IRepository {
 
   @override
   void save(EntityBase entityBase) {
-    storage.store<Order>(entityBase);
+    storage.store<Order>(entityBase as Order);
   }
 }

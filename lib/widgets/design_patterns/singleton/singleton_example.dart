@@ -21,14 +21,14 @@ class _SingletonExampleState extends State<SingletonExample> {
   ];
 
   void _setTextValues([String text = 'Singleton']) {
-    for (var state in stateList) {
+    for (final state in stateList) {
       state.setStateText(text);
     }
     setState(() {});
   }
 
   void _reset() {
-    for (var state in stateList) {
+    for (final state in stateList) {
       state.reset();
     }
     setState(() {});
@@ -37,7 +37,7 @@ class _SingletonExampleState extends State<SingletonExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -51,19 +51,19 @@ class _SingletonExampleState extends State<SingletonExample> {
               ),
             const SizedBox(height: spaceL),
             PlatformButton(
-              child: Text("Change states' text to 'Singleton'"),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _setTextValues,
+              child: const Text("Change states' text to 'Singleton'"),
             ),
             PlatformButton(
-              child: Text('Reset'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _reset,
+              child: const Text('Reset'),
             ),
             const SizedBox(height: spaceXL),
-            Text(
+            const Text(
               'Note: change states\' text and navigate the application (e.g. go to the tab "description" or main menu, then go back to this example) to see how the Singleton state behaves!',
               textAlign: TextAlign.justify,
             ),

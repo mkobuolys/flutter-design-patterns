@@ -21,7 +21,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
   int _selectedDialogIndex = 0;
 
   Future _showCustomDialog(BuildContext context) async {
-    var selectedDialog = customDialogList[_selectedDialogIndex];
+    final selectedDialog = customDialogList[_selectedDialogIndex];
 
     await selectedDialog.show(context);
   }
@@ -35,7 +35,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -47,10 +47,10 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
             ),
             const SizedBox(height: spaceL),
             PlatformButton(
-              child: Text('Show Dialog'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => _showCustomDialog(context),
+              child: const Text('Show Dialog'),
             ),
           ],
         ),

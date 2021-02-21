@@ -14,7 +14,7 @@ class FlyweightExample extends StatefulWidget {
 }
 
 class _FlyweightExampleState extends State<FlyweightExample> {
-  static const int SHAPES_COUNT = 1000;
+  static const int shapesCount = 1000;
 
   final ShapeFactory shapeFactory = ShapeFactory();
 
@@ -39,9 +39,9 @@ class _FlyweightExampleState extends State<FlyweightExample> {
     var shapeInstancesCount = 0;
     _shapesList = <IPositionedShape>[];
 
-    for (var i = 0; i < SHAPES_COUNT; i++) {
-      var shapeType = _getRandomShapeType();
-      var shape = _useFlyweightFactory
+    for (var i = 0; i < shapesCount; i++) {
+      final shapeType = _getRandomShapeType();
+      final shape = _useFlyweightFactory
           ? _shapeFlyweightFactory.getShape(shapeType)
           : shapeFactory.createShape(shapeType);
 
@@ -57,7 +57,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
   }
 
   ShapeType _getRandomShapeType() {
-    var values = ShapeType.values;
+    const values = ShapeType.values;
 
     return values[Random().nextInt(values.length)];
   }
@@ -82,7 +82,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SwitchListTile.adaptive(
-              title: Text(
+              title: const Text(
                 'Use flyweight factory',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
         Center(
           child: Text(
             'Shape instances count: $_shapeInstancesCount',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),

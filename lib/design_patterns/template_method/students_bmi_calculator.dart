@@ -13,7 +13,7 @@ abstract class StudentsBmiCalculator {
   }
 
   void _calculateStudentsBmi(List<Student> studentList) {
-    for (var student in studentList) {
+    for (final student in studentList) {
       student.bmi = _calculateBmi(student.height, student.weight);
     }
   }

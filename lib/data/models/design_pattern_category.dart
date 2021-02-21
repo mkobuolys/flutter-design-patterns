@@ -14,15 +14,16 @@ class DesignPatternCategory {
   });
 
   factory DesignPatternCategory.fromJson(Map<String, dynamic> json) {
-    var designPatternJsonList = json['patterns'] as List;
-    var designPatternList = designPatternJsonList
-        .map((designPatternJson) => DesignPattern.fromJson(designPatternJson))
+    final designPatternJsonList = json['patterns'] as List;
+    final designPatternList = designPatternJsonList
+        .map((designPatternJson) =>
+            DesignPattern.fromJson(designPatternJson as Map<String, dynamic>))
         .toList();
 
     return DesignPatternCategory(
-      id: json['id'],
-      title: json['title'],
-      color: int.parse(json['color']),
+      id: json['id'] as String,
+      title: json['title'] as String,
+      color: int.parse(json['color'] as String),
       patterns: designPatternList,
     );
   }

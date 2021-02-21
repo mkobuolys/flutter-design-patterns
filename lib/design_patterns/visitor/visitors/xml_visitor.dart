@@ -9,7 +9,7 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitAudioFile(AudioFile file) {
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'title': file.title,
       'album': file.albumTitle,
       'extension': file.fileExtension,
@@ -21,19 +21,27 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitDirectory(Directory directory) {
-    var isRootDirectory = directory.level == 0;
-    var directoryText = isRootDirectory ? '<files>\n' : '';
+    final isRootDirectory = directory.level == 0;
+    final buffer = StringBuffer();
 
-    for (var file in directory.files) {
-      directoryText += '${file.accept(this)}';
+    if (isRootDirectory) {
+      buffer.write('<files>\n');
     }
 
-    return isRootDirectory ? '$directoryText</files>\n' : directoryText;
+    for (final file in directory.files) {
+      buffer.write(file.accept(this));
+    }
+
+    if (isRootDirectory) {
+      buffer.write('</files>\n');
+    }
+
+    return buffer.toString();
   }
 
   @override
   String visitImageFile(ImageFile file) {
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'title': file.title,
       'resolution': file.resolution,
       'extension': file.fileExtension,
@@ -45,11 +53,11 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitTextFile(TextFile file) {
-    var fileContentPreview = file.content.length > 30
+    final fileContentPreview = file.content.length > 30
         ? '${file.content.substring(0, 30)}...'
         : file.content;
 
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'title': file.title,
       'preview': fileContentPreview,
       'extension': file.fileExtension,
@@ -61,7 +69,7 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitVideoFile(VideoFile file) {
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'title': file.title,
       'directed_by': file.directedBy,
       'extension': file.fileExtension,
@@ -72,15 +80,18 @@ class XmlVisitor implements IVisitor {
   }
 
   String _formatFile(String type, Map<String, String> fileInfo) {
-    var formattedFile = '<$type>'.indentAndAddNewLine(2);
+    final buffer = StringBuffer();
 
-    for (var entry in fileInfo.entries) {
-      formattedFile +=
-          '<${entry.key}>${entry.value}</${entry.key}>'.indentAndAddNewLine(4);
+    buffer.write('<$type>'.indentAndAddNewLine(2));
+
+    for (final entry in fileInfo.entries) {
+      buffer.write(
+        '<${entry.key}>${entry.value}</${entry.key}>'.indentAndAddNewLine(4),
+      );
     }
 
-    formattedFile += '</$type>'.indentAndAddNewLine(2);
+    buffer.write('</$type>'.indentAndAddNewLine(2));
 
-    return formattedFile;
+    return buffer.toString();
   }
 }

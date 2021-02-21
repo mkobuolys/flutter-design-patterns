@@ -18,7 +18,7 @@ class _MementoExampleState extends State<MementoExample> {
   final Originator _originator = Originator();
 
   void _randomiseProperties() {
-    var command = RandomisePropertiesCommand(_originator);
+    final command = RandomisePropertiesCommand(_originator);
     _executeCommand(command);
   }
 
@@ -38,7 +38,7 @@ class _MementoExampleState extends State<MementoExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -48,17 +48,17 @@ class _MementoExampleState extends State<MementoExample> {
             ),
             const SizedBox(height: spaceM),
             PlatformButton(
-              child: Text('Randomise properties'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _randomiseProperties,
+              child: const Text('Randomise properties'),
             ),
-            Divider(),
+            const Divider(),
             PlatformButton(
-              child: Text('Undo'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _commandHistory.isEmpty ? null : _undo,
+              child: const Text('Undo'),
             ),
             const SizedBox(height: spaceM),
           ],

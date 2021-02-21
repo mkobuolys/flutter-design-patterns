@@ -67,7 +67,7 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -102,7 +102,10 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
               style: Theme.of(context).textTheme.subtitle1,
             ),
             const SizedBox(height: spaceL),
-            _switch.render(_switchValue, _setSwitchValue),
+            _switch.render(
+              value: _switchValue,
+              onChanged: _setSwitchValue,
+            ),
           ],
         ),
       ),

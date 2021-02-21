@@ -3,14 +3,14 @@ import 'package:flutter/foundation.dart';
 
 class FadeSlideTransition extends StatelessWidget {
   final AnimationController controller;
-  final Tween slideAnimationTween;
+  final Tween<Offset> slideAnimationTween;
   final Widget child;
   final double begin;
   final double end;
   final int index;
   final double singleItemDurationInterval;
 
-  FadeSlideTransition({
+  const FadeSlideTransition({
     @required this.controller,
     @required this.slideAnimationTween,
     @required this.child,
@@ -24,7 +24,7 @@ class FadeSlideTransition extends StatelessWidget {
         assert(child != null),
         super(key: key);
 
-  FadeSlideTransition.staggered({
+  const FadeSlideTransition.staggered({
     @required this.controller,
     @required this.slideAnimationTween,
     @required this.child,
@@ -49,7 +49,7 @@ class FadeSlideTransition extends StatelessWidget {
       : end;
 
   double _calculateBegin() {
-    var delay = (singleItemDurationInterval * index).toDouble();
+    final delay = (singleItemDurationInterval * index).toDouble();
 
     return begin + delay < 1.0
         ? begin + delay
@@ -57,7 +57,7 @@ class FadeSlideTransition extends StatelessWidget {
   }
 
   double _calculateEnd() {
-    var delay = (singleItemDurationInterval * index).toDouble();
+    final delay = (singleItemDurationInterval * index).toDouble();
 
     return begin + delay + singleItemDurationInterval < end
         ? begin + delay + singleItemDurationInterval

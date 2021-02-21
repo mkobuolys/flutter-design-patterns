@@ -1,12 +1,12 @@
 name: flutter_design_patterns
 description: Flutter Design Patterns Library
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -20,7 +20,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.9.2
+  lint: ^1.3.0
 
 flutter:
   uses-material-design: true

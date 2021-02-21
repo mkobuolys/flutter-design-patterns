@@ -12,8 +12,8 @@ class Customer extends EntityBase {
   }
 
   Customer.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        email = json['email'],
+      : name = json['name'] as String,
+        email = json['email'] as String,
         super.fromJson(json);
 
   Map<String, dynamic> toJson() => {

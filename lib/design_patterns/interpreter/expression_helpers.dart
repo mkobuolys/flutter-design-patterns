@@ -7,21 +7,23 @@ import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/
 import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
 
 class ExpressionHelpers {
+  const ExpressionHelpers._();
+
   static final List<String> _operators = ['+', '-', '*'];
 
   static IExpression buildExpressionTree(String postfixExpression) {
-    var expressionStack = ListQueue<IExpression>();
+    final expressionStack = ListQueue<IExpression>();
 
-    for (var symbol in postfixExpression.split(' ')) {
+    for (final symbol in postfixExpression.split(' ')) {
       if (_isOperator(symbol)) {
-        var rightExpression = expressionStack.removeLast();
-        var leftExpression = expressionStack.removeLast();
-        var nonterminalExpression =
+        final rightExpression = expressionStack.removeLast();
+        final leftExpression = expressionStack.removeLast();
+        final nonterminalExpression =
             _getNonterminalExpression(symbol, leftExpression, rightExpression);
 
         expressionStack.addLast(nonterminalExpression);
       } else {
-        var numberExpression = Number(int.parse(symbol));
+        final numberExpression = Number(int.parse(symbol));
 
         expressionStack.addLast(numberExpression);
       }

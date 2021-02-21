@@ -18,7 +18,6 @@ class SizedShapeColumn extends StatelessWidget {
     return SizedBox(
       width: 160.0,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(label),
           const SizedBox(height: spaceM),

@@ -17,15 +17,14 @@ class MainMenuHeader extends StatelessWidget {
           ),
           const SizedBox(height: spaceM),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
                 'Created with Flutter and',
                 style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(width: spaceM),
-              Padding(
-                padding: const EdgeInsets.only(bottom: paddingS),
+              const Padding(
+                padding: EdgeInsets.only(bottom: paddingS),
                 child: HeartbeatAnimation(
                   child: Text(
                     '❤️',

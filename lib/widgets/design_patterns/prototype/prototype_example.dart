@@ -45,7 +45,7 @@ class _PrototypeExampleState extends State<PrototypeExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -56,7 +56,7 @@ class _PrototypeExampleState extends State<PrototypeExample> {
               onClonePressed: _cloneCircle,
               onRandomisePropertiesPressed: _randomiseCircleProperties,
             ),
-            Divider(),
+            const Divider(),
             ShapeColumn(
               shape: _rectangle,
               shapeClone: _rectangleClone,

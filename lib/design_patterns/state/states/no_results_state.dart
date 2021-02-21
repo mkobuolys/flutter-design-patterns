@@ -12,7 +12,7 @@ class NoResultsState implements IState {
 
   @override
   Widget render() {
-    return Text(
+    return const Text(
       'No Results',
       style: TextStyle(fontSize: 24.0),
       textAlign: TextAlign.center,

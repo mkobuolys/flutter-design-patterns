@@ -63,10 +63,10 @@ class _StudentsSectionContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return students.isEmpty
         ? PlatformButton(
-            child: Text('Calculate BMI and get students\' data'),
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: onPressed,
+            child: const Text("Calculate BMI and get students' data"),
           )
         : StudentsDataTable(
             students: students,

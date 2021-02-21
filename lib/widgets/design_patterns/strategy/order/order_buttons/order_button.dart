@@ -20,6 +20,9 @@ class OrderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformButton(
+      materialColor: Colors.black,
+      materialTextColor: Colors.white,
+      onPressed: onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -31,9 +34,6 @@ class OrderButton extends StatelessWidget {
           Text(title),
         ],
       ),
-      materialColor: Colors.black,
-      materialTextColor: Colors.white,
-      onPressed: onPressed,
     );
   }
 }

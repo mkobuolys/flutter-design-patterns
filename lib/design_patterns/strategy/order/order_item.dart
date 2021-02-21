@@ -8,7 +8,7 @@ class OrderItem {
   PackageSize packageSize;
 
   OrderItem.random() {
-    var packageSizeList = PackageSize.values;
+    const packageSizeList = PackageSize.values;
 
     title = faker.lorem.word();
     price = random.integer(100, min: 5) - 0.01;

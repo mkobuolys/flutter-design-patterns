@@ -2,6 +2,6 @@ import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_b
 
 abstract class IStorage {
   String getTitle();
-  List<T> fetchAll<T extends EntityBase>();
+  List<EntityBase> fetchAll<T extends EntityBase>();
   void store<T extends EntityBase>(T entityBase);
 }

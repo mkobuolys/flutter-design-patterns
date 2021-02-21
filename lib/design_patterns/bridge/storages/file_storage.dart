@@ -11,11 +11,11 @@ class FileStorage implements IStorage {
   }
 
   @override
-  List<T> fetchAll<T extends EntityBase>() {
+  List<EntityBase> fetchAll<T extends EntityBase>() {
     if (fileStorage.containsKey(T)) {
-      var files = fileStorage[T];
+      final files = fileStorage[T];
 
-      return files.map<T>((f) => JsonHelper.deserialiseObject<T>(f)).toList();
+      return files.map((f) => JsonHelper.deserialiseObject<T>(f)).toList();
     }
 
     return [];

@@ -12,7 +12,7 @@ class ErrorState implements IState {
 
   @override
   Widget render() {
-    return Text(
+    return const Text(
       'Oops! Something went wrong...',
       style: TextStyle(
         color: Colors.red,

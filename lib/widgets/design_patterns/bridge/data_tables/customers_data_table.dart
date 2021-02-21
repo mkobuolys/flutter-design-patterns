@@ -18,7 +18,7 @@ class CustomersDatatable extends StatelessWidget {
         horizontalMargin: marginM,
         headingRowHeight: spaceXL,
         dataRowHeight: spaceXL,
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text(
               'Name',

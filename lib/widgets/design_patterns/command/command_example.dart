@@ -21,17 +21,17 @@ class _CommandExampleState extends State<CommandExample> {
   final Shape _shape = Shape.initial();
 
   void _changeColor() {
-    var command = ChangeColorCommand(_shape);
+    final command = ChangeColorCommand(_shape);
     _executeCommand(command);
   }
 
   void _changeHeight() {
-    var command = ChangeHeightCommand(_shape);
+    final command = ChangeHeightCommand(_shape);
     _executeCommand(command);
   }
 
   void _changeWidth() {
-    var command = ChangeWidthCommand(_shape);
+    final command = ChangeWidthCommand(_shape);
     _executeCommand(command);
   }
 
@@ -51,7 +51,7 @@ class _CommandExampleState extends State<CommandExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -61,29 +61,29 @@ class _CommandExampleState extends State<CommandExample> {
             ),
             const SizedBox(height: spaceM),
             PlatformButton(
-              child: Text('Change color'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeColor,
+              child: const Text('Change color'),
             ),
             PlatformButton(
-              child: Text('Change height'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeHeight,
+              child: const Text('Change height'),
             ),
             PlatformButton(
-              child: Text('Change width'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeWidth,
+              child: const Text('Change width'),
             ),
-            Divider(),
+            const Divider(),
             PlatformButton(
-              child: Text('Undo'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _commandHistory.isEmpty ? null : _undo,
+              child: const Text('Undo'),
             ),
             const SizedBox(height: spaceM),
             Row(

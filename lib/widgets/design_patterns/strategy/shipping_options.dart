@@ -37,7 +37,6 @@ class ShippingOptions extends StatelessWidget {
                 onChanged: onChanged,
                 dense: true,
                 activeColor: Colors.black,
-                controlAffinity: ListTileControlAffinity.platform,
               ),
           ],
         ),

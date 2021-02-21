@@ -8,10 +8,11 @@ import 'package:flutter_design_patterns/data/models/design_pattern_category.dart
 
 class DesignPatternCategoriesRepository {
   Future<List<DesignPatternCategory>> get() async {
-    var menuJson = await rootBundle.loadString(designPatternsJsonPath);
-    var designPatternCategoryJsonList = json.decode(menuJson) as List;
-    var mainMenuSections = designPatternCategoryJsonList
-        .map((categoryJson) => DesignPatternCategory.fromJson(categoryJson))
+    final menuJson = await rootBundle.loadString(designPatternsJsonPath);
+    final designPatternCategoryJsonList = json.decode(menuJson) as List;
+    final mainMenuSections = designPatternCategoryJsonList
+        .map((categoryJson) => DesignPatternCategory.fromJson(
+            categoryJson as Map<String, dynamic>))
         .toList();
 
     return mainMenuSections;

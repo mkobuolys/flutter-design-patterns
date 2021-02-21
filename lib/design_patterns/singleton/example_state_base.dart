@@ -7,6 +7,7 @@ abstract class ExampleStateBase {
   String stateText;
   String get currentText => stateText;
 
+  // ignore: use_setters_to_change_properties
   void setStateText(String text) {
     stateText = text;
   }

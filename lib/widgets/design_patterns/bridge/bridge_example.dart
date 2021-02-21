@@ -35,7 +35,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     setState(() {
       _selectedCustomerStorageIndex = index;
       _customersRepository = CustomersRepository(_storages[index]);
-      _customers = _customersRepository.getAll();
+      _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
@@ -43,7 +43,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     setState(() {
       _selectedOrderStorageIndex = index;
       _ordersRepository = OrdersRepository(_storages[index]);
-      _orders = _ordersRepository.getAll();
+      _orders = _ordersRepository.getAll() as List<Order>;
     });
   }
 
@@ -51,7 +51,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     _customersRepository.save(Customer());
 
     setState(() {
-      _customers = _customersRepository.getAll();
+      _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
@@ -59,7 +59,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     _ordersRepository.save(Order());
 
     setState(() {
-      _orders = _ordersRepository.getAll();
+      _orders = _ordersRepository.getAll() as List<Order>;
     });
   }
 
@@ -69,16 +69,16 @@ class _BridgeExampleState extends State<BridgeExample> {
 
     _customersRepository =
         CustomersRepository(_storages[_selectedCustomerStorageIndex]);
-    _customers = _customersRepository.getAll();
+    _customers = _customersRepository.getAll() as List<Customer>;
 
     _ordersRepository = OrdersRepository(_storages[_selectedOrderStorageIndex]);
-    _orders = _ordersRepository.getAll();
+    _orders = _ordersRepository.getAll() as List<Order>;
   }
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -98,18 +98,19 @@ class _BridgeExampleState extends State<BridgeExample> {
               onChanged: _onSelectedCustomerStorageIndexChanged,
             ),
             PlatformButton(
-              child: Text('Add'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addCustomer,
+              child: const Text('Add'),
             ),
-            _customers.isNotEmpty
-                ? CustomersDatatable(customers: _customers)
-                : Text(
-                    '0 customers found',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
-            Divider(),
+            if (_customers.isNotEmpty)
+              CustomersDatatable(customers: _customers)
+            else
+              Text(
+                '0 customers found',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+            const Divider(),
             Row(
               children: <Widget>[
                 Text(
@@ -124,17 +125,18 @@ class _BridgeExampleState extends State<BridgeExample> {
               onChanged: _onSelectedOrderStorageIndexChanged,
             ),
             PlatformButton(
-              child: Text('Add'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addOrder,
+              child: const Text('Add'),
             ),
-            _orders.isNotEmpty
-                ? OrdersDatatable(orders: _orders)
-                : Text(
-                    '0 orders found',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
+            if (_orders.isNotEmpty)
+              OrdersDatatable(orders: _orders)
+            else
+              Text(
+                '0 orders found',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
           ],
         ),
       ),

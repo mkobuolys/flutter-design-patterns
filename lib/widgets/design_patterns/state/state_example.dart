@@ -27,16 +27,16 @@ class _StateExampleState extends State<StateExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
           children: <Widget>[
             PlatformButton(
-              child: Text('Load names'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeState,
+              child: const Text('Load names'),
             ),
             const SizedBox(height: spaceL),
             StreamBuilder(

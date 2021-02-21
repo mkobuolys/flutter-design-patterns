@@ -33,7 +33,7 @@ class BreadthFirstIterator implements ITreeIterator {
     visitedNodes.add(_currentNode);
 
     if (adjacencyList.containsKey(_currentNode)) {
-      for (var node in adjacencyList[_currentNode]
+      for (final node in adjacencyList[_currentNode]
           .where((n) => !visitedNodes.contains(n))) {
         nodeQueue.addLast(node);
       }

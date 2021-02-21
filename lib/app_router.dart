@@ -15,7 +15,8 @@ class AppRouter {
           builder: (_) => MainMenuPage(),
         );
       case CategoryPage.route:
-        var category = settings.arguments as DesignPatternCategory;
+        final category = settings.arguments as DesignPatternCategory;
+
         return MaterialPageRoute(
           builder: (_) => CategoryPage(
             category: category,
@@ -140,7 +141,8 @@ class AppRouter {
     RouteSettings settings,
     Widget example,
   ) {
-    var designPattern = settings.arguments as DesignPattern;
+    final designPattern = settings.arguments as DesignPattern;
+
     return MaterialPageRoute(
       builder: (_) => DesignPatternDetailsPage(
         designPattern: designPattern,

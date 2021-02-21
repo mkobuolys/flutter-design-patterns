@@ -6,7 +6,7 @@ class ExpressionContext {
   }
 
   void addSolutionStep(String operatorSymbol, int left, int right, int result) {
-    var solutionStep =
+    final solutionStep =
         '${_solutionSteps.length + 1}) $left $operatorSymbol $right = $result';
 
     _solutionSteps.add(solutionStep);

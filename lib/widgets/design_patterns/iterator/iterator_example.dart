@@ -25,13 +25,13 @@ class _IteratorExampleState extends State<IteratorExample> {
   void initState() {
     super.initState();
 
-    var graph = _buildGraph();
+    final graph = _buildGraph();
     treeCollections.add(BreadthFirstTreeCollection(graph));
     treeCollections.add(DepthFirstTreeCollection(graph));
   }
 
   Graph _buildGraph() {
-    var graph = Graph();
+    final graph = Graph();
 
     graph.addEdge(1, 2);
     graph.addEdge(1, 3);
@@ -53,7 +53,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   Future _traverseTree() async {
     _toggleIsTraversing();
 
-    var iterator =
+    final iterator =
         treeCollections[_selectedTreeCollectionIndex].createIterator();
 
     while (iterator.hasNext()) {
@@ -85,7 +85,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -101,17 +101,17 @@ class _IteratorExampleState extends State<IteratorExample> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 PlatformButton(
-                  child: Text('Traverse'),
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed: _currentNodeIndex == 0 ? _traverseTree : null,
+                  child: const Text('Traverse'),
                 ),
                 PlatformButton(
-                  child: Text('Reset'),
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed:
                       _isTraversing || _currentNodeIndex == 0 ? null : _reset,
+                  child: const Text('Reset'),
                 ),
               ],
             ),

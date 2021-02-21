@@ -23,16 +23,16 @@ class PlatformButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Platform.isAndroid
         ? MaterialButton(
-            child: child,
             color: materialColor,
             textColor: materialTextColor,
             disabledColor: Colors.grey,
             disabledTextColor: Colors.white,
             onPressed: onPressed,
+            child: child,
           )
         : CupertinoButton.filled(
-            child: child,
             onPressed: onPressed,
+            child: child,
           );
   }
 }

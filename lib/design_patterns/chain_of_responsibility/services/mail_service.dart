@@ -8,7 +8,7 @@ class MailService {
   MailService(this.logBloc);
 
   void sendErrorMail(LogLevel logLevel, String message) {
-    var logMessage = LogMessage(logLevel: logLevel, message: message);
+    final logMessage = LogMessage(logLevel: logLevel, message: message);
 
     // Send error mail
 

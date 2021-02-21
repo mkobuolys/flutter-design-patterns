@@ -21,10 +21,10 @@ class _ExpressionSectionState extends State<ExpressionSection> {
   final List<String> _solutionSteps = [];
 
   void _solvePrefixExpression() {
-    var solutionSteps = <String>[];
-    var expression =
+    final solutionSteps = <String>[];
+    final expression =
         ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
-    var result = expression.interpret(_expressionContext);
+    final result = expression.interpret(_expressionContext);
 
     solutionSteps
       ..addAll(_expressionContext.getSolutionSteps())
@@ -48,10 +48,10 @@ class _ExpressionSectionState extends State<ExpressionSection> {
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 250),
           firstChild: PlatformButton(
-            child: Text('Solve'),
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: _solvePrefixExpression,
+            child: const Text('Solve'),
           ),
           secondChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -12,13 +12,13 @@ class AndroidAlertDialog extends CustomDialog {
   Widget create(BuildContext context) {
     return AlertDialog(
       title: Text(getTitle()),
-      content: Text('This is the material-style alert dialog!'),
+      content: const Text('This is the material-style alert dialog!'),
       actions: <Widget>[
         FlatButton(
-          child: Text('Close'),
           onPressed: () {
             Navigator.of(context).pop();
           },
+          child: const Text('Close'),
         )
       ],
     );

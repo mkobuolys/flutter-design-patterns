@@ -22,7 +22,7 @@ class CustomPizzaSelection extends StatelessWidget {
         for (var i = 0; i < pizzaToppingsDataMap.length; i++)
           i == 0
               ? ChoiceChip(
-                  label: Text(
+                  label: const Text(
                     'Pizza Base',
                     style: TextStyle(color: Colors.white),
                   ),

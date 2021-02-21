@@ -5,6 +5,5 @@ class ExampleStateWithoutSingleton extends ExampleStateBase {
     initialText =
         "A new 'ExampleStateWithoutSingleton' instance has been created.";
     stateText = initialText;
-    print(stateText);
   }
 }

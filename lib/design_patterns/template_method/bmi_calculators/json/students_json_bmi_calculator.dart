@@ -12,15 +12,15 @@ class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
   @override
   @protected
   List<Student> getStudentsData() {
-    var studentsJson = _api.getStudentsJson();
-    var studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
-    var studentsJsonList = studentsMap['students'] as List;
-    var studentsList = studentsJsonList
+    final studentsJson = _api.getStudentsJson();
+    final studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
+    final studentsJsonList = studentsMap['students'] as List;
+    final studentsList = studentsJsonList
         .map((json) => Student(
-              fullName: json['fullName'],
-              age: json['age'],
-              height: json['height'],
-              weight: json['weight'],
+              fullName: json['fullName'] as String,
+              age: json['age'] as int,
+              height: json['height'] as double,
+              weight: json['weight'] as int,
             ))
         .toList();
 

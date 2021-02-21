@@ -13,10 +13,10 @@ class DesignPattern {
 
   factory DesignPattern.fromJson(Map<String, dynamic> json) {
     return DesignPattern(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      route: json['route'],
+      id: json['id'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      route: json['route'] as String,
     );
   }
 }

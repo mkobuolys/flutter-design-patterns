@@ -33,7 +33,7 @@ class _ProxyExampleState extends State<ProxyExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -51,10 +51,10 @@ class _ProxyExampleState extends State<ProxyExample> {
                     backgroundColor: Colors.grey,
                     child: Text(
                       customer.name[0],
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  trailing: Icon(Icons.info_outline),
+                  trailing: const Icon(Icons.info_outline),
                   title: Text(customer.name),
                   onTap: () => _showCustomerDetails(customer),
                 ),

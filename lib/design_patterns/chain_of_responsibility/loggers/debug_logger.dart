@@ -11,7 +11,7 @@ class DebugLogger extends LoggerBase {
 
   @override
   void log(String message) {
-    var logMessage = LogMessage(logLevel: logLevel, message: message);
+    final logMessage = LogMessage(logLevel: logLevel, message: message);
 
     logBloc.log(logMessage);
   }
