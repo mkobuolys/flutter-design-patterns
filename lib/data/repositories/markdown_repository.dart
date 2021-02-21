@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart' show rootBundle;
 
-import 'package:flutter_design_patterns/constants.dart';
+import '../../constants.dart';
 
 class MarkdownRepository {
   Future<String> get(String designPatternId) async {

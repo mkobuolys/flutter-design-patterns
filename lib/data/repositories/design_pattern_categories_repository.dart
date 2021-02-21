@@ -3,8 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
+import '../../constants.dart';
+import '../models/design_pattern_category.dart';
 
 class DesignPatternCategoriesRepository {
   Future<List<DesignPatternCategory>> get() async {

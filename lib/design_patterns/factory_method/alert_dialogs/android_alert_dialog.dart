@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/factory_method/custom_dialog.dart';
+import '../custom_dialog.dart';
 
 class AndroidAlertDialog extends CustomDialog {
   @override

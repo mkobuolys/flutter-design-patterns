@@ -1,13 +1,7 @@
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_base.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_topping_data.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/basil.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/mozzarella.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/olive_oil.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/oregano.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/pecorino.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/pepperoni.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_toppings/sauce.dart';
+import 'pizza.dart';
+import 'pizza_base.dart';
+import 'pizza_topping_data.dart';
+import 'pizza_toppings/pizza_toppings.dart';
 
 class PizzaMenu {
   final Map<int, PizzaToppingData> _pizzaToppingsDataMap = {

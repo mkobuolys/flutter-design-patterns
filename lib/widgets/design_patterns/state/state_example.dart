@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/state/istate.dart';
-import 'package:flutter_design_patterns/design_patterns/state/state_context.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/no_results_state.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/state/istate.dart';
+import '../../../design_patterns/state/state_context.dart';
+import '../../../design_patterns/state/states/no_results_state.dart';
+import '../../platform_specific/platform_button.dart';
 
 class StateExample extends StatefulWidget {
   @override

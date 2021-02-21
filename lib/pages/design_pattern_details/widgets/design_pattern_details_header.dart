@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern.dart';
+import '../../../constants.dart';
+import '../../../data/models/design_pattern.dart';
 
 class DesignPatternDetailsHeader extends StatelessWidget {
   final DesignPattern designPattern;

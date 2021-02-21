@@ -1,8 +1,8 @@
 import 'package:xml/xml.dart';
 
-import 'package:flutter_design_patterns/design_patterns/adapter/apis/xml_contacts_api.dart';
-import 'package:flutter_design_patterns/design_patterns/adapter/contact.dart';
-import 'package:flutter_design_patterns/design_patterns/adapter/icontacts_adapter.dart';
+import '../apis/xml_contacts_api.dart';
+import '../contact.dart';
+import '../icontacts_adapter.dart';
 
 class XmlContactsAdapter implements IContactsAdapter {
   final XmlContactsApi _api = XmlContactsApi();

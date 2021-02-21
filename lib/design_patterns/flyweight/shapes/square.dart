@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
+import '../ipositioned_shape.dart';
 
 class Square implements IPositionedShape {
   final Color color;

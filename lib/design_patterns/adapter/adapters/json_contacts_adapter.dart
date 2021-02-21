@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_design_patterns/design_patterns/adapter/apis/json_contacts_api.dart';
-import 'package:flutter_design_patterns/design_patterns/adapter/contact.dart';
-import 'package:flutter_design_patterns/design_patterns/adapter/icontacts_adapter.dart';
+import '../apis/json_contacts_api.dart';
+import '../contact.dart';
+import '../icontacts_adapter.dart';
 
 class JsonContactsAdapter implements IContactsAdapter {
   final JsonContactsApi _api = JsonContactsApi();

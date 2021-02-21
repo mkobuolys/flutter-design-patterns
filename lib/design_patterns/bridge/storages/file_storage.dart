@@ -1,6 +1,6 @@
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/json_helper.dart';
+import '../entities/entity_base.dart';
+import '../istorage.dart';
+import '../json_helper.dart';
 
 class FileStorage implements IStorage {
   final Map<Type, List<String>> fileStorage = {};

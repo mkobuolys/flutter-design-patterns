@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/directory.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/audio_file.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/image_file.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/text_file.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/composite/files/video_file.dart';
+import '../../../constants.dart';
+import 'directory.dart';
+import 'files/audio_file.dart';
+import 'files/image_file.dart';
+import 'files/text_file.dart';
+import 'files/video_file.dart';
 
 class CompositeExample extends StatelessWidget {
   Widget buildMediaDirectory() {

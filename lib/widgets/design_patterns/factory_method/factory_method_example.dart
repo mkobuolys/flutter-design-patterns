@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/factory_method/alert_dialogs/android_alert_dialog.dart';
-import 'package:flutter_design_patterns/design_patterns/factory_method/alert_dialogs/ios_alert_dialog.dart';
-import 'package:flutter_design_patterns/design_patterns/factory_method/custom_dialog.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/factory_method/dialog_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/factory_method/alert_dialogs/android_alert_dialog.dart';
+import '../../../design_patterns/factory_method/alert_dialogs/ios_alert_dialog.dart';
+import '../../../design_patterns/factory_method/custom_dialog.dart';
+import '../../platform_specific/platform_button.dart';
+import 'dialog_selection.dart';
 
 class FactoryMethodExample extends StatefulWidget {
   @override

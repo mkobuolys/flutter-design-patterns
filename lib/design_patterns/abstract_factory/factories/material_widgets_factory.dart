@@ -1,10 +1,10 @@
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/iwidgets_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/activity_indicators/android_activity_indicator.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/iactivity_indicator.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/islider.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/iswitch.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/sliders/android_slider.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/switches/android_switch.dart';
+import '../iwidgets_factory.dart';
+import '../widgets/activity_indicators/android_activity_indicator.dart';
+import '../widgets/iactivity_indicator.dart';
+import '../widgets/islider.dart';
+import '../widgets/iswitch.dart';
+import '../widgets/sliders/android_slider.dart';
+import '../widgets/switches/android_switch.dart';
 
 class MaterialWidgetsFactory implements IWidgetsFactory {
   @override

@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_design_patterns/constants.dart';
+
+import '../../../constants.dart';
 
 class SingletonExampleCard extends StatelessWidget {
   final String text;

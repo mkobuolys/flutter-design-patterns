@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/adapter/contact.dart';
-import 'package:flutter_design_patterns/design_patterns/adapter/icontacts_adapter.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/adapter/contact_card.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/adapter/contact.dart';
+import '../../../design_patterns/adapter/icontacts_adapter.dart';
+import '../../platform_specific/platform_button.dart';
+import 'contact_card.dart';
 
 class ContactsSection extends StatefulWidget {
   final IContactsAdapter adapter;

@@ -1,10 +1,9 @@
 import 'package:faker/faker.dart';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/icommand.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/memento/imemento.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/originator.dart';
+import '../../memento/imemento.dart';
+import '../../originator.dart';
+import '../icommand.dart';
 
 class RandomisePropertiesCommand implements ICommand {
   Originator originator;

@@ -1,8 +1,7 @@
 import 'package:faker/faker.dart';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/prototype/shape.dart';
+import '../shape.dart';
 
 class Rectangle extends Shape {
   double height;

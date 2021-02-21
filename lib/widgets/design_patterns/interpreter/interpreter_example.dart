@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/expression_section.dart';
+import '../../../constants.dart';
+import 'expression_section.dart';
 
 class InterpreterExample extends StatefulWidget {
   @override

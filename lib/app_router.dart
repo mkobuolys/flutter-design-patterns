@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/data/models/design_pattern.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
-import 'package:flutter_design_patterns/pages/category/category_page.dart';
-import 'package:flutter_design_patterns/pages/design_pattern_details/design_pattern_details_page.dart';
-import 'package:flutter_design_patterns/pages/main_menu/main_menu_page.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/index.dart';
+import 'data/models/design_pattern.dart';
+import 'data/models/design_pattern_category.dart';
+import 'pages/category/category_page.dart';
+import 'pages/design_pattern_details/design_pattern_details_page.dart';
+import 'pages/main_menu/main_menu_page.dart';
+import 'widgets/design_patterns/index.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {

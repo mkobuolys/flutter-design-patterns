@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/customer/customer.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/customer_details_service.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/customer_details_service_proxy.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/icustomer_details_service.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/proxy/customer_details_dialog/customer_details_dialog.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/proxy/customer/customer.dart';
+import '../../../design_patterns/proxy/customer_details_service.dart';
+import '../../../design_patterns/proxy/customer_details_service_proxy.dart';
+import '../../../design_patterns/proxy/icustomer_details_service.dart';
+import 'customer_details_dialog/customer_details_dialog.dart';
 
 class ProxyExample extends StatefulWidget {
   @override

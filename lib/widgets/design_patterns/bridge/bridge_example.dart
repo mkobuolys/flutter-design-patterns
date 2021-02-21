@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/customer.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/order.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/irepository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/repositories/customers_repository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/repositories/orders_repository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/storages/file_storage.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/storages/sql_storage.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/data_tables/customers_data_table.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/data_tables/orders_data_table.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/storage_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/bridge/entities/customer.dart';
+import '../../../design_patterns/bridge/entities/order.dart';
+import '../../../design_patterns/bridge/irepository.dart';
+import '../../../design_patterns/bridge/istorage.dart';
+import '../../../design_patterns/bridge/repositories/customers_repository.dart';
+import '../../../design_patterns/bridge/repositories/orders_repository.dart';
+import '../../../design_patterns/bridge/storages/file_storage.dart';
+import '../../../design_patterns/bridge/storages/sql_storage.dart';
+import '../../platform_specific/platform_button.dart';
+import 'data_tables/customers_data_table.dart';
+import 'data_tables/orders_data_table.dart';
+import 'storage_selection.dart';
 
 class BridgeExample extends StatefulWidget {
   @override

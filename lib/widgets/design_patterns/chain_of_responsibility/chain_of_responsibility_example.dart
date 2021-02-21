@@ -1,14 +1,13 @@
 import 'package:faker/faker.dart';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_bloc.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_message.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/logger_base.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/loggers/index.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/chain_of_responsibility/log_messages_column.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/chain_of_responsibility/log_bloc.dart';
+import '../../../design_patterns/chain_of_responsibility/log_message.dart';
+import '../../../design_patterns/chain_of_responsibility/logger_base.dart';
+import '../../../design_patterns/chain_of_responsibility/loggers/index.dart';
+import '../../platform_specific/platform_button.dart';
+import 'log_messages_column.dart';
 
 class ChainOfResponsibilityExample extends StatefulWidget {
   @override

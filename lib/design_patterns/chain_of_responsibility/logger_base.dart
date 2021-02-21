@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_level.dart';
+import 'log_level.dart';
 
 abstract class LoggerBase {
   @protected

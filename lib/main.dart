@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_design_patterns/app_router.dart';
-import 'package:flutter_design_patterns/pages/main_menu/main_menu_page.dart';
-import 'package:flutter_design_patterns/themes.dart';
+import 'app_router.dart';
+import 'pages/main_menu/main_menu_page.dart';
+import 'themes.dart';
 
 class App extends StatelessWidget {
   @override

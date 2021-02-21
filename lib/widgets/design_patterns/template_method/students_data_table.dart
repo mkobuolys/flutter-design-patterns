@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/template_method/student.dart';
 
 class StudentsDataTable extends StatelessWidget {
   final List<Student> students;

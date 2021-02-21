@@ -1,6 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/facade/apis/camera_api.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/apis/playstation_api.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/smart_home_state.dart';
+import '../apis/apis.dart';
+import '../smart_home_state.dart';
 
 class GamingFacade {
   final PlaystationApi _playstationApi = PlaystationApi();

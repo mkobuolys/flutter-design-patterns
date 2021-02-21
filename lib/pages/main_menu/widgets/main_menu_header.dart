@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/widgets/heartbeat_animation.dart';
+import '../../../constants.dart';
+import '../../../widgets/heartbeat_animation.dart';
 
 class MainMenuHeader extends StatelessWidget {
   @override

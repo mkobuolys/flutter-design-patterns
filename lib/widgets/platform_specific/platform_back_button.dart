@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 class PlatformBackButton extends StatelessWidget {
   final Color color;

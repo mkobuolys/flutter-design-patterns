@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ifile.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/helpers/file_size_converter.dart';
+import '../../constants.dart';
+import '../../helpers/file_size_converter.dart';
+import 'ifile.dart';
+import 'ivisitor.dart';
 
 class Directory extends StatelessWidget implements IFile {
   final String title;

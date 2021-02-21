@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shape_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shape_flyweight_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shape_type.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/flyweight/positioned_shape_wrapper.dart';
+import '../../../design_patterns/flyweight/ipositioned_shape.dart';
+import '../../../design_patterns/flyweight/shape_factory.dart';
+import '../../../design_patterns/flyweight/shape_flyweight_factory.dart';
+import '../../../design_patterns/flyweight/shape_type.dart';
+import 'positioned_shape_wrapper.dart';
 
 class FlyweightExample extends StatefulWidget {
   @override

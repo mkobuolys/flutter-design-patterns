@@ -1,7 +1,7 @@
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/order.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/irepository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
+import '../entities/entity_base.dart';
+import '../entities/order.dart';
+import '../irepository.dart';
+import '../istorage.dart';
 
 class OrdersRepository implements IRepository {
   final IStorage storage;

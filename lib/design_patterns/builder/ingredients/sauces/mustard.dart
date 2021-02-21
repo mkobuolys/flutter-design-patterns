@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/design_patterns/builder/ingredient.dart';
+import '../../ingredient.dart';
 
 class Mustard extends Ingredient {
   Mustard() {

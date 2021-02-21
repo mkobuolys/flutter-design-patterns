@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-import 'package:flutter_design_patterns/design_patterns/strategy/order/package_size.dart';
+import 'package_size.dart';
 
 class OrderItem {
   String title;

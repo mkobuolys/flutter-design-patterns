@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
+import '../constants.dart';
 
 class SelectionCard extends StatelessWidget {
   final Color backgroundColor;

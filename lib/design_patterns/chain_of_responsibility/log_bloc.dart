@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_message.dart';
+import 'log_message.dart';
 
 class LogBloc {
   final List<LogMessage> _logs = [];

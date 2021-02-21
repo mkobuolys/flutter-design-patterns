@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
+import '../../../design_patterns/bridge/istorage.dart';
 
 class StorageSelection extends StatelessWidget {
   final List<IStorage> storages;

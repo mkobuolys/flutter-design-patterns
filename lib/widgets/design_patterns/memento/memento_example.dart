@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/icommand.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command_history.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/originator.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/memento/shape_container.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/memento/command_design_pattern/command_history.dart';
+import '../../../design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
+import '../../../design_patterns/memento/command_design_pattern/icommand.dart';
+import '../../../design_patterns/memento/originator.dart';
+import '../../platform_specific/platform_button.dart';
+import 'shape_container.dart';
 
 class MementoExample extends StatefulWidget {
   @override

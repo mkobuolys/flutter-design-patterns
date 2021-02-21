@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/interpreter/expression_context.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
+import '../../expression_context.dart';
+import '../../iexpression.dart';
 
 class Subtract implements IExpression {
   final IExpression leftExpression;

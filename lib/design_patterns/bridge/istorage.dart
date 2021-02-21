@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
+import 'entities/entity_base.dart';
 
 abstract class IStorage {
   String getTitle();

@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/command/shape.dart';
+import '../../../design_patterns/command/shape.dart';
 
 class ShapeContainer extends StatelessWidget {
   final Shape shape;

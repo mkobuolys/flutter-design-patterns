@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
-import 'package:flutter_design_patterns/pages/category/widgets/design_pattern_card.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
+import '../../constants.dart';
+import '../../data/models/design_pattern_category.dart';
+import '../../widgets/platform_specific/platform_back_button.dart';
+import 'widgets/design_pattern_card.dart';
 
 class CategoryPage extends StatefulWidget {
   static const String route = '/category';

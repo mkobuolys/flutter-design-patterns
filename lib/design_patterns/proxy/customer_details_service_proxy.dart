@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/proxy/customer/customer_details.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/icustomer_details_service.dart';
+import 'customer/customer_details.dart';
+import 'icustomer_details_service.dart';
 
 class CustomerDetailsServiceProxy implements ICustomerDetailsService {
   final ICustomerDetailsService service;

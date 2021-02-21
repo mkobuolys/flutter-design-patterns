@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/prototype/shape.dart';
-import 'package:flutter_design_patterns/design_patterns/prototype/shapes/circle.dart';
-import 'package:flutter_design_patterns/design_patterns/prototype/shapes/rectangle.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/prototype/shape_column/shape_column.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/prototype/shape.dart';
+import '../../../design_patterns/prototype/shapes/circle.dart';
+import '../../../design_patterns/prototype/shapes/rectangle.dart';
+import 'shape_column/shape_column.dart';
 
 class PrototypeExample extends StatefulWidget {
   @override

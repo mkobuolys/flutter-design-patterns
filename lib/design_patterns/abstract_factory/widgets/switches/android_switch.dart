@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/iswitch.dart';
+import '../iswitch.dart';
 
 class AndroidSwitch implements ISwitch {
   @override

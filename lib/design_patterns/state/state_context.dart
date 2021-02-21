@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_design_patterns/design_patterns/state/istate.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/loading_state.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/no_results_state.dart';
+import 'istate.dart';
+import 'states/loading_state.dart';
+import 'states/no_results_state.dart';
 
 class StateContext {
   final StreamController<IState> _stateStream = StreamController<IState>();

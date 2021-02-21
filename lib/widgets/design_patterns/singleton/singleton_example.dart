@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/singleton/example_state.dart';
-import 'package:flutter_design_patterns/design_patterns/singleton/example_state_by_definition.dart';
-import 'package:flutter_design_patterns/design_patterns/singleton/example_state_without_singleton.dart';
-import 'package:flutter_design_patterns/design_patterns/singleton/example_state_base.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/singleton/singleton_example_card.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/singleton/example_state.dart';
+import '../../../design_patterns/singleton/example_state_base.dart';
+import '../../../design_patterns/singleton/example_state_by_definition.dart';
+import '../../../design_patterns/singleton/example_state_without_singleton.dart';
+import '../../platform_specific/platform_button.dart';
+import 'singleton_example_card.dart';
 
 class SingletonExample extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/command/command.dart';
+import 'command.dart';
 
 class CommandHistory {
   final ListQueue<Command> _commandList = ListQueue<Command>();

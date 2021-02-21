@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/facades/smart_home_facade.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/smart_home_state.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/facade/device_icon.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/facade/mode_switcher.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/facade/facades/smart_home_facade.dart';
+import '../../../design_patterns/facade/smart_home_state.dart';
+import 'device_icon.dart';
+import 'mode_switcher.dart';
 
 class FacadeExample extends StatefulWidget {
   @override

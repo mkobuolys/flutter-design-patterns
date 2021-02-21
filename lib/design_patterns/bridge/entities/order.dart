@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
+import 'entity_base.dart';
 
 class Order extends EntityBase {
   List<String> dishes;

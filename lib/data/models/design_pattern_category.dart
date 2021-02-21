@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/data/models/design_pattern.dart';
+import 'design_pattern.dart';
 
 class DesignPatternCategory {
   final String id;

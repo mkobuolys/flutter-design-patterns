@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
+import '../../../../constants.dart';
 
 class SizedShapeColumn extends StatelessWidget {
   final String label;

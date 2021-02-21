@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shape_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shape_type.dart';
+import 'ipositioned_shape.dart';
+import 'shape_factory.dart';
+import 'shape_type.dart';
 
 class ShapeFlyweightFactory {
   final ShapeFactory shapeFactory;

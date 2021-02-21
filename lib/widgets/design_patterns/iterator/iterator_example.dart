@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/graph.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/breadth_first_tree_collection.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/depth_first_tree_collection.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/itree_collection.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/iterator/box.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/iterator/tree_collection_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/iterator/graph.dart';
+import '../../../design_patterns/iterator/tree_collections/breadth_first_tree_collection.dart';
+import '../../../design_patterns/iterator/tree_collections/depth_first_tree_collection.dart';
+import '../../../design_patterns/iterator/tree_collections/itree_collection.dart';
+import '../../platform_specific/platform_button.dart';
+import 'box.dart';
+import 'tree_collection_selection.dart';
 
 class IteratorExample extends StatefulWidget {
   @override

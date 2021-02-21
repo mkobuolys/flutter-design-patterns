@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/file.dart';
+import '../file.dart';
+import '../ivisitor.dart';
 
 class VideoFile extends File {
   final String directedBy;

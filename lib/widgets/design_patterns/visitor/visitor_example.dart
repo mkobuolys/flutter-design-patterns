@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/directory.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/files/index.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ifile.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/visitors/human_readable_visitor.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/visitors/xml_visitor.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/visitor/files_dialog.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/visitor/files_visitor_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/visitor/directory.dart';
+import '../../../design_patterns/visitor/files/index.dart';
+import '../../../design_patterns/visitor/ifile.dart';
+import '../../../design_patterns/visitor/ivisitor.dart';
+import '../../../design_patterns/visitor/visitors/human_readable_visitor.dart';
+import '../../../design_patterns/visitor/visitors/xml_visitor.dart';
+import '../../platform_specific/platform_button.dart';
+import 'files_dialog.dart';
+import 'files_visitor_selection.dart';
 
 class VisitorExample extends StatefulWidget {
   @override

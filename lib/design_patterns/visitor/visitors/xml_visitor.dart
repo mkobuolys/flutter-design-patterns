@@ -1,7 +1,7 @@
-import 'package:flutter_design_patterns/design_patterns/visitor/directory.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/files/index.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/helpers/index.dart';
+import '../../../helpers/index.dart';
+import '../directory.dart';
+import '../files/index.dart';
+import '../ivisitor.dart';
 
 class XmlVisitor implements IVisitor {
   @override

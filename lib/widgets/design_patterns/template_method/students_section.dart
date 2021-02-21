@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/students_bmi_calculator.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/template_method/students_data_table.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/template_method/student.dart';
+import '../../../design_patterns/template_method/students_bmi_calculator.dart';
+import '../../platform_specific/platform_button.dart';
+import 'students_data_table.dart';
 
 class StudentsSection extends StatefulWidget {
   final StudentsBmiCalculator bmiCalculator;

@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/ishipping_costs_strategy.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/order/order_summary/order_summary_row.dart';
+import '../../../../../constants.dart';
+import '../../../../../design_patterns/strategy/ishipping_costs_strategy.dart';
+import '../../../../../design_patterns/strategy/order/order.dart';
+import 'order_summary_row.dart';
 
 class OrderSummary extends StatelessWidget {
   final Order order;

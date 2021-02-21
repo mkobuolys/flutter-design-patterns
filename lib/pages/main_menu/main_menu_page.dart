@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
-import 'package:flutter_design_patterns/data/repositories/design_pattern_categories_repository.dart';
-import 'package:flutter_design_patterns/pages/main_menu/widgets/main_menu_header.dart';
-import 'package:flutter_design_patterns/pages/main_menu/widgets/main_menu_card.dart';
+import '../../constants.dart';
+import '../../data/models/design_pattern_category.dart';
+import '../../data/repositories/design_pattern_categories_repository.dart';
+import 'widgets/main_menu_card.dart';
+import 'widgets/main_menu_header.dart';
 
 class MainMenuPage extends StatelessWidget {
   static const String route = '/main-menu';

@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
+import '../entities/entity_base.dart';
+import '../istorage.dart';
 
 class SqlStorage implements IStorage {
   final Map<Type, List<EntityBase>> sqlStorage = {};

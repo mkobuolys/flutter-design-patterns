@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/command/command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/command_history.dart';
-import 'package:flutter_design_patterns/design_patterns/command/commands/change_color_command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/commands/change_height_command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/commands/change_width_command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/shape.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/command/command_history_column.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/command/shape_container.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/command/command.dart';
+import '../../../design_patterns/command/command_history.dart';
+import '../../../design_patterns/command/commands/change_color_command.dart';
+import '../../../design_patterns/command/commands/change_height_command.dart';
+import '../../../design_patterns/command/commands/change_width_command.dart';
+import '../../../design_patterns/command/shape.dart';
+import '../../platform_specific/platform_button.dart';
+import 'command_history_column.dart';
+import 'shape_container.dart';
 
 class CommandExample extends StatefulWidget {
   @override

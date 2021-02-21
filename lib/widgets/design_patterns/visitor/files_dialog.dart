@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../platform_specific/platform_button.dart';
 
 class FilesDialog extends StatelessWidget {
   final String filesText;

@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/order/order_buttons/order_button.dart';
+import 'order_button.dart';
 
 class OrderButtons extends StatelessWidget {
   final VoidCallback onAdd;

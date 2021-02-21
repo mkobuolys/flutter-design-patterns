@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order_item.dart';
+import '../../../../constants.dart';
+import '../../../../design_patterns/strategy/order/order_item.dart';
 
 class OrderItemsTable extends StatelessWidget {
   final List<OrderItem> orderItems;

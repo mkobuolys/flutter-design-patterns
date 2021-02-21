@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_topping_data.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/decorator/pizza_topping_data.dart';
 
 class CustomPizzaSelection extends StatelessWidget {
   final Map<int, PizzaToppingData> pizzaToppingsDataMap;

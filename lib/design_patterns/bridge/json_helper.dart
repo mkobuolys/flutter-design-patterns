@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/customer.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/order.dart';
+import 'entities/customer.dart';
+import 'entities/entity_base.dart';
+import 'entities/order.dart';
 
 class JsonHelper {
   static String serialiseObject(EntityBase entityBase) {

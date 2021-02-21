@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order_item.dart';
+import 'order_item.dart';
 
 class Order {
   final List<OrderItem> items = [];

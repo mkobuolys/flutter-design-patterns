@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern.dart';
-import 'package:flutter_design_patterns/widgets/selection_card.dart';
+import '../../../constants.dart';
+import '../../../data/models/design_pattern.dart';
+import '../../../widgets/selection_card.dart';
 
 class DesignPatternCard extends StatelessWidget {
   final DesignPattern designPattern;
