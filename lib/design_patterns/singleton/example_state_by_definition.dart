@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/design_patterns/singleton/example_state_base.dart';
+import 'example_state_base.dart';
 
 class ExampleStateByDefinition extends ExampleStateBase {
   static ExampleStateByDefinition _instance;
@@ -6,14 +6,10 @@ class ExampleStateByDefinition extends ExampleStateBase {
   ExampleStateByDefinition._internal() {
     initialText = "A new 'ExampleStateByDefinition' instance has been created.";
     stateText = initialText;
-    print(stateText);
   }
 
+  // ignore: prefer_constructors_over_static_methods
   static ExampleStateByDefinition getState() {
-    if (_instance == null) {
-      _instance = ExampleStateByDefinition._internal();
-    }
-
-    return _instance;
+    return _instance ??= ExampleStateByDefinition._internal();
   }
 }

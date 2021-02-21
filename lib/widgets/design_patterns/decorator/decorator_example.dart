@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_menu.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_topping_data.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/decorator/custom_pizza_selection.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/decorator/pizza_information.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/decorator/pizza_selection.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/decorator/pizza.dart';
+import '../../../design_patterns/decorator/pizza_menu.dart';
+import '../../../design_patterns/decorator/pizza_topping_data.dart';
+import 'custom_pizza_selection.dart';
+import 'pizza_information.dart';
+import 'pizza_selection.dart';
 
 class DecoratorExample extends StatefulWidget {
   @override
@@ -45,7 +45,7 @@ class _DecoratorExampleState extends State<DecoratorExample> {
 
   void _setChipSelected(int index, bool selected) {
     setState(() {
-      _pizzaToppingsDataMap[index].setSelected(selected);
+      _pizzaToppingsDataMap[index].setSelected(isSelected: selected);
     });
   }
 
@@ -58,7 +58,7 @@ class _DecoratorExampleState extends State<DecoratorExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(

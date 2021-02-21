@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/template_method/student.dart';
 
 class StudentsDataTable extends StatelessWidget {
   final List<Student> students;
@@ -18,7 +17,7 @@ class StudentsDataTable extends StatelessWidget {
         horizontalMargin: marginM,
         headingRowHeight: spaceXL,
         dataRowHeight: spaceXL,
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text(
               'Name',
@@ -65,7 +64,7 @@ class StudentsDataTable extends StatelessWidget {
                 DataCell(
                   Text(
                     student.bmi.toStringAsFixed(2),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ],

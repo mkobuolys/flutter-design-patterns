@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/graph.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/breadth_first_tree_collection.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/depth_first_tree_collection.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/itree_collection.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/iterator/box.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/iterator/tree_collection_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/iterator/graph.dart';
+import '../../../design_patterns/iterator/tree_collections/breadth_first_tree_collection.dart';
+import '../../../design_patterns/iterator/tree_collections/depth_first_tree_collection.dart';
+import '../../../design_patterns/iterator/tree_collections/itree_collection.dart';
+import '../../platform_specific/platform_button.dart';
+import 'box.dart';
+import 'tree_collection_selection.dart';
 
 class IteratorExample extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class IteratorExample extends StatefulWidget {
 }
 
 class _IteratorExampleState extends State<IteratorExample> {
-  final List<ITreeCollection> treeCollections = List<ITreeCollection>();
+  final List<ITreeCollection> treeCollections = [];
 
   int _selectedTreeCollectionIndex = 0;
   int _currentNodeIndex = 0;
@@ -25,13 +25,13 @@ class _IteratorExampleState extends State<IteratorExample> {
   void initState() {
     super.initState();
 
-    var graph = _buildGraph();
+    final graph = _buildGraph();
     treeCollections.add(BreadthFirstTreeCollection(graph));
     treeCollections.add(DepthFirstTreeCollection(graph));
   }
 
   Graph _buildGraph() {
-    var graph = Graph();
+    final graph = Graph();
 
     graph.addEdge(1, 2);
     graph.addEdge(1, 3);
@@ -53,7 +53,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   Future _traverseTree() async {
     _toggleIsTraversing();
 
-    var iterator =
+    final iterator =
         treeCollections[_selectedTreeCollectionIndex].createIterator();
 
     while (iterator.hasNext()) {
@@ -85,7 +85,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -97,21 +97,21 @@ class _IteratorExampleState extends State<IteratorExample> {
                   !_isTraversing ? _setSelectedTreeCollectionIndex : null,
             ),
             const SizedBox(height: spaceL),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Wrap(
+              alignment: WrapAlignment.center,
               children: <Widget>[
                 PlatformButton(
-                  child: Text('Traverse'),
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed: _currentNodeIndex == 0 ? _traverseTree : null,
+                  text: 'Traverse',
                 ),
                 PlatformButton(
-                  child: Text('Reset'),
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed:
                       _isTraversing || _currentNodeIndex == 0 ? null : _reset,
+                  text: 'Reset',
                 ),
               ],
             ),

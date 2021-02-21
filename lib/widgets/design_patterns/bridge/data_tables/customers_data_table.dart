@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/customer.dart';
+import '../../../../constants.dart';
+import '../../../../design_patterns/bridge/entities/customer.dart';
 
 class CustomersDatatable extends StatelessWidget {
   final List<Customer> customers;
@@ -18,7 +18,7 @@ class CustomersDatatable extends StatelessWidget {
         horizontalMargin: marginM,
         headingRowHeight: spaceXL,
         dataRowHeight: spaceXL,
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text(
               'Name',

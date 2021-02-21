@@ -1,22 +1,22 @@
 import 'dart:convert';
 
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/customer.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/order.dart';
+import 'entities/customer.dart';
+import 'entities/entity_base.dart';
+import 'entities/order.dart';
 
 class JsonHelper {
   static String serialiseObject(EntityBase entityBase) {
     return jsonEncode(entityBase);
   }
 
-  static EntityBase deserialiseObject<T extends EntityBase>(String jsonString) {
-    var json = jsonDecode(jsonString);
+  static T deserialiseObject<T extends EntityBase>(String jsonString) {
+    final json = jsonDecode(jsonString) as Map<String, dynamic>;
 
     switch (T) {
       case Customer:
-        return Customer.fromJson(json);
+        return Customer.fromJson(json) as T;
       case Order:
-        return Order.fromJson(json);
+        return Order.fromJson(json) as T;
       default:
         throw Exception("Type of '$T' is not supported.");
     }

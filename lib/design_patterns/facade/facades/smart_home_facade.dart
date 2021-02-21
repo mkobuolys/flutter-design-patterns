@@ -1,9 +1,6 @@
-import 'package:flutter_design_patterns/design_patterns/facade/apis/audio_api.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/apis/netflix_api.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/apis/smart_home_api.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/apis/tv_api.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/facades/gaming_facade.dart';
-import 'package:flutter_design_patterns/design_patterns/facade/smart_home_state.dart';
+import '../apis/apis.dart';
+import '../smart_home_state.dart';
+import 'gaming_facade.dart';
 
 class SmartHomeFacade {
   final GamingFacade _gamingFacade = GamingFacade();

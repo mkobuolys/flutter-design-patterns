@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/command/command.dart';
+import 'command.dart';
 
 class CommandHistory {
   final ListQueue<Command> _commandList = ListQueue<Command>();
@@ -15,7 +15,7 @@ class CommandHistory {
 
   void undo() {
     if (_commandList.isNotEmpty) {
-      var command = _commandList.removeLast();
+      final command = _commandList.removeLast();
       command.undo();
     }
   }

@@ -1,5 +1,5 @@
 class Graph {
-  final Map<int, Set<int>> adjacencyList = Map<int, Set<int>>();
+  final Map<int, Set<int>> adjacencyList = {};
 
   void addEdge(int source, int target) {
     if (adjacencyList.containsKey(source)) {

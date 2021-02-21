@@ -1,12 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/customer/customer.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/customer/customer_details.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/icustomer_details_service.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/proxy/customer_details_dialog/customer_details_column.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../../constants.dart';
+import '../../../../design_patterns/proxy/customer/customer.dart';
+import '../../../../design_patterns/proxy/customer/customer_details.dart';
+import '../../../../design_patterns/proxy/icustomer_details_service.dart';
+import '../../../platform_specific/platform_button.dart';
+import 'customer_details_column.dart';
 
 class CustomerDetailsDialog extends StatefulWidget {
   final Customer customer;
@@ -42,7 +41,7 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.customer.name),
-      content: Container(
+      content: SizedBox(
         height: 200.0,
         child: widget.customer.details == null
             ? Center(
@@ -58,11 +57,14 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
               ),
       ),
       actions: <Widget>[
-        PlatformButton(
-          child: Text('Close'),
-          materialColor: Colors.black,
-          materialTextColor: Colors.white,
-          onPressed: _closeDialog,
+        Visibility(
+          visible: widget.customer.details != null,
+          child: PlatformButton(
+            materialColor: Colors.black,
+            materialTextColor: Colors.white,
+            onPressed: _closeDialog,
+            text: 'Close',
+          ),
         ),
       ],
     );

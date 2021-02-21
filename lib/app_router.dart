@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
-import 'package:flutter_design_patterns/screens/category/category.dart';
-import 'package:flutter_design_patterns/screens/design_pattern_details/design_pattern_details.dart';
-import 'package:flutter_design_patterns/screens/main_menu/main_menu.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/index.dart';
+import 'data/models/design_pattern.dart';
+import 'data/models/design_pattern_category.dart';
+import 'pages/category/category_page.dart';
+import 'pages/design_pattern_details/design_pattern_details_page.dart';
+import 'pages/main_menu/main_menu_page.dart';
+import 'widgets/design_patterns/index.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case initialRoute:
+      case MainMenuPage.route:
         return MaterialPageRoute(
-          builder: (_) => MainMenu(),
+          builder: (_) => MainMenuPage(),
         );
-      case categoryRoute:
-        var category = settings.arguments as DesignPatternCategory;
+      case CategoryPage.route:
+        final category = settings.arguments as DesignPatternCategory;
+
         return MaterialPageRoute(
-          builder: (_) => Category(
+          builder: (_) => CategoryPage(
             category: category,
           ),
         );
@@ -132,7 +132,7 @@ class AppRouter {
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => MainMenu(),
+          builder: (_) => MainMenuPage(),
         );
     }
   }
@@ -141,9 +141,10 @@ class AppRouter {
     RouteSettings settings,
     Widget example,
   ) {
-    var designPattern = settings.arguments as DesignPattern;
+    final designPattern = settings.arguments as DesignPattern;
+
     return MaterialPageRoute(
-      builder: (_) => DesignPatternDetails(
+      builder: (_) => DesignPatternDetailsPage(
         designPattern: designPattern,
         example: example,
       ),

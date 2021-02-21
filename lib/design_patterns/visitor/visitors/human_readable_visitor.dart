@@ -1,7 +1,7 @@
-import 'package:flutter_design_patterns/design_patterns/visitor/directory.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/files/index.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/helpers/index.dart';
+import '../../../helpers/index.dart';
+import '../directory.dart';
+import '../files/index.dart';
+import '../ivisitor.dart';
 
 class HumanReadableVisitor implements IVisitor {
   @override
@@ -9,7 +9,7 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitAudioFile(AudioFile file) {
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'Type': 'Audio',
       'Album': file.albumTitle,
       'Extension': file.fileExtension,
@@ -21,18 +21,18 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitDirectory(Directory directory) {
-    String directoryText = "";
+    final buffer = StringBuffer();
 
-    for (var file in directory.files) {
-      directoryText += "${file.accept(this)}";
+    for (final file in directory.files) {
+      buffer.write(file.accept(this));
     }
 
-    return directoryText;
+    return buffer.toString();
   }
 
   @override
   String visitImageFile(ImageFile file) {
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'Type': 'Image',
       'Resolution': file.resolution,
       'Extension': file.fileExtension,
@@ -44,11 +44,11 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitTextFile(TextFile file) {
-    String fileContentPreview = file.content.length > 30
+    final fileContentPreview = file.content.length > 30
         ? '${file.content.substring(0, 30)}...'
         : file.content;
 
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'Type': 'Text',
       'Preview': fileContentPreview,
       'Extension': file.fileExtension,
@@ -60,7 +60,7 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitVideoFile(VideoFile file) {
-    var fileInfo = <String, String>{
+    final fileInfo = <String, String>{
       'Type': 'Video',
       'Directed by': file.directedBy,
       'Extension': file.fileExtension,
@@ -71,12 +71,14 @@ class HumanReadableVisitor implements IVisitor {
   }
 
   String _formatFile(String title, Map<String, String> fileInfo) {
-    String formattedFile = '$title:\n';
+    final buffer = StringBuffer();
 
-    for (var entry in fileInfo.entries) {
-      formattedFile += '${entry.key}: ${entry.value}'.indentAndAddNewLine(2);
+    buffer.write('$title:\n');
+
+    for (final entry in fileInfo.entries) {
+      buffer.write('${entry.key}: ${entry.value}'.indentAndAddNewLine(2));
     }
 
-    return formattedFile;
+    return buffer.toString();
   }
 }

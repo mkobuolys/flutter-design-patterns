@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/interpreter/expression_section.dart';
+import '../../../constants.dart';
+import 'expression_section.dart';
 
 class InterpreterExample extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _InterpreterExampleState extends State<InterpreterExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(

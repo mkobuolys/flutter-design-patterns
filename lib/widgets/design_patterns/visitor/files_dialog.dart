@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../platform_specific/platform_button.dart';
 
 class FilesDialog extends StatelessWidget {
   final String filesText;
@@ -17,9 +16,9 @@ class FilesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Files'),
+      title: const Text('Files'),
       content: ScrollConfiguration(
-        behavior: ScrollBehavior(),
+        behavior: const ScrollBehavior(),
         child: SingleChildScrollView(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -29,10 +28,10 @@ class FilesDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         PlatformButton(
-          child: Text('Close'),
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: () => closeDialog(context),
+          text: 'Close',
         ),
       ],
     );

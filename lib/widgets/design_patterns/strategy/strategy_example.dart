@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/ishipping_costs_strategy.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order_item.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/strategies/in_store_pickup_strategy.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/strategies/parcel_terminal_shipping_strategy.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/strategies/priority_shipping_strategy.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/order/order_buttons/order_buttons.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/order/order_items_table.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/order/order_summary/order_summary.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/strategy/shipping_options.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/strategy/ishipping_costs_strategy.dart';
+import '../../../design_patterns/strategy/order/order.dart';
+import '../../../design_patterns/strategy/order/order_item.dart';
+import '../../../design_patterns/strategy/strategies/in_store_pickup_strategy.dart';
+import '../../../design_patterns/strategy/strategies/parcel_terminal_shipping_strategy.dart';
+import '../../../design_patterns/strategy/strategies/priority_shipping_strategy.dart';
+import 'order/order_buttons/order_buttons.dart';
+import 'order/order_items_table.dart';
+import 'order/order_summary/order_summary.dart';
+import 'shipping_options.dart';
 
 class StrategyExample extends StatefulWidget {
   @override
@@ -47,11 +47,11 @@ class _StrategyExampleState extends State<StrategyExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             OrderButtons(
               onAdd: _addToOrder,

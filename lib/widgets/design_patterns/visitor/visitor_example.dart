@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/directory.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/files/index.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ifile.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/visitors/human_readable_visitor.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/visitors/xml_visitor.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/visitor/files_dialog.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/visitor/files_visitor_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/visitor/directory.dart';
+import '../../../design_patterns/visitor/files/index.dart';
+import '../../../design_patterns/visitor/ifile.dart';
+import '../../../design_patterns/visitor/ivisitor.dart';
+import '../../../design_patterns/visitor/visitors/human_readable_visitor.dart';
+import '../../../design_patterns/visitor/visitors/xml_visitor.dart';
+import '../../platform_specific/platform_button.dart';
+import 'files_dialog.dart';
+import 'files_visitor_selection.dart';
 
 class VisitorExample extends StatefulWidget {
   @override
@@ -33,55 +33,56 @@ class _VisitorExampleState extends State<VisitorExample> {
   }
 
   IFile _buildMediaDirectory() {
-    var musicDirectory = Directory(
+    final musicDirectory = Directory(
       title: 'Music',
       level: 1,
     );
     musicDirectory.addFile(
-      AudioFile('Darude - Sandstorm', 'Before the Storm', 'mp3', 2612453),
+      const AudioFile('Darude - Sandstorm', 'Before the Storm', 'mp3', 2612453),
     );
     musicDirectory.addFile(
-      AudioFile('Toto - Africa', 'Toto IV', 'mp3', 3219811),
+      const AudioFile('Toto - Africa', 'Toto IV', 'mp3', 3219811),
     );
     musicDirectory.addFile(
-      AudioFile('Bag Raiders - Shooting Stars', 'Bag Raiders', 'mp3', 3811214),
+      const AudioFile(
+          'Bag Raiders - Shooting Stars', 'Bag Raiders', 'mp3', 3811214),
     );
 
-    var moviesDirectory = Directory(
+    final moviesDirectory = Directory(
       title: 'Movies',
       level: 1,
     );
     moviesDirectory.addFile(
-      VideoFile('The Matrix', 'The Wachowskis', 'avi', 951495532),
+      const VideoFile('The Matrix', 'The Wachowskis', 'avi', 951495532),
     );
     moviesDirectory.addFile(
-      VideoFile('Pulp Fiction', 'Quentin Tarantino', 'mp4', 1251495532),
+      const VideoFile('Pulp Fiction', 'Quentin Tarantino', 'mp4', 1251495532),
     );
 
-    var catPicturesDirectory = Directory(
+    final catPicturesDirectory = Directory(
       title: 'Cats',
       level: 2,
     );
     catPicturesDirectory.addFile(
-      ImageFile('Cat 1', '640x480px', 'jpg', 844497),
+      const ImageFile('Cat 1', '640x480px', 'jpg', 844497),
     );
     catPicturesDirectory.addFile(
-      ImageFile('Cat 2', '1280x720px', 'jpg', 975363),
+      const ImageFile('Cat 2', '1280x720px', 'jpg', 975363),
     );
     catPicturesDirectory.addFile(
-      ImageFile('Cat 3', '1920x1080px', 'png', 1975363),
+      const ImageFile('Cat 3', '1920x1080px', 'png', 1975363),
     );
 
-    var picturesDirectory = Directory(
+    final picturesDirectory = Directory(
       title: 'Pictures',
       level: 1,
     );
     picturesDirectory.addFile(catPicturesDirectory);
     picturesDirectory.addFile(
-      ImageFile('Not a cat', '2560x1440px', 'png', 2971361),
+      const ImageFile('Not a cat', '2560x1440px', 'png', 2971361),
     );
 
-    var mediaDirectory = Directory(
+    final mediaDirectory = Directory(
       title: 'Media',
       level: 0,
       isInitiallyExpanded: true,
@@ -96,7 +97,7 @@ class _VisitorExampleState extends State<VisitorExample> {
       ),
     );
     mediaDirectory.addFile(
-      TextFile(
+      const TextFile(
         'Nothing suspicious there',
         'Just a normal text file without any sensitive information.',
         'txt',
@@ -104,7 +105,7 @@ class _VisitorExampleState extends State<VisitorExample> {
       ),
     );
     mediaDirectory.addFile(
-      TextFile(
+      const TextFile(
         'TeamTrees',
         'Team Trees, also known as #teamtrees, is a collaborative fundraiser that managed to raise 20 million U.S. dollars before 2020 to plant 20 million trees.',
         'txt',
@@ -122,8 +123,8 @@ class _VisitorExampleState extends State<VisitorExample> {
   }
 
   void _showFilesDialog() {
-    var selectedVisitor = visitorsList[_selectedVisitorIndex];
-    var filesText = _rootDirectory.accept(selectedVisitor);
+    final selectedVisitor = visitorsList[_selectedVisitorIndex];
+    final filesText = _rootDirectory.accept(selectedVisitor);
 
     showDialog<void>(
       context: context,
@@ -137,7 +138,7 @@ class _VisitorExampleState extends State<VisitorExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -148,10 +149,10 @@ class _VisitorExampleState extends State<VisitorExample> {
               onChanged: _setSelectedVisitorIndex,
             ),
             PlatformButton(
-              child: Text('Export files'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _showFilesDialog,
+              text: 'Export files',
             ),
             const SizedBox(height: spaceL),
             _rootDirectory.render(context),

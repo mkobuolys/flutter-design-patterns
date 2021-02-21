@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
+import 'entity_base.dart';
 
 class Order extends EntityBase {
   List<String> dishes;
@@ -12,8 +12,8 @@ class Order extends EntityBase {
   }
 
   Order.fromJson(Map<String, dynamic> json)
-      : dishes = List.from(json['dishes']),
-        total = json['total'],
+      : dishes = List.from(json['dishes'] as List),
+        total = json['total'] as double,
         super.fromJson(json);
 
   Map<String, dynamic> toJson() => {

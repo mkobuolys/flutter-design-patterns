@@ -1,7 +1,7 @@
-export 'cheese.dart';
-export 'grill_seasoning.dart';
 export 'buns/big_mac_bun.dart';
 export 'buns/regular_bun.dart';
+export 'cheese.dart';
+export 'grill_seasoning.dart';
 export 'patties/beef_patty.dart';
 export 'patties/mc_chicken_patty.dart';
 export 'sauces/big_mac_sauce.dart';

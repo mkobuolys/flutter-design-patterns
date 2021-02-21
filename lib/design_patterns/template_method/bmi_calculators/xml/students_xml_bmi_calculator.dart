@@ -1,9 +1,9 @@
 import 'package:meta/meta.dart';
-import 'package:xml/xml.dart' as xml;
+import 'package:xml/xml.dart';
 
-import 'package:flutter_design_patterns/design_patterns/template_method/apis/xml_students_api.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
-import 'package:flutter_design_patterns/design_patterns/template_method/students_bmi_calculator.dart';
+import '../../apis/xml_students_api.dart';
+import '../../student.dart';
+import '../../students_bmi_calculator.dart';
 
 class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
   final XmlStudentsApi _api = XmlStudentsApi();
@@ -11,15 +11,16 @@ class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
   @override
   @protected
   List<Student> getStudentsData() {
-    var studentsXml = _api.getStudentsXml();
-    var xmlDocument = xml.parse(studentsXml);
-    var studentsList = List<Student>();
+    final studentsXml = _api.getStudentsXml();
+    final xmlDocument = XmlDocument.parse(studentsXml);
+    final studentsList = <Student>[];
 
-    for (var xmlElement in xmlDocument.findAllElements('student')) {
-      var fullName = xmlElement.findElements('fullname').single.text;
-      var age = int.parse(xmlElement.findElements('age').single.text);
-      var height = double.parse(xmlElement.findElements('height').single.text);
-      var weight = int.parse(xmlElement.findElements('weight').single.text);
+    for (final xmlElement in xmlDocument.findAllElements('student')) {
+      final fullName = xmlElement.findElements('fullname').single.text;
+      final age = int.parse(xmlElement.findElements('age').single.text);
+      final height =
+          double.parse(xmlElement.findElements('height').single.text);
+      final weight = int.parse(xmlElement.findElements('weight').single.text);
 
       studentsList.add(Student(
         fullName: fullName,

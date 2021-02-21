@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza.dart';
+import 'pizza.dart';
 
 class PizzaBase extends Pizza {
   PizzaBase(String description) {

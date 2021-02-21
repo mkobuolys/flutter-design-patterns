@@ -1,5 +1,11 @@
-enum LogLevel { Debug, Info, Error }
+// ignore_for_file: constant_identifier_names
+
+enum LogLevel {
+  Debug,
+  Info,
+  Error,
+}
 
 extension LogLevelExtensions on LogLevel {
-  bool operator <=(LogLevel logLevel) => this.index <= logLevel.index;
+  bool operator <=(LogLevel logLevel) => index <= logLevel.index;
 }

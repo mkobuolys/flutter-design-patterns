@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../../../constants.dart';
 
 class OrderButton extends StatelessWidget {
   final IconData iconData;
@@ -19,21 +20,34 @@ class OrderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformButton(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(
-            iconData,
-            color: Colors.white,
-          ),
-          const SizedBox(width: spaceXS),
-          Text(title),
-        ],
-      ),
-      materialColor: Colors.black,
-      materialTextColor: Colors.white,
-      onPressed: onPressed,
+    final child = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Icon(
+          iconData,
+          color: Colors.white,
+        ),
+        const SizedBox(width: spaceXS),
+        Text(title),
+      ],
+    );
+
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Platform.isAndroid
+          ? MaterialButton(
+              color: Colors.black,
+              textColor: Colors.white,
+              disabledColor: Colors.grey,
+              disabledTextColor: Colors.white,
+              onPressed: onPressed,
+              child: child,
+            )
+          : CupertinoButton(
+              color: Colors.black,
+              onPressed: onPressed,
+              child: child,
+            ),
     );
   }
 }

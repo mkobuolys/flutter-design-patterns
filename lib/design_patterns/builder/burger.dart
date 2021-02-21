@@ -1,4 +1,4 @@
-import 'package:flutter_design_patterns/design_patterns/builder/ingredient.dart';
+import 'ingredient.dart';
 
 class Burger {
   final List<Ingredient> _ingredients = [];
@@ -13,9 +13,11 @@ class Burger {
   }
 
   String getFormattedAllergens() {
-    var allergens = Set<String>();
+    final allergens = <String>{};
 
-    _ingredients.forEach((x) => allergens.addAll(x.getAllergens()));
+    for (final ingredient in _ingredients) {
+      allergens.addAll(ingredient.getAllergens());
+    }
 
     return allergens.join(', ');
   }
@@ -24,6 +26,7 @@ class Burger {
     return '\$${_price.toStringAsFixed(2)}';
   }
 
+  // ignore: use_setters_to_change_properties
   void setPrice(double price) {
     _price = price;
   }

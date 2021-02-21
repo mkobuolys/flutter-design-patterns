@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
+import '../../../../constants.dart';
 
 class SizedShapeColumn extends StatelessWidget {
   final String label;
@@ -18,7 +17,6 @@ class SizedShapeColumn extends StatelessWidget {
     return SizedBox(
       width: 160.0,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(label),
           const SizedBox(height: spaceM),

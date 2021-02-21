@@ -1,27 +1,29 @@
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/add.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/multiply.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/nonterminal/subtract.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expressions/terminal/number.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
+import 'expressions/nonterminal/add.dart';
+import 'expressions/nonterminal/multiply.dart';
+import 'expressions/nonterminal/subtract.dart';
+import 'expressions/terminal/number.dart';
+import 'iexpression.dart';
 
 class ExpressionHelpers {
+  const ExpressionHelpers._();
+
   static final List<String> _operators = ['+', '-', '*'];
 
   static IExpression buildExpressionTree(String postfixExpression) {
-    var expressionStack = ListQueue<IExpression>();
+    final expressionStack = ListQueue<IExpression>();
 
-    for (var symbol in postfixExpression.split(' ')) {
+    for (final symbol in postfixExpression.split(' ')) {
       if (_isOperator(symbol)) {
-        var rightExpression = expressionStack.removeLast();
-        var leftExpression = expressionStack.removeLast();
-        var nonterminalExpression =
+        final rightExpression = expressionStack.removeLast();
+        final leftExpression = expressionStack.removeLast();
+        final nonterminalExpression =
             _getNonterminalExpression(symbol, leftExpression, rightExpression);
 
         expressionStack.addLast(nonterminalExpression);
       } else {
-        var numberExpression = Number(int.parse(symbol));
+        final numberExpression = Number(int.parse(symbol));
 
         expressionStack.addLast(numberExpression);
       }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/builder/burger.dart';
-import 'package:flutter_design_patterns/design_patterns/builder/burger_builders/index.dart';
-import 'package:flutter_design_patterns/design_patterns/builder/burger_maker.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/builder/burger_information/burger_information_column.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/builder/burger_menu_item.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/builder/burger.dart';
+import '../../../design_patterns/builder/burger_builders/index.dart';
+import '../../../design_patterns/builder/burger_maker.dart';
+import 'burger_information/burger_information_column.dart';
+import 'burger_menu_item.dart';
 
 class BuilderExample extends StatefulWidget {
   @override
@@ -63,7 +63,7 @@ class _BuilderExampleState extends State<BuilderExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -89,7 +89,7 @@ class _BuilderExampleState extends State<BuilderExample> {
                   .toList(),
               onChanged: _onBurgerMenuItemChanged,
             ),
-            SizedBox(height: spaceL),
+            const SizedBox(height: spaceL),
             Row(
               children: <Widget>[
                 Text(
@@ -98,7 +98,7 @@ class _BuilderExampleState extends State<BuilderExample> {
                 ),
               ],
             ),
-            SizedBox(height: spaceM),
+            const SizedBox(height: spaceM),
             BurgerInformationColumn(burger: _selectedBurger),
           ],
         ),

@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/ishipping_costs_strategy.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/strategy/ishipping_costs_strategy.dart';
 
 class ShippingOptions extends StatelessWidget {
   final List<IShippingCostsStrategy> shippingOptions;
@@ -37,7 +36,6 @@ class ShippingOptions extends StatelessWidget {
                 onChanged: onChanged,
                 dense: true,
                 activeColor: Colors.black,
-                controlAffinity: ListTileControlAffinity.platform,
               ),
           ],
         ),

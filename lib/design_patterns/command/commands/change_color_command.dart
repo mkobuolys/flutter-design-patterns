@@ -1,9 +1,8 @@
 import 'package:faker/faker.dart';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/command/command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/shape.dart';
+import '../command.dart';
+import '../shape.dart';
 
 class ChangeColorCommand implements Command {
   Shape shape;

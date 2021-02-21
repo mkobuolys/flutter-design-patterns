@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
+import '../../../design_patterns/visitor/ivisitor.dart';
 
 class FilesVisitorSelection extends StatelessWidget {
   final List<IVisitor> visitorsList;

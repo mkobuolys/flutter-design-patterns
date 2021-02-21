@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expression_context.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/expression_helpers.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/interpreter/expression_context.dart';
+import '../../../design_patterns/interpreter/expression_helpers.dart';
+import '../../platform_specific/platform_button.dart';
 
 class ExpressionSection extends StatefulWidget {
   final String postfixExpression;
@@ -18,13 +18,13 @@ class ExpressionSection extends StatefulWidget {
 
 class _ExpressionSectionState extends State<ExpressionSection> {
   final ExpressionContext _expressionContext = ExpressionContext();
-  final List<String> _solutionSteps = List<String>();
+  final List<String> _solutionSteps = [];
 
   void _solvePrefixExpression() {
-    var solutionSteps = List<String>();
-    var expression =
+    final solutionSteps = <String>[];
+    final expression =
         ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
-    var result = expression.interpret(_expressionContext);
+    final result = expression.interpret(_expressionContext);
 
     solutionSteps
       ..addAll(_expressionContext.getSolutionSteps())
@@ -48,10 +48,10 @@ class _ExpressionSectionState extends State<ExpressionSection> {
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 250),
           firstChild: PlatformButton(
-            child: Text('Solve'),
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: _solvePrefixExpression,
+            text: 'Solve',
           ),
           secondChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

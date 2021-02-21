@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_message.dart';
+import '../../../design_patterns/chain_of_responsibility/log_message.dart';
 
 class LogMessagesColumn extends StatelessWidget {
   final List<LogMessage> logMessages;

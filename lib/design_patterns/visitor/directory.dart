@@ -1,17 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ifile.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/ivisitor.dart';
-import 'package:flutter_design_patterns/helpers/file_size_converter.dart';
+import '../../constants.dart';
+import '../../helpers/file_size_converter.dart';
+import 'ifile.dart';
+import 'ivisitor.dart';
 
 class Directory extends StatelessWidget implements IFile {
   final String title;
   final int level;
   final bool isInitiallyExpanded;
 
-  final List<IFile> _files = List<IFile>();
+  final List<IFile> _files = [];
   List<IFile> get files => _files;
 
   Directory({
@@ -28,7 +27,11 @@ class Directory extends StatelessWidget implements IFile {
   @override
   int getSize() {
     var sum = 0;
-    _files.forEach((IFile file) => sum += file.getSize());
+
+    for (final file in _files) {
+      sum += file.getSize();
+    }
+
     return sum;
   }
 
@@ -41,10 +44,10 @@ class Directory extends StatelessWidget implements IFile {
       child: Padding(
         padding: const EdgeInsets.only(left: paddingS),
         child: ExpansionTile(
-          leading: Icon(Icons.folder),
-          title: Text("$title (${FileSizeConverter.bytesToString(getSize())})"),
-          children: _files.map((IFile file) => file.render(context)).toList(),
+          leading: const Icon(Icons.folder),
+          title: Text('$title (${FileSizeConverter.bytesToString(getSize())})'),
           initiallyExpanded: isInitiallyExpanded,
+          children: _files.map((IFile file) => file.render(context)).toList(),
         ),
       ),
     );

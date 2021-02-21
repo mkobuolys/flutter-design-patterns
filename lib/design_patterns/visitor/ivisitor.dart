@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/visitor/directory.dart';
-import 'package:flutter_design_patterns/design_patterns/visitor/files/index.dart';
+import 'directory.dart';
+import 'files/index.dart';
 
 abstract class IVisitor {
   String getTitle();

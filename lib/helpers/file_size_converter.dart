@@ -1,6 +1,6 @@
 class FileSizeConverter {
   static String bytesToString(int bytes) {
-    var sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    final sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
     var len = bytes.toDouble();
     var order = 0;
 
@@ -8,6 +8,6 @@ class FileSizeConverter {
       len /= 1024;
     }
 
-    return "${len.toStringAsFixed(2)} ${sizes[order]}";
+    return '${len.toStringAsFixed(2)} ${sizes[order]}';
   }
 }

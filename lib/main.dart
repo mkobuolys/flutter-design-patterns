@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/app_router.dart';
-import 'package:flutter_design_patterns/themes.dart';
+import 'app_router.dart';
+import 'pages/main_menu/main_menu_page.dart';
+import 'themes.dart';
 
 class App extends StatelessWidget {
   @override
@@ -13,10 +13,16 @@ class App extends StatelessWidget {
       title: 'Design Patterns App',
       theme: lightTheme,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: initialRoute,
+      initialRoute: MainMenuPage.route,
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-void main() => runApp(App());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  runApp(App());
+}

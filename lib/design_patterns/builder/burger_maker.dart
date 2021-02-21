@@ -1,11 +1,12 @@
-import 'package:flutter_design_patterns/design_patterns/builder/burger.dart';
-import 'package:flutter_design_patterns/design_patterns/builder/burger_builder_base.dart';
+import 'burger.dart';
+import 'burger_builder_base.dart';
 
 class BurgerMaker {
   BurgerBuilderBase burgerBuilder;
 
   BurgerMaker(this.burgerBuilder);
 
+  // ignore: use_setters_to_change_properties
   void changeBurgerBuilder(BurgerBuilderBase burgerBuilder) {
     this.burgerBuilder = burgerBuilder;
   }

@@ -5,7 +5,7 @@ abstract class CustomDialog {
   Widget create(BuildContext context);
 
   Future<void> show(BuildContext context) async {
-    var dialog = create(context);
+    final dialog = create(context);
 
     return showDialog<void>(
       context: context,

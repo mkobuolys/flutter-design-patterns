@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza.dart';
-import 'package:flutter_design_patterns/design_patterns/decorator/pizza_decorator.dart';
+import '../pizza.dart';
+import '../pizza_decorator.dart';
 
 class Sauce extends PizzaDecorator {
   Sauce(Pizza pizza) : super(pizza) {

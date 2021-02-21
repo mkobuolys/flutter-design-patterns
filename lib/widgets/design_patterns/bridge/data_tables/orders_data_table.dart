@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/order.dart';
+import '../../../../constants.dart';
+import '../../../../design_patterns/bridge/entities/order.dart';
 
 class OrdersDatatable extends StatelessWidget {
   final List<Order> orders;
@@ -17,7 +17,7 @@ class OrdersDatatable extends StatelessWidget {
         horizontalMargin: marginM,
         headingRowHeight: spaceXL,
         dataRowHeight: spaceXL,
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text(
               'Dishes',

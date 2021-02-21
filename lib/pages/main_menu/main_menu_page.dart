@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
-import 'package:flutter_design_patterns/data/repositories/design_pattern_categories_repository.dart';
-import 'package:flutter_design_patterns/screens/main_menu/widgets/main_menu_header.dart';
-import 'package:flutter_design_patterns/screens/main_menu/widgets/main_menu_card.dart';
+import '../../constants.dart';
+import '../../data/models/design_pattern_category.dart';
+import '../../data/repositories/design_pattern_categories_repository.dart';
+import 'widgets/main_menu_card.dart';
+import 'widgets/main_menu_header.dart';
 
-class MainMenu extends StatelessWidget {
+class MainMenuPage extends StatelessWidget {
+  static const String route = '/main-menu';
+
   final DesignPatternCategoriesRepository repository =
       DesignPatternCategoriesRepository();
 
@@ -15,7 +17,7 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ScrollConfiguration(
-          behavior: ScrollBehavior(),
+          behavior: const ScrollBehavior(),
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(paddingL),
             child: Column(
@@ -24,14 +26,13 @@ class MainMenu extends StatelessWidget {
                 MainMenuHeader(),
                 FutureBuilder<List<DesignPatternCategory>>(
                   future: repository.get(),
-                  initialData: [],
+                  initialData: const [],
                   builder: (
                     _,
                     AsyncSnapshot<List<DesignPatternCategory>> snapshot,
                   ) {
                     if (snapshot.hasData) {
                       return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           for (var category in snapshot.data)
                             Container(

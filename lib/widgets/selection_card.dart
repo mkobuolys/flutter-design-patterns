@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
+import '../constants.dart';
 
 class SelectionCard extends StatelessWidget {
   final Color backgroundColor;
-  final String backgroundHeroTag;
   final Text contentHeader;
   final Text contentText;
   final VoidCallback onTap;
 
-  final double selectionCardHeight = 112.0;
-  final double selectionCardBorderRadius = 10.0;
+  double get selectionCardHeight => 112.0;
+  double get selectionCardBorderRadius => 10.0;
 
   const SelectionCard({
     @required this.backgroundColor,
-    @required this.backgroundHeroTag,
     @required this.contentHeader,
     @required this.contentText,
     @required this.onTap,
     Key key,
   })  : assert(backgroundColor != null),
-        assert(backgroundHeroTag != null),
         assert(contentHeader != null),
         assert(contentText != null),
         assert(onTap != null),
         super(key: key);
 
-  BorderRadiusGeometry get _selectionCardBorderRadius =>
+  BorderRadius get _selectionCardBorderRadius =>
       BorderRadius.circular(selectionCardBorderRadius);
 
   @override
@@ -36,15 +33,12 @@ class SelectionCard extends StatelessWidget {
         Material(
           borderRadius: _selectionCardBorderRadius,
           elevation: 8.0,
-          child: Hero(
-            tag: backgroundHeroTag,
-            child: Container(
-              decoration: BoxDecoration(
-                color: backgroundColor,
-                borderRadius: _selectionCardBorderRadius,
-              ),
-              height: selectionCardHeight,
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: _selectionCardBorderRadius,
             ),
+            height: selectionCardHeight,
           ),
         ),
         Material(
@@ -54,8 +48,11 @@ class SelectionCard extends StatelessWidget {
             highlightColor: Colors.transparent,
             splashColor: Colors.black12,
             borderRadius: _selectionCardBorderRadius,
+            onTap: onTap,
             child: Container(
               padding: const EdgeInsets.all(paddingL),
+              height: selectionCardHeight,
+              width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,10 +61,7 @@ class SelectionCard extends StatelessWidget {
                   contentText,
                 ],
               ),
-              height: selectionCardHeight,
-              width: double.infinity,
             ),
-            onTap: onTap,
           ),
         ),
       ],

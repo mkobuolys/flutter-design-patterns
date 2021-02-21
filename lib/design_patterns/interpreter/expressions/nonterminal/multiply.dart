@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/interpreter/expression_context.dart';
-import 'package:flutter_design_patterns/design_patterns/interpreter/iexpression.dart';
+import '../../expression_context.dart';
+import '../../iexpression.dart';
 
 class Multiply implements IExpression {
   final IExpression leftExpression;
@@ -9,9 +9,9 @@ class Multiply implements IExpression {
 
   @override
   int interpret(ExpressionContext context) {
-    var left = leftExpression.interpret(context);
-    var right = rightExpression.interpret(context);
-    var result = left * right;
+    final left = leftExpression.interpret(context);
+    final right = rightExpression.interpret(context);
+    final result = left * right;
     context.addSolutionStep('*', left, right, result);
 
     return result;

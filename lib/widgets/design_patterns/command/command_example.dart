@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/command/command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/command_history.dart';
-import 'package:flutter_design_patterns/design_patterns/command/commands/change_color_command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/commands/change_height_command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/commands/change_width_command.dart';
-import 'package:flutter_design_patterns/design_patterns/command/shape.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/command/command_history_column.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/command/shape_container.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/command/command.dart';
+import '../../../design_patterns/command/command_history.dart';
+import '../../../design_patterns/command/commands/change_color_command.dart';
+import '../../../design_patterns/command/commands/change_height_command.dart';
+import '../../../design_patterns/command/commands/change_width_command.dart';
+import '../../../design_patterns/command/shape.dart';
+import '../../platform_specific/platform_button.dart';
+import 'command_history_column.dart';
+import 'shape_container.dart';
 
 class CommandExample extends StatefulWidget {
   @override
@@ -21,17 +21,17 @@ class _CommandExampleState extends State<CommandExample> {
   final Shape _shape = Shape.initial();
 
   void _changeColor() {
-    var command = ChangeColorCommand(_shape);
+    final command = ChangeColorCommand(_shape);
     _executeCommand(command);
   }
 
   void _changeHeight() {
-    var command = ChangeHeightCommand(_shape);
+    final command = ChangeHeightCommand(_shape);
     _executeCommand(command);
   }
 
   void _changeWidth() {
-    var command = ChangeWidthCommand(_shape);
+    final command = ChangeWidthCommand(_shape);
     _executeCommand(command);
   }
 
@@ -51,7 +51,7 @@ class _CommandExampleState extends State<CommandExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -61,29 +61,29 @@ class _CommandExampleState extends State<CommandExample> {
             ),
             const SizedBox(height: spaceM),
             PlatformButton(
-              child: Text('Change color'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeColor,
+              text: 'Change color',
             ),
             PlatformButton(
-              child: Text('Change height'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeHeight,
+              text: 'Change height',
             ),
             PlatformButton(
-              child: Text('Change width'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeWidth,
+              text: 'Change width',
             ),
-            Divider(),
+            const Divider(),
             PlatformButton(
-              child: Text('Undo'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _commandHistory.isEmpty ? null : _undo,
+              text: 'Undo',
             ),
             const SizedBox(height: spaceM),
             Row(

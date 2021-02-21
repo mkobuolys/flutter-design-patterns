@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/state/istate.dart';
-import 'package:flutter_design_patterns/design_patterns/state/state_context.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/loading_state.dart';
+import '../istate.dart';
+import '../state_context.dart';
+import 'loading_state.dart';
 
 class ErrorState implements IState {
   @override
@@ -12,7 +12,7 @@ class ErrorState implements IState {
 
   @override
   Widget render() {
-    return Text(
+    return const Text(
       'Oops! Something went wrong...',
       style: TextStyle(
         color: Colors.red,

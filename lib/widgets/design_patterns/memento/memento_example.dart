@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/icommand.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/command_history.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
-import 'package:flutter_design_patterns/design_patterns/memento/originator.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/memento/shape_container.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/memento/command_design_pattern/command_history.dart';
+import '../../../design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
+import '../../../design_patterns/memento/command_design_pattern/icommand.dart';
+import '../../../design_patterns/memento/originator.dart';
+import '../../platform_specific/platform_button.dart';
+import 'shape_container.dart';
 
 class MementoExample extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _MementoExampleState extends State<MementoExample> {
   final Originator _originator = Originator();
 
   void _randomiseProperties() {
-    var command = RandomisePropertiesCommand(_originator);
+    final command = RandomisePropertiesCommand(_originator);
     _executeCommand(command);
   }
 
@@ -38,7 +38,7 @@ class _MementoExampleState extends State<MementoExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -48,17 +48,17 @@ class _MementoExampleState extends State<MementoExample> {
             ),
             const SizedBox(height: spaceM),
             PlatformButton(
-              child: Text('Randomise properties'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _randomiseProperties,
+              text: 'Randomise properties',
             ),
-            Divider(),
+            const Divider(),
             PlatformButton(
-              child: Text('Undo'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _commandHistory.isEmpty ? null : _undo,
+              text: 'Undo',
             ),
             const SizedBox(height: spaceM),
           ],

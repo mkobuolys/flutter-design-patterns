@@ -1,5 +1,5 @@
-import 'package:flutter_design_patterns/design_patterns/builder/burger_builder_base.dart';
-import 'package:flutter_design_patterns/design_patterns/builder/ingredients/index.dart';
+import '../burger_builder_base.dart';
+import '../ingredients/index.dart';
 
 class CheeseburgerBuilder extends BurgerBuilderBase {
   CheeseburgerBuilder() {

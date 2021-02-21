@@ -1,10 +1,9 @@
-import 'package:flutter_design_patterns/design_patterns/proxy/customer/customer_details.dart';
-import 'package:flutter_design_patterns/design_patterns/proxy/icustomer_details_service.dart';
+import 'customer/customer_details.dart';
+import 'icustomer_details_service.dart';
 
 class CustomerDetailsServiceProxy implements ICustomerDetailsService {
   final ICustomerDetailsService service;
-  final Map<String, CustomerDetails> customerDetailsCache =
-      Map<String, CustomerDetails>();
+  final Map<String, CustomerDetails> customerDetailsCache = {};
 
   CustomerDetailsServiceProxy(this.service);
 
@@ -14,7 +13,7 @@ class CustomerDetailsServiceProxy implements ICustomerDetailsService {
       return customerDetailsCache[id];
     }
 
-    var customerDetails = await service.getCustomerDetails(id);
+    final customerDetails = await service.getCustomerDetails(id);
     customerDetailsCache[id] = customerDetails;
 
     return customerDetails;

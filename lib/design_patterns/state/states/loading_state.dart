@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/state/fake_api.dart';
-import 'package:flutter_design_patterns/design_patterns/state/istate.dart';
-import 'package:flutter_design_patterns/design_patterns/state/state_context.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/error_state.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/loaded_state.dart';
-import 'package:flutter_design_patterns/design_patterns/state/states/no_results_state.dart';
+import '../fake_api.dart';
+import '../istate.dart';
+import '../state_context.dart';
+import 'error_state.dart';
+import 'loaded_state.dart';
+import 'no_results_state.dart';
 
 class LoadingState implements IState {
   final FakeApi _api = FakeApi();
@@ -13,7 +13,7 @@ class LoadingState implements IState {
   @override
   Future nextState(StateContext context) async {
     try {
-      var resultList = await _api.getNames();
+      final resultList = await _api.getNames();
 
       if (resultList.isEmpty) {
         context.setState(NoResultsState());
@@ -27,7 +27,7 @@ class LoadingState implements IState {
 
   @override
   Widget render() {
-    return CircularProgressIndicator(
+    return const CircularProgressIndicator(
       backgroundColor: Colors.transparent,
       valueColor: AlwaysStoppedAnimation<Color>(
         Colors.black,

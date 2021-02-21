@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/design_patterns/flyweight/ipositioned_shape.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shape_type.dart';
-import 'package:flutter_design_patterns/design_patterns/flyweight/shapes/index.dart';
+import 'ipositioned_shape.dart';
+import 'shape_type.dart';
+import 'shapes/index.dart';
 
 class ShapeFactory {
   IPositionedShape createShape(ShapeType shapeType) {
@@ -18,7 +18,7 @@ class ShapeFactory {
           width: 10.0,
         );
       default:
-        throw new Exception("Shape type '$shapeType' is not supported.");
+        throw Exception("Shape type '$shapeType' is not supported.");
     }
   }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
-import 'package:flutter_design_patterns/design_patterns/builder/burger_builder_base.dart';
+import '../../../design_patterns/builder/burger_builder_base.dart';
 
 class BurgerMenuItem {
   final String label;

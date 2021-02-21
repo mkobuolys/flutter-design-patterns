@@ -29,7 +29,3 @@ const double spaceXL = 32.0;
 // Assets
 const String designPatternsJsonPath = 'assets/data/design_patterns.json';
 const String markdownPath = 'assets/markdown/';
-
-// Routes
-const String initialRoute = '/';
-const String categoryRoute = '/category';

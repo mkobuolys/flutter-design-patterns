@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/composite/ifile.dart';
-import 'package:flutter_design_patterns/helpers/file_size_converter.dart';
+import '../../../../constants.dart';
+import '../../../../design_patterns/composite/ifile.dart';
+import '../../../../helpers/file_size_converter.dart';
 
 class File extends StatelessWidget implements IFile {
   final String title;

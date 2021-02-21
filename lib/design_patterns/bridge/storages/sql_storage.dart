@@ -1,8 +1,8 @@
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
+import '../entities/entity_base.dart';
+import '../istorage.dart';
 
 class SqlStorage implements IStorage {
-  Map<Type, List<EntityBase>> sqlStorage = Map<Type, List<EntityBase>>();
+  final Map<Type, List<EntityBase>> sqlStorage = {};
 
   @override
   String getTitle() {
@@ -11,13 +11,13 @@ class SqlStorage implements IStorage {
 
   @override
   List<T> fetchAll<T extends EntityBase>() {
-    return sqlStorage.containsKey(T) ? sqlStorage[T] : List<T>();
+    return sqlStorage.containsKey(T) ? sqlStorage[T] as List<T> : [];
   }
 
   @override
   void store<T extends EntityBase>(T entityBase) {
     if (!sqlStorage.containsKey(T)) {
-      sqlStorage[T] = List<T>();
+      sqlStorage[T] = <T>[];
     }
 
     sqlStorage[T].add(entityBase);

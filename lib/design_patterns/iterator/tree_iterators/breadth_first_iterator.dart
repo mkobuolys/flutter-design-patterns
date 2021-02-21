@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_collections/breadth_first_tree_collection.dart';
-import 'package:flutter_design_patterns/design_patterns/iterator/tree_iterators/itree_iterator.dart';
+import '../tree_collections/breadth_first_tree_collection.dart';
+import 'itree_iterator.dart';
 
 class BreadthFirstIterator implements ITreeIterator {
   final BreadthFirstTreeCollection treeCollection;
@@ -33,7 +33,7 @@ class BreadthFirstIterator implements ITreeIterator {
     visitedNodes.add(_currentNode);
 
     if (adjacencyList.containsKey(_currentNode)) {
-      for (var node in adjacencyList[_currentNode]
+      for (final node in adjacencyList[_currentNode]
           .where((n) => !visitedNodes.contains(n))) {
         nodeQueue.addLast(node);
       }

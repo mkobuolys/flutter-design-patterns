@@ -1,14 +1,13 @@
 import 'package:faker/faker.dart';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_bloc.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_message.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/logger_base.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/loggers/index.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/chain_of_responsibility/log_messages_column.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/chain_of_responsibility/log_bloc.dart';
+import '../../../design_patterns/chain_of_responsibility/log_message.dart';
+import '../../../design_patterns/chain_of_responsibility/logger_base.dart';
+import '../../../design_patterns/chain_of_responsibility/loggers/index.dart';
+import '../../platform_specific/platform_button.dart';
+import 'log_messages_column.dart';
 
 class ChainOfResponsibilityExample extends StatefulWidget {
   @override
@@ -48,35 +47,35 @@ class _ChainOfResponsibilityExampleState
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
           children: <Widget>[
             PlatformButton(
-              child: Text('Log debug'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logDebug(randomLog),
+              text: 'Log debug',
             ),
             PlatformButton(
-              child: Text('Log info'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logInfo(randomLog),
+              text: 'Log info',
             ),
             PlatformButton(
-              child: Text('Log error'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logError(randomLog),
+              text: 'Log error',
             ),
-            Divider(),
+            const Divider(),
             Row(
               children: <Widget>[
                 Expanded(
                   child: StreamBuilder<List<LogMessage>>(
-                    initialData: [],
+                    initialData: const [],
                     stream: logBloc.outLogStream,
                     builder: (_, AsyncSnapshot<List<LogMessage>> snapshot) =>
                         LogMessagesColumn(logMessages: snapshot.data),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/factories/cupertino_widgets_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/factories/material_widgets_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/iwidgets_factory.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/iactivity_indicator.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/islider.dart';
-import 'package:flutter_design_patterns/design_patterns/abstract_factory/widgets/iswitch.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/abstract_factory/factory_selection.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/abstract_factory/factories/cupertino_widgets_factory.dart';
+import '../../../design_patterns/abstract_factory/factories/material_widgets_factory.dart';
+import '../../../design_patterns/abstract_factory/iwidgets_factory.dart';
+import '../../../design_patterns/abstract_factory/widgets/iactivity_indicator.dart';
+import '../../../design_patterns/abstract_factory/widgets/islider.dart';
+import '../../../design_patterns/abstract_factory/widgets/iswitch.dart';
+import 'factory_selection.dart';
 
 class AbstractFactoryExample extends StatefulWidget {
   @override
@@ -67,7 +67,7 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -102,7 +102,10 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
               style: Theme.of(context).textTheme.subtitle1,
             ),
             const SizedBox(height: spaceL),
-            _switch.render(_switchValue, _setSwitchValue),
+            _switch.render(
+              value: _switchValue,
+              onChanged: _setSwitchValue,
+            ),
           ],
         ),
       ),

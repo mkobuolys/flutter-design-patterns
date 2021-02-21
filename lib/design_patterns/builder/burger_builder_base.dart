@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 
-import 'package:flutter_design_patterns/design_patterns/builder/burger.dart';
+import 'burger.dart';
 
 abstract class BurgerBuilderBase {
   @protected

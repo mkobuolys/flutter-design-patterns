@@ -1,7 +1,7 @@
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_bloc.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/log_level.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/logger_base.dart';
-import 'package:flutter_design_patterns/design_patterns/chain_of_responsibility/services/mail_service.dart';
+import '../log_bloc.dart';
+import '../log_level.dart';
+import '../logger_base.dart';
+import '../services/mail_service.dart';
 
 class ErrorLogger extends LoggerBase {
   MailService mailService;

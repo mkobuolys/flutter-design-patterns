@@ -4,7 +4,8 @@ class PizzaToppingData {
 
   PizzaToppingData(this.label);
 
-  void setSelected(bool value) {
-    selected = value;
+  // ignore: use_setters_to_change_properties
+  void setSelected({bool isSelected}) {
+    selected = isSelected;
   }
 }

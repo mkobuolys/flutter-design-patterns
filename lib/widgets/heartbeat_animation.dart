@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 class HeartbeatAnimation extends StatefulWidget {
   final Widget child;
 
-  HeartbeatAnimation({
+  const HeartbeatAnimation({
     @required this.child,
     Key key,
   })  : assert(child != null),
         super(key: key);
 
+  @override
   _HeartbeatAnimationState createState() => _HeartbeatAnimationState();
 }
 
@@ -23,7 +23,7 @@ class _HeartbeatAnimationState extends State<HeartbeatAnimation>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat();
 

@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/entity_base.dart';
+import 'entity_base.dart';
 
 class Customer extends EntityBase {
   String name;
@@ -12,8 +12,8 @@ class Customer extends EntityBase {
   }
 
   Customer.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        email = json['email'],
+      : name = json['name'] as String,
+        email = json['email'] as String,
         super.fromJson(json);
 
   Map<String, dynamic> toJson() => {

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/customer.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/entities/order.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/irepository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/istorage.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/repositories/customers_repository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/repositories/orders_repository.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/storages/file_storage.dart';
-import 'package:flutter_design_patterns/design_patterns/bridge/storages/sql_storage.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/data_tables/customers_data_table.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/data_tables/orders_data_table.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/bridge/storage_selection.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../constants.dart';
+import '../../../design_patterns/bridge/entities/customer.dart';
+import '../../../design_patterns/bridge/entities/order.dart';
+import '../../../design_patterns/bridge/irepository.dart';
+import '../../../design_patterns/bridge/istorage.dart';
+import '../../../design_patterns/bridge/repositories/customers_repository.dart';
+import '../../../design_patterns/bridge/repositories/orders_repository.dart';
+import '../../../design_patterns/bridge/storages/file_storage.dart';
+import '../../../design_patterns/bridge/storages/sql_storage.dart';
+import '../../platform_specific/platform_button.dart';
+import 'data_tables/customers_data_table.dart';
+import 'data_tables/orders_data_table.dart';
+import 'storage_selection.dart';
 
 class BridgeExample extends StatefulWidget {
   @override
@@ -35,7 +35,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     setState(() {
       _selectedCustomerStorageIndex = index;
       _customersRepository = CustomersRepository(_storages[index]);
-      _customers = _customersRepository.getAll();
+      _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
@@ -43,7 +43,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     setState(() {
       _selectedOrderStorageIndex = index;
       _ordersRepository = OrdersRepository(_storages[index]);
-      _orders = _ordersRepository.getAll();
+      _orders = _ordersRepository.getAll() as List<Order>;
     });
   }
 
@@ -51,7 +51,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     _customersRepository.save(Customer());
 
     setState(() {
-      _customers = _customersRepository.getAll();
+      _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
@@ -59,7 +59,7 @@ class _BridgeExampleState extends State<BridgeExample> {
     _ordersRepository.save(Order());
 
     setState(() {
-      _orders = _ordersRepository.getAll();
+      _orders = _ordersRepository.getAll() as List<Order>;
     });
   }
 
@@ -69,16 +69,16 @@ class _BridgeExampleState extends State<BridgeExample> {
 
     _customersRepository =
         CustomersRepository(_storages[_selectedCustomerStorageIndex]);
-    _customers = _customersRepository.getAll();
+    _customers = _customersRepository.getAll() as List<Customer>;
 
     _ordersRepository = OrdersRepository(_storages[_selectedOrderStorageIndex]);
-    _orders = _ordersRepository.getAll();
+    _orders = _ordersRepository.getAll() as List<Order>;
   }
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
@@ -98,18 +98,19 @@ class _BridgeExampleState extends State<BridgeExample> {
               onChanged: _onSelectedCustomerStorageIndexChanged,
             ),
             PlatformButton(
-              child: Text('Add'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addCustomer,
+              text: 'Add',
             ),
-            _customers.isNotEmpty
-                ? CustomersDatatable(customers: _customers)
-                : Text(
-                    '0 customers found',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
-            Divider(),
+            if (_customers.isNotEmpty)
+              CustomersDatatable(customers: _customers)
+            else
+              Text(
+                '0 customers found',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+            const Divider(),
             Row(
               children: <Widget>[
                 Text(
@@ -124,17 +125,18 @@ class _BridgeExampleState extends State<BridgeExample> {
               onChanged: _onSelectedOrderStorageIndexChanged,
             ),
             PlatformButton(
-              child: Text('Add'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addOrder,
+              text: 'Add',
             ),
-            _orders.isNotEmpty
-                ? OrdersDatatable(orders: _orders)
-                : Text(
-                    '0 orders found',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
+            if (_orders.isNotEmpty)
+              OrdersDatatable(orders: _orders)
+            else
+              Text(
+                '0 orders found',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
           ],
         ),
       ),

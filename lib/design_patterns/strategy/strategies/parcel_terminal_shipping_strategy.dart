@@ -1,7 +1,7 @@
-import 'package:flutter_design_patterns/design_patterns/strategy/ishipping_costs_strategy.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/order_item.dart';
-import 'package:flutter_design_patterns/design_patterns/strategy/order/package_size.dart';
+import '../ishipping_costs_strategy.dart';
+import '../order/order.dart';
+import '../order/order_item.dart';
+import '../order/package_size.dart';
 
 class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
   @override
@@ -26,7 +26,7 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
       case PackageSize.XL:
         return 3.49;
       default:
-        throw new Exception(
+        throw Exception(
             "Unknown shipping price for the package of size '${orderItem.packageSize}'.");
     }
   }

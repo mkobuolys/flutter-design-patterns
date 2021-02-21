@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:meta/meta.dart';
 
-import 'package:flutter_design_patterns/design_patterns/template_method/student.dart';
+import 'student.dart';
 
 abstract class StudentsBmiCalculator {
   List<Student> calculateBmiAndReturnStudentList() {
@@ -13,7 +13,7 @@ abstract class StudentsBmiCalculator {
   }
 
   void _calculateStudentsBmi(List<Student> studentList) {
-    for (var student in studentList) {
+    for (final student in studentList) {
       student.bmi = _calculateBmi(student.height, student.weight);
     }
   }

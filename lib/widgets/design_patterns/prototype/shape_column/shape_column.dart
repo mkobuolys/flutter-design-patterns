@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_design_patterns/constants.dart';
-import 'package:flutter_design_patterns/design_patterns/prototype/shape.dart';
-import 'package:flutter_design_patterns/widgets/design_patterns/prototype/shape_column/sized_shape_column.dart';
-import 'package:flutter_design_patterns/widgets/platform_specific/platform_button.dart';
+import '../../../../constants.dart';
+import '../../../../design_patterns/prototype/shape.dart';
+import '../../../platform_specific/platform_button.dart';
+import 'sized_shape_column.dart';
 
 class ShapeColumn extends StatelessWidget {
   final Shape shape;
@@ -36,7 +35,7 @@ class ShapeColumn extends StatelessWidget {
             SizedShapeColumn(
               label: 'Cloned shape',
               child: shapeClone == null
-                  ? SizedBox(
+                  ? const SizedBox(
                       height: 120.0,
                       width: 120.0,
                       child: Placeholder(),
@@ -46,16 +45,16 @@ class ShapeColumn extends StatelessWidget {
           ],
         ),
         PlatformButton(
-          child: Text('Randomise properties'),
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: onRandomisePropertiesPressed,
+          text: 'Randomise properties',
         ),
         PlatformButton(
-          child: Text('Clone'),
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: onClonePressed,
+          text: 'Clone',
         ),
       ],
     );
