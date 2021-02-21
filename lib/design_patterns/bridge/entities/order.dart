@@ -12,7 +12,7 @@ class Order extends EntityBase {
   }
 
   Order.fromJson(Map<String, dynamic> json)
-      : dishes = List.from(json['dishes'] as List<String>),
+      : dishes = List.from(json['dishes'] as List),
         total = json['total'] as double,
         super.fromJson(json);
 
