@@ -51,7 +51,7 @@ class _StrategyExampleState extends State<StrategyExample> {
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: paddingL),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             OrderButtons(
               onAdd: _addToOrder,

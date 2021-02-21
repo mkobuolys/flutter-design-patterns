@@ -65,7 +65,7 @@ class _StudentsSectionContent extends StatelessWidget {
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: onPressed,
-            child: const Text("Calculate BMI and get students' data"),
+            text: "Calculate BMI and get students' data",
           )
         : StudentsDataTable(
             students: students,

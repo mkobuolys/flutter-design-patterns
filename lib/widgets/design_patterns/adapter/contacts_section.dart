@@ -65,7 +65,7 @@ class _ContactsSectionContent extends StatelessWidget {
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: onPressed,
-            child: const Text('Get contacts'),
+            text: 'Get contacts',
           )
         : Column(
             children: <Widget>[

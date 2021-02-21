@@ -101,7 +101,7 @@ class _BridgeExampleState extends State<BridgeExample> {
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addCustomer,
-              child: const Text('Add'),
+              text: 'Add',
             ),
             if (_customers.isNotEmpty)
               CustomersDatatable(customers: _customers)
@@ -128,7 +128,7 @@ class _BridgeExampleState extends State<BridgeExample> {
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addOrder,
-              child: const Text('Add'),
+              text: 'Add',
             ),
             if (_orders.isNotEmpty)
               OrdersDatatable(orders: _orders)

@@ -97,21 +97,21 @@ class _IteratorExampleState extends State<IteratorExample> {
                   !_isTraversing ? _setSelectedTreeCollectionIndex : null,
             ),
             const SizedBox(height: spaceL),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Wrap(
+              alignment: WrapAlignment.center,
               children: <Widget>[
                 PlatformButton(
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed: _currentNodeIndex == 0 ? _traverseTree : null,
-                  child: const Text('Traverse'),
+                  text: 'Traverse',
                 ),
                 PlatformButton(
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed:
                       _isTraversing || _currentNodeIndex == 0 ? null : _reset,
-                  child: const Text('Reset'),
+                  text: 'Reset',
                 ),
               ],
             ),

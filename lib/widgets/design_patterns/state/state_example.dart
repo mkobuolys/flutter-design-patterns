@@ -36,7 +36,7 @@ class _StateExampleState extends State<StateExample> {
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeState,
-              child: const Text('Load names'),
+              text: 'Load names',
             ),
             const SizedBox(height: spaceL),
             StreamBuilder(

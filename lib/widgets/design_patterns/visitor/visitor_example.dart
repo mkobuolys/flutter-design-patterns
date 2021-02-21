@@ -152,7 +152,7 @@ class _VisitorExampleState extends State<VisitorExample> {
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _showFilesDialog,
-              child: const Text('Export files'),
+              text: 'Export files',
             ),
             const SizedBox(height: spaceL),
             _rootDirectory.render(context),

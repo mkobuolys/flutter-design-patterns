@@ -31,7 +31,7 @@ class FilesDialog extends StatelessWidget {
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: () => closeDialog(context),
-          child: const Text('Close'),
+          text: 'Close',
         ),
       ],
     );

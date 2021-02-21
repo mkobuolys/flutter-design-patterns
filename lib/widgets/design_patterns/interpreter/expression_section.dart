@@ -51,7 +51,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: _solvePrefixExpression,
-            child: const Text('Solve'),
+            text: 'Solve',
           ),
           secondChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -56,19 +56,19 @@ class _ChainOfResponsibilityExampleState
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logDebug(randomLog),
-              child: const Text('Log debug'),
+              text: 'Log debug',
             ),
             PlatformButton(
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logInfo(randomLog),
-              child: const Text('Log info'),
+              text: 'Log info',
             ),
             PlatformButton(
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logError(randomLog),
-              child: const Text('Log error'),
+              text: 'Log error',
             ),
             const Divider(),
             Row(

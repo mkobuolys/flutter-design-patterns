@@ -14,8 +14,8 @@ class OrderButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Wrap(
+      alignment: WrapAlignment.center,
       children: <Widget>[
         OrderButton(
           iconData: Icons.add,

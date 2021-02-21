@@ -48,13 +48,13 @@ class ShapeColumn extends StatelessWidget {
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: onRandomisePropertiesPressed,
-          child: const Text('Randomise properties'),
+          text: 'Randomise properties',
         ),
         PlatformButton(
           materialColor: Colors.black,
           materialTextColor: Colors.white,
           onPressed: onClonePressed,
-          child: const Text('Clone'),
+          text: 'Clone',
         ),
       ],
     );

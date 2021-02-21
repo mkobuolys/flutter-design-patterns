@@ -63,7 +63,7 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: _closeDialog,
-            child: const Text('Close'),
+            text: 'Close',
           ),
         ),
       ],

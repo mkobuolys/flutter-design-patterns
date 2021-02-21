@@ -50,7 +50,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => _showCustomDialog(context),
-              child: const Text('Show Dialog'),
+              text: 'Show Dialog',
             ),
           ],
         ),
