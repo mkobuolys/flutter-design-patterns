@@ -16,7 +16,6 @@ class DesignPatternCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionCard(
       backgroundColor: lightBackgroundColor,
-      backgroundHeroTag: '${designPattern.id}_background',
       contentHeader: Text(
         designPattern.title,
         style: Theme.of(context).textTheme.headline6.copyWith(

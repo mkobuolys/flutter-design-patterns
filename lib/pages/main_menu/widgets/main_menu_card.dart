@@ -16,7 +16,6 @@ class MainMenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionCard(
       backgroundColor: Color(category.color),
-      backgroundHeroTag: '${category.id}_background',
       contentHeader: Text(
         category.title,
         style: Theme.of(context).textTheme.headline6.copyWith(

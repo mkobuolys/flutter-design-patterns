@@ -4,7 +4,6 @@ import 'package:flutter_design_patterns/constants.dart';
 
 class SelectionCard extends StatelessWidget {
   final Color backgroundColor;
-  final String backgroundHeroTag;
   final Text contentHeader;
   final Text contentText;
   final VoidCallback onTap;
@@ -14,13 +13,11 @@ class SelectionCard extends StatelessWidget {
 
   const SelectionCard({
     @required this.backgroundColor,
-    @required this.backgroundHeroTag,
     @required this.contentHeader,
     @required this.contentText,
     @required this.onTap,
     Key key,
   })  : assert(backgroundColor != null),
-        assert(backgroundHeroTag != null),
         assert(contentHeader != null),
         assert(contentText != null),
         assert(onTap != null),
@@ -36,15 +33,12 @@ class SelectionCard extends StatelessWidget {
         Material(
           borderRadius: _selectionCardBorderRadius,
           elevation: 8.0,
-          child: Hero(
-            tag: backgroundHeroTag,
-            child: Container(
-              decoration: BoxDecoration(
-                color: backgroundColor,
-                borderRadius: _selectionCardBorderRadius,
-              ),
-              height: selectionCardHeight,
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: _selectionCardBorderRadius,
             ),
+            height: selectionCardHeight,
           ),
         ),
         Material(

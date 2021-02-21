@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_design_patterns/constants.dart';
 import 'package:flutter_design_patterns/data/models/design_pattern_category.dart';
 import 'package:flutter_design_patterns/pages/category/widgets/design_pattern_card.dart';
-import 'package:flutter_design_patterns/widgets/fade_slide_transition.dart';
 import 'package:flutter_design_patterns/widgets/platform_specific/platform_back_button.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -24,7 +23,6 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage>
     with SingleTickerProviderStateMixin {
-  final double _listAnimationIntervalStart = 0.65;
   final double _preferredAppBarHeight = 56.0;
 
   AnimationController _fadeSlideAnimationController;
@@ -66,104 +64,53 @@ class _CategoryPageState extends State<CategoryPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Hero(
-            tag: '${widget.category.id}_background',
-            child: Container(
-              color: Color(widget.category.color),
-            ),
+      backgroundColor: Color(widget.category.color),
+      appBar: AppBar(
+        title: AnimatedOpacity(
+          opacity: _appBarTitleOpacity,
+          duration: const Duration(milliseconds: 250),
+          child: Text(widget.category.title),
+        ),
+        backgroundColor: Color(widget.category.color),
+        elevation: _appBarElevation,
+        leading: const PlatformBackButton(
+          color: Colors.white,
+        ),
+      ),
+      body: ScrollConfiguration(
+        behavior: const ScrollBehavior(),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          padding: const EdgeInsets.fromLTRB(
+            paddingL,
+            paddingZero,
+            paddingL,
+            paddingL,
           ),
-          SafeArea(
-            child: Column(
-              children: <Widget>[
-                FadeSlideTransition(
-                  controller: _fadeSlideAnimationController,
-                  slideAnimationTween: Tween<Offset>(
-                    begin: const Offset(0.0, 0.5),
-                    end: const Offset(0.0, 0.0),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    widget.category.title,
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: 32.0,
+                          color: Colors.white,
+                        ),
                   ),
-                  end: _listAnimationIntervalStart,
-                  child: PreferredSize(
-                    preferredSize: Size.fromHeight(_preferredAppBarHeight),
-                    child: AppBar(
-                      title: AnimatedOpacity(
-                        opacity: _appBarTitleOpacity,
-                        duration: const Duration(milliseconds: 250),
-                        child: Text(widget.category.title),
-                      ),
-                      backgroundColor: Color(widget.category.color),
-                      elevation: _appBarElevation,
-                      leading: const PlatformBackButton(
-                        color: Colors.white,
-                      ),
-                    ),
+                ],
+              ),
+              const SizedBox(height: spaceL),
+              for (var i = 0; i < widget.category.patterns.length; i++)
+                Container(
+                  margin: const EdgeInsets.only(top: marginL),
+                  child: DesignPatternCard(
+                    designPattern: widget.category.patterns[i],
                   ),
                 ),
-                Expanded(
-                  child: ScrollConfiguration(
-                    behavior: const ScrollBehavior(),
-                    child: SingleChildScrollView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.fromLTRB(
-                        paddingL,
-                        paddingZero,
-                        paddingL,
-                        paddingL,
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          FadeSlideTransition(
-                            controller: _fadeSlideAnimationController,
-                            slideAnimationTween: Tween<Offset>(
-                              begin: const Offset(0.0, 0.5),
-                              end: const Offset(0.0, 0.0),
-                            ),
-                            end: _listAnimationIntervalStart,
-                            child: Row(
-                              children: <Widget>[
-                                Text(
-                                  widget.category.title,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .copyWith(
-                                        fontSize: 32.0,
-                                        color: Colors.white,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: spaceL),
-                          for (var i = 0;
-                              i < widget.category.patterns.length;
-                              i++)
-                            FadeSlideTransition.staggered(
-                              controller: _fadeSlideAnimationController,
-                              slideAnimationTween: Tween<Offset>(
-                                begin: const Offset(0.0, 0.1),
-                                end: const Offset(0.0, 0.0),
-                              ),
-                              singleItemDurationInterval: 0.05,
-                              index: i,
-                              begin: _listAnimationIntervalStart,
-                              child: Container(
-                                margin: const EdgeInsets.only(top: marginL),
-                                child: DesignPatternCard(
-                                  designPattern: widget.category.patterns[i],
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

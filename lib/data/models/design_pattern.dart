@@ -4,7 +4,7 @@ class DesignPattern {
   final String description;
   final String route;
 
-  DesignPattern({
+  const DesignPattern({
     this.id,
     this.title,
     this.description,

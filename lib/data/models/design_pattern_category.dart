@@ -6,7 +6,7 @@ class DesignPatternCategory {
   final int color;
   final List<DesignPattern> patterns;
 
-  DesignPatternCategory({
+  const DesignPatternCategory({
     this.id,
     this.title,
     this.color,
