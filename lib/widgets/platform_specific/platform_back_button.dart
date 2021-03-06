@@ -6,8 +6,8 @@ class PlatformBackButton extends StatelessWidget {
   final Color color;
 
   const PlatformBackButton({
-    @required this.color,
-  }) : assert(color != null);
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {

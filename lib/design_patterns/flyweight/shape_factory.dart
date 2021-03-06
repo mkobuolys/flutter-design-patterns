@@ -5,6 +5,8 @@ import 'shape_type.dart';
 import 'shapes/index.dart';
 
 class ShapeFactory {
+  const ShapeFactory();
+
   IPositionedShape createShape(ShapeType shapeType) {
     switch (shapeType) {
       case ShapeType.Circle:

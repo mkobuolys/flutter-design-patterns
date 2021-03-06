@@ -6,8 +6,8 @@ import '../../originator.dart';
 import '../icommand.dart';
 
 class RandomisePropertiesCommand implements ICommand {
-  Originator originator;
-  IMemento _backup;
+  final Originator originator;
+  late final IMemento _backup;
 
   RandomisePropertiesCommand(this.originator) {
     _backup = originator.createMemento();
@@ -16,6 +16,7 @@ class RandomisePropertiesCommand implements ICommand {
   @override
   void execute() {
     final shape = originator.state;
+
     shape.color = Color.fromRGBO(
         random.integer(255), random.integer(255), random.integer(255), 1.0);
     shape.height = random.integer(150, min: 50).toDouble();
@@ -24,8 +25,6 @@ class RandomisePropertiesCommand implements ICommand {
 
   @override
   void undo() {
-    if (_backup != null) {
-      originator.restore(_backup);
-    }
+    originator.restore(_backup);
   }
 }

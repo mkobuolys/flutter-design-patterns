@@ -12,10 +12,9 @@ class CustomerDetailsDialog extends StatefulWidget {
   final ICustomerDetailsService service;
 
   const CustomerDetailsDialog({
-    @required this.customer,
-    @required this.service,
-  })  : assert(customer != null),
-        assert(service != null);
+    required this.customer,
+    required this.service,
+  });
 
   @override
   _CustomerDetailsDialogState createState() => _CustomerDetailsDialogState();
@@ -53,7 +52,7 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
                 ),
               )
             : CustomerDetailsColumn(
-                customerDetails: widget.customer.details,
+                customerDetails: widget.customer.details!,
               ),
       ),
       actions: <Widget>[

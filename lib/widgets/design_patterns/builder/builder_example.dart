@@ -16,8 +16,8 @@ class _BuilderExampleState extends State<BuilderExample> {
   final BurgerMaker _burgerMaker = BurgerMaker(HamburgerBuilder());
   final List<BurgerMenuItem> _burgerMenuItems = [];
 
-  BurgerMenuItem _selectedBurgerMenuItem;
-  Burger _selectedBurger;
+  late BurgerMenuItem _selectedBurgerMenuItem;
+  late Burger _selectedBurger;
 
   @override
   void initState() {
@@ -52,9 +52,9 @@ class _BuilderExampleState extends State<BuilderExample> {
     return _burgerMaker.getBurger();
   }
 
-  void _onBurgerMenuItemChanged(BurgerMenuItem selectedItem) {
+  void _onBurgerMenuItemChanged(BurgerMenuItem? selectedItem) {
     setState(() {
-      _selectedBurgerMenuItem = selectedItem;
+      _selectedBurgerMenuItem = selectedItem!;
       _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
       _selectedBurger = _prepareSelectedBurger();
     });

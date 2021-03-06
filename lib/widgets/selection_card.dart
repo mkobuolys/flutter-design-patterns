@@ -12,16 +12,11 @@ class SelectionCard extends StatelessWidget {
   double get selectionCardBorderRadius => 10.0;
 
   const SelectionCard({
-    @required this.backgroundColor,
-    @required this.contentHeader,
-    @required this.contentText,
-    @required this.onTap,
-    Key key,
-  })  : assert(backgroundColor != null),
-        assert(contentHeader != null),
-        assert(contentText != null),
-        assert(onTap != null),
-        super(key: key);
+    required this.backgroundColor,
+    required this.contentHeader,
+    required this.contentText,
+    required this.onTap,
+  });
 
   BorderRadius get _selectionCardBorderRadius =>
       BorderRadius.circular(selectionCardBorderRadius);

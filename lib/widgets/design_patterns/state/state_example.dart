@@ -43,7 +43,7 @@ class _StateExampleState extends State<StateExample> {
               initialData: NoResultsState(),
               stream: _stateContext.outState,
               builder: (_, AsyncSnapshot<IState> snapshot) =>
-                  snapshot.data.render(),
+                  snapshot.data!.render(),
             ),
           ],
         ),

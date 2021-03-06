@@ -3,8 +3,8 @@ import 'package:faker/faker.dart';
 import 'entity_base.dart';
 
 class Order extends EntityBase {
-  List<String> dishes;
-  double total;
+  late List<String> dishes;
+  late double total;
 
   Order() : super() {
     dishes = List.generate(random.integer(3, min: 1), (_) => faker.food.dish());

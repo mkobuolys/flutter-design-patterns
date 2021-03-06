@@ -54,31 +54,31 @@ class PizzaMenu {
   Pizza _getCustom(Map<int, PizzaToppingData> pizzaToppingsDataMap) {
     Pizza pizza = PizzaBase('Custom Pizza');
 
-    if (pizzaToppingsDataMap[1].selected) {
+    if (pizzaToppingsDataMap[1]!.selected) {
       pizza = Basil(pizza);
     }
 
-    if (pizzaToppingsDataMap[2].selected) {
+    if (pizzaToppingsDataMap[2]!.selected) {
       pizza = Mozzarella(pizza);
     }
 
-    if (pizzaToppingsDataMap[3].selected) {
+    if (pizzaToppingsDataMap[3]!.selected) {
       pizza = OliveOil(pizza);
     }
 
-    if (pizzaToppingsDataMap[4].selected) {
+    if (pizzaToppingsDataMap[4]!.selected) {
       pizza = Oregano(pizza);
     }
 
-    if (pizzaToppingsDataMap[5].selected) {
+    if (pizzaToppingsDataMap[5]!.selected) {
       pizza = Pecorino(pizza);
     }
 
-    if (pizzaToppingsDataMap[6].selected) {
+    if (pizzaToppingsDataMap[6]!.selected) {
       pizza = Pepperoni(pizza);
     }
 
-    if (pizzaToppingsDataMap[7].selected) {
+    if (pizzaToppingsDataMap[7]!.selected) {
       pizza = Sauce(pizza);
     }
 

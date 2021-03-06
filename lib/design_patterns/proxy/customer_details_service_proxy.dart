@@ -10,7 +10,7 @@ class CustomerDetailsServiceProxy implements ICustomerDetailsService {
   @override
   Future<CustomerDetails> getCustomerDetails(String id) async {
     if (customerDetailsCache.containsKey(id)) {
-      return customerDetailsCache[id];
+      return customerDetailsCache[id]!;
     }
 
     final customerDetails = await service.getCustomerDetails(id);

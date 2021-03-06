@@ -7,16 +7,14 @@ class PlatformButton extends StatelessWidget {
   final String text;
   final Color materialColor;
   final Color materialTextColor;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const PlatformButton({
-    @required this.text,
-    @required this.materialColor,
-    @required this.materialTextColor,
+    required this.text,
+    required this.materialColor,
+    required this.materialTextColor,
     this.onPressed,
-  })  : assert(text != null),
-        assert(materialColor != null),
-        assert(materialTextColor != null);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import '../shape.dart';
 
 class ChangeHeightCommand implements Command {
   Shape shape;
-  double previousHeight;
+  late double previousHeight;
 
   ChangeHeightCommand(this.shape) {
     previousHeight = shape.height;

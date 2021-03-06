@@ -6,11 +6,10 @@ class Square implements IPositionedShape {
   final Color color;
   final double width;
 
-  Square({
-    @required this.color,
-    @required this.width,
-  })  : assert(color != null),
-        assert(width != null);
+  const Square({
+    required this.color,
+    required this.width,
+  });
 
   double get height => width;
 

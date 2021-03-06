@@ -8,8 +8,8 @@ class PositionedShapeWrapper extends StatelessWidget {
   final IPositionedShape shape;
 
   const PositionedShapeWrapper({
-    @required this.shape,
-  }) : assert(shape != null);
+    required this.shape,
+  });
 
   double _getPosition(double max, double min) {
     final randomPosition = Random().nextDouble() * max;

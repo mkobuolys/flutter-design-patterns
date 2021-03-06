@@ -3,8 +3,8 @@ import 'package:faker/faker.dart';
 import 'entity_base.dart';
 
 class Customer extends EntityBase {
-  String name;
-  String email;
+  late String name;
+  late String email;
 
   Customer() : super() {
     name = faker.person.name();

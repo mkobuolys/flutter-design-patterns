@@ -15,8 +15,8 @@ class _PrototypeExampleState extends State<PrototypeExample> {
   final Shape _circle = Circle.initial();
   final Shape _rectangle = Rectangle.initial();
 
-  Shape _circleClone;
-  Shape _rectangleClone;
+  Shape? _circleClone;
+  Shape? _rectangleClone;
 
   void _randomiseCircleProperties() {
     setState(() {

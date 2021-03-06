@@ -7,10 +7,10 @@ class DesignPatternCategory {
   final List<DesignPattern> patterns;
 
   const DesignPatternCategory({
-    this.id,
-    this.title,
-    this.color,
-    this.patterns,
+    required this.id,
+    required this.title,
+    required this.color,
+    required this.patterns,
   });
 
   factory DesignPatternCategory.fromJson(Map<String, dynamic> json) {

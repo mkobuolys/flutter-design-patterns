@@ -13,7 +13,7 @@ class FileStorage implements IStorage {
   @override
   List<T> fetchAll<T extends EntityBase>() {
     if (fileStorage.containsKey(T)) {
-      final files = fileStorage[T];
+      final files = fileStorage[T]!;
 
       return files.map<T>((f) => JsonHelper.deserialiseObject<T>(f)).toList();
     }
@@ -27,6 +27,6 @@ class FileStorage implements IStorage {
       fileStorage[T] = [];
     }
 
-    fileStorage[T].add(JsonHelper.serialiseObject(entityBase));
+    fileStorage[T]!.add(JsonHelper.serialiseObject(entityBase));
   }
 }

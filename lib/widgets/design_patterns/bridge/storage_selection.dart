@@ -5,15 +5,13 @@ import '../../../design_patterns/bridge/istorage.dart';
 class StorageSelection extends StatelessWidget {
   final List<IStorage> storages;
   final int selectedIndex;
-  final ValueSetter<int> onChanged;
+  final ValueSetter<int?> onChanged;
 
   const StorageSelection({
-    @required this.storages,
-    @required this.selectedIndex,
-    @required this.onChanged,
-  })  : assert(storages != null),
-        assert(selectedIndex != null),
-        assert(onChanged != null);
+    required this.storages,
+    required this.selectedIndex,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

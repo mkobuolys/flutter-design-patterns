@@ -6,8 +6,9 @@ import '../../../../design_patterns/bridge/entities/customer.dart';
 class CustomersDatatable extends StatelessWidget {
   final List<Customer> customers;
 
-  const CustomersDatatable({@required this.customers})
-      : assert(customers != null);
+  const CustomersDatatable({
+    required this.customers,
+  });
 
   @override
   Widget build(BuildContext context) {

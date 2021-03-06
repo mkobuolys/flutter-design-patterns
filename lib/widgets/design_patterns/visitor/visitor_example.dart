@@ -22,7 +22,7 @@ class _VisitorExampleState extends State<VisitorExample> {
     XmlVisitor(),
   ];
 
-  IFile _rootDirectory;
+  late final IFile _rootDirectory;
   int _selectedVisitorIndex = 0;
 
   @override
@@ -116,9 +116,9 @@ class _VisitorExampleState extends State<VisitorExample> {
     return mediaDirectory;
   }
 
-  void _setSelectedVisitorIndex(int index) {
+  void _setSelectedVisitorIndex(int? index) {
     setState(() {
-      _selectedVisitorIndex = index;
+      _selectedVisitorIndex = index!;
     });
   }
 

@@ -3,7 +3,7 @@ class Graph {
 
   void addEdge(int source, int target) {
     if (adjacencyList.containsKey(source)) {
-      adjacencyList[source].add(target);
+      adjacencyList[source]!.add(target);
     } else {
       adjacencyList[source] = {target};
     }

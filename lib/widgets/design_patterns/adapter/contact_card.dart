@@ -6,8 +6,8 @@ class ContactCard extends StatelessWidget {
   final Contact contact;
 
   const ContactCard({
-    @required this.contact,
-  }) : assert(contact != null);
+    required this.contact,
+  });
 
   @override
   Widget build(BuildContext context) {

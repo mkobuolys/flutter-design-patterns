@@ -3,12 +3,12 @@ class Student {
   final int age;
   final double height;
   final int weight;
-  double bmi;
+  late final double bmi;
 
   Student({
-    this.fullName,
-    this.age,
-    this.height,
-    this.weight,
+    required this.fullName,
+    required this.age,
+    required this.height,
+    required this.weight,
   });
 }

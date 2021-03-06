@@ -4,10 +4,8 @@ class HeartbeatAnimation extends StatefulWidget {
   final Widget child;
 
   const HeartbeatAnimation({
-    @required this.child,
-    Key key,
-  })  : assert(child != null),
-        super(key: key);
+    required this.child,
+  });
 
   @override
   _HeartbeatAnimationState createState() => _HeartbeatAnimationState();
@@ -15,8 +13,8 @@ class HeartbeatAnimation extends StatefulWidget {
 
 class _HeartbeatAnimationState extends State<HeartbeatAnimation>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
 
   @override
   void initState() {

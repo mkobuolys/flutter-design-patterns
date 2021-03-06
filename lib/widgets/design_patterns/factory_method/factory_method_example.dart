@@ -26,9 +26,9 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
     await selectedDialog.show(context);
   }
 
-  void _setSelectedDialogIndex(int index) {
+  void _setSelectedDialogIndex(int? index) {
     setState(() {
-      _selectedDialogIndex = index;
+      _selectedDialogIndex = index!;
     });
   }
 

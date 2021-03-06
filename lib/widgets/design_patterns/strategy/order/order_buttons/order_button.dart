@@ -11,12 +11,10 @@ class OrderButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const OrderButton({
-    @required this.iconData,
-    @required this.title,
-    @required this.onPressed,
-  })  : assert(iconData != null),
-        assert(title != null),
-        assert(onPressed != null);
+    required this.iconData,
+    required this.title,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

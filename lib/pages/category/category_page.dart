@@ -11,10 +11,8 @@ class CategoryPage extends StatefulWidget {
   final DesignPatternCategory category;
 
   const CategoryPage({
-    @required this.category,
-    Key key,
-  })  : assert(category != null),
-        super(key: key);
+    required this.category,
+  });
 
   @override
   _CategoryPageState createState() => _CategoryPageState();
@@ -22,12 +20,10 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage>
     with SingleTickerProviderStateMixin {
-  final double _preferredAppBarHeight = 56.0;
+  late final AnimationController _fadeSlideAnimationController;
+  late final ScrollController _scrollController;
 
-  AnimationController _fadeSlideAnimationController;
-  ScrollController _scrollController;
   double _appBarElevation = 0.0;
-  double _appBarTitleOpacity = 0.0;
 
   @override
   void initState() {
@@ -44,11 +40,6 @@ class _CategoryPageState extends State<CategoryPage>
               _scrollController.offset > _scrollController.initialScrollOffset
                   ? 4.0
                   : 0.0;
-          _appBarTitleOpacity = _scrollController.offset >
-                  _scrollController.initialScrollOffset +
-                      _preferredAppBarHeight / 2
-              ? 1.0
-              : 0.0;
         });
       });
   }
@@ -65,11 +56,7 @@ class _CategoryPageState extends State<CategoryPage>
     return Scaffold(
       backgroundColor: Color(widget.category.color),
       appBar: AppBar(
-        title: AnimatedOpacity(
-          opacity: _appBarTitleOpacity,
-          duration: const Duration(milliseconds: 250),
-          child: Text(widget.category.title),
-        ),
+        title: Text(widget.category.title),
         backgroundColor: Color(widget.category.color),
         elevation: _appBarElevation,
         leading: const PlatformBackButton(
@@ -78,37 +65,21 @@ class _CategoryPageState extends State<CategoryPage>
       ),
       body: ScrollConfiguration(
         behavior: const ScrollBehavior(),
-        child: SingleChildScrollView(
+        child: ListView.builder(
           controller: _scrollController,
           padding: const EdgeInsets.fromLTRB(
             paddingL,
             paddingZero,
             paddingL,
-            paddingL,
+            paddingXL,
           ),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Text(
-                    widget.category.title,
-                    style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 32.0,
-                          color: Colors.white,
-                        ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: spaceL),
-              for (var i = 0; i < widget.category.patterns.length; i++)
-                Container(
-                  margin: const EdgeInsets.only(top: marginL),
-                  child: DesignPatternCard(
-                    designPattern: widget.category.patterns[i],
-                  ),
-                ),
-            ],
+          itemBuilder: (_, i) => Container(
+            margin: const EdgeInsets.only(top: marginL),
+            child: DesignPatternCard(
+              designPattern: widget.category.patterns[i],
+            ),
           ),
+          itemCount: widget.category.patterns.length,
         ),
       ),
     );

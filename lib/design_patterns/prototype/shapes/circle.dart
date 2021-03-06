@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../shape.dart';
 
 class Circle extends Shape {
-  double radius;
+  late double radius;
 
   Circle(Color color, this.radius) : super(color);
 

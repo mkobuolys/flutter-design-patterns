@@ -22,26 +22,26 @@ class BridgeExample extends StatefulWidget {
 class _BridgeExampleState extends State<BridgeExample> {
   final List<IStorage> _storages = [SqlStorage(), FileStorage()];
 
-  IRepository _customersRepository;
-  IRepository _ordersRepository;
+  late IRepository _customersRepository;
+  late IRepository _ordersRepository;
 
-  List<Customer> _customers;
-  List<Order> _orders;
+  late List<Customer> _customers;
+  late List<Order> _orders;
 
   int _selectedCustomerStorageIndex = 0;
   int _selectedOrderStorageIndex = 0;
 
-  void _onSelectedCustomerStorageIndexChanged(int index) {
+  void _onSelectedCustomerStorageIndexChanged(int? index) {
     setState(() {
-      _selectedCustomerStorageIndex = index;
+      _selectedCustomerStorageIndex = index!;
       _customersRepository = CustomersRepository(_storages[index]);
       _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
-  void _onSelectedOrderStorageIndexChanged(int index) {
+  void _onSelectedOrderStorageIndexChanged(int? index) {
     setState(() {
-      _selectedOrderStorageIndex = index;
+      _selectedOrderStorageIndex = index!;
       _ordersRepository = OrdersRepository(_storages[index]);
       _orders = _ordersRepository.getAll() as List<Order>;
     });

@@ -30,7 +30,7 @@ class File extends StatelessWidget implements IFile {
           FileSizeConverter.bytesToString(size),
           style: Theme.of(context)
               .textTheme
-              .bodyText2
+              .bodyText2!
               .copyWith(color: Colors.black54),
         ),
         dense: true,

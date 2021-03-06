@@ -5,14 +5,13 @@ import '../../../constants.dart';
 class Box extends StatelessWidget {
   final int nodeId;
   final Color color;
-  final Widget child;
+  final Widget? child;
 
   const Box({
-    @required this.nodeId,
-    @required this.color,
+    required this.nodeId,
+    required this.color,
     this.child,
-  })  : assert(nodeId != null),
-        assert(color != null);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class Box extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: spaceM),
-            if (child != null) child,
+            if (child != null) child!,
           ],
         ),
       ),

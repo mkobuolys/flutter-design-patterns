@@ -5,14 +5,13 @@ import '../../../design_patterns/iterator/tree_collections/itree_collection.dart
 class TreeCollectionSelection extends StatelessWidget {
   final List<ITreeCollection> treeCollections;
   final int selectedIndex;
-  final ValueSetter<int> onChanged;
+  final ValueSetter<int?>? onChanged;
 
   const TreeCollectionSelection({
-    @required this.treeCollections,
-    @required this.selectedIndex,
-    @required this.onChanged,
-  })  : assert(treeCollections != null),
-        assert(selectedIndex != null);
+    required this.treeCollections,
+    required this.selectedIndex,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

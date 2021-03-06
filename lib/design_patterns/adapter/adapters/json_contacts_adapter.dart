@@ -18,13 +18,15 @@ class JsonContactsAdapter implements IContactsAdapter {
   List<Contact> _parseContactsJson(String contactsJson) {
     final contactsMap = json.decode(contactsJson) as Map<String, dynamic>;
     final contactsJsonList = contactsMap['contacts'] as List;
-    final contactsList = contactsJsonList
-        .map((json) => Contact(
-              fullName: json['fullName'] as String,
-              email: json['email'] as String,
-              favourite: json['favourite'] as bool,
-            ))
-        .toList();
+    final contactsList = contactsJsonList.map((json) {
+      final contactJson = json as Map<String, dynamic>;
+
+      return Contact(
+        fullName: contactJson['fullName'] as String,
+        email: contactJson['email'] as String,
+        favourite: contactJson['favourite'] as bool,
+      );
+    }).toList();
 
     return contactsList;
   }

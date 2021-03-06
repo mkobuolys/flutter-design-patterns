@@ -5,10 +5,9 @@ class DeviceIcon extends StatelessWidget {
   final bool activated;
 
   const DeviceIcon({
-    @required this.iconData,
-    @required this.activated,
-  })  : assert(iconData != null),
-        assert(activated != null);
+    required this.iconData,
+    required this.activated,
+  });
 
   @override
   Widget build(BuildContext context) {

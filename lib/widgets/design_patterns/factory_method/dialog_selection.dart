@@ -5,15 +5,13 @@ import '../../../design_patterns/factory_method/custom_dialog.dart';
 class DialogSelection extends StatelessWidget {
   final List<CustomDialog> customDialogList;
   final int selectedIndex;
-  final ValueSetter<int> onChanged;
+  final ValueSetter<int?> onChanged;
 
   const DialogSelection({
-    @required this.customDialogList,
-    @required this.selectedIndex,
-    @required this.onChanged,
-  })  : assert(customDialogList != null),
-        assert(selectedIndex != null),
-        assert(onChanged != null);
+    required this.customDialogList,
+    required this.selectedIndex,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

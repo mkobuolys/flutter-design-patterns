@@ -2,9 +2,9 @@ import 'package:meta/meta.dart';
 
 abstract class ExampleStateBase {
   @protected
-  String initialText;
+  late String initialText;
   @protected
-  String stateText;
+  late String stateText;
   String get currentText => stateText;
 
   // ignore: use_setters_to_change_properties

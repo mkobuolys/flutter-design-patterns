@@ -5,11 +5,11 @@ import 'states/loading_state.dart';
 import 'states/no_results_state.dart';
 
 class StateContext {
-  final StreamController<IState> _stateStream = StreamController<IState>();
+  final _stateStream = StreamController<IState>();
   Sink<IState> get _inState => _stateStream.sink;
   Stream<IState> get outState => _stateStream.stream;
 
-  IState _currentState;
+  late IState _currentState;
 
   StateContext() {
     _currentState = NoResultsState();

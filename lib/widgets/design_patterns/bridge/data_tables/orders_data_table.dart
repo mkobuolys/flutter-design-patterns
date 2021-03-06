@@ -6,7 +6,9 @@ import '../../../../design_patterns/bridge/entities/order.dart';
 class OrdersDatatable extends StatelessWidget {
   final List<Order> orders;
 
-  const OrdersDatatable({@required this.orders}) : assert(orders != null);
+  const OrdersDatatable({
+    required this.orders,
+  });
 
   @override
   Widget build(BuildContext context) {

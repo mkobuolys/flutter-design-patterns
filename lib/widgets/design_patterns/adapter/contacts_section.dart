@@ -11,10 +11,9 @@ class ContactsSection extends StatefulWidget {
   final String headerText;
 
   const ContactsSection({
-    @required this.adapter,
-    @required this.headerText,
-  })  : assert(adapter != null),
-        assert(headerText != null);
+    required this.adapter,
+    required this.headerText,
+  });
 
   @override
   _ContactsSectionState createState() => _ContactsSectionState();
@@ -53,10 +52,9 @@ class _ContactsSectionContent extends StatelessWidget {
   final VoidCallback onPressed;
 
   const _ContactsSectionContent({
-    @required this.contacts,
-    @required this.onPressed,
-  })  : assert(contacts != null),
-        assert(onPressed != null);
+    required this.contacts,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

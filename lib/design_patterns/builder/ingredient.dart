@@ -2,9 +2,9 @@ import 'package:meta/meta.dart';
 
 abstract class Ingredient {
   @protected
-  List<String> allergens;
+  late List<String> allergens;
   @protected
-  String name;
+  late String name;
 
   List<String> getAllergens() {
     return allergens;

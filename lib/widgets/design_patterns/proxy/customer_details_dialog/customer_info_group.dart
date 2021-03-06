@@ -5,10 +5,9 @@ class CustomerInfoGroup extends StatelessWidget {
   final String text;
 
   const CustomerInfoGroup({
-    @required this.label,
-    @required this.text,
-  })  : assert(label != null),
-        assert(text != null);
+    required this.label,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {

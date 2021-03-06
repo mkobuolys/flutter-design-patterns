@@ -7,18 +7,16 @@ import 'sized_shape_column.dart';
 
 class ShapeColumn extends StatelessWidget {
   final Shape shape;
-  final Shape shapeClone;
+  final Shape? shapeClone;
   final VoidCallback onRandomisePropertiesPressed;
   final VoidCallback onClonePressed;
 
   const ShapeColumn({
-    @required this.shape,
-    @required this.shapeClone,
-    @required this.onRandomisePropertiesPressed,
-    @required this.onClonePressed,
-  })  : assert(shape != null),
-        assert(onRandomisePropertiesPressed != null),
-        assert(onClonePressed != null);
+    required this.shape,
+    required this.shapeClone,
+    required this.onRandomisePropertiesPressed,
+    required this.onClonePressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class ShapeColumn extends StatelessWidget {
                       width: 120.0,
                       child: Placeholder(),
                     )
-                  : shapeClone.render(),
+                  : shapeClone!.render(),
             ),
           ],
         ),

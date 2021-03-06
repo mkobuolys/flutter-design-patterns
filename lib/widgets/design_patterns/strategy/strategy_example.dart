@@ -38,9 +38,9 @@ class _StrategyExampleState extends State<StrategyExample> {
     });
   }
 
-  void _setSelectedStrategyIndex(int index) {
+  void _setSelectedStrategyIndex(int? index) {
     setState(() {
-      _selectedStrategyIndex = index;
+      _selectedStrategyIndex = index!;
     });
   }
 

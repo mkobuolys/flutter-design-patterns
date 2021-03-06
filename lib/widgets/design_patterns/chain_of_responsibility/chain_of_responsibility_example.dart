@@ -19,7 +19,7 @@ class _ChainOfResponsibilityExampleState
     extends State<ChainOfResponsibilityExample> {
   final LogBloc logBloc = LogBloc();
 
-  LoggerBase logger;
+  late final LoggerBase logger;
 
   @override
   void initState() {
@@ -78,7 +78,7 @@ class _ChainOfResponsibilityExampleState
                     initialData: const [],
                     stream: logBloc.outLogStream,
                     builder: (_, AsyncSnapshot<List<LogMessage>> snapshot) =>
-                        LogMessagesColumn(logMessages: snapshot.data),
+                        LogMessagesColumn(logMessages: snapshot.data!),
                   ),
                 ),
               ],

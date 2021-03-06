@@ -5,15 +5,13 @@ import '../../../design_patterns/visitor/ivisitor.dart';
 class FilesVisitorSelection extends StatelessWidget {
   final List<IVisitor> visitorsList;
   final int selectedIndex;
-  final ValueSetter<int> onChanged;
+  final ValueSetter<int?> onChanged;
 
   const FilesVisitorSelection({
-    @required this.visitorsList,
-    @required this.selectedIndex,
-    @required this.onChanged,
-  })  : assert(visitorsList != null),
-        assert(selectedIndex != null),
-        assert(onChanged != null);
+    required this.visitorsList,
+    required this.selectedIndex,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class Shape {
-  Color color;
+  late Color color;
 
   Shape(this.color);
 
