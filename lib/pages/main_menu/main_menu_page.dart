@@ -34,7 +34,7 @@ class MainMenuPage extends StatelessWidget {
                     if (snapshot.hasData) {
                       return Column(
                         children: <Widget>[
-                          for (var category in snapshot.data)
+                          for (var category in snapshot.data!)
                             Container(
                               margin: const EdgeInsets.only(top: marginL),
                               child: MainMenuCard(

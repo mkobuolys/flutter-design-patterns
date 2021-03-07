@@ -6,15 +6,13 @@ import '../../../design_patterns/strategy/ishipping_costs_strategy.dart';
 class ShippingOptions extends StatelessWidget {
   final List<IShippingCostsStrategy> shippingOptions;
   final int selectedIndex;
-  final ValueChanged<int> onChanged;
+  final ValueChanged<int?> onChanged;
 
   const ShippingOptions({
-    @required this.shippingOptions,
-    @required this.selectedIndex,
-    @required this.onChanged,
-  })  : assert(shippingOptions != null),
-        assert(selectedIndex != null),
-        assert(onChanged != null);
+    required this.shippingOptions,
+    required this.selectedIndex,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

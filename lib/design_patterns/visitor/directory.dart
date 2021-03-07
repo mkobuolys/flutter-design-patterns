@@ -14,11 +14,10 @@ class Directory extends StatelessWidget implements IFile {
   List<IFile> get files => _files;
 
   Directory({
-    @required this.title,
-    @required this.level,
+    required this.title,
+    required this.level,
     this.isInitiallyExpanded = false,
-  })  : assert(title != null),
-        assert(level != null);
+  });
 
   void addFile(IFile file) {
     _files.add(file);

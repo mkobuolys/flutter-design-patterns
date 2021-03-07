@@ -8,8 +8,8 @@ class BurgerInformationColumn extends StatelessWidget {
   final Burger burger;
 
   const BurgerInformationColumn({
-    @required this.burger,
-  }) : assert(burger != null);
+    required this.burger,
+  });
 
   @override
   Widget build(BuildContext context) {

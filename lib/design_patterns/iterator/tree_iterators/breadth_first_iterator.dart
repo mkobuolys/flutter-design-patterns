@@ -9,7 +9,7 @@ class BreadthFirstIterator implements ITreeIterator {
   final ListQueue<int> nodeQueue = ListQueue<int>();
 
   final int _initialNode = 1;
-  int _currentNode;
+  late int _currentNode;
 
   BreadthFirstIterator(this.treeCollection) {
     _currentNode = _initialNode;
@@ -24,7 +24,7 @@ class BreadthFirstIterator implements ITreeIterator {
   }
 
   @override
-  int getNext() {
+  int? getNext() {
     if (!hasNext()) {
       return null;
     }
@@ -33,7 +33,7 @@ class BreadthFirstIterator implements ITreeIterator {
     visitedNodes.add(_currentNode);
 
     if (adjacencyList.containsKey(_currentNode)) {
-      for (final node in adjacencyList[_currentNode]
+      for (final node in adjacencyList[_currentNode]!
           .where((n) => !visitedNodes.contains(n))) {
         nodeQueue.addLast(node);
       }

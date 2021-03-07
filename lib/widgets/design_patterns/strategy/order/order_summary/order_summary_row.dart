@@ -6,12 +6,10 @@ class OrderSummaryRow extends StatelessWidget {
   final String fontFamily;
 
   const OrderSummaryRow({
-    @required this.label,
-    @required this.value,
-    @required this.fontFamily,
-  })  : assert(label != null),
-        assert(value != null),
-        assert(fontFamily != null);
+    required this.label,
+    required this.value,
+    required this.fontFamily,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +19,12 @@ class OrderSummaryRow extends StatelessWidget {
         Text(label,
             style: Theme.of(context)
                 .textTheme
-                .subtitle1
+                .subtitle1!
                 .copyWith(fontFamily: fontFamily)),
         Text('\$${value.toStringAsFixed(2)}',
             style: Theme.of(context)
                 .textTheme
-                .subtitle1
+                .subtitle1!
                 .copyWith(fontFamily: fontFamily)),
       ],
     );

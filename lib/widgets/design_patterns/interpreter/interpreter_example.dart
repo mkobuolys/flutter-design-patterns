@@ -26,7 +26,9 @@ class _InterpreterExampleState extends State<InterpreterExample> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             for (var postfixExpression in _postfixExpressions)
-              ExpressionSection(postfixExpression),
+              ExpressionSection(
+                postfixExpression: postfixExpression,
+              ),
           ],
         ),
       ),

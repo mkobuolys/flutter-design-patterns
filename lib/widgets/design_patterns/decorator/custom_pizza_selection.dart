@@ -5,13 +5,12 @@ import '../../../design_patterns/decorator/pizza_topping_data.dart';
 
 class CustomPizzaSelection extends StatelessWidget {
   final Map<int, PizzaToppingData> pizzaToppingsDataMap;
-  final Function onSelected;
+  final Function(int, bool?) onSelected;
 
   const CustomPizzaSelection({
-    @required this.pizzaToppingsDataMap,
-    @required this.onSelected,
-  })  : assert(pizzaToppingsDataMap != null),
-        assert(onSelected != null);
+    required this.pizzaToppingsDataMap,
+    required this.onSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +30,16 @@ class CustomPizzaSelection extends StatelessWidget {
                 )
               : ChoiceChip(
                   label: Text(
-                    pizzaToppingsDataMap[i].label,
+                    pizzaToppingsDataMap[i]!.label,
                     style: TextStyle(
-                      color: pizzaToppingsDataMap[i].selected
+                      color: pizzaToppingsDataMap[i]!.selected
                           ? Colors.white
                           : Colors.black,
                     ),
                   ),
-                  selected: pizzaToppingsDataMap[i].selected,
+                  selected: pizzaToppingsDataMap[i]!.selected,
                   selectedColor: Colors.black,
-                  onSelected: (bool selected) => onSelected(i, selected),
+                  onSelected: (bool? selected) => onSelected(i, selected),
                 ),
       ],
     );

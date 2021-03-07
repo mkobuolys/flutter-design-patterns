@@ -4,9 +4,9 @@ import 'burger.dart';
 
 abstract class BurgerBuilderBase {
   @protected
-  Burger burger;
+  late Burger burger;
   @protected
-  double price;
+  late double price;
 
   void createBurger() {
     burger = Burger();

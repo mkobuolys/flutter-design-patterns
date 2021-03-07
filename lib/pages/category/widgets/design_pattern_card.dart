@@ -8,8 +8,8 @@ class DesignPatternCard extends StatelessWidget {
   final DesignPattern designPattern;
 
   const DesignPatternCard({
-    @required this.designPattern,
-  }) : assert(designPattern != null);
+    required this.designPattern,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class DesignPatternCard extends StatelessWidget {
       backgroundColor: lightBackgroundColor,
       contentHeader: Text(
         designPattern.title,
-        style: Theme.of(context).textTheme.headline6.copyWith(
+        style: Theme.of(context).textTheme.headline6!.copyWith(
               fontSize: 26.0,
             ),
         overflow: TextOverflow.ellipsis,

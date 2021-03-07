@@ -8,8 +8,8 @@ class MainMenuCard extends StatelessWidget {
   final DesignPatternCategory category;
 
   const MainMenuCard({
-    @required this.category,
-  }) : assert(category != null);
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class MainMenuCard extends StatelessWidget {
       backgroundColor: Color(category.color),
       contentHeader: Text(
         category.title,
-        style: Theme.of(context).textTheme.headline6.copyWith(
+        style: Theme.of(context).textTheme.headline6!.copyWith(
               fontSize: 26.0,
               color: Colors.white,
             ),
@@ -27,7 +27,7 @@ class MainMenuCard extends StatelessWidget {
         category.patterns.length == 1
             ? '${category.patterns.length} pattern'
             : '${category.patterns.length} patterns',
-        style: Theme.of(context).textTheme.subtitle1.copyWith(
+        style: Theme.of(context).textTheme.subtitle1!.copyWith(
               color: Colors.white,
             ),
       ),

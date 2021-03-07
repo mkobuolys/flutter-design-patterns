@@ -6,8 +6,8 @@ class SingletonExampleCard extends StatelessWidget {
   final String text;
 
   const SingletonExampleCard({
-    @required this.text,
-  }) : assert(text != null);
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {

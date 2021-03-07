@@ -6,8 +6,8 @@ class FilesDialog extends StatelessWidget {
   final String filesText;
 
   const FilesDialog({
-    @required this.filesText,
-  }) : assert(filesText != null);
+    required this.filesText,
+  });
 
   void closeDialog(BuildContext context) {
     Navigator.of(context).pop();

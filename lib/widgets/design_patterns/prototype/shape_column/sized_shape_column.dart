@@ -7,10 +7,9 @@ class SizedShapeColumn extends StatelessWidget {
   final Widget child;
 
   const SizedShapeColumn({
-    @required this.label,
-    @required this.child,
-  })  : assert(label != null),
-        assert(child != null);
+    required this.label,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,10 +7,9 @@ class OrderButtons extends StatelessWidget {
   final VoidCallback onClear;
 
   const OrderButtons({
-    @required this.onAdd,
-    @required this.onClear,
-  })  : assert(onAdd != null),
-        assert(onClear != null);
+    required this.onAdd,
+    required this.onClear,
+  });
 
   @override
   Widget build(BuildContext context) {

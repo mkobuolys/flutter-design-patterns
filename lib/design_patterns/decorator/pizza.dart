@@ -1,5 +1,8 @@
+import 'package:meta/meta.dart';
+
 abstract class Pizza {
-  String description;
+  @protected
+  late String description;
 
   String getDescription();
   double getPrice();

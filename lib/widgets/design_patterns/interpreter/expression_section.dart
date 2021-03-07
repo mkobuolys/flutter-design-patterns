@@ -8,9 +8,9 @@ import '../../platform_specific/platform_button.dart';
 class ExpressionSection extends StatefulWidget {
   final String postfixExpression;
 
-  const ExpressionSection(
-    this.postfixExpression,
-  ) : assert(postfixExpression != null);
+  const ExpressionSection({
+    required this.postfixExpression,
+  });
 
   @override
   _ExpressionSectionState createState() => _ExpressionSectionState();

@@ -1,5 +1,5 @@
 abstract class ITreeIterator {
   bool hasNext();
-  int getNext();
+  int? getNext();
   void reset();
 }

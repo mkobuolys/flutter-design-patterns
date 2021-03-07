@@ -5,7 +5,7 @@ import '../shape.dart';
 
 class ChangeWidthCommand implements Command {
   Shape shape;
-  double previousWidth;
+  late double previousWidth;
 
   ChangeWidthCommand(this.shape) {
     previousWidth = shape.width;

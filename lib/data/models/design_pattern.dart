@@ -5,10 +5,10 @@ class DesignPattern {
   final String route;
 
   const DesignPattern({
-    this.id,
-    this.title,
-    this.description,
-    this.route,
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.route,
   });
 
   factory DesignPattern.fromJson(Map<String, dynamic> json) {

@@ -6,8 +6,8 @@ class ShapeContainer extends StatelessWidget {
   final Shape shape;
 
   const ShapeContainer({
-    @required this.shape,
-  }) : assert(shape != null);
+    required this.shape,
+  });
 
   @override
   Widget build(BuildContext context) {

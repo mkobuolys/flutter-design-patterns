@@ -6,8 +6,8 @@ class LogMessagesColumn extends StatelessWidget {
   final List<LogMessage> logMessages;
 
   const LogMessagesColumn({
-    @required this.logMessages,
-  }) : assert(logMessages != null);
+    required this.logMessages,
+  });
 
   @override
   Widget build(BuildContext context) {

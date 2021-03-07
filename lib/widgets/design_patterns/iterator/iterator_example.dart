@@ -18,7 +18,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   final List<ITreeCollection> treeCollections = [];
 
   int _selectedTreeCollectionIndex = 0;
-  int _currentNodeIndex = 0;
+  int? _currentNodeIndex = 0;
   bool _isTraversing = false;
 
   @override
@@ -44,9 +44,9 @@ class _IteratorExampleState extends State<IteratorExample> {
     return graph;
   }
 
-  void _setSelectedTreeCollectionIndex(int index) {
+  void _setSelectedTreeCollectionIndex(int? index) {
     setState(() {
-      _selectedTreeCollectionIndex = index;
+      _selectedTreeCollectionIndex = index!;
     });
   }
 
@@ -79,7 +79,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   }
 
   Color _getBackgroundColor(int index) {
-    return _currentNodeIndex == index ? Colors.red[200] : Colors.white;
+    return _currentNodeIndex == index ? Colors.red[200]! : Colors.white;
   }
 
   @override

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ModeSwitcher extends StatelessWidget {
   final String title;
   final bool activated;
-  final ValueSetter<bool> onChanged;
+  final ValueSetter<bool>? onChanged;
 
   const ModeSwitcher({
-    @required this.title,
-    @required this.activated,
-    @required this.onChanged,
-  })  : assert(title != null),
-        assert(activated != null);
+    required this.title,
+    required this.activated,
+    required this.onChanged,
+  });
+
   @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(

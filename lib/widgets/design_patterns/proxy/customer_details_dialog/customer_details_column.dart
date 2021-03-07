@@ -8,8 +8,8 @@ class CustomerDetailsColumn extends StatelessWidget {
   final CustomerDetails customerDetails;
 
   const CustomerDetailsColumn({
-    @required this.customerDetails,
-  }) : assert(customerDetails != null);
+    required this.customerDetails,
+  });
 
   @override
   Widget build(BuildContext context) {

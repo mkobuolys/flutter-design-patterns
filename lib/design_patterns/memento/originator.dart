@@ -3,7 +3,7 @@ import 'memento/imemento.dart';
 import 'memento/memento.dart';
 
 class Originator {
-  Shape state;
+  late Shape state;
 
   Originator() {
     state = Shape.initial();

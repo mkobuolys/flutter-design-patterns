@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Shape {
-  Color color;
-  double height;
-  double width;
+  late Color color;
+  late double height;
+  late double width;
 
   Shape.initial() {
     color = Colors.black;

@@ -10,7 +10,7 @@ class JsonHelper {
   }
 
   static T deserialiseObject<T extends EntityBase>(String jsonString) {
-    final json = jsonDecode(jsonString) as Map<String, dynamic>;
+    final json = jsonDecode(jsonString)! as Map<String, dynamic>;
 
     switch (T) {
       case Customer:

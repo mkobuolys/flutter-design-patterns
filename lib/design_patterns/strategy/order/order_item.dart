@@ -3,9 +3,9 @@ import 'package:faker/faker.dart';
 import 'package_size.dart';
 
 class OrderItem {
-  String title;
-  double price;
-  PackageSize packageSize;
+  late final String title;
+  late final double price;
+  late final PackageSize packageSize;
 
   OrderItem.random() {
     const packageSizeList = PackageSize.values;

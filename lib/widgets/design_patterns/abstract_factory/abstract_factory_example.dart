@@ -22,13 +22,13 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
 
   int _selectedFactoryIndex = 0;
 
-  IActivityIndicator _activityIndicator;
+  late IActivityIndicator _activityIndicator;
 
-  ISlider _slider;
+  late ISlider _slider;
   double _sliderValue = 50.0;
   String get _sliderValueString => _sliderValue.toStringAsFixed(0);
 
-  ISwitch _switch;
+  late ISwitch _switch;
   bool _switchValue = false;
   String get _switchValueString => _switchValue ? 'ON' : 'OFF';
 
@@ -45,9 +45,9 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
     _switch = widgetsFactoryList[_selectedFactoryIndex].createSwitch();
   }
 
-  void _setSelectedFactoryIndex(int index) {
+  void _setSelectedFactoryIndex(int? index) {
     setState(() {
-      _selectedFactoryIndex = index;
+      _selectedFactoryIndex = index!;
       _createWidgets();
     });
   }

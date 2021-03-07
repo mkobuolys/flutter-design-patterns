@@ -6,7 +6,7 @@ import '../shape.dart';
 
 class ChangeColorCommand implements Command {
   Shape shape;
-  Color previousColor;
+  late Color previousColor;
 
   ChangeColorCommand(this.shape) {
     previousColor = shape.color;

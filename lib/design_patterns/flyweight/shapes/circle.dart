@@ -6,11 +6,10 @@ class Circle implements IPositionedShape {
   final Color color;
   final double diameter;
 
-  Circle({
-    @required this.color,
-    @required this.diameter,
-  })  : assert(color != null),
-        assert(diameter != null);
+  const Circle({
+    required this.color,
+    required this.diameter,
+  });
 
   @override
   Widget render(double x, double y) {

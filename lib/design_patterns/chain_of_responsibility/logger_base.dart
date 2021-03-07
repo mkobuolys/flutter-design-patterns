@@ -5,7 +5,7 @@ import 'log_level.dart';
 abstract class LoggerBase {
   @protected
   final LogLevel logLevel;
-  final LoggerBase _nextLogger;
+  final LoggerBase? _nextLogger;
 
   const LoggerBase(this.logLevel, [this._nextLogger]);
 
@@ -14,9 +14,7 @@ abstract class LoggerBase {
       log(message);
     }
 
-    if (_nextLogger != null) {
-      _nextLogger.logMessage(level, message);
-    }
+    _nextLogger?.logMessage(level, message);
   }
 
   void logDebug(String message) => logMessage(LogLevel.Debug, message);

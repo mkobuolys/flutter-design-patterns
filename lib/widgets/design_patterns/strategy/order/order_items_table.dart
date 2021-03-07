@@ -7,8 +7,8 @@ class OrderItemsTable extends StatelessWidget {
   final List<OrderItem> orderItems;
 
   const OrderItemsTable({
-    @required this.orderItems,
-  }) : assert(orderItems != null);
+    required this.orderItems,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -6,8 +6,8 @@ class CommandHistoryColumn extends StatelessWidget {
   final List<String> commandList;
 
   const CommandHistoryColumn({
-    @required this.commandList,
-  }) : assert(commandList != null);
+    required this.commandList,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,8 @@ class Contact {
   final bool favourite;
 
   const Contact({
-    this.fullName,
-    this.email,
-    this.favourite,
+    required this.fullName,
+    required this.email,
+    required this.favourite,
   });
 }

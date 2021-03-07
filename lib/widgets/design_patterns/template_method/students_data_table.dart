@@ -6,7 +6,9 @@ import '../../../design_patterns/template_method/student.dart';
 class StudentsDataTable extends StatelessWidget {
   final List<Student> students;
 
-  const StudentsDataTable({@required this.students}) : assert(students != null);
+  const StudentsDataTable({
+    required this.students,
+  });
 
   @override
   Widget build(BuildContext context) {

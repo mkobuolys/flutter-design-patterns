@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 import 'log_level.dart';
 
@@ -8,10 +7,9 @@ class LogMessage {
   final String message;
 
   const LogMessage({
-    @required this.logLevel,
-    @required this.message,
-  })  : assert(logLevel != null),
-        assert(message != null);
+    required this.logLevel,
+    required this.message,
+  });
 
   String get _logLevelString =>
       logLevel.toString().split('.').last.toUpperCase();

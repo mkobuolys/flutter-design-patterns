@@ -15,14 +15,16 @@ class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
     final studentsJson = _api.getStudentsJson();
     final studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
     final studentsJsonList = studentsMap['students'] as List;
-    final studentsList = studentsJsonList
-        .map((json) => Student(
-              fullName: json['fullName'] as String,
-              age: json['age'] as int,
-              height: json['height'] as double,
-              weight: json['weight'] as int,
-            ))
-        .toList();
+    final studentsList = studentsJsonList.map((json) {
+      final studentJson = json as Map<String, dynamic>;
+
+      return Student(
+        fullName: studentJson['fullName'] as String,
+        age: studentJson['age'] as int,
+        height: studentJson['height'] as double,
+        weight: studentJson['weight'] as int,
+      );
+    }).toList();
 
     return studentsList;
   }

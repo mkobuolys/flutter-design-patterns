@@ -7,8 +7,8 @@ class PizzaInformation extends StatelessWidget {
   final Pizza pizza;
 
   const PizzaInformation({
-    @required this.pizza,
-  }) : assert(pizza != null);
+    required this.pizza,
+  });
 
   @override
   Widget build(BuildContext context) {

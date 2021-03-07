@@ -11,10 +11,9 @@ class StudentsSection extends StatefulWidget {
   final String headerText;
 
   const StudentsSection({
-    @required this.bmiCalculator,
-    @required this.headerText,
-  })  : assert(bmiCalculator != null),
-        assert(headerText != null);
+    required this.bmiCalculator,
+    required this.headerText,
+  });
 
   @override
   _StudentsSectionState createState() => _StudentsSectionState();
@@ -53,10 +52,9 @@ class _StudentsSectionContent extends StatelessWidget {
   final VoidCallback onPressed;
 
   const _StudentsSectionContent({
-    @required this.students,
-    @required this.onPressed,
-  })  : assert(students != null),
-        assert(onPressed != null);
+    required this.students,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

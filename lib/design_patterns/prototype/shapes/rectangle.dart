@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../shape.dart';
 
 class Rectangle extends Shape {
-  double height;
-  double width;
+  late double height;
+  late double width;
 
   Rectangle(Color color, this.height, this.width) : super(color);
 

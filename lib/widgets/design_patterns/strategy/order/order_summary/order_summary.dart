@@ -10,10 +10,9 @@ class OrderSummary extends StatelessWidget {
   final IShippingCostsStrategy shippingCostsStrategy;
 
   const OrderSummary({
-    @required this.order,
-    @required this.shippingCostsStrategy,
-  })  : assert(order != null),
-        assert(shippingCostsStrategy != null);
+    required this.order,
+    required this.shippingCostsStrategy,
+  });
 
   double get shippingPrice => shippingCostsStrategy.calculate(order);
   double get total => order.price + shippingPrice;

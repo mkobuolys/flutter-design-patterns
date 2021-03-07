@@ -16,10 +16,10 @@ class FlyweightExample extends StatefulWidget {
 class _FlyweightExampleState extends State<FlyweightExample> {
   static const int shapesCount = 1000;
 
-  final ShapeFactory shapeFactory = ShapeFactory();
+  final shapeFactory = const ShapeFactory();
 
-  ShapeFlyweightFactory _shapeFlyweightFactory;
-  List<IPositionedShape> _shapesList;
+  late final ShapeFlyweightFactory _shapeFlyweightFactory;
+  late List<IPositionedShape> _shapesList;
 
   int _shapeInstancesCount = 0;
   bool _useFlyweightFactory = false;

@@ -16,8 +16,8 @@ class DecoratorExample extends StatefulWidget {
 class _DecoratorExampleState extends State<DecoratorExample> {
   final PizzaMenu pizzaMenu = PizzaMenu();
 
-  Map<int, PizzaToppingData> _pizzaToppingsDataMap;
-  Pizza _pizza;
+  late final Map<int, PizzaToppingData> _pizzaToppingsDataMap;
+  late Pizza _pizza;
   int _selectedIndex = 0;
 
   @override
@@ -27,8 +27,8 @@ class _DecoratorExampleState extends State<DecoratorExample> {
     _pizza = pizzaMenu.getPizza(0, _pizzaToppingsDataMap);
   }
 
-  void _onSelectedIndexChanged(int index) {
-    _setSelectedIndex(index);
+  void _onSelectedIndexChanged(int? index) {
+    _setSelectedIndex(index!);
     _setSelectedPizza(index);
   }
 
@@ -38,14 +38,14 @@ class _DecoratorExampleState extends State<DecoratorExample> {
     });
   }
 
-  void _onCustomPizzaChipSelected(int index, bool selected) {
-    _setChipSelected(index, selected);
+  void _onCustomPizzaChipSelected(int index, bool? selected) {
+    _setChipSelected(index, selected!);
     _setSelectedPizza(_selectedIndex);
   }
 
   void _setChipSelected(int index, bool selected) {
     setState(() {
-      _pizzaToppingsDataMap[index].setSelected(isSelected: selected);
+      _pizzaToppingsDataMap[index]!.setSelected(isSelected: selected);
     });
   }
 
@@ -78,9 +78,13 @@ class _DecoratorExampleState extends State<DecoratorExample> {
             AnimatedContainer(
               height: _selectedIndex == 2 ? 100.0 : 0.0,
               duration: const Duration(milliseconds: 500),
-              child: CustomPizzaSelection(
-                pizzaToppingsDataMap: _pizzaToppingsDataMap,
-                onSelected: _onCustomPizzaChipSelected,
+              child: AnimatedOpacity(
+                opacity: _selectedIndex == 2 ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                child: CustomPizzaSelection(
+                  pizzaToppingsDataMap: _pizzaToppingsDataMap,
+                  onSelected: _onCustomPizzaChipSelected,
+                ),
               ),
             ),
             PizzaInformation(

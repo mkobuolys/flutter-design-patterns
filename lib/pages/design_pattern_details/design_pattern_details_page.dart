@@ -6,17 +6,15 @@ import '../../constants.dart';
 import '../../data/models/design_pattern.dart';
 import '../../data/repositories/markdown_repository.dart';
 import '../../widgets/platform_specific/platform_back_button.dart';
-import 'widgets/design_pattern_details_header.dart';
 
 class DesignPatternDetailsPage extends StatefulWidget {
   final DesignPattern designPattern;
   final Widget example;
 
   const DesignPatternDetailsPage({
-    @required this.designPattern,
-    @required this.example,
-  })  : assert(designPattern != null),
-        assert(example != null);
+    required this.designPattern,
+    required this.example,
+  });
 
   @override
   _DesignPatternDetailsPageState createState() =>
@@ -25,15 +23,13 @@ class DesignPatternDetailsPage extends StatefulWidget {
 
 class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
     with TickerProviderStateMixin {
-  final MarkdownRepository repository = MarkdownRepository();
+  final repository = MarkdownRepository();
 
-  final double _preferredAppBarHeight = 56.0;
+  late final AnimationController _fadeSlideAnimationController;
+  late final ScrollController _scrollController;
+  late final TabController _tabController;
 
-  AnimationController _fadeSlideAnimationController;
-  ScrollController _scrollController;
-  TabController _tabController;
   double _appBarElevation = 0.0;
-  double _appBarTitleOpacity = 0.0;
   double _bottomNavigationBarElevation = 4.0;
 
   @override
@@ -52,11 +48,6 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
               _scrollController.offset > _scrollController.initialScrollOffset
                   ? 4.0
                   : 0.0;
-          _appBarTitleOpacity = _scrollController.offset >
-                  _scrollController.initialScrollOffset +
-                      _preferredAppBarHeight / 2
-              ? 1.0
-              : 0.0;
           _bottomNavigationBarElevation = _scrollController.offset ==
                   _scrollController.position.maxScrollExtent
               ? 0.0
@@ -81,7 +72,6 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
   void onBottomNavigationBarItemTap(int index) {
     setState(() {
       _appBarElevation = 0.0;
-      _appBarTitleOpacity = 0.0;
       _bottomNavigationBarElevation = 4.0;
       _tabController.index = index;
     });
@@ -112,14 +102,10 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
       ),
       body: Scaffold(
         appBar: AppBar(
-          title: AnimatedOpacity(
-            opacity: _appBarTitleOpacity,
-            duration: const Duration(milliseconds: 250),
-            child: Text(
-              widget.designPattern.title,
-              style: const TextStyle(
-                color: Colors.black,
-              ),
+          title: Text(
+            widget.designPattern.title,
+            style: const TextStyle(
+              color: Colors.black,
             ),
           ),
           backgroundColor: lightBackgroundColor,
@@ -138,14 +124,18 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                 controller: _scrollController,
                 padding: const EdgeInsets.fromLTRB(
                   paddingL,
-                  paddingZero,
                   paddingL,
                   paddingL,
+                  paddingXL,
                 ),
                 child: Column(
                   children: <Widget>[
-                    DesignPatternDetailsHeader(
-                      designPattern: widget.designPattern,
+                    Text(
+                      widget.designPattern.description,
+                      style: Theme.of(context).textTheme.subtitle1,
+                      textAlign: TextAlign.justify,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 99,
                     ),
                     const SizedBox(height: spaceL),
                     FutureBuilder(
@@ -154,7 +144,9 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                       builder: (_, AsyncSnapshot<String> snapshot) {
                         if (snapshot.hasData) {
                           return MarkdownBody(
-                            data: snapshot.data,
+                            data: snapshot.data!,
+                            fitContent: false,
+                            selectable: true,
                           );
                         }
 
