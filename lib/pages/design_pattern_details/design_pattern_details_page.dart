@@ -23,7 +23,7 @@ class DesignPatternDetailsPage extends StatefulWidget {
 
 class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
     with TickerProviderStateMixin {
-  final MarkdownRepository repository = MarkdownRepository();
+  final repository = MarkdownRepository();
 
   late final AnimationController _fadeSlideAnimationController;
   late final ScrollController _scrollController;
@@ -145,6 +145,8 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                         if (snapshot.hasData) {
                           return MarkdownBody(
                             data: snapshot.data!,
+                            fitContent: false,
+                            selectable: true,
                           );
                         }
 
