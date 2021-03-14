@@ -105,6 +105,11 @@ class AppRouter {
           settings,
           IteratorExample(),
         );
+      case _DesignPatternRoutes.mediatorRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          MediatorExample(),
+        );
       case _DesignPatternRoutes.mementoRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -166,6 +171,7 @@ class _DesignPatternRoutes {
   static const String flyweightRoute = '/flyweight';
   static const String interpreterRoute = '/interpreter';
   static const String iteratorRoute = '/iterator';
+  static const String mediatorRoute = '/mediator';
   static const String mementoRoute = '/memento';
   static const String prototypeRoute = '/prototype';
   static const String proxyRoute = '/proxy';

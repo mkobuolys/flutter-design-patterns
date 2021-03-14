@@ -41,6 +41,7 @@ flutter:
     - assets/images/flyweight/
     - assets/images/interpreter/
     - assets/images/iterator/
+    - assets/images/mediator/
     - assets/images/memento/
     - assets/images/prototype/
     - assets/images/proxy/
