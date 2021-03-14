@@ -16,14 +16,13 @@ class MediatorExample extends StatefulWidget {
 
 class _MediatorExampleState extends State<MediatorExample> {
   late final NotificationHub _notificationHub;
-  late final List<TeamMember> _members;
   final _admin = Admin(name: 'God');
 
   @override
   void initState() {
     super.initState();
 
-    _members = [
+    final _members = [
       _admin,
       Developer(name: 'Sea Sharp'),
       Developer(name: 'Jan Assembler'),
@@ -58,10 +57,8 @@ class _MediatorExampleState extends State<MediatorExample> {
         ? Tester(name: name)
         : Developer(name: name);
 
-    _notificationHub.register(teamMember);
-
     setState(() {
-      _members.add(teamMember);
+      _notificationHub.register(teamMember);
     });
   }
 
@@ -107,7 +104,7 @@ class _MediatorExampleState extends State<MediatorExample> {
             ),
             const SizedBox(height: spaceL),
             NotificationList(
-              members: _members,
+              members: _notificationHub.getTeamMembers(),
               onTap: _sendFromMember,
             ),
           ],

@@ -11,6 +11,9 @@ class TeamNotificationHub extends NotificationHub {
   }
 
   @override
+  List<TeamMember> getTeamMembers() => _teamMembers;
+
+  @override
   void register(TeamMember member) {
     member.notificationHub = this;
 
@@ -19,14 +22,19 @@ class TeamNotificationHub extends NotificationHub {
 
   @override
   void send(TeamMember sender, String message) {
-    for (final member in _teamMembers) {
+    final filteredMembers = _teamMembers.where((m) => m != sender);
+
+    for (final member in filteredMembers) {
       member.receive(sender.toString(), message);
     }
   }
 
   @override
   void sendTo<T extends TeamMember>(TeamMember sender, String message) {
-    for (final member in _teamMembers.whereType<T>()) {
+    final filteredMembers =
+        _teamMembers.where((m) => m != sender).whereType<T>();
+
+    for (final member in filteredMembers) {
       member.receive(sender.toString(), message);
     }
   }
