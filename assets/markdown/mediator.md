@@ -107,7 +107,7 @@ class Tester extends TeamMember {
 
 ### NotificationHub
 
-An abstract class that defines abstract methods to be implemented by specific notification hub classes. Method _getTeamMembers()_ returns a list of registered team members to the hub, _register()_ registers a new member to the hub. Method _send()_ sends the notification to all the registered team members to the hub (excluding sender) while _sentTo\<T\>()_ sends the notification to team members of a specific type (excluding sender).
+An abstract class that defines abstract methods to be implemented by specific notification hub classes. Method _getTeamMembers()_ returns a list of registered team members to the hub, _register()_ registers a new member to the hub. Method _send()_ sends the notification to all the registered team members to the hub (excluding sender) while _sendTo\<T\>()_ sends the notification to team members of a specific type (excluding sender).
 
 ```
 abstract class NotificationHub {
