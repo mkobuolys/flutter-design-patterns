@@ -43,6 +43,7 @@ flutter:
     - assets/images/iterator/
     - assets/images/mediator/
     - assets/images/memento/
+    - assets/images/observer/
     - assets/images/prototype/
     - assets/images/proxy/
     - assets/images/singleton/
