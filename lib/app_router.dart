@@ -115,6 +115,11 @@ class AppRouter {
           settings,
           MementoExample(),
         );
+      case _DesignPatternRoutes.observerRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          ObserverExample(),
+        );
       case _DesignPatternRoutes.stateRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
@@ -173,6 +178,7 @@ class _DesignPatternRoutes {
   static const String iteratorRoute = '/iterator';
   static const String mediatorRoute = '/mediator';
   static const String mementoRoute = '/memento';
+  static const String observerRoute = '/observer';
   static const String prototypeRoute = '/prototype';
   static const String proxyRoute = '/proxy';
   static const String singletonRoute = '/singleton';

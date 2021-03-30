@@ -13,6 +13,7 @@ export 'interpreter/interpreter_example.dart';
 export 'iterator/iterator_example.dart';
 export 'mediator/mediator_example.dart';
 export 'memento/memento_example.dart';
+export 'observer/observer_example.dart';
 export 'prototype/prototype_example.dart';
 export 'proxy/proxy_example.dart';
 export 'singleton/singleton_example.dart';

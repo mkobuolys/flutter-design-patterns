@@ -1,0 +1,4 @@
+enum StockChangeDirection {
+  falling,
+  growing,
+}
