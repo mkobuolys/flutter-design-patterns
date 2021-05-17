@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
@@ -32,7 +33,7 @@ class OrderButton extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Platform.isAndroid
+      child: kIsWeb || Platform.isAndroid
           ? MaterialButton(
               color: Colors.black,
               textColor: Colors.white,
