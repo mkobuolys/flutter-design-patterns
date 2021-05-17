@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
@@ -32,34 +33,20 @@ class OrderButton extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: getRightButton(child),
+      child: kIsWeb || Platform.isAndroid
+          ? MaterialButton(
+              color: Colors.black,
+              textColor: Colors.white,
+              disabledColor: Colors.grey,
+              disabledTextColor: Colors.white,
+              onPressed: onPressed,
+              child: child,
+            )
+          : CupertinoButton(
+              color: Colors.black,
+              onPressed: onPressed,
+              child: child,
+            ),
     );
-  }
-
-  Widget getRightButton(Widget child) {
-    final Widget materialButton = MaterialButton(
-      color: Colors.black,
-      textColor: Colors.white,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.white,
-      onPressed: onPressed,
-      child: child,
-    );
-
-    final Widget cupertinoButton = CupertinoButton(
-      color: Colors.black,
-      onPressed: onPressed,
-      child: child,
-    );
-
-    try {
-      if (Platform.isAndroid) {
-        return materialButton;
-      } else {
-        return cupertinoButton;
-      }
-    } catch (_) {
-      return materialButton;
-    }
   }
 }

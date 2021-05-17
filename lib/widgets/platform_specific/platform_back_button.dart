@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PlatformBackButton extends StatelessWidget {
@@ -12,22 +13,11 @@ class PlatformBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(getValidIcon),
+      icon: const Icon(
+        kIsWeb || Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
+      ),
       color: color,
       onPressed: () => Navigator.pop(context),
     );
-  }
-
-  IconData get getValidIcon {
-    IconData icon;
-    try {
-      Platform.isAndroid
-          ? icon = Icons.arrow_back
-          : icon = Icons.arrow_back_ios;
-    } catch (_) {
-      icon = Icons.arrow_back;
-    }
-
-    return icon;
   }
 }
