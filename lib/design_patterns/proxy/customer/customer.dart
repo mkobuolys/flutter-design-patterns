@@ -8,7 +8,7 @@ class Customer {
   CustomerDetails? details;
 
   Customer() {
-    id = faker.guid.guid()!;
+    id = faker.guid.guid();
     name = faker.person.name();
   }
 }
