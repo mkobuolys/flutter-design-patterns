@@ -12,10 +12,11 @@ class PlatformBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final icon =
+        kIsWeb || Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios;
+
     return IconButton(
-      icon: const Icon(
-        kIsWeb || Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
-      ),
+      icon: Icon(icon),
       color: color,
       onPressed: () => Navigator.pop(context),
     );
