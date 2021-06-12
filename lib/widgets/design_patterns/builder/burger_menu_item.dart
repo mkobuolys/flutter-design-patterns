@@ -1,4 +1,4 @@
-import '../../../design_patterns/builder/burger_builder_base.dart';
+import '../../../design_patterns/builder/builder.dart';
 
 class BurgerMenuItem {
   final String label;

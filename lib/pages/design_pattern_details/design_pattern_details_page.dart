@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../constants.dart';
+import '../../constants/constants.dart';
 import '../../data/models/design_pattern.dart';
 import '../../data/repositories/markdown_repository.dart';
+import '../../themes.dart';
 import '../../widgets/platform_specific/platform_back_button.dart';
 
 class DesignPatternDetailsPage extends StatefulWidget {
@@ -23,14 +25,12 @@ class DesignPatternDetailsPage extends StatefulWidget {
 
 class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
     with TickerProviderStateMixin {
-  final repository = MarkdownRepository();
-
   late final AnimationController _fadeSlideAnimationController;
   late final ScrollController _scrollController;
   late final TabController _tabController;
 
-  double _appBarElevation = 0.0;
-  double _bottomNavigationBarElevation = 4.0;
+  var _appBarElevation = 0.0;
+  var _bottomNavigationBarElevation = 4.0;
 
   @override
   void initState() {
@@ -69,7 +69,7 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
     super.dispose();
   }
 
-  void onBottomNavigationBarItemTap(int index) {
+  void _onBottomNavigationBarItemTap(int index) {
     setState(() {
       _appBarElevation = 0.0;
       _bottomNavigationBarElevation = 4.0;
@@ -98,7 +98,7 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
             icon: Icon(FontAwesomeIcons.lightbulb),
           ),
         ],
-        onTap: onBottomNavigationBarItemTap,
+        onTap: _onBottomNavigationBarItemTap,
       ),
       body: Scaffold(
         appBar: AppBar(
@@ -123,10 +123,10 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
               child: SingleChildScrollView(
                 controller: _scrollController,
                 padding: const EdgeInsets.fromLTRB(
-                  paddingL,
-                  paddingL,
-                  paddingL,
-                  paddingXL,
+                  LayoutConstants.paddingL,
+                  LayoutConstants.paddingL,
+                  LayoutConstants.paddingL,
+                  LayoutConstants.paddingXL,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -137,24 +137,30 @@ class _DesignPatternDetailsPageState extends State<DesignPatternDetailsPage>
                       overflow: TextOverflow.ellipsis,
                       maxLines: 99,
                     ),
-                    const SizedBox(height: spaceL),
-                    FutureBuilder(
-                      future: repository.get(widget.designPattern.id),
-                      initialData: '',
-                      builder: (_, AsyncSnapshot<String> snapshot) {
-                        if (snapshot.hasData) {
-                          return MarkdownBody(
-                            data: snapshot.data!,
-                            fitContent: false,
-                            selectable: true,
-                          );
-                        }
+                    const SizedBox(height: LayoutConstants.spaceL),
+                    Consumer(
+                      builder: (context, watch, child) {
+                        final repository = watch(markdownRepositoryProvider);
 
-                        return CircularProgressIndicator(
-                          backgroundColor: lightBackgroundColor,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.black.withOpacity(0.65),
-                          ),
+                        return FutureBuilder(
+                          future: repository.get(widget.designPattern.id),
+                          initialData: '',
+                          builder: (_, AsyncSnapshot<String> snapshot) {
+                            if (snapshot.hasData) {
+                              return MarkdownBody(
+                                data: snapshot.data!,
+                                fitContent: false,
+                                selectable: true,
+                              );
+                            }
+
+                            return CircularProgressIndicator(
+                              backgroundColor: lightBackgroundColor,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.black.withOpacity(0.65),
+                              ),
+                            );
+                          },
                         );
                       },
                     ),

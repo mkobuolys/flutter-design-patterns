@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-import '../../../../design_patterns/proxy/customer/customer_details.dart';
+import '../../../../constants/constants.dart';
+import '../../../../design_patterns/proxy/proxy.dart';
 import 'customer_info_group.dart';
 
 class CustomerDetailsColumn extends StatelessWidget {
@@ -21,12 +21,12 @@ class CustomerDetailsColumn extends StatelessWidget {
           label: 'E-mail',
           text: customerDetails.email,
         ),
-        const SizedBox(height: spaceL),
+        const SizedBox(height: LayoutConstants.spaceL),
         CustomerInfoGroup(
           label: 'Position',
           text: customerDetails.position,
         ),
-        const SizedBox(height: spaceL),
+        const SizedBox(height: LayoutConstants.spaceL),
         CustomerInfoGroup(
           label: 'Hobby',
           text: customerDetails.hobby,

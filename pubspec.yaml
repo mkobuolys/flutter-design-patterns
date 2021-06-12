@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_markdown: ^0.6.0
+  flutter_riverpod: ^0.14.0+3
   font_awesome_flutter: ^9.0.0
   xml: ^5.0.2
 

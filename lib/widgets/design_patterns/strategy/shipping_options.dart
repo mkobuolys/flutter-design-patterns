@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/strategy/ishipping_costs_strategy.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/strategy/strategy.dart';
 
 class ShippingOptions extends StatelessWidget {
   final List<IShippingCostsStrategy> shippingOptions;
@@ -18,7 +18,7 @@ class ShippingOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(paddingM),
+        padding: const EdgeInsets.all(LayoutConstants.paddingM),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

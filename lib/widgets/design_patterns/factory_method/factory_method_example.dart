@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/factory_method/alert_dialogs/android_alert_dialog.dart';
-import '../../../design_patterns/factory_method/alert_dialogs/ios_alert_dialog.dart';
-import '../../../design_patterns/factory_method/custom_dialog.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/factory_method/factory_method.dart';
 import '../../platform_specific/platform_button.dart';
 import 'dialog_selection.dart';
 
 class FactoryMethodExample extends StatefulWidget {
+  const FactoryMethodExample();
+
   @override
   _FactoryMethodExampleState createState() => _FactoryMethodExampleState();
 }
@@ -37,7 +37,9 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             DialogSelection(
@@ -45,7 +47,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
               selectedIndex: _selectedDialogIndex,
               onChanged: _setSelectedDialogIndex,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             PlatformButton(
               materialColor: Colors.black,
               materialTextColor: Colors.white,

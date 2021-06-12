@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../design_patterns/strategy/ishipping_costs_strategy.dart';
-import '../../../../../design_patterns/strategy/order/order.dart';
+import '../../../../../constants/constants.dart';
+import '../../../../../design_patterns/strategy/strategy.dart';
 import 'order_summary_row.dart';
 
 class OrderSummary extends StatelessWidget {
@@ -21,7 +20,7 @@ class OrderSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(paddingM),
+        padding: const EdgeInsets.all(LayoutConstants.paddingM),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -35,7 +34,7 @@ class OrderSummary extends StatelessWidget {
               label: 'Subtotal',
               value: order.price,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             OrderSummaryRow(
               fontFamily: 'Roboto',
               label: 'Shipping',

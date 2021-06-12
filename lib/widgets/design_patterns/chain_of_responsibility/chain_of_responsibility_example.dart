@@ -1,15 +1,14 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/chain_of_responsibility/log_bloc.dart';
-import '../../../design_patterns/chain_of_responsibility/log_message.dart';
-import '../../../design_patterns/chain_of_responsibility/logger_base.dart';
-import '../../../design_patterns/chain_of_responsibility/loggers/index.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/chain_of_responsibility/chain_of_responsibility.dart';
 import '../../platform_specific/platform_button.dart';
 import 'log_messages_column.dart';
 
 class ChainOfResponsibilityExample extends StatefulWidget {
+  const ChainOfResponsibilityExample();
+
   @override
   _ChainOfResponsibilityExampleState createState() =>
       _ChainOfResponsibilityExampleState();
@@ -49,7 +48,9 @@ class _ChainOfResponsibilityExampleState
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             PlatformButton(

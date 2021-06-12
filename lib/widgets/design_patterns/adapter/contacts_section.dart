@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/adapter/contact.dart';
-import '../../../design_patterns/adapter/icontacts_adapter.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/adapter/adapter.dart';
 import '../../platform_specific/platform_button.dart';
 import 'contact_card.dart';
 
@@ -34,7 +33,7 @@ class _ContactsSectionState extends State<ContactsSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(widget.headerText),
-        const SizedBox(height: spaceM),
+        const SizedBox(height: LayoutConstants.spaceM),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           child: _ContactsSectionContent(

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/adapter/adapters/json_contacts_adapter.dart';
-import '../../../design_patterns/adapter/adapters/xml_contacts_adapter.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/adapter/adapter.dart';
 import 'contacts_section.dart';
 
 class AdapterExample extends StatelessWidget {
+  const AdapterExample();
+
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -19,7 +22,7 @@ class AdapterExample extends StatelessWidget {
               adapter: JsonContactsAdapter(),
               headerText: 'Contacts from JSON API:',
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             ContactsSection(
               adapter: XmlContactsAdapter(),
               headerText: 'Contacts from XML API:',

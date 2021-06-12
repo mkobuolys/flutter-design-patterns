@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/decorator/pizza.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/decorator/decorator.dart';
 
 class PizzaInformation extends StatelessWidget {
   final Pizza pizza;
@@ -19,12 +19,12 @@ class PizzaInformation extends StatelessWidget {
           'Pizza details:',
           style: Theme.of(context).textTheme.headline6,
         ),
-        const SizedBox(height: spaceL),
+        const SizedBox(height: LayoutConstants.spaceL),
         Text(
           pizza.getDescription(),
           textAlign: TextAlign.justify,
         ),
-        const SizedBox(height: spaceM),
+        const SizedBox(height: LayoutConstants.spaceM),
         Text('Price: \$${pizza.getPrice().toStringAsFixed(2)}'),
       ],
     );

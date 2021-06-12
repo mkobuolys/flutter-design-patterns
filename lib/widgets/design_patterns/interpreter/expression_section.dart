@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/interpreter/expression_context.dart';
-import '../../../design_patterns/interpreter/expression_helpers.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/interpreter/interpreter.dart';
 import '../../platform_specific/platform_button.dart';
 
 class ExpressionSection extends StatefulWidget {
@@ -44,7 +43,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
           widget.postfixExpression,
           style: Theme.of(context).textTheme.headline6,
         ),
-        const SizedBox(height: spaceM),
+        const SizedBox(height: LayoutConstants.spaceM),
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 250),
           firstChild: PlatformButton(
@@ -67,7 +66,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
               ? CrossFadeState.showFirst
               : CrossFadeState.showSecond,
         ),
-        const SizedBox(height: spaceXL),
+        const SizedBox(height: LayoutConstants.spaceXL),
       ],
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../design_patterns/abstract_factory/iwidgets_factory.dart';
+import '../../../design_patterns/abstract_factory/abstract_factory.dart';
 
 class FactorySelection extends StatelessWidget {
   final List<IWidgetsFactory> widgetsFactoryList;

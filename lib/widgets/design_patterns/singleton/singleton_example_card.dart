@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../constants/constants.dart';
 
 class SingletonExampleCard extends StatelessWidget {
   final String text;
@@ -14,7 +14,7 @@ class SingletonExampleCard extends StatelessWidget {
     return Card(
       child: Container(
         height: 64.0,
-        padding: const EdgeInsets.all(paddingL),
+        padding: const EdgeInsets.all(LayoutConstants.paddingL),
         child: Center(
           child: Text(
             text,

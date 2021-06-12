@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/memento/command_design_pattern/command_history.dart';
-import '../../../design_patterns/memento/command_design_pattern/commands/randomise_properties_command.dart';
-import '../../../design_patterns/memento/command_design_pattern/icommand.dart';
-import '../../../design_patterns/memento/originator.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/memento/memento.dart';
 import '../../platform_specific/platform_button.dart';
 import 'shape_container.dart';
 
 class MementoExample extends StatefulWidget {
+  const MementoExample();
+
   @override
   _MementoExampleState createState() => _MementoExampleState();
 }
@@ -40,13 +39,15 @@ class _MementoExampleState extends State<MementoExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ShapeContainer(
               shape: _originator.state,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             PlatformButton(
               materialColor: Colors.black,
               materialTextColor: Colors.white,
@@ -60,7 +61,7 @@ class _MementoExampleState extends State<MementoExample> {
               onPressed: _commandHistory.isEmpty ? null : _undo,
               text: 'Undo',
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
           ],
         ),
       ),

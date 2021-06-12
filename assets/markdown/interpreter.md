@@ -216,7 +216,7 @@ class _InterpreterExampleState extends State<InterpreterExample> {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -271,7 +271,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
           widget.postfixExpression,
           style: Theme.of(context).textTheme.headline6,
         ),
-        const SizedBox(height: spaceM),
+        const SizedBox(height: LayoutConstants.spaceM),
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 250),
           firstChild: PlatformButton(
@@ -294,7 +294,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
               ? CrossFadeState.showFirst
               : CrossFadeState.showSecond,
         ),
-        const SizedBox(height: spaceXL),
+        const SizedBox(height: LayoutConstants.spaceXL),
       ],
     );
   }

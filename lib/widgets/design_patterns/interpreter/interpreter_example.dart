@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../constants/constants.dart';
 import 'expression_section.dart';
 
 class InterpreterExample extends StatefulWidget {
+  const InterpreterExample();
+
   @override
   _InterpreterExampleState createState() => _InterpreterExampleState();
 }
@@ -21,7 +23,9 @@ class _InterpreterExampleState extends State<InterpreterExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

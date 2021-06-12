@@ -188,7 +188,7 @@ class AdapterExample extends StatelessWidget {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -196,7 +196,7 @@ class AdapterExample extends StatelessWidget {
               adapter: JsonContactsAdapter(),
               headerText: 'Contacts from JSON API:',
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             ContactsSection(
               adapter: XmlContactsAdapter(),
               headerText: 'Contacts from XML API:',

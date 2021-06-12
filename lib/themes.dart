@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+const lightBackgroundColor = Color(0xFFECECEC);
 
-final ThemeData lightTheme = ThemeData(
+final lightTheme = ThemeData(
   backgroundColor: lightBackgroundColor,
   scaffoldBackgroundColor: lightBackgroundColor,
   typography: Typography.material2018(),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-import '../../../../design_patterns/proxy/customer/customer.dart';
-import '../../../../design_patterns/proxy/customer/customer_details.dart';
-import '../../../../design_patterns/proxy/icustomer_details_service.dart';
+import '../../../../design_patterns/proxy/proxy.dart';
+import '../../../../themes.dart';
 import '../../../platform_specific/platform_button.dart';
 import 'customer_details_column.dart';
 

@@ -1,15 +1,14 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/mediator/notification_hub.dart';
-import '../../../design_patterns/mediator/notification_hub/team_notification_hub.dart';
-import '../../../design_patterns/mediator/team_member.dart';
-import '../../../design_patterns/mediator/team_members/team_members.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/mediator/mediator.dart';
 import '../../platform_specific/platform_button.dart';
 import 'notification_list.dart';
 
 class MediatorExample extends StatefulWidget {
+  const MediatorExample();
+
   @override
   _MediatorExampleState createState() => _MediatorExampleState();
 }
@@ -73,7 +72,9 @@ class _MediatorExampleState extends State<MediatorExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -102,7 +103,7 @@ class _MediatorExampleState extends State<MediatorExample> {
               materialTextColor: Colors.white,
               onPressed: _addTeamMember,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             NotificationList(
               members: _notificationHub.getTeamMembers(),
               onTap: _sendFromMember,

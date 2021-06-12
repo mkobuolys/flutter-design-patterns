@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-import '../../../../design_patterns/prototype/shape.dart';
+import '../../../../constants/constants.dart';
+import '../../../../design_patterns/prototype/prototype.dart';
 import '../../../platform_specific/platform_button.dart';
 import 'sized_shape_column.dart';
 
@@ -29,7 +29,7 @@ class ShapeColumn extends StatelessWidget {
               label: 'Original shape',
               child: shape.render(),
             ),
-            const SizedBox(width: spaceM),
+            const SizedBox(width: LayoutConstants.spaceM),
             SizedShapeColumn(
               label: 'Cloned shape',
               child: shapeClone == null

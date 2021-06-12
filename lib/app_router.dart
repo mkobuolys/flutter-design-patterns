@@ -8,11 +8,15 @@ import 'pages/main_menu/main_menu_page.dart';
 import 'widgets/design_patterns/index.dart';
 
 class AppRouter {
+  static const mainMenuPageRoute = '/main-menu';
+
+  const AppRouter._();
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case MainMenuPage.route:
+      case mainMenuPageRoute:
         return MaterialPageRoute(
-          builder: (_) => MainMenuPage(),
+          builder: (_) => const MainMenuPage(),
         );
       case CategoryPage.route:
         final category = settings.arguments! as DesignPatternCategory;
@@ -26,123 +30,123 @@ class AppRouter {
       case _DesignPatternRoutes.abstractFactoryRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          AbstractFactoryExample(),
+          const AbstractFactoryExample(),
         );
       case _DesignPatternRoutes.builderRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          BuilderExample(),
+          const BuilderExample(),
         );
       case _DesignPatternRoutes.factoryMethodRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          FactoryMethodExample(),
+          const FactoryMethodExample(),
         );
       case _DesignPatternRoutes.prototypeRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          PrototypeExample(),
+          const PrototypeExample(),
         );
       case _DesignPatternRoutes.singletonRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          SingletonExample(),
+          const SingletonExample(),
         );
       // Structural
       case _DesignPatternRoutes.adapterRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          AdapterExample(),
+          const AdapterExample(),
         );
       case _DesignPatternRoutes.bridgeRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          BridgeExample(),
+          const BridgeExample(),
         );
       case _DesignPatternRoutes.compositeRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          CompositeExample(),
+          const CompositeExample(),
         );
       case _DesignPatternRoutes.decoratorRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          DecoratorExample(),
+          const DecoratorExample(),
         );
       case _DesignPatternRoutes.facadeRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          FacadeExample(),
+          const FacadeExample(),
         );
       case _DesignPatternRoutes.flyweightRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          FlyweightExample(),
+          const FlyweightExample(),
         );
       case _DesignPatternRoutes.proxyRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          ProxyExample(),
+          const ProxyExample(),
         );
       // Behavioral
       case _DesignPatternRoutes.chainOfResponsibilityRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          ChainOfResponsibilityExample(),
+          const ChainOfResponsibilityExample(),
         );
       case _DesignPatternRoutes.commandRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          CommandExample(),
+          const CommandExample(),
         );
       case _DesignPatternRoutes.interpreterRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          InterpreterExample(),
+          const InterpreterExample(),
         );
       case _DesignPatternRoutes.iteratorRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          IteratorExample(),
+          const IteratorExample(),
         );
       case _DesignPatternRoutes.mediatorRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          MediatorExample(),
+          const MediatorExample(),
         );
       case _DesignPatternRoutes.mementoRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          MementoExample(),
+          const MementoExample(),
         );
       case _DesignPatternRoutes.observerRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          ObserverExample(),
+          const ObserverExample(),
         );
       case _DesignPatternRoutes.stateRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          StateExample(),
+          const StateExample(),
         );
       case _DesignPatternRoutes.strategyRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          StrategyExample(),
+          const StrategyExample(),
         );
       case _DesignPatternRoutes.templateMethodRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          TemplateMethodExample(),
+          const TemplateMethodExample(),
         );
       case _DesignPatternRoutes.visitorRoute:
         return _buildDesignPatternDetailsPageRoute(
           settings,
-          VisitorExample(),
+          const VisitorExample(),
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => MainMenuPage(),
+          builder: (_) => const MainMenuPage(),
         );
     }
   }

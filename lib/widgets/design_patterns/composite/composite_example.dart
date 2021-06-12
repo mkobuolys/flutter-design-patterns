@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../constants/constants.dart';
 import 'directory.dart';
 import 'files/audio_file.dart';
 import 'files/image_file.dart';
@@ -8,7 +8,9 @@ import 'files/text_file.dart';
 import 'files/video_file.dart';
 
 class CompositeExample extends StatelessWidget {
-  Widget buildMediaDirectory() {
+  const CompositeExample();
+
+  Widget _buildMediaDirectory() {
     final musicDirectory = Directory('Music');
     musicDirectory.addFile(const AudioFile('Darude - Sandstorm.mp3', 2612453));
     musicDirectory.addFile(const AudioFile('Toto - Africa.mp3', 3219811));
@@ -47,8 +49,10 @@ class CompositeExample extends StatelessWidget {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
-        child: buildMediaDirectory(),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
+        child: _buildMediaDirectory(),
       ),
     );
   }

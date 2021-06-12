@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/proxy/customer/customer.dart';
-import '../../../design_patterns/proxy/customer_details_service.dart';
-import '../../../design_patterns/proxy/customer_details_service_proxy.dart';
-import '../../../design_patterns/proxy/icustomer_details_service.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/proxy/proxy.dart';
 import 'customer_details_dialog/customer_details_dialog.dart';
 
 class ProxyExample extends StatefulWidget {
+  const ProxyExample();
+
   @override
   _ProxyExampleState createState() => _ProxyExampleState();
 }
@@ -35,7 +34,9 @@ class _ProxyExampleState extends State<ProxyExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             Text(
@@ -43,7 +44,7 @@ class _ProxyExampleState extends State<ProxyExample> {
               style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             for (var customer in _customerList)
               Card(
                 child: ListTile(

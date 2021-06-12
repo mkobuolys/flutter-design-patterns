@@ -1,0 +1,10 @@
+export 'stock.dart';
+export 'stock_change_direction.dart';
+export 'stock_subscriber.dart';
+export 'stock_subscribers/default_stock_subscriber.dart';
+export 'stock_subscribers/growing_stock_subscriber.dart';
+export 'stock_ticker.dart';
+export 'stock_ticker_symbol.dart';
+export 'stock_tickers/gamestop_stock_ticker.dart';
+export 'stock_tickers/google_stock_ticker.dart';
+export 'stock_tickers/tesla_stock_ticker.dart';

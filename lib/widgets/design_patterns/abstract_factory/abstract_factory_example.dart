@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/abstract_factory/factories/cupertino_widgets_factory.dart';
-import '../../../design_patterns/abstract_factory/factories/material_widgets_factory.dart';
-import '../../../design_patterns/abstract_factory/iwidgets_factory.dart';
-import '../../../design_patterns/abstract_factory/widgets/iactivity_indicator.dart';
-import '../../../design_patterns/abstract_factory/widgets/islider.dart';
-import '../../../design_patterns/abstract_factory/widgets/iswitch.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/abstract_factory/abstract_factory.dart';
 import 'factory_selection.dart';
 
 class AbstractFactoryExample extends StatefulWidget {
+  const AbstractFactoryExample();
+
   @override
   _AbstractFactoryExampleState createState() => _AbstractFactoryExampleState();
 }
@@ -69,7 +66,9 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             FactorySelection(
@@ -77,31 +76,31 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
               selectedIndex: _selectedFactoryIndex,
               onChanged: _setSelectedFactoryIndex,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             Text(
               'Widgets showcase',
               style: Theme.of(context).textTheme.headline6,
             ),
-            const SizedBox(height: spaceXL),
+            const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Process indicator',
               style: Theme.of(context).textTheme.subtitle1,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             _activityIndicator.render(),
-            const SizedBox(height: spaceXL),
+            const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Slider ($_sliderValueString%)',
               style: Theme.of(context).textTheme.subtitle1,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             _slider.render(_sliderValue, _setSliderValue),
-            const SizedBox(height: spaceXL),
+            const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Switch ($_switchValueString)',
               style: Theme.of(context).textTheme.subtitle1,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             _switch.render(
               value: _switchValue,
               onChanged: _setSwitchValue,

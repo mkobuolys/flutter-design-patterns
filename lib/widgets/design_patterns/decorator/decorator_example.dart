@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/decorator/pizza.dart';
-import '../../../design_patterns/decorator/pizza_menu.dart';
-import '../../../design_patterns/decorator/pizza_topping_data.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/decorator/decorator.dart';
 import 'custom_pizza_selection.dart';
 import 'pizza_information.dart';
 import 'pizza_selection.dart';
 
 class DecoratorExample extends StatefulWidget {
+  const DecoratorExample();
+
   @override
   _DecoratorExampleState createState() => _DecoratorExampleState();
 }
@@ -60,7 +60,9 @@ class _DecoratorExampleState extends State<DecoratorExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             Row(

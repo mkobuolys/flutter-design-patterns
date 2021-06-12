@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+const _labels = ['Pizza Margherita', 'Pizza Pepperoni', 'Custom'];
+
 class PizzaSelection extends StatelessWidget {
-  final List<String> labels = ['Pizza Margherita', 'Pizza Pepperoni', 'Custom'];
   final int selectedIndex;
   final ValueSetter<int?> onChanged;
 
-  PizzaSelection({
+  const PizzaSelection({
     required this.selectedIndex,
     required this.onChanged,
   });
@@ -14,9 +15,9 @@ class PizzaSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < labels.length; i++)
+        for (var i = 0; i < _labels.length; i++)
           RadioListTile(
-            title: Text(labels[i]),
+            title: Text(_labels[i]),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

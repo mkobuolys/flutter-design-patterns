@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../design_patterns/factory_method/custom_dialog.dart';
+import '../../../design_patterns/factory_method/factory_method.dart';
 
 class DialogSelection extends StatelessWidget {
   final List<CustomDialog> customDialogList;

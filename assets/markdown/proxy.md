@@ -150,7 +150,7 @@ class _ProxyExampleState extends State<ProxyExample> {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             Text(
@@ -158,7 +158,7 @@ class _ProxyExampleState extends State<ProxyExample> {
               style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             for (var customer in _customerList)
               Card(
                 child: ListTile(

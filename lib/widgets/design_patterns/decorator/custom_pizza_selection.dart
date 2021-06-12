@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/decorator/pizza_topping_data.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/decorator/decorator.dart';
 
 class CustomPizzaSelection extends StatelessWidget {
   final Map<int, PizzaToppingData> pizzaToppingsDataMap;
@@ -15,7 +15,7 @@ class CustomPizzaSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: spaceM,
+      spacing: LayoutConstants.spaceM,
       children: <Widget>[
         for (var i = 0; i < pizzaToppingsDataMap.length; i++)
           i == 0

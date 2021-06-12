@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/iterator/graph.dart';
-import '../../../design_patterns/iterator/tree_collections/breadth_first_tree_collection.dart';
-import '../../../design_patterns/iterator/tree_collections/depth_first_tree_collection.dart';
-import '../../../design_patterns/iterator/tree_collections/itree_collection.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/iterator/iterator.dart';
 import '../../platform_specific/platform_button.dart';
 import 'box.dart';
 import 'tree_collection_selection.dart';
 
 class IteratorExample extends StatefulWidget {
+  const IteratorExample();
+
   @override
   _IteratorExampleState createState() => _IteratorExampleState();
 }
@@ -87,7 +86,9 @@ class _IteratorExampleState extends State<IteratorExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             TreeCollectionSelection(
@@ -96,7 +97,7 @@ class _IteratorExampleState extends State<IteratorExample> {
               onChanged:
                   !_isTraversing ? _setSelectedTreeCollectionIndex : null,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             Wrap(
               alignment: WrapAlignment.center,
               children: <Widget>[
@@ -115,7 +116,7 @@ class _IteratorExampleState extends State<IteratorExample> {
                 ),
               ],
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             Box(
               nodeId: 1,
               color: _getBackgroundColor(1),

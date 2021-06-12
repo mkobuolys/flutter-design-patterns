@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../constants/constants.dart';
 
 class Box extends StatelessWidget {
   final int nodeId;
@@ -19,14 +19,14 @@ class Box extends StatelessWidget {
       elevation: 4.0,
       color: color,
       child: Padding(
-        padding: const EdgeInsets.all(paddingM),
+        padding: const EdgeInsets.all(LayoutConstants.paddingM),
         child: Column(
           children: <Widget>[
             Text(
               nodeId.toString(),
               style: Theme.of(context).textTheme.headline6,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             if (child != null) child!,
           ],
         ),

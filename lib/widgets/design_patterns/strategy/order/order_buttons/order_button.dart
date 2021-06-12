@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constants.dart';
+import '../../../../../constants/constants.dart';
 
 class OrderButton extends StatelessWidget {
   final IconData iconData;
@@ -26,7 +26,7 @@ class OrderButton extends StatelessWidget {
           iconData,
           color: Colors.white,
         ),
-        const SizedBox(width: spaceXS),
+        const SizedBox(width: LayoutConstants.spaceXS),
         Text(title),
       ],
     );

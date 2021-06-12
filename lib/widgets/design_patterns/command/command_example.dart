@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/command/command.dart';
-import '../../../design_patterns/command/command_history.dart';
-import '../../../design_patterns/command/commands/change_color_command.dart';
-import '../../../design_patterns/command/commands/change_height_command.dart';
-import '../../../design_patterns/command/commands/change_width_command.dart';
-import '../../../design_patterns/command/shape.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/command/index.dart';
 import '../../platform_specific/platform_button.dart';
 import 'command_history_column.dart';
 import 'shape_container.dart';
 
 class CommandExample extends StatefulWidget {
+  const CommandExample();
+
   @override
   _CommandExampleState createState() => _CommandExampleState();
 }
@@ -53,13 +50,15 @@ class _CommandExampleState extends State<CommandExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ShapeContainer(
               shape: _shape,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             PlatformButton(
               materialColor: Colors.black,
               materialTextColor: Colors.white,
@@ -85,7 +84,7 @@ class _CommandExampleState extends State<CommandExample> {
               onPressed: _commandHistory.isEmpty ? null : _undo,
               text: 'Undo',
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             Row(
               children: <Widget>[
                 CommandHistoryColumn(

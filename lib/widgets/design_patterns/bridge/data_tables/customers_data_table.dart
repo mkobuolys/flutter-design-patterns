@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-import '../../../../design_patterns/bridge/entities/customer.dart';
+import '../../../../constants/constants.dart';
+import '../../../../design_patterns/bridge/bridge.dart';
 
 class CustomersDatatable extends StatelessWidget {
   final List<Customer> customers;
@@ -15,10 +15,10 @@ class CustomersDatatable extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
-        columnSpacing: spaceM,
-        horizontalMargin: marginM,
-        headingRowHeight: spaceXL,
-        dataRowHeight: spaceXL,
+        columnSpacing: LayoutConstants.spaceM,
+        horizontalMargin: LayoutConstants.marginM,
+        headingRowHeight: LayoutConstants.spaceXL,
+        dataRowHeight: LayoutConstants.spaceXL,
         columns: const <DataColumn>[
           DataColumn(
             label: Text(

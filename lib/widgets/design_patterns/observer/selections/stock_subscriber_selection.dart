@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../design_patterns/observer/stock_subscriber.dart';
+import '../../../../design_patterns/observer/observer.dart';
 
 class StockSubscriberSelection extends StatelessWidget {
   final List<StockSubscriber> stockSubscriberList;

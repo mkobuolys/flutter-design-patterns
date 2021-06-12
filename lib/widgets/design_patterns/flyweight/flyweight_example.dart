@@ -2,13 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../../design_patterns/flyweight/ipositioned_shape.dart';
-import '../../../design_patterns/flyweight/shape_factory.dart';
-import '../../../design_patterns/flyweight/shape_flyweight_factory.dart';
-import '../../../design_patterns/flyweight/shape_type.dart';
+import '../../../design_patterns/flyweight/flyweight.dart';
 import 'positioned_shape_wrapper.dart';
 
 class FlyweightExample extends StatefulWidget {
+  const FlyweightExample();
+
   @override
   _FlyweightExampleState createState() => _FlyweightExampleState();
 }

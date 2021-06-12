@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/state/istate.dart';
-import '../../../design_patterns/state/state_context.dart';
-import '../../../design_patterns/state/states/no_results_state.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/state/state.dart';
 import '../../platform_specific/platform_button.dart';
 
 class StateExample extends StatefulWidget {
+  const StateExample();
+
   @override
   _StateExampleState createState() => _StateExampleState();
 }
@@ -29,7 +29,9 @@ class _StateExampleState extends State<StateExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             PlatformButton(
@@ -38,7 +40,7 @@ class _StateExampleState extends State<StateExample> {
               onPressed: _changeState,
               text: 'Load names',
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             StreamBuilder(
               initialData: NoResultsState(),
               stream: _stateContext.outState,

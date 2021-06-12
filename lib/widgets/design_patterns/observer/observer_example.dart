@@ -2,20 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/observer/stock.dart';
-import '../../../design_patterns/observer/stock_subscriber.dart';
-import '../../../design_patterns/observer/stock_subscribers/default_stock_subscriber.dart';
-import '../../../design_patterns/observer/stock_subscribers/growing_stock_subscriber.dart';
-import '../../../design_patterns/observer/stock_tickers/gamestop_stock_ticker.dart';
-import '../../../design_patterns/observer/stock_tickers/google_stock_ticker.dart';
-import '../../../design_patterns/observer/stock_tickers/tesla_stock_ticker.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/observer/observer.dart';
 import 'selections/stock_subscriber_selection.dart';
 import 'selections/stock_ticker_selection.dart';
 import 'stock_row.dart';
 import 'stock_ticker_model.dart';
 
 class ObserverExample extends StatefulWidget {
+  const ObserverExample();
+
   @override
   _ObserverExampleState createState() => _ObserverExampleState();
 }
@@ -98,7 +94,9 @@ class _ObserverExampleState extends State<ObserverExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             StockSubscriberSelection(

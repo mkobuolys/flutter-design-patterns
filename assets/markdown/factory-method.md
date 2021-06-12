@@ -137,7 +137,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             DialogSelection(
@@ -145,7 +145,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
               selectedIndex: _selectedDialogIndex,
               onChanged: _setSelectedDialogIndex,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             PlatformButton(
               child: Text('Show Dialog'),
               materialColor: Colors.black,

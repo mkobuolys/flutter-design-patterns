@@ -185,7 +185,7 @@ class _StrategyExampleState extends State<StrategyExample> {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -193,7 +193,7 @@ class _StrategyExampleState extends State<StrategyExample> {
               onAdd: _addToOrder,
               onClear: _clearOrder,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             Stack(
               children: <Widget>[
                 AnimatedOpacity(
@@ -217,7 +217,7 @@ class _StrategyExampleState extends State<StrategyExample> {
                       OrderItemsTable(
                         orderItems: _order.items,
                       ),
-                      const SizedBox(height: spaceM),
+                      const SizedBox(height: LayoutConstants.spaceM),
                       ShippingOptions(
                         selectedIndex: _selectedStrategyIndex,
                         shippingOptions: _shippingCostsStrategyList,
@@ -261,7 +261,7 @@ class ShippingOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(paddingM),
+        padding: const EdgeInsets.all(LayoutConstants.paddingM),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -307,7 +307,7 @@ class OrderSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(paddingM),
+        padding: const EdgeInsets.all(LayoutConstants.paddingM),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -321,7 +321,7 @@ class OrderSummary extends StatelessWidget {
               label: 'Subtotal',
               value: order.price,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             OrderSummaryRow(
               fontFamily: 'Roboto',
               label: 'Shipping',

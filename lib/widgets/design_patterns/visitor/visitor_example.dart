@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/visitor/directory.dart';
-import '../../../design_patterns/visitor/files/index.dart';
-import '../../../design_patterns/visitor/ifile.dart';
-import '../../../design_patterns/visitor/ivisitor.dart';
-import '../../../design_patterns/visitor/visitors/human_readable_visitor.dart';
-import '../../../design_patterns/visitor/visitors/xml_visitor.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/visitor/visitor.dart';
 import '../../platform_specific/platform_button.dart';
 import 'files_dialog.dart';
 import 'files_visitor_selection.dart';
 
 class VisitorExample extends StatefulWidget {
+  const VisitorExample();
+
   @override
   _VisitorExampleState createState() => _VisitorExampleState();
 }
@@ -140,7 +137,9 @@ class _VisitorExampleState extends State<VisitorExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: [
             FilesVisitorSelection(
@@ -154,7 +153,7 @@ class _VisitorExampleState extends State<VisitorExample> {
               onPressed: _showFilesDialog,
               text: 'Export files',
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             _rootDirectory.render(context),
           ],
         ),

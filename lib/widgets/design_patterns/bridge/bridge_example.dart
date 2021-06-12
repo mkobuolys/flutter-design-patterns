@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/bridge/entities/customer.dart';
-import '../../../design_patterns/bridge/entities/order.dart';
-import '../../../design_patterns/bridge/irepository.dart';
-import '../../../design_patterns/bridge/istorage.dart';
-import '../../../design_patterns/bridge/repositories/customers_repository.dart';
-import '../../../design_patterns/bridge/repositories/orders_repository.dart';
-import '../../../design_patterns/bridge/storages/file_storage.dart';
-import '../../../design_patterns/bridge/storages/sql_storage.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/bridge/bridge.dart';
 import '../../platform_specific/platform_button.dart';
 import 'data_tables/customers_data_table.dart';
 import 'data_tables/orders_data_table.dart';
 import 'storage_selection.dart';
 
 class BridgeExample extends StatefulWidget {
+  const BridgeExample();
+
   @override
   _BridgeExampleState createState() => _BridgeExampleState();
 }
@@ -80,7 +75,9 @@ class _BridgeExampleState extends State<BridgeExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

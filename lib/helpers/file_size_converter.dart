@@ -1,4 +1,6 @@
 class FileSizeConverter {
+  const FileSizeConverter._();
+
   static String bytesToString(int bytes) {
     final sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
     var len = bytes.toDouble();

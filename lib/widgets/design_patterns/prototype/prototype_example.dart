@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/prototype/shape.dart';
-import '../../../design_patterns/prototype/shapes/circle.dart';
-import '../../../design_patterns/prototype/shapes/rectangle.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/prototype/prototype.dart';
 import 'shape_column/shape_column.dart';
 
 class PrototypeExample extends StatefulWidget {
+  const PrototypeExample();
+
   @override
   _PrototypeExampleState createState() => _PrototypeExampleState();
 }
@@ -47,7 +47,9 @@ class _PrototypeExampleState extends State<PrototypeExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ShapeColumn(

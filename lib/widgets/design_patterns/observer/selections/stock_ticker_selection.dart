@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
+import '../../../../constants/constants.dart';
 import '../stock_ticker_model.dart';
 
 class StockTickerSelection extends StatelessWidget {
@@ -47,7 +47,7 @@ class _TickerTile extends StatelessWidget {
       child: InkWell(
         onTap: () => onChanged(index),
         child: Padding(
-          padding: const EdgeInsets.all(paddingM),
+          padding: const EdgeInsets.all(LayoutConstants.paddingM),
           child: Text(
             stockTickerModel.stockTicker.title,
             textAlign: TextAlign.center,

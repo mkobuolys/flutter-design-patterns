@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../design_patterns/iterator/tree_collections/itree_collection.dart';
+import '../../../design_patterns/iterator/iterator.dart';
 
 class TreeCollectionSelection extends StatelessWidget {
   final List<ITreeCollection> treeCollections;

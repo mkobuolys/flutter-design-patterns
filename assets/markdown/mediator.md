@@ -234,7 +234,7 @@ class _MediatorExampleState extends State<MediatorExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -263,7 +263,7 @@ class _MediatorExampleState extends State<MediatorExample> {
               materialTextColor: Colors.white,
               onPressed: _addTeamMember,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             NotificationList(
               members: _notificationHub.getTeamMembers(),
               onTap: _sendFromMember,

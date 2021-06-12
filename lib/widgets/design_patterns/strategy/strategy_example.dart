@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/strategy/ishipping_costs_strategy.dart';
-import '../../../design_patterns/strategy/order/order.dart';
-import '../../../design_patterns/strategy/order/order_item.dart';
-import '../../../design_patterns/strategy/strategies/in_store_pickup_strategy.dart';
-import '../../../design_patterns/strategy/strategies/parcel_terminal_shipping_strategy.dart';
-import '../../../design_patterns/strategy/strategies/priority_shipping_strategy.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/strategy/strategy.dart';
 import 'order/order_buttons/order_buttons.dart';
 import 'order/order_items_table.dart';
 import 'order/order_summary/order_summary.dart';
 import 'shipping_options.dart';
 
 class StrategyExample extends StatefulWidget {
+  const StrategyExample();
+
   @override
   _StrategyExampleState createState() => _StrategyExampleState();
 }
@@ -49,7 +46,9 @@ class _StrategyExampleState extends State<StrategyExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -57,7 +56,7 @@ class _StrategyExampleState extends State<StrategyExample> {
               onAdd: _addToOrder,
               onClear: _clearOrder,
             ),
-            const SizedBox(height: spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             Stack(
               children: <Widget>[
                 AnimatedOpacity(
@@ -81,7 +80,7 @@ class _StrategyExampleState extends State<StrategyExample> {
                       OrderItemsTable(
                         orderItems: _order.items,
                       ),
-                      const SizedBox(height: spaceM),
+                      const SizedBox(height: LayoutConstants.spaceM),
                       ShippingOptions(
                         selectedIndex: _selectedStrategyIndex,
                         shippingOptions: _shippingCostsStrategyList,

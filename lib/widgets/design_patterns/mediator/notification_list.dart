@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/mediator/team_member.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/mediator/mediator.dart';
 
 class NotificationList extends StatelessWidget {
   final List<TeamMember> members;
@@ -20,21 +20,23 @@ class NotificationList extends StatelessWidget {
           'Last notifications',
           style: Theme.of(context).textTheme.headline6,
         ),
-        const SizedBox(height: spaceM),
+        const SizedBox(height: LayoutConstants.spaceM),
         Text(
           'Note: click on the card to send a notification from the team member.',
           style: Theme.of(context).textTheme.caption,
         ),
-        const SizedBox(height: spaceS),
+        const SizedBox(height: LayoutConstants.spaceS),
         for (final member in members)
           Card(
-            margin: const EdgeInsets.symmetric(vertical: marginS),
+            margin: const EdgeInsets.symmetric(
+              vertical: LayoutConstants.marginS,
+            ),
             child: InkWell(
               onTap: () => onTap(member),
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  vertical: paddingM,
-                  horizontal: paddingL,
+                  vertical: LayoutConstants.paddingM,
+                  horizontal: LayoutConstants.paddingL,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,13 +49,13 @@ class NotificationList extends StatelessWidget {
                             member.toString(),
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: spaceS),
+                          const SizedBox(height: LayoutConstants.spaceS),
                           Text(member.lastNotification ?? '-'),
                         ],
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(left: paddingL),
+                      padding: EdgeInsets.only(left: LayoutConstants.paddingL),
                       child: Icon(Icons.message),
                     ),
                   ],

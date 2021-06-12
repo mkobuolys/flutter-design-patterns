@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-import '../../../../design_patterns/strategy/order/order_item.dart';
+import '../../../../constants/constants.dart';
+import '../../../../design_patterns/strategy/strategy.dart';
 
 class OrderItemsTable extends StatelessWidget {
   final List<OrderItem> orderItems;
@@ -13,10 +13,10 @@ class OrderItemsTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
-      columnSpacing: spaceL,
-      horizontalMargin: marginM,
-      headingRowHeight: spaceXL,
-      dataRowHeight: spaceXL,
+      columnSpacing: LayoutConstants.spaceL,
+      horizontalMargin: LayoutConstants.marginM,
+      headingRowHeight: LayoutConstants.spaceXL,
+      dataRowHeight: LayoutConstants.spaceXL,
       columns: const <DataColumn>[
         DataColumn(
           label: Text(

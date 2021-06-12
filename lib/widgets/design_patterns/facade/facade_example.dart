@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/facade/facades/smart_home_facade.dart';
-import '../../../design_patterns/facade/smart_home_state.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/facade/facade.dart';
 import 'device_icon.dart';
 import 'mode_switcher.dart';
 
 class FacadeExample extends StatefulWidget {
+  const FacadeExample();
+
   @override
   _FacadeExampleState createState() => _FacadeExampleState();
 }
@@ -64,7 +65,9 @@ class _FacadeExampleState extends State<FacadeExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ModeSwitcher(
@@ -87,7 +90,7 @@ class _FacadeExampleState extends State<FacadeExample> {
                   ? _changeStreamingMode
                   : null,
             ),
-            const SizedBox(height: spaceXL * 2),
+            const SizedBox(height: LayoutConstants.spaceXL * 2),
             Column(
               children: <Widget>[
                 Row(
@@ -107,7 +110,7 @@ class _FacadeExampleState extends State<FacadeExample> {
                     ),
                   ],
                 ),
-                const SizedBox(height: spaceXL),
+                const SizedBox(height: LayoutConstants.spaceXL),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../design_patterns/adapter/contact.dart';
+import '../../../design_patterns/adapter/adapter.dart';
 
 class ContactCard extends StatelessWidget {
   final Contact contact;

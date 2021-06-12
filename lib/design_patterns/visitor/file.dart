@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../constants/constants.dart';
 import '../../helpers/file_size_converter.dart';
 import 'ifile.dart';
 
@@ -20,7 +20,7 @@ abstract class File extends StatelessWidget implements IFile {
   @override
   Widget render(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: paddingS),
+      padding: const EdgeInsets.only(left: LayoutConstants.paddingS),
       child: ListTile(
         title: Text(
           '$title.$fileExtension',

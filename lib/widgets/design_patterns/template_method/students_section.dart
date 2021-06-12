@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../design_patterns/template_method/student.dart';
-import '../../../design_patterns/template_method/students_bmi_calculator.dart';
+import '../../../constants/constants.dart';
+import '../../../design_patterns/template_method/template_method.dart';
 import '../../platform_specific/platform_button.dart';
 import 'students_data_table.dart';
 
@@ -34,7 +33,7 @@ class _StudentsSectionState extends State<StudentsSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(widget.headerText),
-        const SizedBox(height: spaceM),
+        const SizedBox(height: LayoutConstants.spaceM),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           child: _StudentsSectionContent(

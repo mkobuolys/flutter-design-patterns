@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import '../../../design_patterns/flyweight/ipositioned_shape.dart';
+import '../../../design_patterns/flyweight/flyweight.dart';
 
 class PositionedShapeWrapper extends StatelessWidget {
   final IPositionedShape shape;

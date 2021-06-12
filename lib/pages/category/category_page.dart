@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../constants/constants.dart';
 import '../../data/models/design_pattern_category.dart';
 import '../../widgets/platform_specific/platform_back_button.dart';
 import 'widgets/design_pattern_card.dart';
@@ -23,7 +23,7 @@ class _CategoryPageState extends State<CategoryPage>
   late final AnimationController _fadeSlideAnimationController;
   late final ScrollController _scrollController;
 
-  double _appBarElevation = 0.0;
+  var _appBarElevation = 0.0;
 
   @override
   void initState() {
@@ -68,13 +68,13 @@ class _CategoryPageState extends State<CategoryPage>
         child: ListView.builder(
           controller: _scrollController,
           padding: const EdgeInsets.fromLTRB(
-            paddingL,
-            paddingZero,
-            paddingL,
-            paddingXL,
+            LayoutConstants.paddingL,
+            LayoutConstants.paddingZero,
+            LayoutConstants.paddingL,
+            LayoutConstants.paddingXL,
           ),
           itemBuilder: (_, i) => Container(
-            margin: const EdgeInsets.only(top: marginL),
+            margin: const EdgeInsets.only(top: LayoutConstants.marginL),
             child: DesignPatternCard(
               designPattern: widget.category.patterns[i],
             ),

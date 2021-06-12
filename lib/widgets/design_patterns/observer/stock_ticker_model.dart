@@ -1,4 +1,4 @@
-import '../../../design_patterns/observer/stock_ticker.dart';
+import '../../../design_patterns/observer/observer.dart';
 
 class StockTickerModel {
   final StockTicker stockTicker;

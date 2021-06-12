@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../constants/constants.dart';
 
 class SelectionCard extends StatelessWidget {
   final Color backgroundColor;
@@ -45,7 +45,7 @@ class SelectionCard extends StatelessWidget {
             borderRadius: _selectionCardBorderRadius,
             onTap: onTap,
             child: Container(
-              padding: const EdgeInsets.all(paddingL),
+              padding: const EdgeInsets.all(LayoutConstants.paddingL),
               height: selectionCardHeight,
               width: double.infinity,
               child: Column(

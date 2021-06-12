@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../constants/constants.dart';
 import '../../helpers/file_size_converter.dart';
 import 'ifile.dart';
 import 'ivisitor.dart';
@@ -41,7 +41,7 @@ class Directory extends StatelessWidget implements IFile {
         accentColor: Colors.black,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: paddingS),
+        padding: const EdgeInsets.only(left: LayoutConstants.paddingS),
         child: ExpansionTile(
           leading: const Icon(Icons.folder),
           title: Text('$title (${FileSizeConverter.bytesToString(getSize())})'),

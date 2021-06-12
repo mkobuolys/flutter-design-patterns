@@ -300,7 +300,7 @@ class _IteratorExampleState extends State<IteratorExample> {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             TreeCollectionSelection(
@@ -309,7 +309,7 @@ class _IteratorExampleState extends State<IteratorExample> {
               onChanged:
                   !_isTraversing ? _setSelectedTreeCollectionIndex : null,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -328,7 +328,7 @@ class _IteratorExampleState extends State<IteratorExample> {
                 ),
               ],
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             Box(
               nodeId: 1,
               color: _getBackgroundColor(1),

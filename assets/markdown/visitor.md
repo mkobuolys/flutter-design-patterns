@@ -68,7 +68,7 @@ abstract class File extends StatelessWidget implements IFile {
   @override
   Widget render(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: paddingS),
+      padding: const EdgeInsets.only(left: LayoutConstants.paddingS),
       child: ListTile(
         title: Text(
           '$title.$fileExtension',
@@ -200,7 +200,7 @@ class Directory extends StatelessWidget implements IFile {
         accentColor: Colors.black,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: paddingS),
+        padding: const EdgeInsets.only(left: LayoutConstants.paddingS),
         child: ExpansionTile(
           leading: Icon(Icons.folder),
           title: Text("$title (${FileSizeConverter.bytesToString(getSize())})"),
@@ -544,7 +544,7 @@ class _VisitorExampleState extends State<VisitorExample> {
     return ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: paddingL),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: [
             FilesVisitorSelection(
@@ -558,7 +558,7 @@ class _VisitorExampleState extends State<VisitorExample> {
               materialTextColor: Colors.white,
               onPressed: _showFilesDialog,
             ),
-            const SizedBox(height: spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             _rootDirectory.render(context),
           ],
         ),
