@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'data/models/design_pattern.dart';
-import 'data/models/design_pattern_category.dart';
-import 'pages/category/category_page.dart';
 import 'pages/design_pattern_details/design_pattern_details_page.dart';
 import 'pages/main_menu/main_menu_page.dart';
 import 'widgets/design_patterns/index.dart';
@@ -17,14 +15,6 @@ class AppRouter {
       case mainMenuPageRoute:
         return MaterialPageRoute(
           builder: (_) => const MainMenuPage(),
-        );
-      case CategoryPage.route:
-        final category = settings.arguments! as DesignPatternCategory;
-
-        return MaterialPageRoute(
-          builder: (_) => CategoryPage(
-            category: category,
-          ),
         );
       // Creational
       case _DesignPatternRoutes.abstractFactoryRoute:
