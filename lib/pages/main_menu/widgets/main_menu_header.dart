@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../constants/constants.dart';
 import '../../../widgets/heartbeat_animation.dart';
@@ -28,11 +29,9 @@ class MainMenuHeader extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(bottom: LayoutConstants.paddingS),
                 child: HeartbeatAnimation(
-                  child: Text(
-                    '❤️',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                    ),
+                  child: Icon(
+                    FontAwesomeIcons.solidHeart,
+                    color: Color(0xFFF78888),
                   ),
                 ),
               ),
