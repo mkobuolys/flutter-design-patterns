@@ -6,7 +6,7 @@ import 'pages/main_menu/main_menu_page.dart';
 import 'widgets/design_patterns/index.dart';
 
 class AppRouter {
-  static const mainMenuPageRoute = '/main-menu';
+  static const mainMenuPageRoute = '/';
 
   const AppRouter._();
 

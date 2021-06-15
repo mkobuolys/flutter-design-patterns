@@ -1,3 +1,3 @@
-extension FormattingExtensions on String {
+extension FormattingExtension on String {
   String indentAndAddNewLine(int nTabs) => '${'\t' * nTabs}$this\n';
 }

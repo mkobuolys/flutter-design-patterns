@@ -17,7 +17,7 @@ class DesignPatternDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > LayoutConstants.screenLarge) {
+        if (constraints.maxWidth > LayoutConstants.screenDesktop) {
           return SinglePageLayout(
             designPattern: designPattern,
             example: example,

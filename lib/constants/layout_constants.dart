@@ -2,8 +2,8 @@ class LayoutConstants {
   const LayoutConstants._();
 
   // Responsive breakpoints
-  /// Screen large >= 900px
-  static const double screenLarge = 900;
+  /// Desktop screen >= 900px
+  static const double screenDesktop = 900;
 
   // Spacing
   /// Space Zero = 0.0
