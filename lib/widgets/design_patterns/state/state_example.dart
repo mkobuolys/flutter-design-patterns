@@ -41,11 +41,10 @@ class _StateExampleState extends State<StateExample> {
               text: 'Load names',
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            StreamBuilder(
+            StreamBuilder<IState>(
               initialData: NoResultsState(),
               stream: _stateContext.outState,
-              builder: (_, AsyncSnapshot<IState> snapshot) =>
-                  snapshot.data!.render(),
+              builder: (context, snapshot) => snapshot.data!.render(),
             ),
           ],
         ),

@@ -78,7 +78,7 @@ class _ChainOfResponsibilityExampleState
                   child: StreamBuilder<List<LogMessage>>(
                     initialData: const [],
                     stream: logBloc.outLogStream,
-                    builder: (_, AsyncSnapshot<List<LogMessage>> snapshot) =>
+                    builder: (context, snapshot) =>
                         LogMessagesColumn(logMessages: snapshot.data!),
                   ),
                 ),

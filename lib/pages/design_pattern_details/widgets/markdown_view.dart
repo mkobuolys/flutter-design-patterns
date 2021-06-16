@@ -35,10 +35,10 @@ class MarkdownView extends StatelessWidget {
               builder: (context, watch, child) {
                 final repository = watch(markdownRepositoryProvider);
 
-                return FutureBuilder(
+                return FutureBuilder<String>(
                   future: repository.get(designPattern.id),
                   initialData: '',
-                  builder: (_, AsyncSnapshot<String> snapshot) {
+                  builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return MarkdownBody(
                         data: snapshot.data!,

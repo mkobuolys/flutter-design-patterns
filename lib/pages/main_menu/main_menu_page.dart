@@ -32,10 +32,7 @@ class MainMenuPage extends StatelessWidget {
                     return FutureBuilder<List<DesignPatternCategory>>(
                       future: repository.get(),
                       initialData: const [],
-                      builder: (
-                        _,
-                        AsyncSnapshot<List<DesignPatternCategory>> snapshot,
-                      ) {
+                      builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return _MainMenuCardsListView(
                             categories: snapshot.data!,
@@ -73,26 +70,30 @@ class _MainMenuCardsListView extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isDesktop = constraints.maxWidth > LayoutConstants.screenDesktop;
-        final flexFactor = isDesktop ? 1 : 0;
-        final flexDirection = isDesktop ? Axis.horizontal : Axis.vertical;
-        const divider = SizedBox(
-          height: LayoutConstants.spaceL,
-          width: LayoutConstants.spaceL,
+        final cardsIterable = categories.map<Widget>(
+          (category) => MainMenuCard(category: category, isDesktop: isDesktop),
         );
 
-        return Flex(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          direction: flexDirection,
-          children: <Widget>[
-            for (var category in categories)
-              Flexible(
-                flex: flexFactor,
-                child: MainMenuCard(
-                  category: category,
-                  isDesktop: isDesktop,
-                ),
-              )
-          ].addBetween(divider),
+        if (isDesktop) {
+          return ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 500,
+              maxWidth: 1500,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: cardsIterable
+                  .map<Widget>((card) => Expanded(child: card))
+                  .toList()
+                  .addBetween(const SizedBox(width: LayoutConstants.spaceL)),
+            ),
+          );
+        }
+
+        return Column(
+          children: cardsIterable
+              .toList()
+              .addBetween(const SizedBox(height: LayoutConstants.spaceL)),
         );
       },
     );
