@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../constants/constants.dart';
 import '../../../../design_patterns/prototype/prototype.dart';
 import '../../../platform_specific/platform_button.dart';
-import 'sized_shape_column.dart';
 
 class ShapeColumn extends StatelessWidget {
   final Shape shape;
@@ -23,22 +22,25 @@ class ShapeColumn extends StatelessWidget {
     return Column(
       children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            SizedShapeColumn(
-              label: 'Original shape',
-              child: shape.render(),
+            Expanded(
+              child: _ShapeWithLabel(
+                label: 'Original shape',
+                child: shape.render(),
+              ),
             ),
-            const SizedBox(width: LayoutConstants.spaceM),
-            SizedShapeColumn(
-              label: 'Cloned shape',
-              child: shapeClone == null
-                  ? const SizedBox(
-                      height: 120.0,
-                      width: 120.0,
-                      child: Placeholder(),
-                    )
-                  : shapeClone!.render(),
+            Expanded(
+              child: _ShapeWithLabel(
+                label: 'Cloned shape',
+                child: shapeClone == null
+                    ? const SizedBox(
+                        height: 120.0,
+                        width: 120.0,
+                        child: Placeholder(),
+                      )
+                    : shapeClone!.render(),
+              ),
             ),
           ],
         ),
@@ -54,6 +56,27 @@ class ShapeColumn extends StatelessWidget {
           onPressed: onClonePressed,
           text: 'Clone',
         ),
+      ],
+    );
+  }
+}
+
+class _ShapeWithLabel extends StatelessWidget {
+  final String label;
+  final Widget child;
+
+  const _ShapeWithLabel({
+    required this.label,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Text(label),
+        const SizedBox(height: LayoutConstants.spaceM),
+        child,
       ],
     );
   }

@@ -77,18 +77,11 @@ class _DecoratorExampleState extends State<DecoratorExample> {
               selectedIndex: _selectedIndex,
               onChanged: _onSelectedIndexChanged,
             ),
-            AnimatedContainer(
-              height: _selectedIndex == 2 ? 100.0 : 0.0,
-              duration: const Duration(milliseconds: 500),
-              child: AnimatedOpacity(
-                opacity: _selectedIndex == 2 ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 500),
-                child: CustomPizzaSelection(
-                  pizzaToppingsDataMap: _pizzaToppingsDataMap,
-                  onSelected: _onCustomPizzaChipSelected,
-                ),
+            if (_selectedIndex == 2)
+              CustomPizzaSelection(
+                pizzaToppingsDataMap: _pizzaToppingsDataMap,
+                onSelected: _onCustomPizzaChipSelected,
               ),
-            ),
             PizzaInformation(
               pizza: _pizza,
             ),
