@@ -20,7 +20,7 @@ class _ProxyExampleState extends State<ProxyExample> {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext _) {
+      builder: (_) {
         return CustomerDetailsDialog(
           service: _customerDetailsServiceProxy,
           customer: customer,

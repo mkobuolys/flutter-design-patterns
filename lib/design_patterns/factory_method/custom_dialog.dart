@@ -10,7 +10,7 @@ abstract class CustomDialog {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext _) {
+      builder: (_) {
         return dialog;
       },
     );

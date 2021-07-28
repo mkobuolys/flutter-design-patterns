@@ -126,7 +126,7 @@ class _VisitorExampleState extends State<VisitorExample> {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext _) => FilesDialog(
+      builder: (_) => FilesDialog(
         filesText: filesText,
       ),
     );

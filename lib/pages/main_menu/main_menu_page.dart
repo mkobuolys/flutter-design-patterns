@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../constants/constants.dart';
 import '../../data/models/design_pattern_category.dart';
 import '../../data/repositories/design_pattern_categories_repository.dart';
+import '../../helpers/index.dart';
 import '../../themes.dart';
 import 'widgets/main_menu_card.dart';
 import 'widgets/main_menu_header.dart';
@@ -20,9 +21,9 @@ class MainMenuPage extends StatelessWidget {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(LayoutConstants.paddingL),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 const MainMenuHeader(),
+                const SizedBox(height: LayoutConstants.spaceXL),
                 Consumer(
                   builder: (context, watch, child) {
                     final repository =
@@ -31,22 +32,10 @@ class MainMenuPage extends StatelessWidget {
                     return FutureBuilder<List<DesignPatternCategory>>(
                       future: repository.get(),
                       initialData: const [],
-                      builder: (
-                        _,
-                        AsyncSnapshot<List<DesignPatternCategory>> snapshot,
-                      ) {
+                      builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          return Column(
-                            children: <Widget>[
-                              for (var category in snapshot.data!)
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                      top: LayoutConstants.marginL),
-                                  child: MainMenuCard(
-                                    category: category,
-                                  ),
-                                )
-                            ],
+                          return _MainMenuCardsListView(
+                            categories: snapshot.data!,
                           );
                         }
 
@@ -65,6 +54,48 @@ class MainMenuPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _MainMenuCardsListView extends StatelessWidget {
+  final List<DesignPatternCategory> categories;
+
+  const _MainMenuCardsListView({
+    required this.categories,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isDesktop = constraints.maxWidth > LayoutConstants.screenDesktop;
+        final cardsIterable = categories.map<Widget>(
+          (category) => MainMenuCard(category: category, isDesktop: isDesktop),
+        );
+
+        if (isDesktop) {
+          return ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 500,
+              maxWidth: 1500,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: cardsIterable
+                  .map<Widget>((card) => Expanded(child: card))
+                  .toList()
+                  .addBetween(const SizedBox(width: LayoutConstants.spaceL)),
+            ),
+          );
+        }
+
+        return Column(
+          children: cardsIterable
+              .toList()
+              .addBetween(const SizedBox(height: LayoutConstants.spaceL)),
+        );
+      },
     );
   }
 }
