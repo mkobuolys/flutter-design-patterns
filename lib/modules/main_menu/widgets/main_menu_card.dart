@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
-import '../../../data/models/design_pattern.dart';
-import '../../../data/models/design_pattern_category.dart';
-import '../../../helpers/index.dart';
+import '../../../../constants/constants.dart';
+import '../../../../data/models/design_pattern.dart';
+import '../../../../data/models/design_pattern_category.dart';
+import '../../../../helpers/index.dart';
 
 class MainMenuCard extends StatelessWidget {
   final DesignPatternCategory category;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../themes.dart';
-import '../../../widgets/platform_specific/platform_back_button.dart';
+import '../../../../themes.dart';
+import '../../../../widgets/platform_specific/platform_back_button.dart';
 
 class DetailsAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/layout_constants.dart';
-import '../../../data/models/design_pattern.dart';
+import '../../../../constants/layout_constants.dart';
+import '../../../../data/models/design_pattern.dart';
 import '../widgets/widgets.dart';
 
 class SinglePageLayout extends StatelessWidget {

@@ -2,13 +2,15 @@ import 'package:flutter/widgets.dart';
 
 import '../../constants/constants.dart';
 import '../../data/models/design_pattern.dart';
-import 'layouts/layouts.dart';
+import '../../modules/design_pattern_details/layouts/layouts.dart';
 
 class DesignPatternDetailsPage extends StatelessWidget {
+  final String title;
   final DesignPattern designPattern;
   final Widget example;
 
   const DesignPatternDetailsPage({
+    required this.title,
     required this.designPattern,
     required this.example,
   });

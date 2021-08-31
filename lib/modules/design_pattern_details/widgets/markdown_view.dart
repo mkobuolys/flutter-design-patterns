@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../constants/constants.dart';
-import '../../../data/models/design_pattern.dart';
-import '../../../data/repositories/markdown_repository.dart';
-import '../../../themes.dart';
+import '../../../../constants/constants.dart';
+import '../../../../data/models/design_pattern.dart';
+import '../../../../data/repositories/markdown_repository.dart';
+import '../../../../themes.dart';
 
 class MarkdownView extends StatelessWidget {
   final DesignPattern designPattern;

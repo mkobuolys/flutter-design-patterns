@@ -5,9 +5,9 @@ import '../../constants/constants.dart';
 import '../../data/models/design_pattern_category.dart';
 import '../../data/repositories/design_pattern_categories_repository.dart';
 import '../../helpers/index.dart';
+import '../../modules/main_menu/widgets/main_menu_card.dart';
+import '../../modules/main_menu/widgets/main_menu_header.dart';
 import '../../themes.dart';
-import 'widgets/main_menu_card.dart';
-import 'widgets/main_menu_header.dart';
 
 class MainMenuPage extends StatelessWidget {
   const MainMenuPage();

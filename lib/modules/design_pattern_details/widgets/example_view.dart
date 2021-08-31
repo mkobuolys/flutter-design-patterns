@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../constants/constants.dart';
+import '../../../../constants/constants.dart';
 
 class ExampleView extends StatelessWidget {
   final Widget example;
