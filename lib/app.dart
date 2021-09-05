@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Design Patterns App',
+      title: 'Flutter Design Patterns',
       theme: lightTheme,
       routerDelegate: router.delegate(),
       routeInformationParser: router.defaultRouteParser(),
