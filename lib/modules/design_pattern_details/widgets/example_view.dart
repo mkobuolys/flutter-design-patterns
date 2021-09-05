@@ -1,19 +1,20 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../constants/constants.dart';
+import '../../../../constants/constants.dart';
+import '../../../widgets/design_patterns/design_patterns_factory.dart';
 
 class ExampleView extends StatelessWidget {
-  final Widget example;
+  final String designPatternId;
 
   const ExampleView({
-    required this.example,
+    required this.designPatternId,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(LayoutConstants.paddingL),
-      child: example,
+      child: DesignPatternsFactory.create(designPatternId),
     );
   }
 }

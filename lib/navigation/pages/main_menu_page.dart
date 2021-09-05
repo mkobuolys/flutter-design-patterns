@@ -4,16 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../constants/constants.dart';
 import '../../data/models/design_pattern_category.dart';
 import '../../data/repositories/design_pattern_categories_repository.dart';
-import '../../helpers/index.dart';
+import '../../helpers/helpers.dart';
+import '../../modules/main_menu/widgets/main_menu_card.dart';
+import '../../modules/main_menu/widgets/main_menu_header.dart';
 import '../../themes.dart';
-import 'widgets/main_menu_card.dart';
-import 'widgets/main_menu_header.dart';
 
-class MainMenuPage extends StatelessWidget {
+class MainMenuPage extends ConsumerWidget {
   const MainMenuPage();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final designPatternCategories = watch(designPatternCategoriesProvider);
+
     return Scaffold(
       body: SafeArea(
         child: ScrollConfiguration(
@@ -24,30 +26,17 @@ class MainMenuPage extends StatelessWidget {
               children: <Widget>[
                 const MainMenuHeader(),
                 const SizedBox(height: LayoutConstants.spaceXL),
-                Consumer(
-                  builder: (context, watch, child) {
-                    final repository =
-                        watch(designPatternCategoriesRepositoryProvider);
-
-                    return FutureBuilder<List<DesignPatternCategory>>(
-                      future: repository.get(),
-                      initialData: const [],
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return _MainMenuCardsListView(
-                            categories: snapshot.data!,
-                          );
-                        }
-
-                        return CircularProgressIndicator(
-                          backgroundColor: lightBackgroundColor,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.black.withOpacity(0.65),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                designPatternCategories.when(
+                  data: (categories) => _MainMenuCardsListView(
+                    categories: categories,
+                  ),
+                  loading: () => CircularProgressIndicator(
+                    backgroundColor: lightBackgroundColor,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Colors.black.withOpacity(0.65),
+                    ),
+                  ),
+                  error: (_, __) => const Text('Oops, something went wrong...'),
                 ),
               ],
             ),

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/layout_constants.dart';
-import '../../../data/models/design_pattern.dart';
+import '../../../../constants/layout_constants.dart';
+import '../../../../data/models/design_pattern.dart';
 import '../widgets/widgets.dart';
 
 class SinglePageLayout extends StatelessWidget {
   final DesignPattern designPattern;
-  final Widget example;
 
   const SinglePageLayout({
     required this.designPattern,
-    required this.example,
   });
 
   @override
@@ -28,7 +26,7 @@ class SinglePageLayout extends StatelessWidget {
             endIndent: LayoutConstants.spaceL,
           ),
           Expanded(
-            child: ExampleView(example: example),
+            child: ExampleView(designPatternId: designPattern.id),
           ),
         ],
       ),

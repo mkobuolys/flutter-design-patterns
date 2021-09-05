@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../navigation/router.dart';
 
 class PlatformBackButton extends StatelessWidget {
   final Color color;
@@ -18,7 +21,11 @@ class PlatformBackButton extends StatelessWidget {
     return IconButton(
       icon: Icon(icon),
       color: color,
-      onPressed: () => Navigator.pop(context),
+      onPressed: () {
+        context.router.canPopSelfOrChildren
+            ? context.popRoute()
+            : context.navigateTo(const MainMenuRoute());
+      },
     );
   }
 }

@@ -7,6 +7,10 @@ final markdownRepositoryProvider = Provider(
   (ref) => const MarkdownRepository(),
 );
 
+final markdownProvider = FutureProvider.autoDispose.family<String, String>(
+  (ref, id) => ref.watch(markdownRepositoryProvider).get(id),
+);
+
 class MarkdownRepository {
   const MarkdownRepository();
 
