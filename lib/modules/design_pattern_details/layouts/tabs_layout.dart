@@ -8,11 +8,9 @@ import '../widgets/widgets.dart';
 
 class TabsLayout extends StatefulWidget {
   final DesignPattern designPattern;
-  final Widget example;
 
   const TabsLayout({
     required this.designPattern,
-    required this.example,
   });
 
   @override
@@ -74,7 +72,7 @@ class _TabsLayoutState extends State<TabsLayout>
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           MarkdownView(designPattern: widget.designPattern),
-          ExampleView(example: widget.example),
+          ExampleView(designPatternId: widget.designPattern.id),
         ],
       ),
     );

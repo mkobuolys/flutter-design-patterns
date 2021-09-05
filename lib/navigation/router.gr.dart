@@ -6,9 +6,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
-import 'package:flutter/widgets.dart' as _i5;
 
-import '../data/models/design_pattern.dart' as _i4;
 import 'pages/pages.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -25,11 +23,11 @@ class AppRouter extends _i1.RootStackRouter {
     DesignPatternDetailsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<DesignPatternDetailsRouteArgs>();
-          return _i3.DesignPatternDetailsPage(
-              id: args.id,
-              designPattern: args.designPattern,
-              example: args.example);
+          final pathParams = data.pathParams;
+          final args = data.argsAs<DesignPatternDetailsRouteArgs>(
+              orElse: () => DesignPatternDetailsRouteArgs(
+                  id: pathParams.getString('id')));
+          return _i3.DesignPatternDetailsPage(id: args.id);
         })
   };
 
@@ -50,26 +48,17 @@ class MainMenuRoute extends _i1.PageRouteInfo {
 
 class DesignPatternDetailsRoute
     extends _i1.PageRouteInfo<DesignPatternDetailsRouteArgs> {
-  DesignPatternDetailsRoute(
-      {required String id,
-      required _i4.DesignPattern designPattern,
-      required _i5.Widget example})
+  DesignPatternDetailsRoute({required String id})
       : super(name,
             path: '/pattern/:id',
-            args: DesignPatternDetailsRouteArgs(
-                id: id, designPattern: designPattern, example: example),
+            args: DesignPatternDetailsRouteArgs(id: id),
             rawPathParams: {'id': id});
 
   static const String name = 'DesignPatternDetailsRoute';
 }
 
 class DesignPatternDetailsRouteArgs {
-  const DesignPatternDetailsRouteArgs(
-      {required this.id, required this.designPattern, required this.example});
+  const DesignPatternDetailsRouteArgs({required this.id});
 
   final String id;
-
-  final _i4.DesignPattern designPattern;
-
-  final _i5.Widget example;
 }

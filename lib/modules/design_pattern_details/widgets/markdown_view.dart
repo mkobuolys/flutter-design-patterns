@@ -7,7 +7,7 @@ import '../../../../data/models/design_pattern.dart';
 import '../../../../data/repositories/markdown_repository.dart';
 import '../../../../themes.dart';
 
-class MarkdownView extends StatelessWidget {
+class MarkdownView extends ConsumerWidget {
   final DesignPattern designPattern;
 
   const MarkdownView({
@@ -15,7 +15,9 @@ class MarkdownView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final markdown = watch(markdownProvider(designPattern.id));
+
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
@@ -31,31 +33,21 @@ class MarkdownView extends StatelessWidget {
               maxLines: 99,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            Consumer(
-              builder: (context, watch, child) {
-                final repository = watch(markdownRepositoryProvider);
-
-                return FutureBuilder<String>(
-                  future: repository.get(designPattern.id),
-                  initialData: '',
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return MarkdownBody(
-                        data: snapshot.data!,
-                        fitContent: false,
-                        selectable: true,
-                      );
-                    }
-
-                    return CircularProgressIndicator(
-                      backgroundColor: lightBackgroundColor,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.black.withOpacity(0.65),
-                      ),
-                    );
-                  },
-                );
-              },
+            markdown.when(
+              data: (data) => MarkdownBody(
+                data: data,
+                fitContent: false,
+                selectable: true,
+              ),
+              loading: () => Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: lightBackgroundColor,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.black.withOpacity(0.65),
+                  ),
+                ),
+              ),
+              error: (_, __) => const Text('Oops, something went wrong...'),
             ),
           ],
         ),

@@ -1,37 +1,42 @@
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../constants/constants.dart';
-import '../../data/models/design_pattern.dart';
+import '../../data/repositories/design_pattern_categories_repository.dart';
 import '../../modules/design_pattern_details/layouts/layouts.dart';
+import '../../themes.dart';
 
-class DesignPatternDetailsPage extends StatelessWidget {
+class DesignPatternDetailsPage extends ConsumerWidget {
   final String id;
-  final DesignPattern designPattern;
-  final Widget example;
 
   const DesignPatternDetailsPage({
     @PathParam('id') required this.id,
-    required this.designPattern,
-    required this.example,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth > LayoutConstants.screenDesktop) {
-          return SinglePageLayout(
-            designPattern: designPattern,
-            example: example,
-          );
-        }
+  Widget build(BuildContext context, ScopedReader watch) {
+    final designPattern = watch(designPatternProvider(id));
 
-        return TabsLayout(
-          designPattern: designPattern,
-          example: example,
-        );
-      },
+    return designPattern.when(
+      data: (pattern) => LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > LayoutConstants.screenDesktop) {
+            return SinglePageLayout(designPattern: pattern);
+          }
+
+          return TabsLayout(designPattern: pattern);
+        },
+      ),
+      loading: () => Center(
+        child: CircularProgressIndicator(
+          backgroundColor: lightBackgroundColor,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            Colors.black.withOpacity(0.65),
+          ),
+        ),
+      ),
+      error: (_, __) => const Text('Oops, something went wrong...'),
     );
   }
 }
