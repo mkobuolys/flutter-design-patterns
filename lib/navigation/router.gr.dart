@@ -27,7 +27,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (data) {
           final args = data.argsAs<DesignPatternDetailsRouteArgs>();
           return _i3.DesignPatternDetailsPage(
-              title: args.title,
+              id: args.id,
               designPattern: args.designPattern,
               example: args.example);
         })
@@ -36,7 +36,9 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(MainMenuRoute.name, path: '/'),
-        _i1.RouteConfig(DesignPatternDetailsRoute.name, path: '/pattern/:title')
+        _i1.RouteConfig(DesignPatternDetailsRoute.name, path: '/pattern/:id'),
+        _i1.RouteConfig('*#redirect',
+            path: '*', redirectTo: '/', fullMatch: true)
       ];
 }
 
@@ -49,25 +51,23 @@ class MainMenuRoute extends _i1.PageRouteInfo {
 class DesignPatternDetailsRoute
     extends _i1.PageRouteInfo<DesignPatternDetailsRouteArgs> {
   DesignPatternDetailsRoute(
-      {required String title,
+      {required String id,
       required _i4.DesignPattern designPattern,
       required _i5.Widget example})
       : super(name,
-            path: '/pattern/:title',
+            path: '/pattern/:id',
             args: DesignPatternDetailsRouteArgs(
-                title: title, designPattern: designPattern, example: example),
-            rawPathParams: {});
+                id: id, designPattern: designPattern, example: example),
+            rawPathParams: {'id': id});
 
   static const String name = 'DesignPatternDetailsRoute';
 }
 
 class DesignPatternDetailsRouteArgs {
   const DesignPatternDetailsRouteArgs(
-      {required this.title,
-      required this.designPattern,
-      required this.example});
+      {required this.id, required this.designPattern, required this.example});
 
-  final String title;
+  final String id;
 
   final _i4.DesignPattern designPattern;
 

@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../data/models/design_pattern.dart';
 import '../../../../data/models/design_pattern_category.dart';
 import '../../../../helpers/index.dart';
+import '../../../navigation/router.dart';
+import '../../../widgets/design_patterns/design_patterns_factory.dart';
 
 class MainMenuCard extends StatelessWidget {
   final DesignPatternCategory category;
@@ -148,11 +151,15 @@ class _DesignPatternTile extends StatelessWidget {
     return Material(
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            designPattern.route,
-            arguments: designPattern,
+          final designPatternId = designPattern.id;
+          final example = DesignPatternsFactory.create(designPatternId);
+          final route = DesignPatternDetailsRoute(
+            id: designPatternId,
+            designPattern: designPattern,
+            example: example,
           );
+
+          context.navigateTo(route);
         },
         child: Padding(
           padding: const EdgeInsets.only(
