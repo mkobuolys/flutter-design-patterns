@@ -24,7 +24,7 @@ abstract class DesignPatternsFactory {
       case 'command':
         return const CommandExample();
       case 'composite':
-        return const CommandExample();
+        return const CompositeExample();
       case 'decorator':
         return const DecoratorExample();
       case 'facade':
