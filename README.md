@@ -2,6 +2,8 @@
 
 An open-source design patterns mobile application built with Dart and Flutter.
 
+https://flutterdesignpatterns.com/
+
 This application is an implementation part of the "Flutter Design Patterns" article series on [Medium](https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792).
 
 <p float="left">
