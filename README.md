@@ -32,7 +32,7 @@ If you are new to Flutter, please first follow the [Flutter Setup](https://flutt
 git clone https://github.com/mkobuolys/flutter-design-patterns.git
 cd flutter-design-patterns
 flutter pub get
-flutter pub run build_runner build
+flutter pub run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
