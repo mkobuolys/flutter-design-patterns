@@ -7,27 +7,32 @@
       {
         "id": "abstract-factory",
         "title": "Abstract Factory",
-        "description": "Provide an interface for creating families of related or dependent objects without specifying their concrete classes."
+        "description": "Provide an interface for creating families of related or dependent objects without specifying their concrete classes.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-11-abstract-factory-7098112925d8"
       },
       {
         "id": "builder",
         "title": "Builder",
-        "description": "Separate the construction of a complex object from its representation so that the same construction process can create different representations."
+        "description": "Separate the construction of a complex object from its representation so that the same construction process can create different representations.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-18-builder-cdc90b222724"
       },
       {
         "id": "factory-method",
         "title": "Factory Method",
-        "description": "Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to sub­classes."
+        "description": "Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to sub­classes.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-10-factory-method-c53ad11d863f"
       },
       {
         "id": "prototype",
         "title": "Prototype",
-        "description": "Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype."
+        "description": "Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-14-prototype-7d7d18bcf643"
       },
       {
         "id": "singleton",
         "title": "Singleton",
-        "description": "Ensure a class only has one instance, and provide a global point of access to it."
+        "description": "Ensure a class only has one instance, and provide a global point of access to it.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-1-singleton-437f04e923ce"
       }
     ]
   },
@@ -39,37 +44,44 @@
       {
         "id": "adapter",
         "title": "Adapter",
-        "description": "Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces."
+        "description": "Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-2-adapter-3f05c02a7c84"
       },
       {
         "id": "bridge",
         "title": "Bridge",
-        "description": "Decouple an abstraction from its implementation so that the two can vary independently."
+        "description": "Decouple an abstraction from its implementation so that the two can vary independently.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-17-bridge-b31711b629f2"
       },
       {
         "id": "composite",
         "title": "Composite",
-        "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly."
+        "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-4-composite-23473cccf2b3"
       },
       {
         "id": "decorator",
         "title": "Decorator",
-        "description": "Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality."
+        "description": "Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-16-decorator-bf0dd711f093"
       },
       {
         "id": "facade",
         "title": "Facade",
-        "description": "Provide an unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use."
+        "description": "Provide an unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-7-facade-eb40434fb973"
       },
       {
         "id": "flyweight",
         "title": "Flyweight",
-        "description": "Use sharing to support large numbers of fine-grained objects efficiently."
+        "description": "Use sharing to support large numbers of fine-grained objects efficiently.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-19-flyweight-3d41cfdf36c"
       },
       {
         "id": "proxy",
         "title": "Proxy",
-        "description": "Provide a surrogate or placeholder for another object to control access to it."
+        "description": "Provide a surrogate or placeholder for another object to control access to it.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-15-proxy-af8743b24269"
       }
     ]
   },
@@ -81,57 +93,68 @@
       {
         "id": "chain-of-responsibility",
         "title": "Chain of Responsibility",
-        "description": "Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it."
+        "description": "Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-20-chain-of-responsibility-2ff122624297"
       },
       {
         "id": "command",
         "title": "Command",
-        "description": "Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable opera­tions."
+        "description": "Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable opera­tions.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-12-command-e199172e16eb"
       },
       {
         "id": "interpreter",
         "title": "Interpreter",
-        "description": "Given a language, define a representation for its grammar along with an inter­preter that uses the representation to interpret sentences in the language."
+        "description": "Given a language, define a representation for its grammar along with an inter­preter that uses the representation to interpret sentences in the language.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-8-interpreter-8f15e9de3ee9"
       },
       {
         "id": "iterator",
         "title": "Iterator",
-        "description": "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation."
+        "description": "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-9-iterator-8da27ee83c17"
       },
       {
         "id": "mediator",
         "title": "Mediator",
-        "description": "Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently."
+        "description": "Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-22-mediator-575e7aa6bfa9"
       },
       {
         "id": "memento",
         "title": "Memento",
-        "description": "Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later."
+        "description": "Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-13-memento-b487769cf104"
       },
       {
         "id": "observer",
         "title": "Observer",
-        "description": "Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically."
+        "description": "Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-23-observer-1e1b0ea81d73"
       },
       {
         "id": "state",
         "title": "State",
-        "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class."
+        "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-6-state-be06cb05525c"
       },
       {
         "id": "strategy",
         "title": "Strategy",
-        "description": "Define a family of algorithms, encapsulate each one, and make them interchange­able. Strategy lets the algorithm vary independently from clients that use it."
+        "description": "Define a family of algorithms, encapsulate each one, and make them interchange­able. Strategy lets the algorithm vary independently from clients that use it.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-5-strategy-ef9cf5b5b694"
       },
       {
         "id": "template-method",
         "title": "Template Method",
-        "description": "Define the skeleton of an algorithm in an operation, deferring some steps to sub­classes. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure."
+        "description": "Define the skeleton of an algorithm in an operation, deferring some steps to sub­classes. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-3-template-method-89799d84e378"
       },
       {
         "id": "visitor",
         "title": "Visitor",
-        "description": "Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates."
+        "description": "Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.",
+        "mediumUrl": "https://mkobuolys.medium.com/flutter-design-patterns-21-visitor-af5def0699be"
       }
     ]
   }

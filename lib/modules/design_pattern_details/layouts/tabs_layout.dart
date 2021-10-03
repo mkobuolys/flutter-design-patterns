@@ -47,7 +47,7 @@ class _TabsLayoutState extends State<TabsLayout>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DetailsAppBar(title: widget.designPattern.title),
+      appBar: DetailsAppBar(designPattern: widget.designPattern),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _controller.index,
         backgroundColor: lightBackgroundColor,

@@ -1,8 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../widgets/heartbeat_animation.dart';
+import '../../../helpers/helpers.dart';
 
 class MainMenuHeader extends StatelessWidget {
   const MainMenuHeader();
@@ -19,9 +21,28 @@ class MainMenuHeader extends StatelessWidget {
           crossAxisAlignment:
               isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              headerText,
-              style: Theme.of(context).textTheme.headline4,
+            Row(
+              mainAxisAlignment: isDesktop
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  headerText,
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                const SizedBox(width: LayoutConstants.spaceS),
+                IconButton(
+                  splashRadius: 20.0,
+                  onPressed: () => UrlLauncher.launchUrl(
+                    'https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792',
+                  ),
+                  icon: const Icon(
+                    FontAwesomeIcons.medium,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: LayoutConstants.spaceM),
             Row(
@@ -45,6 +66,28 @@ class MainMenuHeader extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: LayoutConstants.spaceL),
+            RichText(
+              text: TextSpan(
+                text: 'Creator: ',
+                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                children: [
+                  TextSpan(
+                    text: 'Mangirdas Kazlauskas',
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => UrlLauncher.launchUrl(
+                            'https://linktr.ee/mkobuolys',
+                          ),
+                  ),
+                ],
+              ),
+            )
           ],
         );
       },

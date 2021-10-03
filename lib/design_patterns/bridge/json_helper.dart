@@ -5,6 +5,8 @@ import 'entities/entity_base.dart';
 import 'entities/order.dart';
 
 class JsonHelper {
+  const JsonHelper._();
+
   static String serialiseObject(EntityBase entityBase) {
     return jsonEncode(entityBase);
   }

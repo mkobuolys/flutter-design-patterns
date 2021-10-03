@@ -14,7 +14,7 @@ class SinglePageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DetailsAppBar(title: designPattern.title),
+      appBar: DetailsAppBar(designPattern: designPattern),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

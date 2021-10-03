@@ -8,7 +8,9 @@ class DesignPatternsFactoryException implements Exception {
   const DesignPatternsFactoryException(this.message);
 }
 
-abstract class DesignPatternsFactory {
+class DesignPatternsFactory {
+  const DesignPatternsFactory._();
+
   static Widget create(String id) {
     switch (id) {
       case 'abstract-factory':

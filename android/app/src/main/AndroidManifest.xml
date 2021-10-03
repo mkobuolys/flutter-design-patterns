@@ -1,5 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mangirdaskazlauskas.flutterdesignpatterns">
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https" />
+      </intent>
+    </queries>
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="Flutter Design Patterns"
