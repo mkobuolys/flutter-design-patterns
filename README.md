@@ -1,6 +1,8 @@
 # Flutter Design Patterns
 
-An open-source design patterns mobile application built with Dart and Flutter.
+An open-source design patterns application built with Dart and Flutter.
+
+https://flutterdesignpatterns.com/
 
 This application is an implementation part of the "Flutter Design Patterns" article series on [Medium](https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792).
 
@@ -29,6 +31,8 @@ If you are new to Flutter, please first follow the [Flutter Setup](https://flutt
 ```
 git clone https://github.com/mkobuolys/flutter-design-patterns.git
 cd flutter-design-patterns
+flutter pub get
+flutter pub run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
