@@ -13,8 +13,8 @@ class MainMenuPage extends ConsumerWidget {
   const MainMenuPage();
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final designPatternCategories = watch(designPatternCategoriesProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final designPatternCategories = ref.watch(designPatternCategoriesProvider);
 
     return Scaffold(
       body: SafeArea(

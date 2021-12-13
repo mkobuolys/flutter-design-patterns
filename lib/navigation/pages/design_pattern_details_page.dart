@@ -15,8 +15,8 @@ class DesignPatternDetailsPage extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final designPattern = watch(designPatternProvider(id));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final designPattern = ref.watch(designPatternProvider(id));
 
     return designPattern.when(
       data: (pattern) => LayoutBuilder(
