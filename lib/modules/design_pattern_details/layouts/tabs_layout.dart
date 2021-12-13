@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../data/models/design_pattern.dart';
 import '../../../../themes.dart';
-import '../widgets/details_app_bar.dart';
 import '../widgets/widgets.dart';
 
 class TabsLayout extends StatefulWidget {
