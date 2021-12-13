@@ -15,8 +15,8 @@ class MarkdownView extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final markdown = watch(markdownProvider(designPattern.id));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final markdown = ref.watch(markdownProvider(designPattern.id));
 
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),

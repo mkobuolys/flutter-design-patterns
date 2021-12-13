@@ -9,20 +9,20 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  auto_route: ^2.3.0
+  auto_route: ^3.2.0
   cupertino_icons: ^1.0.2
   faker: ^2.0.0
   flutter:
     sdk: flutter
   flutter_markdown: ^0.6.0
-  flutter_riverpod: ^0.14.0+3
+  flutter_riverpod: ^1.0.2
   font_awesome_flutter: ^9.0.0
   url_launcher: ^6.0.12
   url_strategy: ^0.2.0
   xml: ^5.0.2
 
 dev_dependencies:
-  auto_route_generator: ^2.1.0
+  auto_route_generator: ^3.2.0
   build_runner: ^2.1.1
   flutter_test:
     sdk: flutter
