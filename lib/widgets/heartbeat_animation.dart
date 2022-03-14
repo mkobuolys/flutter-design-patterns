@@ -41,9 +41,11 @@ class _HeartbeatAnimationState extends State<HeartbeatAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _animation,
-      child: widget.child,
+    return RepaintBoundary(
+      child: ScaleTransition(
+        scale: _animation,
+        child: widget.child,
+      ),
     );
   }
 }
