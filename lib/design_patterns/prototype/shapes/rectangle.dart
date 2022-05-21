@@ -27,7 +27,11 @@ class Rectangle extends Shape {
   @override
   void randomiseProperties() {
     color = Color.fromRGBO(
-        random.integer(255), random.integer(255), random.integer(255), 1.0);
+      random.integer(255),
+      random.integer(255),
+      random.integer(255),
+      1.0,
+    );
     height = random.integer(100, min: 50).toDouble();
     width = random.integer(100, min: 50).toDouble();
   }

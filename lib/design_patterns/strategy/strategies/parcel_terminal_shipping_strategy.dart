@@ -27,7 +27,8 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
         return 3.49;
       default:
         throw Exception(
-            "Unknown shipping price for the package of size '${orderItem.packageSize}'.");
+          "Unknown shipping price for the package of size '${orderItem.packageSize}'.",
+        );
     }
   }
 }

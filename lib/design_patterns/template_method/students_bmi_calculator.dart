@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 import 'student.dart';
 

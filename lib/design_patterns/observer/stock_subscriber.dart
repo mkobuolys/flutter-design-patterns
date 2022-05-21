@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:faker/faker.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 import 'stock.dart';
 

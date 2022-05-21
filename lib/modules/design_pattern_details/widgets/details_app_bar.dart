@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../themes.dart';
 import '../../../../widgets/platform_specific/platform_back_button.dart';
+import '../../../constants/constants.dart';
 import '../../../data/models/design_pattern.dart';
 import '../../../helpers/helpers.dart';
 
@@ -24,6 +25,7 @@ class DetailsAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: const PlatformBackButton(color: Colors.black),
       actions: [
         IconButton(
+          padding: const EdgeInsets.only(right: LayoutConstants.paddingL),
           splashRadius: 20.0,
           onPressed: () => UrlLauncher.launchUrl(designPattern.mediumUrl),
           icon: const Icon(

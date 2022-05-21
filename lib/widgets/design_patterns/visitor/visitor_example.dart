@@ -42,7 +42,11 @@ class _VisitorExampleState extends State<VisitorExample> {
     );
     musicDirectory.addFile(
       const AudioFile(
-          'Bag Raiders - Shooting Stars', 'Bag Raiders', 'mp3', 3811214),
+        'Bag Raiders - Shooting Stars',
+        'Bag Raiders',
+        'mp3',
+        3811214,
+      ),
     );
 
     final moviesDirectory = Directory(

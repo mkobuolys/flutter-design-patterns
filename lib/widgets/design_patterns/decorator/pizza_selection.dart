@@ -22,7 +22,6 @@ class PizzaSelection extends StatelessWidget {
             groupValue: selectedIndex,
             selected: i == selectedIndex,
             activeColor: Colors.black,
-            controlAffinity: ListTileControlAffinity.platform,
             onChanged: onChanged,
           ),
       ],

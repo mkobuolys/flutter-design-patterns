@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../apis/json_students_api.dart';
 import '../../student.dart';

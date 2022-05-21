@@ -41,8 +41,11 @@ class DesignPatternCategoriesRepository {
     );
     final designPatternCategoryJsonList = json.decode(menuJson) as List;
     final mainMenuSections = designPatternCategoryJsonList
-        .map((categoryJson) => DesignPatternCategory.fromJson(
-            categoryJson as Map<String, dynamic>))
+        .map(
+          (categoryJson) => DesignPatternCategory.fromJson(
+            categoryJson as Map<String, dynamic>,
+          ),
+        )
         .toList();
 
     return mainMenuSections;

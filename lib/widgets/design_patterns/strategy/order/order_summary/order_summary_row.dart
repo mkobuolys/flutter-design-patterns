@@ -16,16 +16,20 @@ class OrderSummaryRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(label,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1!
-                .copyWith(fontFamily: fontFamily)),
-        Text('\$${value.toStringAsFixed(2)}',
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1!
-                .copyWith(fontFamily: fontFamily)),
+        Text(
+          label,
+          style: Theme.of(context)
+              .textTheme
+              .subtitle1!
+              .copyWith(fontFamily: fontFamily),
+        ),
+        Text(
+          '\$${value.toStringAsFixed(2)}',
+          style: Theme.of(context)
+              .textTheme
+              .subtitle1!
+              .copyWith(fontFamily: fontFamily),
+        ),
       ],
     );
   }

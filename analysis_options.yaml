@@ -3,3 +3,9 @@ include: package:lint/analysis_options.yaml
 analyzer:
   exclude:
     - "**/*.gr.dart"
+
+linter:
+  rules:
+    always_use_package_imports: false
+    avoid_relative_lib_imports: false
+    prefer_relative_imports: true

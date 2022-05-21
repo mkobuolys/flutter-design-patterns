@@ -25,11 +25,13 @@ class XmlContactsAdapter implements IContactsAdapter {
       final favouriteString = xmlElement.findElements('favourite').single.text;
       final favourite = favouriteString.toLowerCase() == 'true';
 
-      contactsList.add(Contact(
-        fullName: fullName,
-        email: email,
-        favourite: favourite,
-      ));
+      contactsList.add(
+        Contact(
+          fullName: fullName,
+          email: email,
+          favourite: favourite,
+        ),
+      );
     }
 
     return contactsList;

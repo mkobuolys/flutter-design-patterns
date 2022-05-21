@@ -23,11 +23,11 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
   void initState() {
     super.initState();
 
-    widget.service
-        .getCustomerDetails(widget.customer.id)
-        .then((CustomerDetails customerDetails) => setState(() {
-              widget.customer.details = customerDetails;
-            }));
+    widget.service.getCustomerDetails(widget.customer.id).then(
+          (CustomerDetails customerDetails) => setState(() {
+            widget.customer.details = customerDetails;
+          }),
+        );
   }
 
   void _closeDialog() {

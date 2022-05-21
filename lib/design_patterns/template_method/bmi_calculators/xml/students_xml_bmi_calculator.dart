@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:xml/xml.dart';
 
 import '../../apis/xml_students_api.dart';
@@ -22,12 +22,14 @@ class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
           double.parse(xmlElement.findElements('height').single.text);
       final weight = int.parse(xmlElement.findElements('weight').single.text);
 
-      studentsList.add(Student(
-        fullName: fullName,
-        age: age,
-        height: height,
-        weight: weight,
-      ));
+      studentsList.add(
+        Student(
+          fullName: fullName,
+          age: age,
+          height: height,
+          weight: weight,
+        ),
+      );
     }
 
     return studentsList;
