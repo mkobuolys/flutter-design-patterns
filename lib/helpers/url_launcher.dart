@@ -3,6 +3,14 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 class UrlLauncher {
   const UrlLauncher._();
 
+  static Future<void> launchPersonalPage() => launchUrl(
+        'https://linktr.ee/mkobuolys',
+      );
+
+  static Future<void> launchFlutterDesignPatternsMediumPage() => launchUrl(
+        'https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792',
+      );
+
   static Future<void> launchUrl(String url) async {
     final uri = Uri.tryParse(url);
 

@@ -32,15 +32,10 @@ class MainMenuHeader extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 const SizedBox(width: LayoutConstants.spaceS),
-                IconButton(
+                const IconButton(
                   splashRadius: 20.0,
-                  onPressed: () => UrlLauncher.launchUrl(
-                    'https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792',
-                  ),
-                  icon: const Icon(
-                    FontAwesomeIcons.medium,
-                    color: Colors.black,
-                  ),
+                  onPressed: UrlLauncher.launchFlutterDesignPatternsMediumPage,
+                  icon: Icon(FontAwesomeIcons.medium, color: Colors.black),
                 ),
               ],
             ),
@@ -67,12 +62,13 @@ class MainMenuHeader extends StatelessWidget {
               ],
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            RichText(
-              text: TextSpan(
-                text: 'Creator: ',
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+            Text.rich(
+              TextSpan(
+                text: 'by ',
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(fontWeight: FontWeight.w500),
                 children: [
                   TextSpan(
                     text: 'Mangirdas Kazlauskas',
@@ -81,9 +77,7 @@ class MainMenuHeader extends StatelessWidget {
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => UrlLauncher.launchUrl(
-                            'https://linktr.ee/mkobuolys',
-                          ),
+                      ..onTap = UrlLauncher.launchPersonalPage,
                   ),
                 ],
               ),
