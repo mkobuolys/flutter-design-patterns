@@ -1,6 +1,6 @@
 # Flutter Design Patterns
 
-An open-source OOP design patterns application built with Dart and Flutter.
+An open-source [OOP design patterns](https://en.wikipedia.org/wiki/Design_Patterns) application built with Dart and Flutter.
 
 https://flutterdesignpatterns.com/
 
