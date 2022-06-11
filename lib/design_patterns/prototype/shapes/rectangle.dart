@@ -7,9 +7,9 @@ class Rectangle extends Shape {
   late double height;
   late double width;
 
-  Rectangle(Color color, this.height, this.width) : super(color);
+  Rectangle(super.color, this.height, this.width);
 
-  Rectangle.initial() : super(Colors.black) {
+  Rectangle.initial([super.color = Colors.black]) {
     height = 100.0;
     width = 100.0;
   }

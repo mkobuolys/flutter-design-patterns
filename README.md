@@ -4,7 +4,7 @@ An open-source OOP design patterns application built with Dart and Flutter.
 
 https://flutterdesignpatterns.com/
 
-This application is an implementation part of the "Flutter Design Patterns" article series on [Medium](https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792).
+This application is an implementation part of the "Flutter Design Patterns" article series on [Medium](https://mkobuolys.medium.com/list/flutter-design-patterns-9804e6a0c3f4).
 
 <p float="left">
 	<img src="./images/home.png" alt="Home Page" width="250">

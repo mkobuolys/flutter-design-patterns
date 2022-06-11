@@ -6,9 +6,9 @@ import '../shape.dart';
 class Circle extends Shape {
   late double radius;
 
-  Circle(Color color, this.radius) : super(color);
+  Circle(super.color, this.radius);
 
-  Circle.initial() : super(Colors.black) {
+  Circle.initial([super.color = Colors.black]) {
     radius = 50.0;
   }
 

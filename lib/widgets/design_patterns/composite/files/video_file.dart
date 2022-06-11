@@ -3,5 +3,8 @@ import 'package:flutter/material.dart';
 import 'file.dart';
 
 class VideoFile extends File {
-  const VideoFile(String title, int size) : super(title, size, Icons.movie);
+  const VideoFile({
+    required super.title,
+    required super.size,
+  }) : super(icon: Icons.movie);
 }

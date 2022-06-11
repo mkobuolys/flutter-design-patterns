@@ -7,7 +7,10 @@ abstract class LoggerBase {
   final LogLevel logLevel;
   final LoggerBase? _nextLogger;
 
-  const LoggerBase(this.logLevel, [this._nextLogger]);
+  const LoggerBase({
+    required this.logLevel,
+    LoggerBase? nextLogger,
+  }) : _nextLogger = nextLogger;
 
   void logMessage(LogLevel level, String message) {
     if (logLevel <= level) {

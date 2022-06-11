@@ -40,7 +40,9 @@ abstract class TeamMember {
   NotificationHub? notificationHub;
   String? lastNotification;
 
-  TeamMember(this.name);
+  TeamMember({
+    required this.name,
+  });
 
   void receive(String from, String message) {
     lastNotification = '$from: "$message"';
@@ -65,8 +67,8 @@ All of the specific team member classes extend the _TeamMember_ and override the
 ```
 class Admin extends TeamMember {
   Admin({
-    required String name,
-  }) : super(name);
+    required super.name,
+  });
 
   @override
   String toString() {
@@ -80,8 +82,8 @@ class Admin extends TeamMember {
 ```
 class Developer extends TeamMember {
   Developer({
-    required String name,
-  }) : super(name);
+    required super.name,
+  });
 
   @override
   String toString() {
@@ -95,8 +97,8 @@ class Developer extends TeamMember {
 ```
 class Tester extends TeamMember {
   Tester({
-    required String name,
-  }) : super(name);
+    required super.name,
+  });
 
   @override
   String toString() {

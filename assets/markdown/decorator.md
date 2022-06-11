@@ -90,7 +90,7 @@ _Basil_, _Mozzarella_, _OliveOil_, _Oregano_, _Pecorino_, _Pepperoni_ and _Sauce
 
 ```
 class Basil extends PizzaDecorator {
-  Basil(Pizza pizza) : super(pizza) {
+  Basil(super.pizza) {
     description = 'Basil';
   }
 
@@ -108,7 +108,7 @@ class Basil extends PizzaDecorator {
 
 ```
 class Mozzarella extends PizzaDecorator {
-  Mozzarella(Pizza pizza) : super(pizza) {
+  Mozzarella(super.pizza) {
     description = 'Mozzarella';
   }
 
@@ -126,7 +126,7 @@ class Mozzarella extends PizzaDecorator {
 
 ```
 class OliveOil extends PizzaDecorator {
-  OliveOil(Pizza pizza) : super(pizza) {
+  OliveOil(super.pizza) {
     description = 'Olive Oil';
   }
 
@@ -144,13 +144,13 @@ class OliveOil extends PizzaDecorator {
 
 ```
 class Oregano extends PizzaDecorator {
-  Oregano(Pizza pizza) : super(pizza) {
+  Oregano(super.pizza) {
     description = 'Oregano';
   }
 
   @override
   String getDescription() {
-   return '${pizza.getDescription()}\n- $description';
+    return '${pizza.getDescription()}\n- $description';
   }
 
   @override
@@ -162,7 +162,7 @@ class Oregano extends PizzaDecorator {
 
 ```
 class Pecorino extends PizzaDecorator {
-  Pecorino(Pizza pizza) : super(pizza) {
+  Pecorino(super.pizza) {
     description = 'Pecorino';
   }
 
@@ -180,7 +180,7 @@ class Pecorino extends PizzaDecorator {
 
 ```
 class Pepperoni extends PizzaDecorator {
-  Pepperoni(Pizza pizza) : super(pizza) {
+  Pepperoni(super.pizza) {
     description = 'Pepperoni';
   }
 
@@ -198,7 +198,7 @@ class Pepperoni extends PizzaDecorator {
 
 ```
 class Sauce extends PizzaDecorator {
-  Sauce(Pizza pizza) : super(pizza) {
+  Sauce(super.pizza) {
     description = 'Sauce';
   }
 

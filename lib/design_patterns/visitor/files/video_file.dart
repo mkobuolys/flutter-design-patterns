@@ -6,8 +6,12 @@ import '../ivisitor.dart';
 class VideoFile extends File {
   final String directedBy;
 
-  const VideoFile(String title, this.directedBy, String fileExtension, int size)
-      : super(title, fileExtension, size, Icons.movie);
+  const VideoFile({
+    required this.directedBy,
+    required super.title,
+    required super.fileExtension,
+    required super.size,
+  }) : super(icon: Icons.movie);
 
   @override
   String accept(IVisitor visitor) {

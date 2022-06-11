@@ -6,8 +6,12 @@ import '../ivisitor.dart';
 class TextFile extends File {
   final String content;
 
-  const TextFile(String title, this.content, String fileExtension, int size)
-      : super(title, fileExtension, size, Icons.description);
+  const TextFile({
+    required this.content,
+    required super.title,
+    required super.fileExtension,
+    required super.size,
+  }) : super(icon: Icons.description);
 
   @override
   String accept(IVisitor visitor) {

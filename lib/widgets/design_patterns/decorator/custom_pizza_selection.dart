@@ -16,6 +16,7 @@ class CustomPizzaSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: LayoutConstants.spaceM,
+      runSpacing: LayoutConstants.spaceM,
       children: <Widget>[
         for (var i = 0; i < pizzaToppingsDataMap.length; i++)
           i == 0

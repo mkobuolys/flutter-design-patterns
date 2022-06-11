@@ -6,10 +6,11 @@ import '../services/external_logging_service.dart';
 class InfoLogger extends LoggerBase {
   late ExternalLoggingService externalLoggingService;
 
-  InfoLogger(LogBloc logBloc, [LoggerBase? nextLogger])
-      : super(LogLevel.Info, nextLogger) {
-    externalLoggingService = ExternalLoggingService(logBloc);
-  }
+  InfoLogger(
+    LogBloc logBloc, {
+    super.nextLogger,
+  })  : externalLoggingService = ExternalLoggingService(logBloc),
+        super(logLevel: LogLevel.Info);
 
   @override
   void log(String message) {

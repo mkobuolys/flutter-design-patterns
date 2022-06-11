@@ -35,17 +35,27 @@ class _VisitorExampleState extends State<VisitorExample> {
       level: 1,
     );
     musicDirectory.addFile(
-      const AudioFile('Darude - Sandstorm', 'Before the Storm', 'mp3', 2612453),
-    );
-    musicDirectory.addFile(
-      const AudioFile('Toto - Africa', 'Toto IV', 'mp3', 3219811),
+      const AudioFile(
+        title: 'Darude - Sandstorm',
+        albumTitle: 'Before the Storm',
+        fileExtension: 'mp3',
+        size: 2612453,
+      ),
     );
     musicDirectory.addFile(
       const AudioFile(
-        'Bag Raiders - Shooting Stars',
-        'Bag Raiders',
-        'mp3',
-        3811214,
+        title: 'Toto - Africa',
+        albumTitle: 'Toto IV',
+        fileExtension: 'mp3',
+        size: 3219811,
+      ),
+    );
+    musicDirectory.addFile(
+      const AudioFile(
+        title: 'Bag Raiders - Shooting Stars',
+        albumTitle: 'Bag Raiders',
+        fileExtension: 'mp3',
+        size: 3811214,
       ),
     );
 
@@ -54,10 +64,20 @@ class _VisitorExampleState extends State<VisitorExample> {
       level: 1,
     );
     moviesDirectory.addFile(
-      const VideoFile('The Matrix', 'The Wachowskis', 'avi', 951495532),
+      const VideoFile(
+        title: 'The Matrix',
+        directedBy: 'The Wachowskis',
+        fileExtension: 'avi',
+        size: 951495532,
+      ),
     );
     moviesDirectory.addFile(
-      const VideoFile('Pulp Fiction', 'Quentin Tarantino', 'mp4', 1251495532),
+      const VideoFile(
+        title: 'Pulp Fiction',
+        directedBy: 'Quentin Tarantino',
+        fileExtension: 'mp4',
+        size: 1251495532,
+      ),
     );
 
     final catPicturesDirectory = Directory(
@@ -65,13 +85,28 @@ class _VisitorExampleState extends State<VisitorExample> {
       level: 2,
     );
     catPicturesDirectory.addFile(
-      const ImageFile('Cat 1', '640x480px', 'jpg', 844497),
+      const ImageFile(
+        title: 'Cat 1',
+        resolution: '640x480px',
+        fileExtension: 'jpg',
+        size: 844497,
+      ),
     );
     catPicturesDirectory.addFile(
-      const ImageFile('Cat 2', '1280x720px', 'jpg', 975363),
+      const ImageFile(
+        title: 'Cat 2',
+        resolution: '1280x720px',
+        fileExtension: 'jpg',
+        size: 975363,
+      ),
     );
     catPicturesDirectory.addFile(
-      const ImageFile('Cat 3', '1920x1080px', 'png', 1975363),
+      const ImageFile(
+        title: 'Cat 3',
+        resolution: '1920x1080px',
+        fileExtension: 'png',
+        size: 1975363,
+      ),
     );
 
     final picturesDirectory = Directory(
@@ -80,7 +115,12 @@ class _VisitorExampleState extends State<VisitorExample> {
     );
     picturesDirectory.addFile(catPicturesDirectory);
     picturesDirectory.addFile(
-      const ImageFile('Not a cat', '2560x1440px', 'png', 2971361),
+      const ImageFile(
+        title: 'Not a cat',
+        resolution: '2560x1440px',
+        fileExtension: 'png',
+        size: 2971361,
+      ),
     );
 
     final mediaDirectory = Directory(
@@ -99,18 +139,19 @@ class _VisitorExampleState extends State<VisitorExample> {
     );
     mediaDirectory.addFile(
       const TextFile(
-        'Nothing suspicious there',
-        'Just a normal text file without any sensitive information.',
-        'txt',
-        430791,
+        title: 'Nothing suspicious there',
+        content: 'Just a normal text file without any sensitive information.',
+        fileExtension: 'txt',
+        size: 430791,
       ),
     );
     mediaDirectory.addFile(
       const TextFile(
-        'TeamTrees',
-        'Team Trees, also known as #teamtrees, is a collaborative fundraiser that managed to raise 20 million U.S. dollars before 2020 to plant 20 million trees.',
-        'txt',
-        1042,
+        title: 'TeamTrees',
+        content:
+            'Team Trees, also known as #teamtrees, is a collaborative fundraiser that managed to raise 20 million U.S. dollars before 2020 to plant 20 million trees.',
+        fileExtension: 'txt',
+        size: 1042,
       ),
     );
 

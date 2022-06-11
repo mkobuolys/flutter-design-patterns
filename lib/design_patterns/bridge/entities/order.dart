@@ -6,7 +6,7 @@ class Order extends EntityBase {
   late List<String> dishes;
   late double total;
 
-  Order() : super() {
+  Order() {
     dishes = List.generate(random.integer(3, min: 1), (_) => faker.food.dish());
     total = random.decimal(scale: 20, min: 5);
   }

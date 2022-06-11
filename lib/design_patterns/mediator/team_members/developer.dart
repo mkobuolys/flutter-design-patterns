@@ -2,8 +2,8 @@ import '../team_member.dart';
 
 class Developer extends TeamMember {
   Developer({
-    required String name,
-  }) : super(name);
+    required super.name,
+  });
 
   @override
   String toString() {

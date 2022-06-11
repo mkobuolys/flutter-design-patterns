@@ -53,17 +53,17 @@ A simple class to store information about the customer: its name and email. Also
 
 ```
 class Customer extends EntityBase {
-  String name;
-  String email;
+  late String name;
+  late String email;
 
-  Customer() : super() {
+  Customer() {
     name = faker.person.name();
     email = faker.internet.email();
   }
 
   Customer.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        email = json['email'],
+      : name = json['name'] as String,
+        email = json['email'] as String,
         super.fromJson(json);
 
   Map<String, dynamic> toJson() => {
@@ -80,17 +80,17 @@ A simple class to store information about the order: a list of dishes it contain
 
 ```
 class Order extends EntityBase {
-  List<String> dishes;
-  double total;
+  late List<String> dishes;
+  late double total;
 
-  Order() : super() {
+  Order() {
     dishes = List.generate(random.integer(3, min: 1), (_) => faker.food.dish());
     total = random.decimal(scale: 20, min: 5);
   }
 
   Order.fromJson(Map<String, dynamic> json)
-      : dishes = List.from(json['dishes']),
-        total = json['total'],
+      : dishes = List.from(json['dishes'] as List),
+        total = json['total'] as double,
         super.fromJson(json);
 
   Map<String, dynamic> toJson() => {

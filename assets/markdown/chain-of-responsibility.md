@@ -163,18 +163,19 @@ An abstract class for the base logger implementation. It stores the log level an
 abstract class LoggerBase {
   @protected
   final LogLevel logLevel;
-  final LoggerBase _nextLogger;
+  final LoggerBase? _nextLogger;
 
-  const LoggerBase(this.logLevel, [this._nextLogger]);
+  const LoggerBase({
+    required this.logLevel,
+    LoggerBase? nextLogger,
+  }) : _nextLogger = nextLogger;
 
   void logMessage(LogLevel level, String message) {
     if (logLevel <= level) {
       log(message);
     }
 
-    if (_nextLogger != null) {
-      _nextLogger.logMessage(level, message);
-    }
+    _nextLogger?.logMessage(level, message);
   }
 
   void logDebug(String message) => logMessage(LogLevel.Debug, message);
@@ -193,12 +194,14 @@ abstract class LoggerBase {
 class DebugLogger extends LoggerBase {
   final LogBloc logBloc;
 
-  const DebugLogger(this.logBloc, [LoggerBase nextLogger])
-      : super(LogLevel.Debug, nextLogger);
+  const DebugLogger(
+    this.logBloc, {
+    super.nextLogger,
+  }) : super(logLevel: LogLevel.Debug);
 
   @override
   void log(String message) {
-    var logMessage = LogMessage(logLevel: logLevel, message: message);
+    final logMessage = LogMessage(logLevel: logLevel, message: message);
 
     logBloc.log(logMessage);
   }
@@ -209,12 +212,13 @@ class DebugLogger extends LoggerBase {
 
 ```
 class InfoLogger extends LoggerBase {
-  ExternalLoggingService externalLoggingService;
+  late ExternalLoggingService externalLoggingService;
 
-  InfoLogger(LogBloc logBloc, [LoggerBase nextLogger])
-      : super(LogLevel.Info, nextLogger) {
-    externalLoggingService = ExternalLoggingService(logBloc);
-  }
+  InfoLogger(
+    LogBloc logBloc, {
+    super.nextLogger,
+  })  : externalLoggingService = ExternalLoggingService(logBloc),
+        super(logLevel: LogLevel.Info);
 
   @override
   void log(String message) {
@@ -227,12 +231,13 @@ class InfoLogger extends LoggerBase {
 
 ```
 class ErrorLogger extends LoggerBase {
-  MailService mailService;
+  late MailService mailService;
 
-  ErrorLogger(LogBloc logBloc, [LoggerBase nextLogger])
-      : super(LogLevel.Error, nextLogger) {
-    mailService = MailService(logBloc);
-  }
+  ErrorLogger(
+    LogBloc logBloc, {
+    super.nextLogger,
+  })  : mailService = MailService(logBloc),
+        super(logLevel: LogLevel.Error);
 
   @override
   void log(String message) {
@@ -249,6 +254,8 @@ By creating a chain of loggers, the client - _ChainOfResponsibilityExample_ widg
 
 ```
 class ChainOfResponsibilityExample extends StatefulWidget {
+  const ChainOfResponsibilityExample();
+
   @override
   _ChainOfResponsibilityExampleState createState() =>
       _ChainOfResponsibilityExampleState();
@@ -258,7 +265,7 @@ class _ChainOfResponsibilityExampleState
     extends State<ChainOfResponsibilityExample> {
   final LogBloc logBloc = LogBloc();
 
-  LoggerBase logger;
+  late final LoggerBase logger;
 
   @override
   void initState() {
@@ -266,11 +273,9 @@ class _ChainOfResponsibilityExampleState
 
     logger = DebugLogger(
       logBloc,
-      InfoLogger(
+      nextLogger: InfoLogger(
         logBloc,
-        ErrorLogger(
-          logBloc,
-        ),
+        nextLogger: ErrorLogger(logBloc),
       ),
     );
   }
@@ -286,38 +291,40 @@ class _ChainOfResponsibilityExampleState
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             PlatformButton(
-              child: Text('Log debug'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logDebug(randomLog),
+              text: 'Log debug',
             ),
             PlatformButton(
-              child: Text('Log info'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logInfo(randomLog),
+              text: 'Log info',
             ),
             PlatformButton(
-              child: Text('Log error'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => logger.logError(randomLog),
+              text: 'Log error',
             ),
-            Divider(),
+            const Divider(),
             Row(
               children: <Widget>[
                 Expanded(
                   child: StreamBuilder<List<LogMessage>>(
-                    initialData: [],
+                    initialData: const [],
                     stream: logBloc.outLogStream,
-                    builder: (_, AsyncSnapshot<List<LogMessage>> snapshot) =>
-                        LogMessagesColumn(logMessages: snapshot.data),
+                    builder: (context, snapshot) =>
+                        LogMessagesColumn(logMessages: snapshot.data!),
                   ),
                 ),
               ],

@@ -26,11 +26,9 @@ class _ChainOfResponsibilityExampleState
 
     logger = DebugLogger(
       logBloc,
-      InfoLogger(
+      nextLogger: InfoLogger(
         logBloc,
-        ErrorLogger(
-          logBloc,
-        ),
+        nextLogger: ErrorLogger(logBloc),
       ),
     );
   }

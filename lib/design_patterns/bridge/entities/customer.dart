@@ -6,7 +6,7 @@ class Customer extends EntityBase {
   late String name;
   late String email;
 
-  Customer() : super() {
+  Customer() {
     name = faker.person.name();
     email = faker.internet.email();
   }

@@ -38,7 +38,11 @@ class File extends StatelessWidget implements IFile {
   final int size;
   final IconData icon;
 
-  const File(this.title, this.size, this.icon);
+  const File({
+    required this.title,
+    required this.size,
+    required this.icon,
+  });
 
   @override
   int getSize() {
@@ -57,8 +61,10 @@ class File extends StatelessWidget implements IFile {
         leading: Icon(icon),
         trailing: Text(
           FileSizeConverter.bytesToString(size),
-          style:
-              Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.black54),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: Colors.black54),
         ),
         dense: true,
       ),
@@ -78,19 +84,31 @@ All of these classes extend the _File_ class and specify the concrete file type 
 
 ```
 class AudioFile extends File {
-  AudioFile(String title, int size) : super(title, size, Icons.music_note);
+  const AudioFile({
+    required super.title,
+    required super.size,
+  }) : super(icon: Icons.music_note);
 }
 
 class ImageFile extends File {
-  ImageFile(String title, int size) : super(title, size, Icons.image);
+  const ImageFile({
+    required super.title,
+    required super.size,
+  }) : super(icon: Icons.image);
 }
 
 class TextFile extends File {
-  TextFile(String title, int size) : super(title, size, Icons.description);
+  const TextFile({
+    required super.title,
+    required super.size,
+  }) : super(icon: Icons.description);
 }
 
 class VideoFile extends File {
-  VideoFile(String title, int size) : super(title, size, Icons.movie);
+  const VideoFile({
+    required super.title,
+    required super.size,
+  }) : super(icon: Icons.movie);
 }
 ```
 
@@ -149,34 +167,57 @@ _CompositeExample_ widget contains the _buildMediaDirectory()_ method which buil
 
 ```
 class CompositeExample extends StatelessWidget {
-  Widget buildMediaDirectory() {
-    var musicDirectory = Directory('Music');
-    musicDirectory.addFile(AudioFile('Darude - Sandstorm.mp3', 2612453));
-    musicDirectory.addFile(AudioFile('Toto - Africa.mp3', 3219811));
-    musicDirectory
-        .addFile(AudioFile('Bag Raiders - Shooting Stars.mp3', 3811214));
+  const CompositeExample();
 
-    var moviesDirectory = Directory('Movies');
+  Widget _buildMediaDirectory() {
+    final musicDirectory = Directory('Music');
+    musicDirectory.addFile(
+      const AudioFile(title: 'Darude - Sandstorm.mp3', size: 2612453),
+    );
+    musicDirectory.addFile(
+      const AudioFile(title: 'Toto - Africa.mp3', size: 3219811),
+    );
+    musicDirectory.addFile(
+      const AudioFile(title: 'Bag Raiders - Shooting Stars.mp3', size: 3811214),
+    );
 
-    moviesDirectory.addFile(VideoFile('The Matrix.avi', 951495532));
-    moviesDirectory.addFile(VideoFile('The Matrix Reloaded.mp4', 1251495532));
+    final moviesDirectory = Directory('Movies');
 
-    var catPicturesDirectory = Directory('Cats');
-    catPicturesDirectory.addFile(ImageFile('Cat 1.jpg', 844497));
-    catPicturesDirectory.addFile(ImageFile('Cat 2.jpg', 975363));
-    catPicturesDirectory.addFile(ImageFile('Cat 3.png', 1975363));
+    moviesDirectory.addFile(
+      const VideoFile(title: 'The Matrix.avi', size: 951495532),
+    );
+    moviesDirectory.addFile(
+      const VideoFile(title: 'The Matrix Reloaded.mp4', size: 1251495532),
+    );
 
-    var picturesDirectory = Directory('Pictures');
+    final catPicturesDirectory = Directory('Cats');
+    catPicturesDirectory.addFile(
+      const ImageFile(title: 'Cat 1.jpg', size: 844497),
+    );
+    catPicturesDirectory.addFile(
+      const ImageFile(title: 'Cat 2.jpg', size: 975363),
+    );
+    catPicturesDirectory.addFile(
+      const ImageFile(title: 'Cat 3.png', size: 1975363),
+    );
+
+    final picturesDirectory = Directory('Pictures');
     picturesDirectory.addFile(catPicturesDirectory);
-    picturesDirectory.addFile(ImageFile('Not a cat.png', 2971361));
+    picturesDirectory.addFile(
+      const ImageFile(title: 'Not a cat.png', size: 2971361),
+    );
 
-    var mediaDirectory = Directory('Media', true);
+    final mediaDirectory = Directory('Media', isInitiallyExpanded: true);
     mediaDirectory.addFile(musicDirectory);
     mediaDirectory.addFile(moviesDirectory);
     mediaDirectory.addFile(picturesDirectory);
     mediaDirectory.addFile(Directory('New Folder'));
-    mediaDirectory.addFile(TextFile('Nothing suspicious there.txt', 430791));
-    mediaDirectory.addFile(TextFile('TeamTrees.txt', 1042));
+    mediaDirectory.addFile(
+      const TextFile(title: 'Nothing suspicious there.txt', size: 430791),
+    );
+    mediaDirectory.addFile(
+      const TextFile(title: 'TeamTrees.txt', size: 104),
+    );
 
     return mediaDirectory;
   }
@@ -184,10 +225,12 @@ class CompositeExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
-        child: buildMediaDirectory(),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
+        child: _buildMediaDirectory(),
       ),
     );
   }

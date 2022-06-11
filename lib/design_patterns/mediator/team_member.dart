@@ -6,7 +6,9 @@ abstract class TeamMember {
   NotificationHub? notificationHub;
   String? lastNotification;
 
-  TeamMember(this.name);
+  TeamMember({
+    required this.name,
+  });
 
   void receive(String from, String message) {
     lastNotification = '$from: "$message"';

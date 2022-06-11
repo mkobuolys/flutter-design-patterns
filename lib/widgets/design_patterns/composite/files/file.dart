@@ -9,7 +9,11 @@ class File extends StatelessWidget implements IFile {
   final int size;
   final IconData icon;
 
-  const File(this.title, this.size, this.icon);
+  const File({
+    required this.title,
+    required this.size,
+    required this.icon,
+  });
 
   @override
   int getSize() {

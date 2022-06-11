@@ -1,8 +1,7 @@
-import '../pizza.dart';
 import '../pizza_decorator.dart';
 
 class Basil extends PizzaDecorator {
-  Basil(Pizza pizza) : super(pizza) {
+  Basil(super.pizza) {
     description = 'Basil';
   }
 

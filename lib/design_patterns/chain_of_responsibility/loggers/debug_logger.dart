@@ -6,8 +6,10 @@ import '../logger_base.dart';
 class DebugLogger extends LoggerBase {
   final LogBloc logBloc;
 
-  const DebugLogger(this.logBloc, [LoggerBase? nextLogger])
-      : super(LogLevel.Debug, nextLogger);
+  const DebugLogger(
+    this.logBloc, {
+    super.nextLogger,
+  }) : super(logLevel: LogLevel.Debug);
 
   @override
   void log(String message) {

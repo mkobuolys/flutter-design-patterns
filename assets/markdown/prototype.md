@@ -49,11 +49,11 @@ abstract class Shape {
 
 ```
 class Circle extends Shape {
-  double radius;
+  late double radius;
 
-  Circle(Color color, this.radius) : super(color);
+  Circle(super.color, this.radius);
 
-  Circle.initial() : super(Colors.black) {
+  Circle.initial([super.color = Colors.black]) {
     radius = 50.0;
   }
 
@@ -69,7 +69,11 @@ class Circle extends Shape {
   @override
   void randomiseProperties() {
     color = Color.fromRGBO(
-        random.integer(255), random.integer(255), random.integer(255), 1.0);
+      random.integer(255),
+      random.integer(255),
+      random.integer(255),
+      1.0,
+    );
     radius = random.integer(50, min: 25).toDouble();
   }
 
@@ -86,7 +90,7 @@ class Circle extends Shape {
             color: color,
             shape: BoxShape.circle,
           ),
-          child: Icon(
+          child: const Icon(
             Icons.star,
             color: Colors.white,
           ),
@@ -101,12 +105,12 @@ class Circle extends Shape {
 
 ```
 class Rectangle extends Shape {
-  double height;
-  double width;
+  late double height;
+  late double width;
 
-  Rectangle(Color color, this.height, this.width) : super(color);
+  Rectangle(super.color, this.height, this.width);
 
-  Rectangle.initial() : super(Colors.black) {
+  Rectangle.initial([super.color = Colors.black]) {
     height = 100.0;
     width = 100.0;
   }
@@ -124,7 +128,11 @@ class Rectangle extends Shape {
   @override
   void randomiseProperties() {
     color = Color.fromRGBO(
-        random.integer(255), random.integer(255), random.integer(255), 1.0);
+      random.integer(255),
+      random.integer(255),
+      random.integer(255),
+      1.0,
+    );
     height = random.integer(100, min: 50).toDouble();
     width = random.integer(100, min: 50).toDouble();
   }
@@ -140,9 +148,8 @@ class Rectangle extends Shape {
           width: width,
           decoration: BoxDecoration(
             color: color,
-            shape: BoxShape.rectangle,
           ),
-          child: Icon(
+          child: const Icon(
             Icons.star,
             color: Colors.white,
           ),

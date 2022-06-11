@@ -58,7 +58,12 @@ abstract class File extends StatelessWidget implements IFile {
   final int size;
   final IconData icon;
 
-  const File(this.title, this.fileExtension, this.size, this.icon);
+  const File({
+    required this.title,
+    required this.fileExtension,
+    required this.size,
+    required this.icon,
+  });
 
   @override
   int getSize() {
@@ -79,7 +84,7 @@ abstract class File extends StatelessWidget implements IFile {
           FileSizeConverter.bytesToString(size),
           style: Theme.of(context)
               .textTheme
-              .bodyText2
+              .bodyText2!
               .copyWith(color: Colors.black54),
         ),
         dense: true,
@@ -104,8 +109,12 @@ All of the specific file type classes implement the _accept()_ method that deleg
 class AudioFile extends File {
   final String albumTitle;
 
-  const AudioFile(String title, this.albumTitle, String fileExtension, int size)
-      : super(title, fileExtension, size, Icons.music_note);
+  const AudioFile({
+    required this.albumTitle,
+    required super.title,
+    required super.fileExtension,
+    required super.size,
+  }) : super(icon: Icons.music_note);
 
   @override
   String accept(IVisitor visitor) {
@@ -120,8 +129,12 @@ class AudioFile extends File {
 class ImageFile extends File {
   final String resolution;
 
-  const ImageFile(String title, this.resolution, String fileExtension, int size)
-      : super(title, fileExtension, size, Icons.image);
+  const ImageFile({
+    required this.resolution,
+    required super.title,
+    required super.fileExtension,
+    required super.size,
+  }) : super(icon: Icons.image);
 
   @override
   String accept(IVisitor visitor) {
@@ -136,8 +149,12 @@ class ImageFile extends File {
 class TextFile extends File {
   final String content;
 
-  const TextFile(String title, this.content, String fileExtension, int size)
-      : super(title, fileExtension, size, Icons.description);
+  const TextFile({
+    required this.content,
+    required super.title,
+    required super.fileExtension,
+    required super.size,
+  }) : super(icon: Icons.description);
 
   @override
   String accept(IVisitor visitor) {
@@ -152,8 +169,12 @@ class TextFile extends File {
 class VideoFile extends File {
   final String directedBy;
 
-  const VideoFile(String title, this.directedBy, String fileExtension, int size)
-      : super(title, fileExtension, size, Icons.movie);
+  const VideoFile({
+    required this.directedBy,
+    required super.title,
+    required super.fileExtension,
+    required super.size,
+  }) : super(icon: Icons.movie);
 
   @override
   String accept(IVisitor visitor) {
@@ -417,6 +438,8 @@ When exporting files' information and providing it in the modal via the _showFil
 
 ```
 class VisitorExample extends StatefulWidget {
+  const VisitorExample();
+
   @override
   _VisitorExampleState createState() => _VisitorExampleState();
 }
@@ -427,7 +450,7 @@ class _VisitorExampleState extends State<VisitorExample> {
     XmlVisitor(),
   ];
 
-  IFile _rootDirectory;
+  late final IFile _rootDirectory;
   int _selectedVisitorIndex = 0;
 
   @override
@@ -438,55 +461,100 @@ class _VisitorExampleState extends State<VisitorExample> {
   }
 
   IFile _buildMediaDirectory() {
-    var musicDirectory = Directory(
+    final musicDirectory = Directory(
       title: 'Music',
       level: 1,
     );
     musicDirectory.addFile(
-      AudioFile('Darude - Sandstorm', 'Before the Storm', 'mp3', 2612453),
+      const AudioFile(
+        title: 'Darude - Sandstorm',
+        albumTitle: 'Before the Storm',
+        fileExtension: 'mp3',
+        size: 2612453,
+      ),
     );
     musicDirectory.addFile(
-      AudioFile('Toto - Africa', 'Toto IV', 'mp3', 3219811),
+      const AudioFile(
+        title: 'Toto - Africa',
+        albumTitle: 'Toto IV',
+        fileExtension: 'mp3',
+        size: 3219811,
+      ),
     );
     musicDirectory.addFile(
-      AudioFile('Bag Raiders - Shooting Stars', 'Bag Raiders', 'mp3', 3811214),
+      const AudioFile(
+        title: 'Bag Raiders - Shooting Stars',
+        albumTitle: 'Bag Raiders',
+        fileExtension: 'mp3',
+        size: 3811214,
+      ),
     );
 
-    var moviesDirectory = Directory(
+    final moviesDirectory = Directory(
       title: 'Movies',
       level: 1,
     );
     moviesDirectory.addFile(
-      VideoFile('The Matrix', 'The Wachowskis', 'avi', 951495532),
+      const VideoFile(
+        title: 'The Matrix',
+        directedBy: 'The Wachowskis',
+        fileExtension: 'avi',
+        size: 951495532,
+      ),
     );
     moviesDirectory.addFile(
-      VideoFile('Pulp Fiction', 'Quentin Tarantino', 'mp4', 1251495532),
+      const VideoFile(
+        title: 'Pulp Fiction',
+        directedBy: 'Quentin Tarantino',
+        fileExtension: 'mp4',
+        size: 1251495532,
+      ),
     );
 
-    var catPicturesDirectory = Directory(
+    final catPicturesDirectory = Directory(
       title: 'Cats',
       level: 2,
     );
     catPicturesDirectory.addFile(
-      ImageFile('Cat 1', '640x480px', 'jpg', 844497),
+      const ImageFile(
+        title: 'Cat 1',
+        resolution: '640x480px',
+        fileExtension: 'jpg',
+        size: 844497,
+      ),
     );
     catPicturesDirectory.addFile(
-      ImageFile('Cat 2', '1280x720px', 'jpg', 975363),
+      const ImageFile(
+        title: 'Cat 2',
+        resolution: '1280x720px',
+        fileExtension: 'jpg',
+        size: 975363,
+      ),
     );
     catPicturesDirectory.addFile(
-      ImageFile('Cat 3', '1920x1080px', 'png', 1975363),
+      const ImageFile(
+        title: 'Cat 3',
+        resolution: '1920x1080px',
+        fileExtension: 'png',
+        size: 1975363,
+      ),
     );
 
-    var picturesDirectory = Directory(
+    final picturesDirectory = Directory(
       title: 'Pictures',
       level: 1,
     );
     picturesDirectory.addFile(catPicturesDirectory);
     picturesDirectory.addFile(
-      ImageFile('Not a cat', '2560x1440px', 'png', 2971361),
+      const ImageFile(
+        title: 'Not a cat',
+        resolution: '2560x1440px',
+        fileExtension: 'png',
+        size: 2971361,
+      ),
     );
 
-    var mediaDirectory = Directory(
+    final mediaDirectory = Directory(
       title: 'Media',
       level: 0,
       isInitiallyExpanded: true,
@@ -501,39 +569,40 @@ class _VisitorExampleState extends State<VisitorExample> {
       ),
     );
     mediaDirectory.addFile(
-      TextFile(
-        'Nothing suspicious there',
-        'Just a normal text file without any sensitive information.',
-        'txt',
-        430791,
+      const TextFile(
+        title: 'Nothing suspicious there',
+        content: 'Just a normal text file without any sensitive information.',
+        fileExtension: 'txt',
+        size: 430791,
       ),
     );
     mediaDirectory.addFile(
-      TextFile(
-        'TeamTrees',
-        'Team Trees, also known as #teamtrees, is a collaborative fundraiser that managed to raise 20 million U.S. dollars before 2020 to plant 20 million trees.',
-        'txt',
-        1042,
+      const TextFile(
+        title: 'TeamTrees',
+        content:
+            'Team Trees, also known as #teamtrees, is a collaborative fundraiser that managed to raise 20 million U.S. dollars before 2020 to plant 20 million trees.',
+        fileExtension: 'txt',
+        size: 1042,
       ),
     );
 
     return mediaDirectory;
   }
 
-  void _setSelectedVisitorIndex(int index) {
+  void _setSelectedVisitorIndex(int? index) {
     setState(() {
-      _selectedVisitorIndex = index;
+      _selectedVisitorIndex = index!;
     });
   }
 
   void _showFilesDialog() {
-    var selectedVisitor = visitorsList[_selectedVisitorIndex];
-    var filesText = _rootDirectory.accept(selectedVisitor);
+    final selectedVisitor = visitorsList[_selectedVisitorIndex];
+    final filesText = _rootDirectory.accept(selectedVisitor);
 
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext _) => FilesDialog(
+      builder: (_) => FilesDialog(
         filesText: filesText,
       ),
     );
@@ -542,9 +611,11 @@ class _VisitorExampleState extends State<VisitorExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: [
             FilesVisitorSelection(
@@ -553,10 +624,10 @@ class _VisitorExampleState extends State<VisitorExample> {
               onChanged: _setSelectedVisitorIndex,
             ),
             PlatformButton(
-              child: Text('Export files'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _showFilesDialog,
+              text: 'Export files',
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             _rootDirectory.render(context),
