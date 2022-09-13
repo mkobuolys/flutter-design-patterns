@@ -34,6 +34,7 @@ flutter:
     - assets/
     - assets/data/
     - assets/markdown/
+    - assets/images/
     - assets/images/abstract_factory/
     - assets/images/adapter/
     - assets/images/bridge/

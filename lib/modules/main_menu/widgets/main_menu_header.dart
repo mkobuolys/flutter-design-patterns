@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../constants/constants.dart';
 import '../../../../widgets/heartbeat_animation.dart';
 import '../../../helpers/helpers.dart';
+import '../../../widgets/logo_button.dart';
 
 class MainMenuHeader extends StatelessWidget {
   const MainMenuHeader();
@@ -32,10 +33,9 @@ class MainMenuHeader extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 const SizedBox(width: LayoutConstants.spaceS),
-                const IconButton(
-                  splashRadius: 20.0,
-                  onPressed: UrlLauncher.launchFlutterDesignPatternsMediumPage,
-                  icon: Icon(FontAwesomeIcons.medium, color: Colors.black),
+                const LogoButton(
+                  onPressed:
+                      UrlLauncher.launchFlutterDesignPatternsIntroductionPage,
                 ),
               ],
             ),

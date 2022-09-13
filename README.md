@@ -4,7 +4,7 @@ An open-source [OOP design patterns](https://en.wikipedia.org/wiki/Design_Patter
 
 https://flutterdesignpatterns.com/
 
-This application is an implementation part of the "Flutter Design Patterns" article series on [Medium](https://mkobuolys.medium.com/list/flutter-design-patterns-9804e6a0c3f4).
+This application is an implementation part of the "Flutter Design Patterns" [article series](https://kazlauskas.dev/flutter-design-patterns-0-introduction).
 
 <p float="left">
 	<img src="./images/home.png" alt="Home Page" width="250">

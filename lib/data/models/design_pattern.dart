@@ -2,13 +2,13 @@ class DesignPattern {
   final String id;
   final String title;
   final String description;
-  final String mediumUrl;
+  final String articleUrl;
 
   const DesignPattern({
     required this.id,
     required this.title,
     required this.description,
-    required this.mediumUrl,
+    required this.articleUrl,
   });
 
   factory DesignPattern.fromJson(Map<String, dynamic> json) {
@@ -16,7 +16,7 @@ class DesignPattern {
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      mediumUrl: json['mediumUrl'] as String,
+      articleUrl: json['articleUrl'] as String,
     );
   }
 }

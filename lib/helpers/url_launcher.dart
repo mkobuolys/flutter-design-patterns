@@ -4,11 +4,12 @@ class UrlLauncher {
   const UrlLauncher._();
 
   static Future<void> launchPersonalPage() => launchUrl(
-        'https://linktr.ee/mkobuolys',
+        'https://kazlauskas.dev',
       );
 
-  static Future<void> launchFlutterDesignPatternsMediumPage() => launchUrl(
-        'https://mkobuolys.medium.com/flutter-design-patterns-0-introduction-5e88cfff6792',
+  static Future<void> launchFlutterDesignPatternsIntroductionPage() =>
+      launchUrl(
+        'https://kazlauskas.dev/flutter-design-patterns-0-introduction',
       );
 
   static Future<void> launchUrl(String url) async {
