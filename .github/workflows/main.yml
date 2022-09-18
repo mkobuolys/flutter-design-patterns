@@ -1,0 +1,33 @@
+name: flutterdesignpatterns.com deployment
+on:
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  web-deploy:
+    name: 🚀 Deploy to flutterdesignpatterns.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+          
+      - name: 📦 Setup Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: 🔨 Build website
+        run: flutter build web --release
+        
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: vapsva.serveriai.lt
+          username: flerns
+          password: ${{ secrets.ftp_password }}
+          local-dir: ./build/web/
+          server-dir: public_html/
