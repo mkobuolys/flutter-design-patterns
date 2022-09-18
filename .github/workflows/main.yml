@@ -14,15 +14,15 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
-          
+
       - name: 📦 Setup Flutter
-      - uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2
         with:
           channel: "stable"
 
       - name: 🔨 Build website
         run: flutter build web --release
-        
+
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
