@@ -1,3 +1,5 @@
+[![flutterdesignpatterns.com deployment](https://github.com/mkobuolys/flutter-design-patterns/actions/workflows/main.yml/badge.svg)](https://github.com/mkobuolys/flutter-design-patterns/actions/workflows/main.yml)
+
 # Flutter Design Patterns
 
 An open-source [OOP design patterns](https://en.wikipedia.org/wiki/Design_Patterns) application built with Dart and Flutter.
