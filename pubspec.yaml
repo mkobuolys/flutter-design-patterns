@@ -26,7 +26,7 @@ dev_dependencies:
   build_runner: ^2.1.1
   flutter_test:
     sdk: flutter
-  lint: ^1.5.2
+  lint: ^2.0.1
 
 flutter:
   uses-material-design: true
