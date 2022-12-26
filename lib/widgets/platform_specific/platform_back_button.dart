@@ -24,7 +24,7 @@ class PlatformBackButton extends StatelessWidget {
       color: color,
       splashRadius: 20.0,
       onPressed: () {
-        context.router.canPopSelfOrChildren
+        context.router.canPop()
             ? context.popRoute()
             : context.navigateTo(const MainMenuRoute());
       },

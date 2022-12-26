@@ -1,15 +1,17 @@
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../constants/constants.dart';
 
-final markdownRepositoryProvider = Provider(
-  (ref) => const MarkdownRepository(),
-);
+part 'markdown_repository.g.dart';
 
-final markdownProvider = FutureProvider.autoDispose.family<String, String>(
-  (ref, id) => ref.watch(markdownRepositoryProvider).get(id),
-);
+@riverpod
+MarkdownRepository markdownRepository(_) => const MarkdownRepository();
+
+@riverpod
+Future<String> markdown(MarkdownRef ref, String id) {
+  return ref.watch(markdownRepositoryProvider).get(id);
+}
 
 class MarkdownRepository {
   const MarkdownRepository();

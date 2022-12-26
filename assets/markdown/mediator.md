@@ -185,7 +185,7 @@ class _MediatorExampleState extends State<MediatorExample> {
   void initState() {
     super.initState();
 
-    final _members = [
+    final members = [
       _admin,
       Developer(name: 'Sea Sharp'),
       Developer(name: 'Jan Assembler'),
@@ -193,7 +193,7 @@ class _MediatorExampleState extends State<MediatorExample> {
       Tester(name: 'Cori Debugger'),
       Tester(name: 'Tania Mocha'),
     ];
-    _notificationHub = TeamNotificationHub(members: _members);
+    _notificationHub = TeamNotificationHub(members: members);
   }
 
   void _sendToAll() {

@@ -11,10 +11,10 @@ class Order extends EntityBase {
     total = random.decimal(scale: 20, min: 5);
   }
 
-  Order.fromJson(Map<String, dynamic> json)
+  Order.fromJson(super.json)
       : dishes = List.from(json['dishes'] as List),
         total = json['total'] as double,
-        super.fromJson(json);
+        super.fromJson();
 
   Map<String, dynamic> toJson() => {
         'id': id,

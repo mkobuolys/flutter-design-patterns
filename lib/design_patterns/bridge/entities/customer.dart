@@ -11,10 +11,10 @@ class Customer extends EntityBase {
     email = faker.internet.email();
   }
 
-  Customer.fromJson(Map<String, dynamic> json)
+  Customer.fromJson(super.json)
       : name = json['name'] as String,
         email = json['email'] as String,
-        super.fromJson(json);
+        super.fromJson();
 
   Map<String, dynamic> toJson() => {
         'id': id,
