@@ -21,7 +21,7 @@ jobs:
           channel: "stable"
 
       - name: 🔨 Build website
-        run: flutter build web --release
+        run: flutter build web --release --web-renderer=canvaskit
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
