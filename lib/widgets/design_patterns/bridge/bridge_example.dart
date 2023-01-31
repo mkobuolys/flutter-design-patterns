@@ -85,7 +85,7 @@ class _BridgeExampleState extends State<BridgeExample> {
               children: <Widget>[
                 Text(
                   'Select customers storage:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -105,14 +105,14 @@ class _BridgeExampleState extends State<BridgeExample> {
             else
               Text(
                 '0 customers found',
-                style: Theme.of(context).textTheme.subtitle2,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             const Divider(),
             Row(
               children: <Widget>[
                 Text(
                   'Select orders storage:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -132,7 +132,7 @@ class _BridgeExampleState extends State<BridgeExample> {
             else
               Text(
                 '0 orders found',
-                style: Theme.of(context).textTheme.subtitle2,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
           ],
         ),

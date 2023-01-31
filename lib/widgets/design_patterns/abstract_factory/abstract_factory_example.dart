@@ -79,26 +79,26 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
             const SizedBox(height: LayoutConstants.spaceL),
             Text(
               'Widgets showcase',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Process indicator',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             _activityIndicator.render(),
             const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Slider ($_sliderValueString%)',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             _slider.render(_sliderValue, _setSliderValue),
             const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Switch ($_switchValueString)',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             _switch.render(

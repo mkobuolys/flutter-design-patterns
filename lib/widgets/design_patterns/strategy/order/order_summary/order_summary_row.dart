@@ -20,14 +20,14 @@ class OrderSummaryRow extends StatelessWidget {
           label,
           style: Theme.of(context)
               .textTheme
-              .subtitle1!
+              .titleMedium!
               .copyWith(fontFamily: fontFamily),
         ),
         Text(
           '\$${value.toStringAsFixed(2)}',
           style: Theme.of(context)
               .textTheme
-              .subtitle1!
+              .titleMedium!
               .copyWith(fontFamily: fontFamily),
         ),
       ],

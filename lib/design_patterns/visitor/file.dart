@@ -29,14 +29,14 @@ abstract class File extends StatelessWidget implements IFile {
       child: ListTile(
         title: Text(
           '$title.$fileExtension',
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         leading: Icon(icon),
         trailing: Text(
           FileSizeConverter.bytesToString(size),
           style: Theme.of(context)
               .textTheme
-              .bodyText2!
+              .bodyMedium!
               .copyWith(color: Colors.black54),
         ),
         dense: true,

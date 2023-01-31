@@ -11,7 +11,7 @@ class BurgerInformationLabel extends StatelessWidget {
       label,
       style: Theme.of(context)
           .textTheme
-          .subtitle1!
+          .titleMedium!
           .copyWith(fontWeight: FontWeight.bold),
     );
   }

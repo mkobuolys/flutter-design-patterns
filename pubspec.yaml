@@ -6,7 +6,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.5 <3.0.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
   auto_route: ^5.0.4
@@ -14,13 +14,13 @@ dependencies:
   faker: ^2.1.0
   flutter:
     sdk: flutter
-  flutter_markdown: ^0.6.13
+  flutter_markdown: ^0.6.13+1
   flutter_riverpod: ^2.1.3
   font_awesome_flutter: ^10.3.0
   riverpod_annotation: ^1.1.1
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.8
   url_strategy: ^0.2.0
-  xml: ^6.1.0
+  xml: ^6.2.2
 
 dev_dependencies:
   auto_route_generator: ^5.0.3

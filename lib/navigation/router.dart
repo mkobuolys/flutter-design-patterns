@@ -4,7 +4,7 @@ import 'pages/pages.dart';
 
 export 'router.gr.dart';
 
-@MaterialAutoRouter(
+@AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(path: '/', page: MainMenuPage, initial: true),

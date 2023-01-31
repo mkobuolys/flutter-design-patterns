@@ -120,7 +120,7 @@ class _CategoryTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontSize: 26.0,
                 color: Colors.white,
               ),
@@ -129,7 +129,7 @@ class _CategoryTitle extends StatelessWidget {
         const SizedBox(height: LayoutConstants.spaceL),
         Text(
           itemsCount == 1 ? '$itemsCount pattern' : '$itemsCount patterns',
-          style: Theme.of(context).textTheme.subtitle1!.copyWith(
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 color: Colors.white,
               ),
         ),
@@ -163,12 +163,12 @@ class _DesignPatternTile extends StatelessWidget {
             children: [
               Text(
                 designPattern.title,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: LayoutConstants.spaceM),
               Text(
                 designPattern.description,
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: LayoutConstants.spaceM),

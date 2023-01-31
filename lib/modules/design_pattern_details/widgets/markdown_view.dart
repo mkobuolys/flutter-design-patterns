@@ -27,7 +27,7 @@ class MarkdownView extends ConsumerWidget {
           children: <Widget>[
             Text(
               designPattern.description,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.justify,
               overflow: TextOverflow.ellipsis,
               maxLines: 99,

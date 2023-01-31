@@ -2,37 +2,37 @@ import 'package:flutter/material.dart';
 
 const lightBackgroundColor = Color(0xFFECECEC);
 
-final lightTheme = ThemeData(
-  backgroundColor: lightBackgroundColor,
-  scaffoldBackgroundColor: lightBackgroundColor,
-  typography: Typography.material2018(),
+final lightTheme = ThemeData.from(
+  colorScheme: const ColorScheme.light(background: lightBackgroundColor),
+).copyWith(
+  typography: Typography.material2021(),
   textTheme: TextTheme(
-    headline4: TextStyle(
+    headlineMedium: TextStyle(
       fontFamily: 'RobotoMedium',
       fontSize: 34.0,
       color: Colors.black.withOpacity(0.75),
     ),
-    headline5: TextStyle(
+    headlineSmall: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 24.0,
       color: Colors.black.withOpacity(0.65),
     ),
-    headline6: TextStyle(
+    titleLarge: TextStyle(
       fontFamily: 'RobotoMedium',
       fontSize: 20.0,
       color: Colors.black.withOpacity(0.65),
     ),
-    subtitle1: TextStyle(
+    titleMedium: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 16.0,
       color: Colors.black.withOpacity(0.65),
     ),
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       fontFamily: 'RobotoMedium',
       fontSize: 14.0,
       color: Colors.black.withOpacity(0.65),
     ),
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 14.0,
       color: Colors.black.withOpacity(0.65),

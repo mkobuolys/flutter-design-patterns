@@ -26,7 +26,7 @@ class OrderSummary extends StatelessWidget {
           children: <Widget>[
             Text(
               'Order summary',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const Divider(),
             OrderSummaryRow(

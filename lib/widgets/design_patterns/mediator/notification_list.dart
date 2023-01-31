@@ -18,12 +18,12 @@ class NotificationList extends StatelessWidget {
       children: [
         Text(
           'Last notifications',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: LayoutConstants.spaceM),
         Text(
           'Note: click on the card to send a notification from the team member.',
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: LayoutConstants.spaceS),
         for (final member in members)

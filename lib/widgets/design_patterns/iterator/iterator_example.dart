@@ -56,9 +56,12 @@ class _IteratorExampleState extends State<IteratorExample> {
         treeCollections[_selectedTreeCollectionIndex].createIterator();
 
     while (iterator.hasNext()) {
+      if (!mounted) return;
+
       setState(() {
         _currentNodeIndex = iterator.getNext();
       });
+
       await Future.delayed(const Duration(seconds: 1));
     }
 

@@ -17,7 +17,7 @@ class PizzaInformation extends StatelessWidget {
       children: <Widget>[
         Text(
           'Pizza details:',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: LayoutConstants.spaceL),
         Text(

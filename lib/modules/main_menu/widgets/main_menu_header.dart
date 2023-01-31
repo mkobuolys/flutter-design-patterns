@@ -30,7 +30,7 @@ class MainMenuHeader extends StatelessWidget {
               children: [
                 Text(
                   headerText,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(width: LayoutConstants.spaceS),
                 const LogoButton(
@@ -47,7 +47,7 @@ class MainMenuHeader extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Created with Flutter and',
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(width: LayoutConstants.spaceM),
                 const Padding(
@@ -67,7 +67,7 @@ class MainMenuHeader extends StatelessWidget {
                 text: 'by ',
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle1!
+                    .titleMedium!
                     .copyWith(fontWeight: FontWeight.w500),
                 children: [
                   TextSpan(

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../themes.dart';
@@ -8,21 +9,22 @@ import '../../../helpers/helpers.dart';
 import '../../../widgets/logo_button.dart';
 
 class DetailsAppBar extends StatelessWidget with PreferredSizeWidget {
-  final DesignPattern designPattern;
-
   const DetailsAppBar({
     required this.designPattern,
   });
 
+  final DesignPattern designPattern;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: lightBackgroundColor,
+      leading: !kIsWeb ? const PlatformBackButton(color: Colors.black) : null,
       title: Text(
         designPattern.title,
         style: const TextStyle(color: Colors.black),
       ),
-      backgroundColor: lightBackgroundColor,
-      leading: const PlatformBackButton(color: Colors.black),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: LayoutConstants.paddingM),
