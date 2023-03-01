@@ -6,7 +6,24 @@ part of 'markdown_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$markdownRepositoryHash() =>
+    r'96c291a6f43aeeed5e97a22959991d4137c10138';
+
+/// See also [markdownRepository].
+@ProviderFor(markdownRepository)
+final markdownRepositoryProvider =
+    AutoDisposeProvider<MarkdownRepository>.internal(
+  markdownRepository,
+  name: r'markdownRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$markdownRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MarkdownRepositoryRef = AutoDisposeProviderRef<MarkdownRepository>;
+String _$markdownHash() => r'805f6990bbb5c342a781a60e6f758dcdf7b09ac1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,25 +46,56 @@ class _SystemHash {
   }
 }
 
-String _$markdownRepositoryHash() =>
-    r'96c291a6f43aeeed5e97a22959991d4137c10138';
+typedef MarkdownRef = AutoDisposeFutureProviderRef<String>;
 
-/// See also [markdownRepository].
-final markdownRepositoryProvider = AutoDisposeProvider<MarkdownRepository>(
-  markdownRepository,
-  name: r'markdownRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$markdownRepositoryHash,
-);
-typedef MarkdownRepositoryRef = AutoDisposeProviderRef<MarkdownRepository>;
-String _$markdownHash() => r'805f6990bbb5c342a781a60e6f758dcdf7b09ac1';
+/// See also [markdown].
+@ProviderFor(markdown)
+const markdownProvider = MarkdownFamily();
+
+/// See also [markdown].
+class MarkdownFamily extends Family<AsyncValue<String>> {
+  /// See also [markdown].
+  const MarkdownFamily();
+
+  /// See also [markdown].
+  MarkdownProvider call(
+    String id,
+  ) {
+    return MarkdownProvider(
+      id,
+    );
+  }
+
+  @override
+  MarkdownProvider getProviderOverride(
+    covariant MarkdownProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'markdownProvider';
+}
 
 /// See also [markdown].
 class MarkdownProvider extends AutoDisposeFutureProvider<String> {
+  /// See also [markdown].
   MarkdownProvider(
     this.id,
-  ) : super(
+  ) : super.internal(
           (ref) => markdown(
             ref,
             id,
@@ -58,6 +106,8 @@ class MarkdownProvider extends AutoDisposeFutureProvider<String> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$markdownHash,
+          dependencies: MarkdownFamily._dependencies,
+          allTransitiveDependencies: MarkdownFamily._allTransitiveDependencies,
         );
 
   final String id;
@@ -75,38 +125,4 @@ class MarkdownProvider extends AutoDisposeFutureProvider<String> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef MarkdownRef = AutoDisposeFutureProviderRef<String>;
-
-/// See also [markdown].
-final markdownProvider = MarkdownFamily();
-
-class MarkdownFamily extends Family<AsyncValue<String>> {
-  MarkdownFamily();
-
-  MarkdownProvider call(
-    String id,
-  ) {
-    return MarkdownProvider(
-      id,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<String> getProviderOverride(
-    covariant MarkdownProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'markdownProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

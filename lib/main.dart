@@ -12,5 +12,5 @@ Future<void> main() async {
 
   setPathUrlStrategy();
 
-  runApp(ProviderScope(child: App()));
+  runApp(const ProviderScope(child: App()));
 }

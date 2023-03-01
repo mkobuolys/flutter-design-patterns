@@ -8,11 +8,11 @@ import '../../../../data/repositories/markdown_repository.dart';
 import '../../../../themes.dart';
 
 class MarkdownView extends ConsumerWidget {
-  final DesignPattern designPattern;
-
   const MarkdownView({
     required this.designPattern,
   });
+
+  final DesignPattern designPattern;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
