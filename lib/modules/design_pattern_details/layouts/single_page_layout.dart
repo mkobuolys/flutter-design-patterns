@@ -5,11 +5,11 @@ import '../../../../data/models/design_pattern.dart';
 import '../widgets/widgets.dart';
 
 class SinglePageLayout extends StatelessWidget {
-  final DesignPattern designPattern;
-
   const SinglePageLayout({
     required this.designPattern,
   });
+
+  final DesignPattern designPattern;
 
   @override
   Widget build(BuildContext context) {

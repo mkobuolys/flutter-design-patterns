@@ -1,17 +1,17 @@
 import 'design_pattern.dart';
 
 class DesignPatternCategory {
-  final String id;
-  final String title;
-  final int color;
-  final List<DesignPattern> patterns;
-
   const DesignPatternCategory({
     required this.id,
     required this.title,
     required this.color,
     required this.patterns,
   });
+
+  final String id;
+  final String title;
+  final int color;
+  final List<DesignPattern> patterns;
 
   factory DesignPatternCategory.fromJson(Map<String, dynamic> json) {
     final designPatternJsonList = json['patterns'] as List;

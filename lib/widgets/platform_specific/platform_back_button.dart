@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../navigation/router.dart';
 
 class PlatformBackButton extends StatelessWidget {
-  final Color color;
-
   const PlatformBackButton({
     required this.color,
   });
+
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,7 @@ class PlatformBackButton extends StatelessWidget {
       color: color,
       splashRadius: 20.0,
       onPressed: () {
-        context.router.canPop()
-            ? context.popRoute()
-            : context.navigateTo(const MainMenuRoute());
+        context.canPop() ? context.pop() : const MainMenuRoute().go(context);
       },
     );
   }

@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,11 +7,11 @@ import '../../modules/design_pattern_details/layouts/layouts.dart';
 import '../../themes.dart';
 
 class DesignPatternDetailsPage extends ConsumerWidget {
-  final String id;
-
   const DesignPatternDetailsPage({
-    @PathParam('id') required this.id,
+    required this.id,
   });
+
+  final String id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,7 +35,12 @@ class DesignPatternDetailsPage extends ConsumerWidget {
           ),
         ),
       ),
-      error: (_, __) => const Text('Oops, something went wrong...'),
+      error: (_, __) => Center(
+        child: Text(
+          'Welcome to the Dart side...',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+      ),
     );
   }
 }

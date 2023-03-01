@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/constants.dart';
@@ -8,13 +7,13 @@ import '../../../helpers/helpers.dart';
 import '../../../navigation/router.dart';
 
 class MainMenuCard extends StatelessWidget {
-  final DesignPatternCategory category;
-  final bool isDesktop;
-
   const MainMenuCard({
     required this.category,
     required this.isDesktop,
   });
+
+  final DesignPatternCategory category;
+  final bool isDesktop;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +34,11 @@ class MainMenuCard extends StatelessWidget {
 }
 
 class _CategoryPatternsScrollableView extends StatelessWidget {
-  final DesignPatternCategory category;
-
   const _CategoryPatternsScrollableView({
     required this.category,
   });
+
+  final DesignPatternCategory category;
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +74,11 @@ class _CategoryPatternsScrollableView extends StatelessWidget {
 }
 
 class _CategoryPatternsExpandableView extends StatelessWidget {
-  final DesignPatternCategory category;
-
   const _CategoryPatternsExpandableView({
     required this.category,
   });
+
+  final DesignPatternCategory category;
 
   @override
   Widget build(BuildContext context) {
@@ -105,13 +104,13 @@ class _CategoryPatternsExpandableView extends StatelessWidget {
 }
 
 class _CategoryTitle extends StatelessWidget {
-  final String title;
-  final int itemsCount;
-
   const _CategoryTitle({
     required this.title,
     required this.itemsCount,
   });
+
+  final String title;
+  final int itemsCount;
 
   @override
   Widget build(BuildContext context) {
@@ -139,19 +138,17 @@ class _CategoryTitle extends StatelessWidget {
 }
 
 class _DesignPatternTile extends StatelessWidget {
-  final DesignPattern designPattern;
-
   const _DesignPatternTile({
     required this.designPattern,
   });
+
+  final DesignPattern designPattern;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        onTap: () => context.navigateTo(
-          DesignPatternDetailsRoute(id: designPattern.id),
-        ),
+        onTap: () => DesignPatternDetailsRoute(designPattern.id).go(context),
         child: Padding(
           padding: const EdgeInsets.only(
             top: LayoutConstants.paddingM,

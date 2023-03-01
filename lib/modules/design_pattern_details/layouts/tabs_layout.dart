@@ -6,11 +6,11 @@ import '../../../../themes.dart';
 import '../widgets/widgets.dart';
 
 class TabsLayout extends StatefulWidget {
-  final DesignPattern designPattern;
-
   const TabsLayout({
     required this.designPattern,
   });
+
+  final DesignPattern designPattern;
 
   @override
   _TabsLayoutState createState() => _TabsLayoutState();

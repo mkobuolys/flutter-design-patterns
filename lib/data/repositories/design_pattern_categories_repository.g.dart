@@ -6,7 +6,43 @@ part of 'design_pattern_categories_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$designPatternCategoriesRepositoryHash() =>
+    r'8559a7606a5389938e681acc834e06c7232d95a6';
+
+/// See also [designPatternCategoriesRepository].
+@ProviderFor(designPatternCategoriesRepository)
+final designPatternCategoriesRepositoryProvider =
+    AutoDisposeProvider<DesignPatternCategoriesRepository>.internal(
+  designPatternCategoriesRepository,
+  name: r'designPatternCategoriesRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$designPatternCategoriesRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DesignPatternCategoriesRepositoryRef
+    = AutoDisposeProviderRef<DesignPatternCategoriesRepository>;
+String _$designPatternCategoriesHash() =>
+    r'7e5ef69bc420e15f5241981f102ee7afd974ab6e';
+
+/// See also [designPatternCategories].
+@ProviderFor(designPatternCategories)
+final designPatternCategoriesProvider =
+    AutoDisposeFutureProvider<List<DesignPatternCategory>>.internal(
+  designPatternCategories,
+  name: r'designPatternCategoriesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$designPatternCategoriesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DesignPatternCategoriesRef
+    = AutoDisposeFutureProviderRef<List<DesignPatternCategory>>;
+String _$designPatternHash() => r'80372c1c21e1e99f398455df68519f3943028830';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,41 +65,56 @@ class _SystemHash {
   }
 }
 
-String _$designPatternCategoriesRepositoryHash() =>
-    r'8559a7606a5389938e681acc834e06c7232d95a6';
+typedef DesignPatternRef = AutoDisposeFutureProviderRef<DesignPattern>;
 
-/// See also [designPatternCategoriesRepository].
-final designPatternCategoriesRepositoryProvider =
-    AutoDisposeProvider<DesignPatternCategoriesRepository>(
-  designPatternCategoriesRepository,
-  name: r'designPatternCategoriesRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$designPatternCategoriesRepositoryHash,
-);
-typedef DesignPatternCategoriesRepositoryRef
-    = AutoDisposeProviderRef<DesignPatternCategoriesRepository>;
-String _$designPatternCategoriesHash() =>
-    r'7e5ef69bc420e15f5241981f102ee7afd974ab6e';
+/// See also [designPattern].
+@ProviderFor(designPattern)
+const designPatternProvider = DesignPatternFamily();
 
-/// See also [designPatternCategories].
-final designPatternCategoriesProvider =
-    AutoDisposeFutureProvider<List<DesignPatternCategory>>(
-  designPatternCategories,
-  name: r'designPatternCategoriesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$designPatternCategoriesHash,
-);
-typedef DesignPatternCategoriesRef
-    = AutoDisposeFutureProviderRef<List<DesignPatternCategory>>;
-String _$designPatternHash() => r'80372c1c21e1e99f398455df68519f3943028830';
+/// See also [designPattern].
+class DesignPatternFamily extends Family<AsyncValue<DesignPattern>> {
+  /// See also [designPattern].
+  const DesignPatternFamily();
+
+  /// See also [designPattern].
+  DesignPatternProvider call(
+    String id,
+  ) {
+    return DesignPatternProvider(
+      id,
+    );
+  }
+
+  @override
+  DesignPatternProvider getProviderOverride(
+    covariant DesignPatternProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'designPatternProvider';
+}
 
 /// See also [designPattern].
 class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
+  /// See also [designPattern].
   DesignPatternProvider(
     this.id,
-  ) : super(
+  ) : super.internal(
           (ref) => designPattern(
             ref,
             id,
@@ -74,6 +125,9 @@ class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$designPatternHash,
+          dependencies: DesignPatternFamily._dependencies,
+          allTransitiveDependencies:
+              DesignPatternFamily._allTransitiveDependencies,
         );
 
   final String id;
@@ -91,38 +145,4 @@ class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef DesignPatternRef = AutoDisposeFutureProviderRef<DesignPattern>;
-
-/// See also [designPattern].
-final designPatternProvider = DesignPatternFamily();
-
-class DesignPatternFamily extends Family<AsyncValue<DesignPattern>> {
-  DesignPatternFamily();
-
-  DesignPatternProvider call(
-    String id,
-  ) {
-    return DesignPatternProvider(
-      id,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<DesignPattern> getProviderOverride(
-    covariant DesignPatternProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'designPatternProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
