@@ -14,18 +14,11 @@ class LogMessage {
   String get _logLevelString =>
       logLevel.toString().split('.').last.toUpperCase();
 
-  Color _getLogEntryColor() {
-    switch (logLevel) {
-      case LogLevel.Debug:
-        return Colors.grey;
-      case LogLevel.Info:
-        return Colors.blue;
-      case LogLevel.Error:
-        return Colors.red;
-      default:
-        throw Exception("Log level '$logLevel' is not supported.");
-    }
-  }
+  Color _getLogEntryColor() => switch (logLevel) {
+        LogLevel.Debug => Colors.grey,
+        LogLevel.Info => Colors.blue,
+        LogLevel.Error => Colors.red,
+      };
 
   Widget getFormattedMessage() {
     return Text(

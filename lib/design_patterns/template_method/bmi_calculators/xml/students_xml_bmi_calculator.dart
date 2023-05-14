@@ -16,11 +16,12 @@ class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
     final studentsList = <Student>[];
 
     for (final xmlElement in xmlDocument.findAllElements('student')) {
-      final fullName = xmlElement.findElements('fullname').single.text;
-      final age = int.parse(xmlElement.findElements('age').single.text);
+      final fullName = xmlElement.findElements('fullname').single.innerText;
+      final age = int.parse(xmlElement.findElements('age').single.innerText);
       final height =
-          double.parse(xmlElement.findElements('height').single.text);
-      final weight = int.parse(xmlElement.findElements('weight').single.text);
+          double.parse(xmlElement.findElements('height').single.innerText);
+      final weight =
+          int.parse(xmlElement.findElements('weight').single.innerText);
 
       studentsList.add(
         Student(

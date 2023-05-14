@@ -18,7 +18,7 @@ class OrdersDatatable extends StatelessWidget {
         columnSpacing: LayoutConstants.spaceM,
         horizontalMargin: LayoutConstants.marginM,
         headingRowHeight: LayoutConstants.spaceXL,
-        dataRowHeight: LayoutConstants.spaceXL,
+        dataRowMinHeight: LayoutConstants.spaceXL,
         columns: const <DataColumn>[
           DataColumn(
             label: Text(

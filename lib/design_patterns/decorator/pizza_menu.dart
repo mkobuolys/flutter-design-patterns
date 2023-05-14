@@ -16,18 +16,13 @@ class PizzaMenu {
 
   Map<int, PizzaToppingData> getPizzaToppingsDataMap() => _pizzaToppingsDataMap;
 
-  Pizza getPizza(int index, Map<int, PizzaToppingData> pizzaToppingsDataMap) {
-    switch (index) {
-      case 0:
-        return _getMargherita();
-      case 1:
-        return _getPepperoni();
-      case 2:
-        return _getCustom(pizzaToppingsDataMap);
-    }
-
-    throw Exception("Index of '$index' does not exist.");
-  }
+  Pizza getPizza(int index, Map<int, PizzaToppingData> pizzaToppingsDataMap) =>
+      switch (index) {
+        0 => _getMargherita(),
+        1 => _getPepperoni(),
+        2 => _getCustom(pizzaToppingsDataMap),
+        _ => throw Exception("Index of '$index' does not exist."),
+      };
 
   Pizza _getMargherita() {
     Pizza pizza = PizzaBase('Pizza Margherita');

@@ -20,9 +20,10 @@ class XmlContactsAdapter implements IContactsAdapter {
     final contactsList = <Contact>[];
 
     for (final xmlElement in xmlDocument.findAllElements('contact')) {
-      final fullName = xmlElement.findElements('fullname').single.text;
-      final email = xmlElement.findElements('email').single.text;
-      final favouriteString = xmlElement.findElements('favourite').single.text;
+      final fullName = xmlElement.findElements('fullname').single.innerText;
+      final email = xmlElement.findElements('email').single.innerText;
+      final favouriteString =
+          xmlElement.findElements('favourite').single.innerText;
       final favourite = favouriteString.toLowerCase() == 'true';
 
       contactsList.add(
