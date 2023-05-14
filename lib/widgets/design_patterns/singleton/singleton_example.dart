@@ -67,7 +67,7 @@ class _SingletonExampleState extends State<SingletonExample> {
             ),
             const SizedBox(height: LayoutConstants.spaceXL),
             const Text(
-              'Note: change states\' text and navigate the application (e.g. go to the tab "description" or main menu, then go back to this example) to see how the Singleton state behaves!',
+              "Note: change states' text and navigate the application (e.g. go to main menu, then go back to this example) to see how the Singleton state behaves!",
               textAlign: TextAlign.justify,
             ),
           ],

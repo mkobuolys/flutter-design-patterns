@@ -1,6 +1,6 @@
 import 'example_state_base.dart';
 
-class ExampleState extends ExampleStateBase {
+final class ExampleState extends ExampleStateBase {
   static final ExampleState _instance = ExampleState._internal();
 
   factory ExampleState() {
