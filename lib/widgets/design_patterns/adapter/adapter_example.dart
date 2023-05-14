@@ -9,10 +9,10 @@ class AdapterExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: const ScrollBehavior(),
+    return const ScrollConfiguration(
+      behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           horizontal: LayoutConstants.paddingL,
         ),
         child: Column(
@@ -22,7 +22,7 @@ class AdapterExample extends StatelessWidget {
               adapter: JsonContactsAdapter(),
               headerText: 'Contacts from JSON API:',
             ),
-            const SizedBox(height: LayoutConstants.spaceL),
+            SizedBox(height: LayoutConstants.spaceL),
             ContactsSection(
               adapter: XmlContactsAdapter(),
               headerText: 'Contacts from XML API:',

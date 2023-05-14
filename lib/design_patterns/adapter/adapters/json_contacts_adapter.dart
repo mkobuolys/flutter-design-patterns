@@ -5,11 +5,15 @@ import '../contact.dart';
 import '../icontacts_adapter.dart';
 
 class JsonContactsAdapter implements IContactsAdapter {
-  final JsonContactsApi _api = JsonContactsApi();
+  const JsonContactsAdapter({
+    this.api = const JsonContactsApi(),
+  });
+
+  final JsonContactsApi api;
 
   @override
   List<Contact> getContacts() {
-    final contactsJson = _api.getContactsJson();
+    final contactsJson = api.getContactsJson();
     final contactsList = _parseContactsJson(contactsJson);
 
     return contactsList;

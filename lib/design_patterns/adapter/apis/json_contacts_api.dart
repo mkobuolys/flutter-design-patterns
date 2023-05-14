@@ -1,5 +1,5 @@
 class JsonContactsApi {
-  final String _contactsJson = '''
+  static const String _contactsJson = '''
   {
     "contacts": [
       {
@@ -21,7 +21,7 @@ class JsonContactsApi {
   }
   ''';
 
-  String getContactsJson() {
-    return _contactsJson;
-  }
+  const JsonContactsApi();
+
+  String getContactsJson() => _contactsJson;
 }

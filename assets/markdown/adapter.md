@@ -10,7 +10,7 @@ The class diagram below shows the implementation of Adapter design pattern using
 
 ![Adapter Implementation Class Diagram](resource:assets/images/adapter/adapter_implementation.png)
 
-First of all, there are two APIs: _JsonContactsApi_ and _XmlContactsApi_. These two APIs have different methods to return contacts information in two different formats - JSON and XML. Hence, two different adapters should be created to convert the specific contacts' representation to the required format which is needed in the _ContactsSection_ component (widget) - list of _Contact_ objects. To unify the contract (interface) of adapters, _IContactsAdapter_ abstract class is created which requires to implement (override) the _getContacts()_ method in all the implementations of this abstract class. _JsonContactsAdapter_ implements the _IContactsAdapter_, uses the _JsonContactsApi_ to retrieve contacts information as a JSON string, then parses it to a list of _Contact_ objects and returns it via _getContacts()_ method. Accordingly, _XmlContactsAdapter_ is implemented in the same manner, but it receives the data from _XmlContactsApi_ in XML format.
+First of all, there are two APIs: _JsonContactsApi_ and _XmlContactsApi_. These two APIs have different methods to return contacts information in two different formats - JSON and XML. Hence, two different adapters should be created to convert the specific contacts' representation to the required format which is needed in the _ContactsSection_ component (widget) - list of _Contact_ objects. To unify the contract (interface) of adapters, _IContactsAdapter_ abstract interface class is created which requires to implement (override) the _getContacts()_ method in all the implementations of this interface. _JsonContactsAdapter_ implements the _IContactsAdapter_, uses the _JsonContactsApi_ to retrieve contacts information as a JSON string, then parses it to a list of _Contact_ objects and returns it via _getContacts()_ method. Accordingly, _XmlContactsAdapter_ is implemented in the same manner, but it receives the data from _XmlContactsApi_ in XML format.
 
 ### Contact
 
@@ -23,9 +23,9 @@ class Contact {
   final bool favourite;
 
   const Contact({
-    this.fullName,
-    this.email,
-    this.favourite,
+    required this.fullName,
+    required this.email,
+    required this.favourite,
   });
 }
 ```
@@ -36,7 +36,7 @@ A fake API which returns contacts' information as JSON string.
 
 ```
 class JsonContactsApi {
-  final String _contactsJson = '''
+  static const String _contactsJson = '''
   {
     "contacts": [
       {
@@ -58,9 +58,9 @@ class JsonContactsApi {
   }
   ''';
 
-  String getContactsJson() {
-    return _contactsJson;
-  }
+  const JsonContactsApi();
+
+  String getContactsJson() => _contactsJson;
 }
 ```
 
@@ -70,7 +70,7 @@ A fake API which returns contacts' information as XML string.
 
 ```
 class XmlContactsApi {
-  final String _contactsXml = '''
+  static const String _contactsXml = '''
   <?xml version="1.0"?>
   <contacts>
     <contact>
@@ -91,18 +91,18 @@ class XmlContactsApi {
   </contacts>
   ''';
 
-  String getContactsXml() {
-    return _contactsXml;
-  }
+  const XmlContactsApi();
+
+  String getContactsXml() => _contactsXml;
 }
 ```
 
 ### IContactsAdapter
 
-A contract (interface) which unifies adapters and requires them to implement the method _getContacts()_. Dart language does not support interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+A contract (interface) which unifies adapters and requires them to implement the method _getContacts()_.
 
 ```
-abstract class IContactsAdapter {
+abstract interface class IContactsAdapter {
   List<Contact> getContacts();
 }
 ```
@@ -113,26 +113,32 @@ An adapter, which implements the _getContacts()_ method. Inside the method, cont
 
 ```
 class JsonContactsAdapter implements IContactsAdapter {
-  final JsonContactsApi _api = JsonContactsApi();
+  const JsonContactsAdapter({
+    this.api = const JsonContactsApi(),
+  });
+
+  final JsonContactsApi api;
 
   @override
   List<Contact> getContacts() {
-    var contactsJson = _api.getContactsJson();
-    var contactsList = _parseContactsJson(contactsJson);
+    final contactsJson = api.getContactsJson();
+    final contactsList = _parseContactsJson(contactsJson);
 
     return contactsList;
   }
 
   List<Contact> _parseContactsJson(String contactsJson) {
-    var contactsMap = json.decode(contactsJson) as Map<String, dynamic>;
-    var contactsJsonList = contactsMap['contacts'] as List;
-    var contactsList = contactsJsonList
-        .map((json) => Contact(
-              fullName: json['fullName'],
-              email: json['email'],
-              favourite: json['favourite'],
-            ))
-        .toList();
+    final contactsMap = json.decode(contactsJson) as Map<String, dynamic>;
+    final contactsJsonList = contactsMap['contacts'] as List;
+    final contactsList = contactsJsonList.map((json) {
+      final contactJson = json as Map<String, dynamic>;
+
+      return Contact(
+        fullName: contactJson['fullName'] as String,
+        email: contactJson['email'] as String,
+        favourite: contactJson['favourite'] as bool,
+      );
+    }).toList();
 
     return contactsList;
   }
@@ -145,31 +151,38 @@ An adapter, which implements the _getContacts()_ method. Inside the method, cont
 
 ```
 class XmlContactsAdapter implements IContactsAdapter {
-  final XmlContactsApi _api = XmlContactsApi();
+  const XmlContactsAdapter({
+    this.api = const XmlContactsApi(),
+  });
+
+  final XmlContactsApi api;
 
   @override
   List<Contact> getContacts() {
-    var contactsXml = _api.getContactsXml();
-    var contactsList = _parseContactsXml(contactsXml);
+    final contactsXml = api.getContactsXml();
+    final contactsList = _parseContactsXml(contactsXml);
 
     return contactsList;
   }
 
   List<Contact> _parseContactsXml(String contactsXml) {
-    var xmlDocument = xml.parse(contactsXml);
-    var contactsList = List<Contact>();
+    final xmlDocument = XmlDocument.parse(contactsXml);
+    final contactsList = <Contact>[];
 
-    for (var xmlElement in xmlDocument.findAllElements('contact')) {
-      var fullName = xmlElement.findElements('fullname').single.text;
-      var email = xmlElement.findElements('email').single.text;
-      var favouriteString = xmlElement.findElements('favourite').single.text;
-      var favourite = favouriteString.toLowerCase() == 'true';
+    for (final xmlElement in xmlDocument.findAllElements('contact')) {
+      final fullName = xmlElement.findElements('fullname').single.innerText;
+      final email = xmlElement.findElements('email').single.innerText;
+      final favouriteString =
+          xmlElement.findElements('favourite').single.innerText;
+      final favourite = favouriteString.toLowerCase() == 'true';
 
-      contactsList.add(Contact(
-        fullName: fullName,
-        email: email,
-        favourite: favourite,
-      ));
+      contactsList.add(
+        Contact(
+          fullName: fullName,
+          email: email,
+          favourite: favourite,
+        ),
+      );
     }
 
     return contactsList;
@@ -183,12 +196,16 @@ class XmlContactsAdapter implements IContactsAdapter {
 
 ```
 class AdapterExample extends StatelessWidget {
+  const AdapterExample();
+
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
+    return const ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -196,7 +213,7 @@ class AdapterExample extends StatelessWidget {
               adapter: JsonContactsAdapter(),
               headerText: 'Contacts from JSON API:',
             ),
-            const SizedBox(height: LayoutConstants.spaceL),
+            SizedBox(height: LayoutConstants.spaceL),
             ContactsSection(
               adapter: XmlContactsAdapter(),
               headerText: 'Contacts from XML API:',
@@ -217,16 +234,16 @@ class ContactsSection extends StatefulWidget {
   final String headerText;
 
   const ContactsSection({
-    @required this.adapter,
-    @required this.headerText,
-  })  : assert(adapter != null),
-        assert(headerText != null);
+    required this.adapter,
+    required this.headerText,
+  });
 
+  @override
   _ContactsSectionState createState() => _ContactsSectionState();
 }
 
 class _ContactsSectionState extends State<ContactsSection> {
-  final List<Contact> contacts = List<Contact>();
+  final List<Contact> contacts = [];
 
   void _getContacts() {
     setState(() {

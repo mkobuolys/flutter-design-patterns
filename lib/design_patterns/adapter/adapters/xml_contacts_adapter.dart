@@ -5,11 +5,15 @@ import '../contact.dart';
 import '../icontacts_adapter.dart';
 
 class XmlContactsAdapter implements IContactsAdapter {
-  final XmlContactsApi _api = XmlContactsApi();
+  const XmlContactsAdapter({
+    this.api = const XmlContactsApi(),
+  });
+
+  final XmlContactsApi api;
 
   @override
   List<Contact> getContacts() {
-    final contactsXml = _api.getContactsXml();
+    final contactsXml = api.getContactsXml();
     final contactsList = _parseContactsXml(contactsXml);
 
     return contactsList;
