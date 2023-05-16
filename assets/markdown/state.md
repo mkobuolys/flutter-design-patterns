@@ -29,11 +29,11 @@ _StateExample_ widget contains the _StateContext_ object to track and trigger st
 
 ### IState
 
-An interface which defines methods to be implemented by all specific state classes. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines methods to be implemented by all specific state classes.
 
 ```
-abstract class IState {
-  Future nextState(StateContext context);
+abstract interface class IState {
+  Future<void> nextState(StateContext context);
   Widget render();
 }
 ```
@@ -44,14 +44,14 @@ A class which holds the current state in _currentState_ property and exposes it 
 
 ```
 class StateContext {
-  StreamController<IState> _stateStream = StreamController<IState>();
+  final _stateStream = StreamController<IState>();
   Sink<IState> get _inState => _stateStream.sink;
   Stream<IState> get outState => _stateStream.stream;
 
-  IState _currentState;
+  late IState _currentState;
 
   StateContext() {
-    _currentState = NoResultsState();
+    _currentState = const NoResultsState();
     _addCurrentStateToStream();
   }
 
@@ -84,14 +84,16 @@ class StateContext {
 
 ```
 class ErrorState implements IState {
+  const ErrorState();
+
   @override
-  Future nextState(StateContext context) async {
-    context.setState(LoadingState());
+  Future<void> nextState(StateContext context) async {
+    context.setState(const LoadingState());
   }
 
   @override
   Widget render() {
-    return Text(
+    return const Text(
       'Oops! Something went wrong...',
       style: TextStyle(
         color: Colors.red,
@@ -107,13 +109,13 @@ class ErrorState implements IState {
 
 ```
 class LoadedState implements IState {
-  final List<String> names;
-
   const LoadedState(this.names);
 
+  final List<String> names;
+
   @override
-  Future nextState(StateContext context) async {
-    context.setState(LoadingState());
+  Future<void> nextState(StateContext context) async {
+    context.setState(const LoadingState());
   }
 
   @override
@@ -142,14 +144,16 @@ class LoadedState implements IState {
 
 ```
 class NoResultsState implements IState {
+  const NoResultsState();
+
   @override
-  Future nextState(StateContext context) async {
-    context.setState(LoadingState());
+  Future<void> nextState(StateContext context) async {
+    context.setState(const LoadingState());
   }
 
   @override
   Widget render() {
-    return Text(
+    return const Text(
       'No Results',
       style: TextStyle(fontSize: 24.0),
       textAlign: TextAlign.center,
@@ -162,26 +166,28 @@ class NoResultsState implements IState {
 
 ```
 class LoadingState implements IState {
-  final FakeApi _api = FakeApi();
+  const LoadingState({
+    this.api = const FakeApi(),
+  });
+
+  final FakeApi api;
 
   @override
-  Future nextState(StateContext context) async {
+  Future<void> nextState(StateContext context) async {
     try {
-      var resultList = await _api.getNames();
+      final resultList = await api.getNames();
 
-      if (resultList.isEmpty) {
-        context.setState(NoResultsState());
-      } else {
-        context.setState(LoadedState(resultList));
-      }
+      context.setState(
+        resultList.isEmpty ? const NoResultsState() : LoadedState(resultList),
+      );
     } on Exception {
-      context.setState(ErrorState());
+      context.setState(const ErrorState());
     }
   }
 
   @override
   Widget render() {
-    return CircularProgressIndicator(
+    return const CircularProgressIndicator(
       backgroundColor: Colors.transparent,
       valueColor: AlwaysStoppedAnimation<Color>(
         Colors.black,
@@ -197,30 +203,21 @@ A fake API which is used to randomly generate a list of person names. The method
 
 ```
 class FakeApi {
-  Future<List<String>> getNames() async {
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        if (random.boolean()) {
-          return _getRandomNames();
-        }
+  const FakeApi();
 
-        throw Exception('Unexpected error');
-      },
-    );
-  }
+  Future<List<String>> getNames() => Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          if (random.boolean()) return _getRandomNames();
 
-  List<String> _getRandomNames() {
-    if (random.boolean()) {
-      return [];
-    }
+          throw Exception('Unexpected error');
+        },
+      );
 
-    return [
-      faker.person.name(),
-      faker.person.name(),
-      faker.person.name(),
-    ];
-  }
+  List<String> _getRandomNames() => List.generate(
+        random.boolean() ? 3 : 0,
+        (_) => faker.person.name(),
+      );
 }
 ```
 
@@ -230,12 +227,14 @@ _StateExample_ widget contains the _StateContext_, subscribes to the current sta
 
 ```
 class StateExample extends StatefulWidget {
+  const StateExample();
+
   @override
   _StateExampleState createState() => _StateExampleState();
 }
 
 class _StateExampleState extends State<StateExample> {
-  var _stateContext = StateContext();
+  final _stateContext = StateContext();
 
   Future<void> _changeState() async {
     await _stateContext.nextState();
@@ -250,23 +249,24 @@ class _StateExampleState extends State<StateExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             PlatformButton(
-              child: Text('Load names'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeState,
+              text: 'Load names',
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            StreamBuilder(
-              initialData: NoResultsState(),
+            StreamBuilder<IState>(
+              initialData: const NoResultsState(),
               stream: _stateContext.outState,
-              builder: (_, AsyncSnapshot<IState> snapshot) =>
-                  snapshot.data.render(),
+              builder: (context, snapshot) => snapshot.data!.render(),
             ),
           ],
         ),

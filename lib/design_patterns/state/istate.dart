@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'state_context.dart';
 
-abstract class IState {
-  Future nextState(StateContext context);
+abstract interface class IState {
+  Future<void> nextState(StateContext context);
   Widget render();
 }

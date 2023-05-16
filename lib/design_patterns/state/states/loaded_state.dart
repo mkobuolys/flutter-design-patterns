@@ -5,13 +5,13 @@ import '../state_context.dart';
 import 'loading_state.dart';
 
 class LoadedState implements IState {
-  final List<String> names;
-
   const LoadedState(this.names);
 
+  final List<String> names;
+
   @override
-  Future nextState(StateContext context) async {
-    context.setState(LoadingState());
+  Future<void> nextState(StateContext context) async {
+    context.setState(const LoadingState());
   }
 
   @override

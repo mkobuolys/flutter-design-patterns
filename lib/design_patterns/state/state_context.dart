@@ -12,7 +12,7 @@ class StateContext {
   late IState _currentState;
 
   StateContext() {
-    _currentState = NoResultsState();
+    _currentState = const NoResultsState();
     _addCurrentStateToStream();
   }
 
