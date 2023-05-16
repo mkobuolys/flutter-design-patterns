@@ -1,5 +1,5 @@
 class XmlStudentsApi {
-  final String _studentsXml = '''
+  static const _studentsXml = '''
   <?xml version="1.0"?>
   <students>
     <student>
@@ -29,7 +29,7 @@ class XmlStudentsApi {
   </students>
   ''';
 
-  String getStudentsXml() {
-    return _studentsXml;
-  }
+  const XmlStudentsApi();
+
+  String getStudentsXml() => _studentsXml;
 }

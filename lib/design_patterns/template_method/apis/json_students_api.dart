@@ -1,5 +1,5 @@
 class JsonStudentsApi {
-  final String _studentsJson = '''
+  static const _studentsJson = '''
   {
     "students": [
       {
@@ -30,7 +30,7 @@ class JsonStudentsApi {
   }
   ''';
 
-  String getStudentsJson() {
-    return _studentsJson;
-  }
+  const JsonStudentsApi();
+
+  String getStudentsJson() => _studentsJson;
 }

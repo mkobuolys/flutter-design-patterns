@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'student.dart';
 
 abstract class StudentsBmiCalculator {
+  const StudentsBmiCalculator();
+
   List<Student> calculateBmiAndReturnStudentList() {
     var studentList = getStudentsData();
     studentList = doStudentsFiltering(studentList);

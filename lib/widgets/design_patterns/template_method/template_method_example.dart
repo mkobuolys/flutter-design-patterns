@@ -9,10 +9,10 @@ class TemplateMethodExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: const ScrollBehavior(),
+    return const ScrollConfiguration(
+      behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           horizontal: LayoutConstants.paddingL,
         ),
         child: Column(
@@ -22,12 +22,12 @@ class TemplateMethodExample extends StatelessWidget {
               bmiCalculator: StudentsXmlBmiCalculator(),
               headerText: 'Students from XML data source:',
             ),
-            const SizedBox(height: LayoutConstants.spaceL),
+            SizedBox(height: LayoutConstants.spaceL),
             StudentsSection(
               bmiCalculator: StudentsJsonBmiCalculator(),
               headerText: 'Students from JSON data source:',
             ),
-            const SizedBox(height: LayoutConstants.spaceL),
+            SizedBox(height: LayoutConstants.spaceL),
             StudentsSection(
               bmiCalculator: TeenageStudentsJsonBmiCalculator(),
               headerText: 'Students from JSON data source (teenagers only):',

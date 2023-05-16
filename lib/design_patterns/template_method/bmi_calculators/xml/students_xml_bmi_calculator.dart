@@ -6,12 +6,16 @@ import '../../student.dart';
 import '../../students_bmi_calculator.dart';
 
 class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
-  final XmlStudentsApi _api = XmlStudentsApi();
+  const StudentsXmlBmiCalculator({
+    this.api = const XmlStudentsApi(),
+  });
+
+  final XmlStudentsApi api;
 
   @override
   @protected
   List<Student> getStudentsData() {
-    final studentsXml = _api.getStudentsXml();
+    final studentsXml = api.getStudentsXml();
     final xmlDocument = XmlDocument.parse(studentsXml);
     final studentsList = <Student>[];
 
