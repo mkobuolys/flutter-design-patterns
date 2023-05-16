@@ -2,16 +2,17 @@ import '../../expression_context.dart';
 import '../../iexpression.dart';
 
 class Subtract implements IExpression {
+  const Subtract(this.leftExpression, this.rightExpression);
+
   final IExpression leftExpression;
   final IExpression rightExpression;
-
-  const Subtract(this.leftExpression, this.rightExpression);
 
   @override
   int interpret(ExpressionContext context) {
     final left = leftExpression.interpret(context);
     final right = rightExpression.interpret(context);
     final result = left - right;
+
     context.addSolutionStep('-', left, right, result);
 
     return result;

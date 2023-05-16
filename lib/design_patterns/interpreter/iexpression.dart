@@ -1,5 +1,5 @@
 import 'expression_context.dart';
 
-abstract class IExpression {
+abstract interface class IExpression {
   int interpret(ExpressionContext context);
 }

@@ -16,7 +16,7 @@ class ExpressionSection extends StatefulWidget {
 }
 
 class _ExpressionSectionState extends State<ExpressionSection> {
-  final ExpressionContext _expressionContext = ExpressionContext();
+  final _expressionContext = ExpressionContext();
   final List<String> _solutionSteps = [];
 
   void _solvePrefixExpression() {
@@ -29,9 +29,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
       ..addAll(_expressionContext.getSolutionSteps())
       ..add('Result: $result');
 
-    setState(() {
-      _solutionSteps.addAll(solutionSteps);
-    });
+    setState(() => _solutionSteps.addAll(solutionSteps));
   }
 
   @override

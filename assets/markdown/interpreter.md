@@ -25,10 +25,10 @@ _ExpressionSection_ uses the _ExpressionHelpers_ class to build the expression t
 
 ### IExpression
 
-An interface which defines the _interpret()_ method to be implemented by the terminal and nonterminal expression classes. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines the _interpret()_ method to be implemented by the terminal and nonterminal expression classes.
 
 ```
-abstract class IExpression {
+abstract interface class IExpression {
   int interpret(ExpressionContext context);
 }
 ```
@@ -39,14 +39,13 @@ A class to define the context which stores the solution steps of the postfix exp
 
 ```
 class ExpressionContext {
-  final List<String> _solutionSteps = List<String>();
+  final List<String> _solutionSteps = [];
 
-  List<String> getSolutionSteps() {
-    return _solutionSteps;
-  }
+  List<String> getSolutionSteps() => _solutionSteps;
 
   void addSolutionStep(String operatorSymbol, int left, int right, int result) {
-    var solutionStep = '${_solutionSteps.length + 1}) $left $operatorSymbol $right = $result';
+    final solutionStep =
+        '${_solutionSteps.length + 1}) $left $operatorSymbol $right = $result';
 
     _solutionSteps.add(solutionStep);
   }
@@ -59,20 +58,23 @@ A helper class which is used by the _Client_ to build the expression tree from t
 
 ```
 class ExpressionHelpers {
+  const ExpressionHelpers._();
+
   static final List<String> _operators = ['+', '-', '*'];
 
   static IExpression buildExpressionTree(String postfixExpression) {
-    var expressionStack = ListQueue<IExpression>();
+    final expressionStack = ListQueue<IExpression>();
 
-    for (var symbol in postfixExpression.split(' ')) {
+    for (final symbol in postfixExpression.split(' ')) {
       if (_isOperator(symbol)) {
-        var rightExpression = expressionStack.removeLast();
-        var leftExpression = expressionStack.removeLast();
-        var nonterminalExpression = _getNonterminalExpression(symbol, leftExpression, rightExpression);
+        final rightExpression = expressionStack.removeLast();
+        final leftExpression = expressionStack.removeLast();
+        final nonterminalExpression =
+            _getNonterminalExpression(symbol, leftExpression, rightExpression);
 
         expressionStack.addLast(nonterminalExpression);
       } else {
-        var numberExpression = Number(int.parse(symbol));
+        final numberExpression = Number(int.parse(symbol));
 
         expressionStack.addLast(numberExpression);
       }
@@ -89,25 +91,13 @@ class ExpressionHelpers {
     String symbol,
     IExpression leftExpression,
     IExpression rightExpression,
-  ) {
-    IExpression expression;
-
-    switch (symbol) {
-      case '+':
-        expression = Add(leftExpression, rightExpression);
-        break;
-      case '-':
-        expression = Subtract(leftExpression, rightExpression);
-        break;
-      case '*':
-        expression = Multiply(leftExpression, rightExpression);
-        break;
-      default:
-        throw Exception('Expression is not defined.');
-    }
-
-    return expression;
-  }
+  ) =>
+      switch (symbol) {
+        '+' => Add(leftExpression, rightExpression),
+        '-' => Subtract(leftExpression, rightExpression),
+        '*' => Multiply(leftExpression, rightExpression),
+        _ => throw Exception('Expression is not defined.'),
+      };
 }
 ```
 
@@ -117,14 +107,12 @@ A terminal expression class to define the number in postfix expression.
 
 ```
 class Number implements IExpression {
-  final int number;
-
   const Number(this.number);
 
+  final int number;
+
   @override
-  int interpret(ExpressionContext context) {
-    return number;
-  }
+  int interpret(ExpressionContext context) => number;
 }
 ```
 
@@ -134,16 +122,17 @@ class Number implements IExpression {
 
 ```
 class Add implements IExpression {
+  const Add(this.leftExpression, this.rightExpression);
+
   final IExpression leftExpression;
   final IExpression rightExpression;
 
-  const Add(this.leftExpression, this.rightExpression);
-
   @override
   int interpret(ExpressionContext context) {
-    var left = leftExpression.interpret(context);
-    var right = rightExpression.interpret(context);
-    var result = left + right;
+    final left = leftExpression.interpret(context);
+    final right = rightExpression.interpret(context);
+    final result = left + right;
+
     context.addSolutionStep('+', left, right, result);
 
     return result;
@@ -155,16 +144,17 @@ class Add implements IExpression {
 
 ```
 class Subtract implements IExpression {
+  const Subtract(this.leftExpression, this.rightExpression);
+
   final IExpression leftExpression;
   final IExpression rightExpression;
 
-  const Subtract(this.leftExpression, this.rightExpression);
-
   @override
   int interpret(ExpressionContext context) {
-    var left = leftExpression.interpret(context);
-    var right = rightExpression.interpret(context);
-    var result = left - right;
+    final left = leftExpression.interpret(context);
+    final right = rightExpression.interpret(context);
+    final result = left - right;
+
     context.addSolutionStep('-', left, right, result);
 
     return result;
@@ -176,16 +166,17 @@ class Subtract implements IExpression {
 
 ```
 class Multiply implements IExpression {
+  const Multiply(this.leftExpression, this.rightExpression);
+
   final IExpression leftExpression;
   final IExpression rightExpression;
 
-  const Multiply(this.leftExpression, this.rightExpression);
-
   @override
   int interpret(ExpressionContext context) {
-    var left = leftExpression.interpret(context);
-    var right = rightExpression.interpret(context);
-    var result = left * right;
+    final left = leftExpression.interpret(context);
+    final right = rightExpression.interpret(context);
+    final result = left * right;
+
     context.addSolutionStep('*', left, right, result);
 
     return result;
@@ -199,6 +190,8 @@ class Multiply implements IExpression {
 
 ```
 class InterpreterExample extends StatefulWidget {
+  const InterpreterExample();
+
   @override
   _InterpreterExampleState createState() => _InterpreterExampleState();
 }
@@ -214,14 +207,18 @@ class _InterpreterExampleState extends State<InterpreterExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             for (var postfixExpression in _postfixExpressions)
-              ExpressionSection(postfixExpression),
+              ExpressionSection(
+                postfixExpression: postfixExpression,
+              ),
           ],
         ),
       ),
@@ -236,30 +233,29 @@ class _InterpreterExampleState extends State<InterpreterExample> {
 class ExpressionSection extends StatefulWidget {
   final String postfixExpression;
 
-  const ExpressionSection(
-    this.postfixExpression,
-  ) : assert(postfixExpression != null);
+  const ExpressionSection({
+    required this.postfixExpression,
+  });
 
   @override
   _ExpressionSectionState createState() => _ExpressionSectionState();
 }
 
 class _ExpressionSectionState extends State<ExpressionSection> {
-  final ExpressionContext _expressionContext = ExpressionContext();
-  final List<String> _solutionSteps = List<String>();
+  final _expressionContext = ExpressionContext();
+  final List<String> _solutionSteps = [];
 
   void _solvePrefixExpression() {
-    var solutionSteps = List<String>();
-    var expression = ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
-    var result = expression.interpret(_expressionContext);
+    final solutionSteps = <String>[];
+    final expression =
+        ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
+    final result = expression.interpret(_expressionContext);
 
     solutionSteps
       ..addAll(_expressionContext.getSolutionSteps())
       ..add('Result: $result');
 
-    setState(() {
-      _solutionSteps.addAll(solutionSteps);
-    });
+    setState(() => _solutionSteps.addAll(solutionSteps));
   }
 
   @override
@@ -269,16 +265,16 @@ class _ExpressionSectionState extends State<ExpressionSection> {
       children: <Widget>[
         Text(
           widget.postfixExpression,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: LayoutConstants.spaceM),
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 250),
           firstChild: PlatformButton(
-            child: Text('Solve'),
             materialColor: Colors.black,
             materialTextColor: Colors.white,
             onPressed: _solvePrefixExpression,
+            text: 'Solve',
           ),
           secondChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,7 +282,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
               for (var solutionStep in _solutionSteps)
                 Text(
                   solutionStep,
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.titleSmall,
                 )
             ],
           ),
