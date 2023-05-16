@@ -16,40 +16,37 @@ class IteratorExample extends StatefulWidget {
 class _IteratorExampleState extends State<IteratorExample> {
   final List<ITreeCollection> treeCollections = [];
 
-  int _selectedTreeCollectionIndex = 0;
+  var _selectedTreeCollectionIndex = 0;
   int? _currentNodeIndex = 0;
-  bool _isTraversing = false;
+  var _isTraversing = false;
 
   @override
   void initState() {
     super.initState();
 
     final graph = _buildGraph();
-    treeCollections.add(BreadthFirstTreeCollection(graph));
-    treeCollections.add(DepthFirstTreeCollection(graph));
+
+    treeCollections
+      ..add(BreadthFirstTreeCollection(graph))
+      ..add(DepthFirstTreeCollection(graph));
   }
 
-  Graph _buildGraph() {
-    final graph = Graph();
-
-    graph.addEdge(1, 2);
-    graph.addEdge(1, 3);
-    graph.addEdge(1, 4);
-    graph.addEdge(2, 5);
-    graph.addEdge(3, 6);
-    graph.addEdge(3, 7);
-    graph.addEdge(4, 8);
-
-    return graph;
-  }
+  Graph _buildGraph() => Graph()
+    ..addEdge(1, 2)
+    ..addEdge(1, 3)
+    ..addEdge(1, 4)
+    ..addEdge(2, 5)
+    ..addEdge(3, 6)
+    ..addEdge(3, 7)
+    ..addEdge(4, 8);
 
   void _setSelectedTreeCollectionIndex(int? index) {
-    setState(() {
-      _selectedTreeCollectionIndex = index!;
-    });
+    if (index == null) return;
+
+    setState(() => _selectedTreeCollectionIndex = index);
   }
 
-  Future _traverseTree() async {
+  Future<void> _traverseTree() async {
     _toggleIsTraversing();
 
     final iterator =
@@ -58,9 +55,7 @@ class _IteratorExampleState extends State<IteratorExample> {
     while (iterator.hasNext()) {
       if (!mounted) return;
 
-      setState(() {
-        _currentNodeIndex = iterator.getNext();
-      });
+      setState(() => _currentNodeIndex = iterator.getNext());
 
       await Future.delayed(const Duration(seconds: 1));
     }
@@ -68,21 +63,12 @@ class _IteratorExampleState extends State<IteratorExample> {
     _toggleIsTraversing();
   }
 
-  void _toggleIsTraversing() {
-    setState(() {
-      _isTraversing = !_isTraversing;
-    });
-  }
+  void _toggleIsTraversing() => setState(() => _isTraversing = !_isTraversing);
 
-  void _reset() {
-    setState(() {
-      _currentNodeIndex = 0;
-    });
-  }
+  void _reset() => setState(() => _currentNodeIndex = 0);
 
-  Color _getBackgroundColor(int index) {
-    return _currentNodeIndex == index ? Colors.red[200]! : Colors.white;
-  }
+  Color _getBackgroundColor(int index) =>
+      _currentNodeIndex == index ? Colors.red[200]! : Colors.white;
 
   @override
   Widget build(BuildContext context) {

@@ -33,24 +33,20 @@ A class which stores the adjacency list of the graph. It is stored as a map data
 
 ```
 class Graph {
-  final Map<int, Set<int>> adjacencyList = Map<int, Set<int>>();
+  final Map<int, Set<int>> adjacencyList = {};
 
-  void addEdge(int source, int target) {
-    if (adjacencyList.containsKey(source)) {
-      adjacencyList[source].add(target);
-    } else {
-      adjacencyList[source] = {target};
-    }
-  }
+  void addEdge(int source, int target) => adjacencyList.containsKey(source)
+      ? adjacencyList[source]!.add(target)
+      : adjacencyList[source] = {target};
 }
 ```
 
 ### ITreeCollection
 
-An interface which defines methods to be implemented by all specific tree collection classes. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines methods to be implemented by all specific tree collection classes.
 
 ```
-abstract class ITreeCollection {
+abstract interface class ITreeCollection {
   ITreeIterator createIterator();
   String getTitle();
 }
@@ -62,19 +58,15 @@ abstract class ITreeCollection {
 
 ```
 class DepthFirstTreeCollection implements ITreeCollection {
-  final Graph graph;
-
   const DepthFirstTreeCollection(this.graph);
 
-  @override
-  ITreeIterator createIterator() {
-    return DepthFirstIterator(this);
-  }
+  final Graph graph;
 
   @override
-  String getTitle() {
-    return 'Depth-first';
-  }
+  ITreeIterator createIterator() => DepthFirstIterator(this);
+
+  @override
+  String getTitle() => 'Depth-first';
 }
 ```
 
@@ -82,19 +74,15 @@ class DepthFirstTreeCollection implements ITreeCollection {
 
 ```
 class BreadthFirstTreeCollection implements ITreeCollection {
-  final Graph graph;
-
   const BreadthFirstTreeCollection(this.graph);
 
-  @override
-  ITreeIterator createIterator() {
-    return BreadthFirstIterator(this);
-  }
+  final Graph graph;
 
   @override
-  String getTitle() {
-    return 'Breadth-first';
-  }
+  ITreeIterator createIterator() => BreadthFirstIterator(this);
+
+  @override
+  String getTitle() => 'Breadth-first';
 }
 ```
 
@@ -103,9 +91,9 @@ class BreadthFirstTreeCollection implements ITreeCollection {
 An interface which defines methods to be implemented by all specific iterators of the tree collection.
 
 ```
-abstract class ITreeIterator {
+abstract interface class ITreeIterator {
   bool hasNext();
-  int getNext();
+  int? getNext();
   void reset();
 }
 ```
@@ -120,8 +108,8 @@ class DepthFirstIterator implements ITreeIterator {
   final Set<int> visitedNodes = <int>{};
   final ListQueue<int> nodeStack = ListQueue<int>();
 
-  final int _initialNode = 1;
-  int _currentNode;
+  final _initialNode = 1;
+  late int _currentNode;
 
   DepthFirstIterator(this.treeCollection) {
     _currentNode = _initialNode;
@@ -131,21 +119,17 @@ class DepthFirstIterator implements ITreeIterator {
   Map<int, Set<int>> get adjacencyList => treeCollection.graph.adjacencyList;
 
   @override
-  bool hasNext() {
-    return nodeStack.isNotEmpty;
-  }
+  bool hasNext() => nodeStack.isNotEmpty;
 
   @override
-  int getNext() {
-    if (!hasNext()) {
-      return null;
-    }
+  int? getNext() {
+    if (!hasNext()) return null;
 
     _currentNode = nodeStack.removeLast();
     visitedNodes.add(_currentNode);
 
     if (adjacencyList.containsKey(_currentNode)) {
-      for (var node in adjacencyList[_currentNode]
+      for (final node in adjacencyList[_currentNode]!
           .where((n) => !visitedNodes.contains(n))) {
         nodeStack.addLast(node);
       }
@@ -172,8 +156,8 @@ class BreadthFirstIterator implements ITreeIterator {
   final Set<int> visitedNodes = <int>{};
   final ListQueue<int> nodeQueue = ListQueue<int>();
 
-  final int _initialNode = 1;
-  int _currentNode;
+  final _initialNode = 1;
+  late int _currentNode;
 
   BreadthFirstIterator(this.treeCollection) {
     _currentNode = _initialNode;
@@ -183,21 +167,17 @@ class BreadthFirstIterator implements ITreeIterator {
   Map<int, Set<int>> get adjacencyList => treeCollection.graph.adjacencyList;
 
   @override
-  bool hasNext() {
-    return nodeQueue.isNotEmpty;
-  }
+  bool hasNext() => nodeQueue.isNotEmpty;
 
   @override
-  int getNext() {
-    if (!hasNext()) {
-      return null;
-    }
+  int? getNext() {
+    if (!hasNext()) return null;
 
     _currentNode = nodeQueue.removeFirst();
     visitedNodes.add(_currentNode);
 
     if (adjacencyList.containsKey(_currentNode)) {
-      for (var node in adjacencyList[_currentNode]
+      for (final node in adjacencyList[_currentNode]!
           .where((n) => !visitedNodes.contains(n))) {
         nodeQueue.addLast(node);
       }
@@ -223,84 +203,77 @@ As you can see in the _traverseTree()_ method, all the implementation details of
 
 ```
 class IteratorExample extends StatefulWidget {
+  const IteratorExample();
+
   @override
   _IteratorExampleState createState() => _IteratorExampleState();
 }
 
 class _IteratorExampleState extends State<IteratorExample> {
-  final List<ITreeCollection> treeCollections = List<ITreeCollection>();
+  final List<ITreeCollection> treeCollections = [];
 
-  int _selectedTreeCollectionIndex = 0;
-  int _currentNodeIndex = 0;
-  bool _isTraversing = false;
+  var _selectedTreeCollectionIndex = 0;
+  int? _currentNodeIndex = 0;
+  var _isTraversing = false;
 
   @override
   void initState() {
     super.initState();
 
-    var graph = _buildGraph();
-    treeCollections.add(BreadthFirstTreeCollection(graph));
-    treeCollections.add(DepthFirstTreeCollection(graph));
+    final graph = _buildGraph();
+
+    treeCollections
+      ..add(BreadthFirstTreeCollection(graph))
+      ..add(DepthFirstTreeCollection(graph));
   }
 
-  Graph _buildGraph() {
-    var graph = Graph();
+  Graph _buildGraph() => Graph()
+    ..addEdge(1, 2)
+    ..addEdge(1, 3)
+    ..addEdge(1, 4)
+    ..addEdge(2, 5)
+    ..addEdge(3, 6)
+    ..addEdge(3, 7)
+    ..addEdge(4, 8);
 
-    graph.addEdge(1, 2);
-    graph.addEdge(1, 3);
-    graph.addEdge(1, 4);
-    graph.addEdge(2, 5);
-    graph.addEdge(3, 6);
-    graph.addEdge(3, 7);
-    graph.addEdge(4, 8);
+  void _setSelectedTreeCollectionIndex(int? index) {
+    if (index == null) return;
 
-    return graph;
+    setState(() => _selectedTreeCollectionIndex = index);
   }
 
-  void _setSelectedTreeCollectionIndex(int index) {
-    setState(() {
-      _selectedTreeCollectionIndex = index;
-    });
-  }
-
-  Future _traverseTree() async {
+  Future<void> _traverseTree() async {
     _toggleIsTraversing();
 
-    var iterator =
+    final iterator =
         treeCollections[_selectedTreeCollectionIndex].createIterator();
 
     while (iterator.hasNext()) {
-      setState(() {
-        _currentNodeIndex = iterator.getNext();
-      });
+      if (!mounted) return;
+
+      setState(() => _currentNodeIndex = iterator.getNext());
+
       await Future.delayed(const Duration(seconds: 1));
     }
 
     _toggleIsTraversing();
   }
 
-  void _toggleIsTraversing() {
-    setState(() {
-      _isTraversing = !_isTraversing;
-    });
-  }
+  void _toggleIsTraversing() => setState(() => _isTraversing = !_isTraversing);
 
-  void _reset() {
-    setState(() {
-      _currentNodeIndex = 0;
-    });
-  }
+  void _reset() => setState(() => _currentNodeIndex = 0);
 
-  Color _getBackgroundColor(int index) {
-    return _currentNodeIndex == index ? Colors.red[200] : Colors.white;
-  }
+  Color _getBackgroundColor(int index) =>
+      _currentNodeIndex == index ? Colors.red[200]! : Colors.white;
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             TreeCollectionSelection(
@@ -310,21 +283,21 @@ class _IteratorExampleState extends State<IteratorExample> {
                   !_isTraversing ? _setSelectedTreeCollectionIndex : null,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Wrap(
+              alignment: WrapAlignment.center,
               children: <Widget>[
                 PlatformButton(
-                  child: Text('Traverse'),
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed: _currentNodeIndex == 0 ? _traverseTree : null,
+                  text: 'Traverse',
                 ),
                 PlatformButton(
-                  child: Text('Reset'),
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
                   onPressed:
                       _isTraversing || _currentNodeIndex == 0 ? null : _reset,
+                  text: 'Reset',
                 ),
               ],
             ),

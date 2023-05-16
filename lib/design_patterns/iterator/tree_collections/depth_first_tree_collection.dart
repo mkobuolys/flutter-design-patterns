@@ -4,17 +4,13 @@ import '../tree_iterators/itree_iterator.dart';
 import 'itree_collection.dart';
 
 class DepthFirstTreeCollection implements ITreeCollection {
-  final Graph graph;
-
   const DepthFirstTreeCollection(this.graph);
 
-  @override
-  ITreeIterator createIterator() {
-    return DepthFirstIterator(this);
-  }
+  final Graph graph;
 
   @override
-  String getTitle() {
-    return 'Depth-first';
-  }
+  ITreeIterator createIterator() => DepthFirstIterator(this);
+
+  @override
+  String getTitle() => 'Depth-first';
 }
