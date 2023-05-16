@@ -1,5 +1,5 @@
 class XmlContactsApi {
-  static const String _contactsXml = '''
+  static const _contactsXml = '''
   <?xml version="1.0"?>
   <contacts>
     <contact>

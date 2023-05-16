@@ -1,5 +1,5 @@
 class JsonContactsApi {
-  static const String _contactsJson = '''
+  static const _contactsJson = '''
   {
     "contacts": [
       {

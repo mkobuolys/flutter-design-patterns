@@ -36,7 +36,7 @@ A fake API which returns contacts' information as JSON string.
 
 ```
 class JsonContactsApi {
-  static const String _contactsJson = '''
+  static const _contactsJson = '''
   {
     "contacts": [
       {
@@ -70,7 +70,7 @@ A fake API which returns contacts' information as XML string.
 
 ```
 class XmlContactsApi {
-  static const String _contactsXml = '''
+  static const _contactsXml = '''
   <?xml version="1.0"?>
   <contacts>
     <contact>
