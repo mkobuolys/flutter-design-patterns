@@ -1,9 +1,7 @@
 class TvApi {
-  bool turnOn() {
-    return true;
-  }
+  const TvApi();
 
-  bool turnOff() {
-    return false;
-  }
+  bool turnOn() => true;
+
+  bool turnOff() => false;
 }

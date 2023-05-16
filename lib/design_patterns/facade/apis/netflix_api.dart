@@ -1,11 +1,9 @@
 class NetflixApi {
-  bool connect() {
-    return true;
-  }
+  const NetflixApi();
 
-  bool disconnect() {
-    return false;
-  }
+  bool connect() => true;
+
+  bool disconnect() => false;
 
   void play(String title) {
     // ignore: avoid_print

@@ -2,24 +2,29 @@ import '../apis/apis.dart';
 import '../smart_home_state.dart';
 
 class GamingFacade {
-  final PlaystationApi _playstationApi = PlaystationApi();
-  final CameraApi _cameraApi = CameraApi();
+  const GamingFacade({
+    this.playstationApi = const PlaystationApi(),
+    this.cameraApi = const CameraApi(),
+  });
+
+  final PlaystationApi playstationApi;
+  final CameraApi cameraApi;
 
   void startGaming(SmartHomeState smartHomeState) {
-    smartHomeState.gamingConsoleOn = _playstationApi.turnOn();
+    smartHomeState.gamingConsoleOn = playstationApi.turnOn();
   }
 
   void stopGaming(SmartHomeState smartHomeState) {
-    smartHomeState.gamingConsoleOn = _playstationApi.turnOff();
+    smartHomeState.gamingConsoleOn = playstationApi.turnOff();
   }
 
   void startStreaming(SmartHomeState smartHomeState) {
-    smartHomeState.streamingCameraOn = _cameraApi.turnCameraOn();
+    smartHomeState.streamingCameraOn = cameraApi.turnCameraOn();
     startGaming(smartHomeState);
   }
 
   void stopStreaming(SmartHomeState smartHomeState) {
-    smartHomeState.streamingCameraOn = _cameraApi.turnCameraOff();
+    smartHomeState.streamingCameraOn = cameraApi.turnCameraOff();
     stopGaming(smartHomeState);
   }
 }

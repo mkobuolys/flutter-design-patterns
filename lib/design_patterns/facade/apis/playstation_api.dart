@@ -1,9 +1,7 @@
 class PlaystationApi {
-  bool turnOn() {
-    return true;
-  }
+  const PlaystationApi();
 
-  bool turnOff() {
-    return false;
-  }
+  bool turnOn() => true;
+
+  bool turnOff() => false;
 }
