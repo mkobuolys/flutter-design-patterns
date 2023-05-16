@@ -8,12 +8,10 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
   String label = 'Parcel terminal shipping';
 
   @override
-  double calculate(Order order) {
-    return order.items.fold<double>(
-      0.0,
-      (sum, item) => sum + _getOrderItemShippingPrice(item),
-    );
-  }
+  double calculate(Order order) => order.items.fold<double>(
+        0.0,
+        (sum, item) => sum + _getOrderItemShippingPrice(item),
+      );
 
   double _getOrderItemShippingPrice(OrderItem orderItem) =>
       switch (orderItem.packageSize) {

@@ -6,7 +6,5 @@ class InStorePickupStrategy implements IShippingCostsStrategy {
   String label = 'In-store pickup';
 
   @override
-  double calculate(Order order) {
-    return 0.0;
-  }
+  double calculate(Order order) => 0.0;
 }

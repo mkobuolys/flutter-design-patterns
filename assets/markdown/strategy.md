@@ -21,11 +21,11 @@ _StrategyExample_ widget stores all different shipping costs calculation strateg
 
 ### IShippingCostsStrategy
 
-An interface which defines methods and properties to be implemented by all supported algorithms. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines methods and properties to be implemented by all supported algorithms.
 
 ```
-abstract class IShippingCostsStrategy {
-  String label;
+abstract interface class IShippingCostsStrategy {
+  late String label;
   double calculate(Order order);
 }
 ```
@@ -40,9 +40,7 @@ class InStorePickupStrategy implements IShippingCostsStrategy {
   String label = 'In-store pickup';
 
   @override
-  double calculate(Order order) {
-    return 0.0;
-  }
+  double calculate(Order order) => 0.0;
 }
 ```
 
@@ -54,28 +52,18 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
   String label = 'Parcel terminal shipping';
 
   @override
-  double calculate(Order order) {
-    return order.items.fold<double>(
-      0.0,
-      (sum, item) => sum + _getOrderItemShippingPrice(item),
-    );
-  }
+  double calculate(Order order) => order.items.fold<double>(
+        0.0,
+        (sum, item) => sum + _getOrderItemShippingPrice(item),
+      );
 
-  double _getOrderItemShippingPrice(OrderItem orderItem) {
-    switch (orderItem.packageSize) {
-      case PackageSize.S:
-        return 1.99;
-      case PackageSize.M:
-        return 2.49;
-      case PackageSize.L:
-        return 2.99;
-      case PackageSize.XL:
-        return 3.49;
-      default:
-        throw new Exception(
-            "Unknown shipping price for the package of size '${orderItem.packageSize}'.");
-    }
-  }
+  double _getOrderItemShippingPrice(OrderItem orderItem) =>
+      switch (orderItem.packageSize) {
+        PackageSize.S => 1.99,
+        PackageSize.M => 2.49,
+        PackageSize.L => 2.99,
+        PackageSize.XL => 3.49,
+      };
 }
 ```
 
@@ -87,9 +75,7 @@ class PriorityShippingStrategy implements IShippingCostsStrategy {
   String label = 'Priority shipping';
 
   @override
-  double calculate(Order order) {
-    return 9.99;
-  }
+  double calculate(Order order) => 9.99;
 }
 ```
 
@@ -99,33 +85,39 @@ A simple class to store an order's information. _Order_ class contains a list of
 
 ```
 class Order {
-  final List<OrderItem> items = List<OrderItem>();
+  final List<OrderItem> items = [];
 
   double get price =>
       items.fold(0.0, (sum, orderItem) => sum + orderItem.price);
 
-  void addOrderItem(OrderItem orderItem) {
-    items.add(orderItem);
-  }
+  void addOrderItem(OrderItem orderItem) => items.add(orderItem);
 }
 ```
 
 ### OrderItem
 
-A simple class to store information of a single order item. _OrderItem_ class contains properties to store order item's title, price and the package (parcel) size. Also, the class exposes a named constructor _OrderItem.random()_ which allows creating/generating an _OrderItem_ with random property values.
+A simple class to store information of a single order item. _OrderItem_ class contains properties to store order item's title, price and the package (parcel) size. Also, the class exposes a named factory constructor _OrderItem.random()_ which allows creating/generating an _OrderItem_ with random property values.
 
 ```
 class OrderItem {
-  String title;
-  double price;
-  PackageSize packageSize;
+  const OrderItem({
+    required this.title,
+    required this.price,
+    required this.packageSize,
+  });
 
-  OrderItem.random() {
-    var packageSizeList = PackageSize.values;
+  final String title;
+  final double price;
+  final PackageSize packageSize;
 
-    title = faker.lorem.word();
-    price = random.integer(100, min: 5) - 0.01;
-    packageSize = packageSizeList[random.integer(packageSizeList.length)];
+  factory OrderItem.random() {
+    const packageSizeList = PackageSize.values;
+
+    return OrderItem(
+      title: faker.lorem.word(),
+      price: random.integer(100, min: 5) - 0.01,
+      packageSize: packageSizeList[random.integer(packageSizeList.length)],
+    );
   }
 }
 ```
@@ -149,6 +141,8 @@ enum PackageSize {
 
 ```
 class StrategyExample extends StatefulWidget {
+  const StrategyExample();
+
   @override
   _StrategyExampleState createState() => _StrategyExampleState();
 }
@@ -159,35 +153,29 @@ class _StrategyExampleState extends State<StrategyExample> {
     ParcelTerminalShippingStrategy(),
     PriorityShippingStrategy(),
   ];
-  int _selectedStrategyIndex = 0;
-  Order _order = Order();
+  var _selectedStrategyIndex = 0;
+  var _order = Order();
 
-  void _addToOrder() {
-    setState(() {
-      _order.addOrderItem(OrderItem.random());
-    });
-  }
+  void _addToOrder() => setState(() => _order.addOrderItem(OrderItem.random()));
 
-  void _clearOrder() {
-    setState(() {
-      _order = Order();
-    });
-  }
+  void _clearOrder() => setState(() => _order = Order());
 
-  void _setSelectedStrategyIndex(int index) {
-    setState(() {
-      _selectedStrategyIndex = index;
-    });
+  void _setSelectedStrategyIndex(int? index) {
+    if (index == null) return;
+
+    setState(() => _selectedStrategyIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             OrderButtons(
               onAdd: _addToOrder,
@@ -204,7 +192,7 @@ class _StrategyExampleState extends State<StrategyExample> {
                     children: <Widget>[
                       Text(
                         'Your order is empty',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -247,15 +235,13 @@ class _StrategyExampleState extends State<StrategyExample> {
 class ShippingOptions extends StatelessWidget {
   final List<IShippingCostsStrategy> shippingOptions;
   final int selectedIndex;
-  final ValueChanged<int> onChanged;
+  final ValueChanged<int?> onChanged;
 
   const ShippingOptions({
-    @required this.shippingOptions,
-    @required this.selectedIndex,
-    @required this.onChanged,
-  })  : assert(shippingOptions != null),
-        assert(selectedIndex != null),
-        assert(onChanged != null);
+    required this.shippingOptions,
+    required this.selectedIndex,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -267,7 +253,7 @@ class ShippingOptions extends StatelessWidget {
           children: <Widget>[
             Text(
               'Select shipping type:',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             for (var i = 0; i < shippingOptions.length; i++)
               RadioListTile<int>(
@@ -277,7 +263,6 @@ class ShippingOptions extends StatelessWidget {
                 onChanged: onChanged,
                 dense: true,
                 activeColor: Colors.black,
-                controlAffinity: ListTileControlAffinity.platform,
               ),
           ],
         ),
@@ -295,10 +280,9 @@ class OrderSummary extends StatelessWidget {
   final IShippingCostsStrategy shippingCostsStrategy;
 
   const OrderSummary({
-    @required this.order,
-    @required this.shippingCostsStrategy,
-  })  : assert(order != null),
-        assert(shippingCostsStrategy != null);
+    required this.order,
+    required this.shippingCostsStrategy,
+  });
 
   double get shippingPrice => shippingCostsStrategy.calculate(order);
   double get total => order.price + shippingPrice;
@@ -313,7 +297,7 @@ class OrderSummary extends StatelessWidget {
           children: <Widget>[
             Text(
               'Order summary',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const Divider(),
             OrderSummaryRow(
