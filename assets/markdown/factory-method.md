@@ -28,20 +28,16 @@ An abstract class for showing custom dialogs. _CustomDialog_ class implements th
 
 ```
 abstract class CustomDialog {
+  const CustomDialog();
+
   String getTitle();
   Widget create(BuildContext context);
 
-  Future<void> show(BuildContext context) async {
-    var dialog = create(context);
-
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext _) {
-        return dialog;
-      },
-    );
-  }
+  Future<void> show(BuildContext context) => showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: create,
+      );
 }
 ```
 
@@ -51,23 +47,21 @@ abstract class CustomDialog {
 
 ```
 class AndroidAlertDialog extends CustomDialog {
+  const AndroidAlertDialog();
+
   @override
-  String getTitle() {
-    return 'Android Alert Dialog';
-  }
+  String getTitle() => 'Android Alert Dialog';
 
   @override
   Widget create(BuildContext context) {
     return AlertDialog(
       title: Text(getTitle()),
-      content: Text('This is the material-style alert dialog!'),
+      content: const Text('This is the material-style alert dialog!'),
       actions: <Widget>[
-        FlatButton(
-          child: Text('Close'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        )
+        TextButton(
+          onPressed: Navigator.of(context).pop,
+          child: const Text('Close'),
+        ),
       ],
     );
   }
@@ -78,22 +72,20 @@ class AndroidAlertDialog extends CustomDialog {
 
 ```
 class IosAlertDialog extends CustomDialog {
+  const IosAlertDialog();
+
   @override
-  String getTitle() {
-    return 'iOS Alert Dialog';
-  }
+  String getTitle() => 'iOS Alert Dialog';
 
   @override
   Widget create(BuildContext context) {
     return CupertinoAlertDialog(
       title: Text(getTitle()),
-      content: Text('This is the cupertino-style alert dialog!'),
+      content: const Text('This is the cupertino-style alert dialog!'),
       actions: <Widget>[
         CupertinoButton(
-          child: Text('Close'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: Navigator.of(context).pop,
+          child: const Text('Close'),
         ),
       ],
     );
@@ -108,36 +100,40 @@ As you can see in the _showCustomDialog()_ method, it does not care about the sp
 
 ```
 class FactoryMethodExample extends StatefulWidget {
+  const FactoryMethodExample();
+
   @override
   _FactoryMethodExampleState createState() => _FactoryMethodExampleState();
 }
 
 class _FactoryMethodExampleState extends State<FactoryMethodExample> {
-  final List<CustomDialog> customDialogList = [
+  final List<CustomDialog> customDialogList = const [
     AndroidAlertDialog(),
     IosAlertDialog(),
   ];
 
-  int _selectedDialogIndex = 0;
+  var _selectedDialogIndex = 0;
 
   Future _showCustomDialog(BuildContext context) async {
-    var selectedDialog = customDialogList[_selectedDialogIndex];
+    final selectedDialog = customDialogList[_selectedDialogIndex];
 
     await selectedDialog.show(context);
   }
 
-  void _setSelectedDialogIndex(int index) {
-    setState(() {
-      _selectedDialogIndex = index;
-    });
+  void _setSelectedDialogIndex(int? index) {
+    if (index == null) return;
+
+    setState(() => _selectedDialogIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             DialogSelection(
@@ -147,10 +143,10 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             PlatformButton(
-              child: Text('Show Dialog'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: () => _showCustomDialog(context),
+              text: 'Show Dialog',
             ),
           ],
         ),
