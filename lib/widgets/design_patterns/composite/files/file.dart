@@ -4,7 +4,7 @@ import '../../../../constants/constants.dart';
 import '../../../../design_patterns/composite/composite.dart';
 import '../../../../helpers/file_size_converter.dart';
 
-class File extends StatelessWidget implements IFile {
+base class File extends StatelessWidget implements IFile {
   final String title;
   final int size;
   final IconData icon;
@@ -16,9 +16,7 @@ class File extends StatelessWidget implements IFile {
   });
 
   @override
-  int getSize() {
-    return size;
-  }
+  int getSize() => size;
 
   @override
   Widget render(BuildContext context) {
@@ -34,8 +32,8 @@ class File extends StatelessWidget implements IFile {
           FileSizeConverter.bytesToString(size),
           style: Theme.of(context)
               .textTheme
-              .bodyMedium!
-              .copyWith(color: Colors.black54),
+              .bodyMedium
+              ?.copyWith(color: Colors.black54),
         ),
         dense: true,
       ),
@@ -43,7 +41,5 @@ class File extends StatelessWidget implements IFile {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return render(context);
-  }
+  Widget build(BuildContext context) => render(context);
 }
