@@ -1,28 +1,19 @@
 import 'package:faker/faker.dart';
 
 class FakeApi {
-  Future<List<String>> getNames() async {
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        if (random.boolean()) {
-          return _getRandomNames();
-        }
+  const FakeApi();
 
-        throw Exception('Unexpected error');
-      },
-    );
-  }
+  Future<List<String>> getNames() => Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          if (random.boolean()) return _getRandomNames();
 
-  List<String> _getRandomNames() {
-    if (random.boolean()) {
-      return [];
-    }
+          throw Exception('Unexpected error');
+        },
+      );
 
-    return [
-      faker.person.name(),
-      faker.person.name(),
-      faker.person.name(),
-    ];
-  }
+  List<String> _getRandomNames() => List.generate(
+        random.boolean() ? 3 : 0,
+        (_) => faker.person.name(),
+      );
 }

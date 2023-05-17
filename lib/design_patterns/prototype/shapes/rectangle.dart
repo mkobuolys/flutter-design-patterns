@@ -4,25 +4,22 @@ import 'package:flutter/material.dart';
 import '../shape.dart';
 
 class Rectangle extends Shape {
-  late double height;
-  late double width;
-
   Rectangle(super.color, this.height, this.width);
 
-  Rectangle.initial([super.color = Colors.black]) {
-    height = 100.0;
-    width = 100.0;
-  }
+  Rectangle.initial([super.color = Colors.black])
+      : height = 100.0,
+        width = 100.0;
 
-  Rectangle.clone(Rectangle source) : super.clone(source) {
-    height = source.height;
-    width = source.width;
-  }
+  Rectangle.clone(Rectangle super.source)
+      : height = source.height,
+        width = source.width,
+        super.clone();
+
+  double height;
+  double width;
 
   @override
-  Shape clone() {
-    return Rectangle.clone(this);
-  }
+  Shape clone() => Rectangle.clone(this);
 
   @override
   void randomiseProperties() {

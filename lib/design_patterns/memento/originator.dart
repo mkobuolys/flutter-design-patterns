@@ -3,17 +3,11 @@ import 'memento/imemento.dart';
 import 'memento/memento.dart';
 
 class Originator {
-  late Shape state;
+  Originator() : state = Shape.initial();
 
-  Originator() {
-    state = Shape.initial();
-  }
+  Shape state;
 
-  IMemento createMemento() {
-    return Memento(state);
-  }
+  IMemento createMemento() => Memento(state);
 
-  void restore(IMemento memento) {
-    state = memento.getState();
-  }
+  void restore(IMemento memento) => state = memento.getState();
 }

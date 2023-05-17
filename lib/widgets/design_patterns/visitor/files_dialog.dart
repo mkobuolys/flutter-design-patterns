@@ -3,15 +3,11 @@ import 'package:flutter/material.dart';
 import '../../platform_specific/platform_button.dart';
 
 class FilesDialog extends StatelessWidget {
-  final String filesText;
-
   const FilesDialog({
     required this.filesText,
   });
 
-  void closeDialog(BuildContext context) {
-    Navigator.of(context).pop();
-  }
+  final String filesText;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +26,7 @@ class FilesDialog extends StatelessWidget {
         PlatformButton(
           materialColor: Colors.black,
           materialTextColor: Colors.white,
-          onPressed: () => closeDialog(context),
+          onPressed: Navigator.of(context).pop,
           text: 'Close',
         ),
       ],

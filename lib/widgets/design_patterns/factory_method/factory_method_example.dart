@@ -13,12 +13,12 @@ class FactoryMethodExample extends StatefulWidget {
 }
 
 class _FactoryMethodExampleState extends State<FactoryMethodExample> {
-  final List<CustomDialog> customDialogList = [
+  final List<CustomDialog> customDialogList = const [
     AndroidAlertDialog(),
     IosAlertDialog(),
   ];
 
-  int _selectedDialogIndex = 0;
+  var _selectedDialogIndex = 0;
 
   Future _showCustomDialog(BuildContext context) async {
     final selectedDialog = customDialogList[_selectedDialogIndex];
@@ -27,9 +27,9 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
   }
 
   void _setSelectedDialogIndex(int? index) {
-    setState(() {
-      _selectedDialogIndex = index!;
-    });
+    if (index == null) return;
+
+    setState(() => _selectedDialogIndex = index);
   }
 
   @override

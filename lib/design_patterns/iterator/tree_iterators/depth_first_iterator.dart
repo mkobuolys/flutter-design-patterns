@@ -8,7 +8,7 @@ class DepthFirstIterator implements ITreeIterator {
   final Set<int> visitedNodes = <int>{};
   final ListQueue<int> nodeStack = ListQueue<int>();
 
-  final int _initialNode = 1;
+  final _initialNode = 1;
   late int _currentNode;
 
   DepthFirstIterator(this.treeCollection) {
@@ -19,15 +19,11 @@ class DepthFirstIterator implements ITreeIterator {
   Map<int, Set<int>> get adjacencyList => treeCollection.graph.adjacencyList;
 
   @override
-  bool hasNext() {
-    return nodeStack.isNotEmpty;
-  }
+  bool hasNext() => nodeStack.isNotEmpty;
 
   @override
   int? getNext() {
-    if (!hasNext()) {
-      return null;
-    }
+    if (!hasNext()) return null;
 
     _currentNode = nodeStack.removeLast();
     visitedNodes.add(_currentNode);

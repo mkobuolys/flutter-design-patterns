@@ -12,21 +12,21 @@ class AbstractFactoryExample extends StatefulWidget {
 }
 
 class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
-  final List<IWidgetsFactory> widgetsFactoryList = [
+  final List<IWidgetsFactory> widgetsFactoryList = const [
     MaterialWidgetsFactory(),
     CupertinoWidgetsFactory(),
   ];
 
-  int _selectedFactoryIndex = 0;
+  var _selectedFactoryIndex = 0;
 
   late IActivityIndicator _activityIndicator;
 
   late ISlider _slider;
-  double _sliderValue = 50.0;
+  var _sliderValue = 50.0;
   String get _sliderValueString => _sliderValue.toStringAsFixed(0);
 
   late ISwitch _switch;
-  bool _switchValue = false;
+  var _switchValue = false;
   String get _switchValueString => _switchValue ? 'ON' : 'OFF';
 
   @override
@@ -43,23 +43,17 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
   }
 
   void _setSelectedFactoryIndex(int? index) {
+    if (index == null) return;
+
     setState(() {
-      _selectedFactoryIndex = index!;
+      _selectedFactoryIndex = index;
       _createWidgets();
     });
   }
 
-  void _setSliderValue(double value) {
-    setState(() {
-      _sliderValue = value;
-    });
-  }
+  void _setSliderValue(double value) => setState(() => _sliderValue = value);
 
-  void _setSwitchValue(bool value) {
-    setState(() {
-      _switchValue = value;
-    });
-  }
+  void _setSwitchValue(bool value) => setState(() => _switchValue = value);
 
   @override
   Widget build(BuildContext context) {

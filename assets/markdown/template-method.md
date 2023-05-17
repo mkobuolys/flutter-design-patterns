@@ -10,7 +10,7 @@ The class diagram below shows the implementation of **Template Method** design p
 
 ![Template Method Implementation Class Diagram](resource:assets/images/template_method/template_method_implementation.png)
 
-The main class in the diagram is _StudentsBmiCalculator_. Its primary purpose is to define a template of the BMI calculation algorithm which returns a list of _Student_ objects (with the calculated BMI for each student) as a result via _calculateBmiAndReturnStudentList()_ method. This abstract class is used as a template (base class) for the concrete implementations of the students' BMI calculation algorithm - _StudentsXmlBmiCalculator_, _StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_. _StudentsXmlBmiCalculator_ uses the _XmlStudentsApi_ to retrieve students information as an XML string and returns it as a list of _Student_ objects via the overridden _getStudentsData()_ method. Both of the other two implementations (_StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_) uses the _JsonStudentsApi_ to retrieve students information in JSON format and returns the parsed data via the overridden _getStudentsData()_ method. However, _TeenageStudentsJsonBmiCalculator_ additionally reimplements (overrides) the _doStudentsFiltering()_ hook method to filter out not teenage students before calculating the BMI values. _StudentsSection_ UI widget uses the _StudentsBmiCalculator_ abstraction to retrieve and represent the calculated results in _TemplateMethodExample_ widget.
+The main class in the diagram is _StudentsBmiCalculator_. Its primary purpose is to define a template of the BMI calculation algorithm which returns a list of _Student_ objects (with the calculated BMI for each student) as a result via _calculateBmiAndReturnStudentList()_ method. This abstract class is used as a template for the concrete implementations of the students' BMI calculation algorithm - _StudentsXmlBmiCalculator_, _StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_. _StudentsXmlBmiCalculator_ uses the _XmlStudentsApi_ to retrieve students information as an XML string and returns it as a list of _Student_ objects via the overridden _getStudentsData()_ method. Both of the other two implementations (_StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_) uses the _JsonStudentsApi_ to retrieve students information in JSON format and returns the parsed data via the overridden _getStudentsData()_ method. However, _TeenageStudentsJsonBmiCalculator_ additionally reimplements (overrides) the _doStudentsFiltering()_ hook method to filter out non-teenage students before calculating the BMI values. _StudentsSection_ UI widget uses the _StudentsBmiCalculator_ abstraction to retrieve and represent the calculated results in _TemplateMethodExample_ widget.
 
 ### StudentsBmiCalculator
 
@@ -25,6 +25,8 @@ The first step is mandatory and should be implemented in each concrete implement
 
 ```
 abstract class StudentsBmiCalculator {
+  const StudentsBmiCalculator();
+
   List<Student> calculateBmiAndReturnStudentList() {
     var studentList = getStudentsData();
     studentList = doStudentsFiltering(studentList);
@@ -33,7 +35,7 @@ abstract class StudentsBmiCalculator {
   }
 
   void _calculateStudentsBmi(List<Student> studentList) {
-    for (var student in studentList) {
+    for (final student in studentList) {
       student.bmi = _calculateBmi(student.height, student.weight);
     }
   }
@@ -60,27 +62,35 @@ A concrete implementation of the BMI calculation algorithm which uses _XmlStuden
 
 ```
 class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
-  final XmlStudentsApi _api = XmlStudentsApi();
+  const StudentsXmlBmiCalculator({
+    this.api = const XmlStudentsApi(),
+  });
+
+  final XmlStudentsApi api;
 
   @override
   @protected
   List<Student> getStudentsData() {
-    var studentsXml = _api.getStudentsXml();
-    var xmlDocument = xml.parse(studentsXml);
-    var studentsList = List<Student>();
+    final studentsXml = api.getStudentsXml();
+    final xmlDocument = XmlDocument.parse(studentsXml);
+    final studentsList = <Student>[];
 
-    for (var xmlElement in xmlDocument.findAllElements('student')) {
-      var fullName = xmlElement.findElements('fullname').single.text;
-      var age = int.parse(xmlElement.findElements('age').single.text);
-      var height = double.parse(xmlElement.findElements('height').single.text);
-      var weight = int.parse(xmlElement.findElements('weight').single.text);
+    for (final xmlElement in xmlDocument.findAllElements('student')) {
+      final fullName = xmlElement.findElements('fullname').single.innerText;
+      final age = int.parse(xmlElement.findElements('age').single.innerText);
+      final height =
+          double.parse(xmlElement.findElements('height').single.innerText);
+      final weight =
+          int.parse(xmlElement.findElements('weight').single.innerText);
 
-      studentsList.add(Student(
-        fullName: fullName,
-        age: age,
-        height: height,
-        weight: weight,
-      ));
+      studentsList.add(
+        Student(
+          fullName: fullName,
+          age: age,
+          height: height,
+          weight: weight,
+        ),
+      );
     }
 
     return studentsList;
@@ -94,22 +104,28 @@ A concrete implementation of the BMI calculation algorithm which uses _JsonStude
 
 ```
 class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
-  final JsonStudentsApi _api = JsonStudentsApi();
+  const StudentsJsonBmiCalculator({
+    this.api = const JsonStudentsApi(),
+  });
+
+  final JsonStudentsApi api;
 
   @override
   @protected
   List<Student> getStudentsData() {
-    var studentsJson = _api.getStudentsJson();
-    var studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
-    var studentsJsonList = studentsMap['students'] as List;
-    var studentsList = studentsJsonList
-        .map((json) => Student(
-              fullName: json['fullName'],
-              age: json['age'],
-              height: json['height'],
-              weight: json['weight'],
-            ))
-        .toList();
+    final studentsJson = api.getStudentsJson();
+    final studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
+    final studentsJsonList = studentsMap['students'] as List;
+    final studentsList = studentsJsonList.map((json) {
+      final studentJson = json as Map<String, dynamic>;
+
+      return Student(
+        fullName: studentJson['fullName'] as String,
+        age: studentJson['age'] as int,
+        height: studentJson['height'] as double,
+        weight: studentJson['weight'] as int,
+      );
+    }).toList();
 
     return studentsList;
   }
@@ -118,26 +134,32 @@ class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
 
 ### TeenageStudentsJsonBmiCalculator
 
-A concrete implementation of the BMI calculation algorithm which uses _JsonStudentsApi_ to retrieve data and implements the _getStudentsData()_ method. Additionally, the _doStudentsFiltering()_ hook method is overridden to filter out not teenage students.
+A concrete implementation of the BMI calculation algorithm which uses _JsonStudentsApi_ to retrieve data and implements the _getStudentsData()_ method. Additionally, the _doStudentsFiltering()_ hook method is overridden to filter out non-teenage students.
 
 ```
 class TeenageStudentsJsonBmiCalculator extends StudentsBmiCalculator {
-  final JsonStudentsApi _api = JsonStudentsApi();
+  const TeenageStudentsJsonBmiCalculator({
+    this.api = const JsonStudentsApi(),
+  });
+
+  final JsonStudentsApi api;
 
   @override
   @protected
   List<Student> getStudentsData() {
-    var studentsJson = _api.getStudentsJson();
-    var studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
-    var studentsJsonList = studentsMap['students'] as List;
-    var studentsList = studentsJsonList
-        .map((json) => Student(
-              fullName: json['fullName'],
-              age: json['age'],
-              height: json['height'],
-              weight: json['weight'],
-            ))
-        .toList();
+    final studentsJson = api.getStudentsJson();
+    final studentsMap = json.decode(studentsJson) as Map<String, dynamic>;
+    final studentsJsonList = studentsMap['students'] as List;
+    final studentsList = studentsJsonList.map((json) {
+      final studentJson = json as Map<String, dynamic>;
+
+      return Student(
+        fullName: studentJson['fullName'] as String,
+        age: studentJson['age'] as int,
+        height: studentJson['height'] as double,
+        weight: studentJson['weight'] as int,
+      );
+    }).toList();
 
     return studentsList;
   }
@@ -162,13 +184,13 @@ class Student {
   final int age;
   final double height;
   final int weight;
-  double bmi;
+  late final double bmi;
 
   Student({
-    this.fullName,
-    this.age,
-    this.height,
-    this.weight,
+    required this.fullName,
+    required this.age,
+    required this.height,
+    required this.weight,
   });
 }
 ```
@@ -179,7 +201,7 @@ A fake API which returns students' information as JSON string.
 
 ```
 class JsonStudentsApi {
-  final String _studentsJson = '''
+  static const _studentsJson = '''
   {
     "students": [
       {
@@ -210,9 +232,9 @@ class JsonStudentsApi {
   }
   ''';
 
-  String getStudentsJson() {
-    return _studentsJson;
-  }
+  const JsonStudentsApi();
+
+  String getStudentsJson() => _studentsJson;
 }
 ```
 
@@ -222,7 +244,7 @@ A fake API which returns students' information as an XML string.
 
 ```
 class XmlStudentsApi {
-  final String _studentsXml = '''
+  static const _studentsXml = '''
   <?xml version="1.0"?>
   <students>
     <student>
@@ -252,9 +274,9 @@ class XmlStudentsApi {
   </students>
   ''';
 
-  String getStudentsXml() {
-    return _studentsXml;
-  }
+  const XmlStudentsApi();
+
+  String getStudentsXml() => _studentsXml;
 }
 ```
 
@@ -264,12 +286,16 @@ class XmlStudentsApi {
 
 ```
 class TemplateMethodExample extends StatelessWidget {
+  const TemplateMethodExample();
+
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
+    return const ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -277,12 +303,12 @@ class TemplateMethodExample extends StatelessWidget {
               bmiCalculator: StudentsXmlBmiCalculator(),
               headerText: 'Students from XML data source:',
             ),
-            const SizedBox(height: LayoutConstants.spaceL),
+            SizedBox(height: LayoutConstants.spaceL),
             StudentsSection(
               bmiCalculator: StudentsJsonBmiCalculator(),
               headerText: 'Students from JSON data source:',
             ),
-            const SizedBox(height: LayoutConstants.spaceL),
+            SizedBox(height: LayoutConstants.spaceL),
             StudentsSection(
               bmiCalculator: TeenageStudentsJsonBmiCalculator(),
               headerText: 'Students from JSON data source (teenagers only):',
@@ -303,17 +329,16 @@ class StudentsSection extends StatefulWidget {
   final String headerText;
 
   const StudentsSection({
-    @required this.bmiCalculator,
-    @required this.headerText,
-  })  : assert(bmiCalculator != null),
-        assert(headerText != null);
+    required this.bmiCalculator,
+    required this.headerText,
+  });
 
   @override
   _StudentsSectionState createState() => _StudentsSectionState();
 }
 
 class _StudentsSectionState extends State<StudentsSection> {
-  final List<Student> students = List<Student>();
+  final List<Student> students = [];
 
   void _calculateBmiAndGetStudentsData() {
     setState(() {

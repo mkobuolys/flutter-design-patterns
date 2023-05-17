@@ -40,23 +40,11 @@ class ExpressionHelpers {
     String symbol,
     IExpression leftExpression,
     IExpression rightExpression,
-  ) {
-    IExpression expression;
-
-    switch (symbol) {
-      case '+':
-        expression = Add(leftExpression, rightExpression);
-        break;
-      case '-':
-        expression = Subtract(leftExpression, rightExpression);
-        break;
-      case '*':
-        expression = Multiply(leftExpression, rightExpression);
-        break;
-      default:
-        throw Exception('Expression is not defined.');
-    }
-
-    return expression;
-  }
+  ) =>
+      switch (symbol) {
+        '+' => Add(leftExpression, rightExpression),
+        '-' => Subtract(leftExpression, rightExpression),
+        '*' => Multiply(leftExpression, rightExpression),
+        _ => throw Exception('Expression is not defined.'),
+      };
 }

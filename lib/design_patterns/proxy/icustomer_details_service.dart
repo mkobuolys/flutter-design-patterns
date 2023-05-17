@@ -1,5 +1,5 @@
 import 'customer/customer_details.dart';
 
-abstract class ICustomerDetailsService {
+abstract interface class ICustomerDetailsService {
   Future<CustomerDetails> getCustomerDetails(String id);
 }

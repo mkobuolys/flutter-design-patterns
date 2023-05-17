@@ -6,13 +6,13 @@ import '../../../platform_specific/platform_button.dart';
 import 'customer_details_column.dart';
 
 class CustomerDetailsDialog extends StatefulWidget {
-  final Customer customer;
-  final ICustomerDetailsService service;
-
   const CustomerDetailsDialog({
     required this.customer,
     required this.service,
   });
+
+  final Customer customer;
+  final ICustomerDetailsService service;
 
   @override
   _CustomerDetailsDialogState createState() => _CustomerDetailsDialogState();
@@ -30,9 +30,7 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
         );
   }
 
-  void _closeDialog() {
-    Navigator.of(context).pop();
-  }
+  void _closeDialog() => Navigator.of(context).pop();
 
   @override
   Widget build(BuildContext context) {

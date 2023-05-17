@@ -8,7 +8,7 @@ class BreadthFirstIterator implements ITreeIterator {
   final Set<int> visitedNodes = <int>{};
   final ListQueue<int> nodeQueue = ListQueue<int>();
 
-  final int _initialNode = 1;
+  final _initialNode = 1;
   late int _currentNode;
 
   BreadthFirstIterator(this.treeCollection) {
@@ -19,15 +19,11 @@ class BreadthFirstIterator implements ITreeIterator {
   Map<int, Set<int>> get adjacencyList => treeCollection.graph.adjacencyList;
 
   @override
-  bool hasNext() {
-    return nodeQueue.isNotEmpty;
-  }
+  bool hasNext() => nodeQueue.isNotEmpty;
 
   @override
   int? getNext() {
-    if (!hasNext()) {
-      return null;
-    }
+    if (!hasNext()) return null;
 
     _currentNode = nodeQueue.removeFirst();
     visitedNodes.add(_currentNode);

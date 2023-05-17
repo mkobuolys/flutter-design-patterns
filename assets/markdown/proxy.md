@@ -12,7 +12,7 @@ The class diagram below shows the implementation of the **Proxy** design pattern
 
 _Customer_ class is used to store information about the customer. One of its properties is the _CustomerDetails_ which stores additional data about the customer e.g. its email, hobby and position.
 
-_ICustomerDetailsService_ is an abstract class which is used as an interface for the customer details service:
+_ICustomerDetailsService_ is an abstract interface class which is used for the customer details service:
 
 - _getCustomerDetails()_ - an abstract method which returns details for the specific customer.
 
@@ -28,14 +28,13 @@ A simple class to store information about the customer: its id, name and details
 
 ```
 class Customer {
-  String id;
-  String name;
-  CustomerDetails details;
+  Customer()
+      : id = faker.guid.guid(),
+        name = faker.person.name();
 
-  Customer() {
-    id = faker.guid.guid();
-    name = faker.person.name();
-  }
+  final String id;
+  final String name;
+  CustomerDetails? details;
 }
 ```
 
@@ -45,26 +44,27 @@ A simple class to store information about customer details: id to map the detail
 
 ```
 class CustomerDetails {
+  const CustomerDetails({
+    required this.customerId,
+    required this.email,
+    required this.hobby,
+    required this.position,
+  });
+
   final String customerId;
   final String email;
   final String hobby;
   final String position;
-
-  const CustomerDetails(
-    this.customerId,
-    this.email,
-    this.hobby,
-    this.position,
-  );
 }
+
 ```
 
 ### ICustomerDetailsService
 
-An interface which defines the _getCustomerDetails()_ method to be implemented by the customer details service and its proxy. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines the _getCustomerDetails()_ method to be implemented by the customer details service and its proxy.
 
 ```
-abstract class ICustomerDetailsService {
+abstract interface class ICustomerDetailsService {
   Future<CustomerDetails> getCustomerDetails(String id);
 }
 ```
@@ -75,19 +75,18 @@ A specific implementation of the _ICustomerDetailsService_ interface - the real 
 
 ```
 class CustomerDetailsService implements ICustomerDetailsService {
-  @override
-  Future<CustomerDetails> getCustomerDetails(String id) async {
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        var email = faker.internet.email();
-        var hobby = faker.sport.name();
-        var position = faker.job.title();
+  const CustomerDetailsService();
 
-        return CustomerDetails(id, email, hobby, position);
-      },
-    );
-  }
+  @override
+  Future<CustomerDetails> getCustomerDetails(String id) => Future.delayed(
+        const Duration(seconds: 2),
+        () => CustomerDetails(
+          customerId: id,
+          email: faker.internet.email(),
+          hobby: faker.sport.name(),
+          position: faker.job.title(),
+        ),
+      );
 }
 ```
 
@@ -97,19 +96,16 @@ A specific implementation of the _ICustomerDetailsService_ interface - a proxy f
 
 ```
 class CustomerDetailsServiceProxy implements ICustomerDetailsService {
-  final ICustomerDetailsService service;
-  final Map<String, CustomerDetails> customerDetailsCache =
-      Map<String, CustomerDetails>();
-
   CustomerDetailsServiceProxy(this.service);
+
+  final ICustomerDetailsService service;
+  final Map<String, CustomerDetails> customerDetailsCache = {};
 
   @override
   Future<CustomerDetails> getCustomerDetails(String id) async {
-    if (customerDetailsCache.containsKey(id)) {
-      return customerDetailsCache[id];
-    }
+    if (customerDetailsCache.containsKey(id)) return customerDetailsCache[id]!;
 
-    var customerDetails = await service.getCustomerDetails(id);
+    final customerDetails = await service.getCustomerDetails(id);
     customerDetailsCache[id] = customerDetails;
 
     return customerDetails;
@@ -123,39 +119,40 @@ _ProxyExample_ contains the proxy object of the real customer details service. W
 
 ```
 class ProxyExample extends StatefulWidget {
+  const ProxyExample();
+
   @override
   _ProxyExampleState createState() => _ProxyExampleState();
 }
 
 class _ProxyExampleState extends State<ProxyExample> {
-  final ICustomerDetailsService _customerDetailsServiceProxy =
-      CustomerDetailsServiceProxy(CustomerDetailsService());
-  final List<Customer> _customerList = List.generate(10, (_) => Customer());
+  final _customerDetailsServiceProxy = CustomerDetailsServiceProxy(
+    const CustomerDetailsService(),
+  );
+  final _customerList = List.generate(10, (_) => Customer());
 
-  void _showCustomerDetails(Customer customer) {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext _) {
-        return CustomerDetailsDialog(
+  void _showCustomerDetails(Customer customer) => showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => CustomerDetailsDialog(
           service: _customerDetailsServiceProxy,
           customer: customer,
-        );
-      },
-    );
-  }
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             Text(
               'Press on the list tile to see more information about the customer',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
@@ -166,10 +163,10 @@ class _ProxyExampleState extends State<ProxyExample> {
                     backgroundColor: Colors.grey,
                     child: Text(
                       customer.name[0],
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  trailing: Icon(Icons.info_outline),
+                  trailing: const Icon(Icons.info_outline),
                   title: Text(customer.name),
                   onTap: () => _showCustomerDetails(customer),
                 ),
@@ -186,14 +183,13 @@ The _CustomerDetailsDialog_ class uses the passed proxy service on its state's i
 
 ```
 class CustomerDetailsDialog extends StatefulWidget {
+  const CustomerDetailsDialog({
+    required this.customer,
+    required this.service,
+  });
+
   final Customer customer;
   final ICustomerDetailsService service;
-
-  const CustomerDetailsDialog({
-    @required this.customer,
-    @required this.service,
-  })  : assert(customer != null),
-        assert(service != null);
 
   @override
   _CustomerDetailsDialogState createState() => _CustomerDetailsDialogState();
@@ -204,22 +200,20 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
   void initState() {
     super.initState();
 
-    widget.service
-        .getCustomerDetails(widget.customer.id)
-        .then((CustomerDetails customerDetails) => setState(() {
-              widget.customer.details = customerDetails;
-            }));
+    widget.service.getCustomerDetails(widget.customer.id).then(
+          (CustomerDetails customerDetails) => setState(() {
+            widget.customer.details = customerDetails;
+          }),
+        );
   }
 
-  void _closeDialog() {
-    Navigator.of(context).pop();
-  }
+  void _closeDialog() => Navigator.of(context).pop();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.customer.name),
-      content: Container(
+      content: SizedBox(
         height: 200.0,
         child: widget.customer.details == null
             ? Center(
@@ -231,15 +225,18 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
                 ),
               )
             : CustomerDetailsColumn(
-                customerDetails: widget.customer.details,
+                customerDetails: widget.customer.details!,
               ),
       ),
       actions: <Widget>[
-        PlatformButton(
-          child: Text('Close'),
-          materialColor: Colors.black,
-          materialTextColor: Colors.white,
-          onPressed: _closeDialog,
+        Visibility(
+          visible: widget.customer.details != null,
+          child: PlatformButton(
+            materialColor: Colors.black,
+            materialTextColor: Colors.white,
+            onPressed: _closeDialog,
+            text: 'Close',
+          ),
         ),
       ],
     );

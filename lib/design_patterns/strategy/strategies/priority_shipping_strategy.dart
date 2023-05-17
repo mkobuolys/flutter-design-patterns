@@ -6,7 +6,5 @@ class PriorityShippingStrategy implements IShippingCostsStrategy {
   String label = 'Priority shipping';
 
   @override
-  double calculate(Order order) {
-    return 9.99;
-  }
+  double calculate(Order order) => 9.99;
 }

@@ -14,8 +14,8 @@ class CommandExample extends StatefulWidget {
 }
 
 class _CommandExampleState extends State<CommandExample> {
-  final CommandHistory _commandHistory = CommandHistory();
-  final Shape _shape = Shape.initial();
+  final _commandHistory = CommandHistory();
+  final _shape = Shape.initial();
 
   void _changeColor() {
     final command = ChangeColorCommand(_shape);
@@ -32,18 +32,12 @@ class _CommandExampleState extends State<CommandExample> {
     _executeCommand(command);
   }
 
-  void _executeCommand(Command command) {
-    setState(() {
-      command.execute();
-      _commandHistory.add(command);
-    });
-  }
+  void _executeCommand(Command command) => setState(() {
+        command.execute();
+        _commandHistory.add(command);
+      });
 
-  void _undo() {
-    setState(() {
-      _commandHistory.undo();
-    });
-  }
+  void _undo() => setState(() => _commandHistory.undo());
 
   @override
   Widget build(BuildContext context) {

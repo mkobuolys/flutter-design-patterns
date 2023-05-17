@@ -10,7 +10,7 @@ The class diagram below shows the implementation of the **Command** design patte
 
 ![Command Implementation Class Diagram](resource:assets/images/command/command_implementation.png)
 
-_Command_ is an abstract class which is used as an interface for all the specific commands:
+_Command_ is an abstract interface class which is used for all the specific commands:
 
 - _execute()_ - an abstract method which executes the command;
 - _getTitle()_ - an abstract method which returns the command's title. Used in command history UI;
@@ -30,24 +30,23 @@ A simple class to store information about the shape: its color, height and width
 
 ```
 class Shape {
+  Shape.initial()
+      : color = Colors.black,
+        height = 150.0,
+        width = 150.0;
+
   Color color;
   double height;
   double width;
-
-  Shape.initial() {
-    color = Colors.black;
-    height = 150.0;
-    width = 150.0;
-  }
 }
 ```
 
 ### Command
 
-An interface which defines methods to be implemented by the specific command classes. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines methods to be implemented by the specific command classes.
 
 ```
-abstract class Command {
+abstract interface class Command {
   void execute();
   String getTitle();
   void undo();
@@ -60,28 +59,24 @@ abstract class Command {
 
 ```
 class ChangeColorCommand implements Command {
+  ChangeColorCommand(this.shape) : previousColor = shape.color;
+
+  final Color previousColor;
   Shape shape;
-  Color previousColor;
-
-  ChangeColorCommand(this.shape) {
-    previousColor = shape.color;
-  }
 
   @override
-  void execute() {
-    shape.color = Color.fromRGBO(
-        random.integer(255), random.integer(255), random.integer(255), 1.0);
-  }
+  String getTitle() => 'Change color';
 
   @override
-  String getTitle() {
-    return 'Change color';
-  }
+  void execute() => shape.color = Color.fromRGBO(
+        random.integer(255),
+        random.integer(255),
+        random.integer(255),
+        1.0,
+      );
 
   @override
-  void undo() {
-    shape.color = previousColor;
-  }
+  void undo() => shape.color = previousColor;
 }
 ```
 
@@ -89,27 +84,19 @@ class ChangeColorCommand implements Command {
 
 ```
 class ChangeHeightCommand implements Command {
+  ChangeHeightCommand(this.shape) : previousHeight = shape.height;
+
+  final double previousHeight;
   Shape shape;
-  double previousHeight;
-
-  ChangeHeightCommand(this.shape) {
-    previousHeight = shape.height;
-  }
 
   @override
-  void execute() {
-    shape.height = random.integer(150, min: 50).toDouble();
-  }
+  String getTitle() => 'Change height';
 
   @override
-  String getTitle() {
-    return 'Change height';
-  }
+  void execute() => shape.height = random.integer(150, min: 50).toDouble();
 
   @override
-  void undo() {
-    shape.height = previousHeight;
-  }
+  void undo() => shape.height = previousHeight;
 }
 ```
 
@@ -117,27 +104,19 @@ class ChangeHeightCommand implements Command {
 
 ```
 class ChangeWidthCommand implements Command {
+  ChangeWidthCommand(this.shape) : previousWidth = shape.width;
+
+  final double previousWidth;
   Shape shape;
-  double previousWidth;
-
-  ChangeWidthCommand(this.shape) {
-    previousWidth = shape.width;
-  }
 
   @override
-  void execute() {
-    shape.width = random.integer(150, min: 50).toDouble();
-  }
+  String getTitle() => 'Change width';
 
   @override
-  String getTitle() {
-    return 'Change width';
-  }
+  void execute() => shape.width = random.integer(150, min: 50).toDouble();
 
   @override
-  void undo() {
-    shape.width = previousWidth;
-  }
+  void undo() => shape.width = previousWidth;
 }
 ```
 
@@ -147,21 +126,18 @@ A simple class which stores a list of already executed commands. Also, this clas
 
 ```
 class CommandHistory {
-  final ListQueue<Command> _commandList = ListQueue<Command>();
+  final _commandList = ListQueue<Command>();
 
   bool get isEmpty => _commandList.isEmpty;
   List<String> get commandHistoryList =>
       _commandList.map((c) => c.getTitle()).toList();
 
-  void add(Command command) {
-    _commandList.add(command);
-  }
+  void add(Command command) => _commandList.add(command);
 
   void undo() {
-    if (_commandList.isNotEmpty) {
-      var command = _commandList.removeLast();
-      command.undo();
-    }
+    if (_commandList.isEmpty) return;
+
+    _commandList.removeLast().undo();
   }
 }
 ```
@@ -174,48 +150,46 @@ As you can see in this example, the client code (UI elements, command history, e
 
 ```
 class CommandExample extends StatefulWidget {
+  const CommandExample();
+
   @override
   _CommandExampleState createState() => _CommandExampleState();
 }
 
 class _CommandExampleState extends State<CommandExample> {
-  final CommandHistory _commandHistory = CommandHistory();
-  final Shape _shape = Shape.initial();
+  final _commandHistory = CommandHistory();
+  final _shape = Shape.initial();
 
   void _changeColor() {
-    var command = ChangeColorCommand(_shape);
+    final command = ChangeColorCommand(_shape);
     _executeCommand(command);
   }
 
   void _changeHeight() {
-    var command = ChangeHeightCommand(_shape);
+    final command = ChangeHeightCommand(_shape);
     _executeCommand(command);
   }
 
   void _changeWidth() {
-    var command = ChangeWidthCommand(_shape);
+    final command = ChangeWidthCommand(_shape);
     _executeCommand(command);
   }
 
-  void _executeCommand(Command command) {
-    setState(() {
-      command.execute();
-      _commandHistory.add(command);
-    });
-  }
+  void _executeCommand(Command command) => setState(() {
+        command.execute();
+        _commandHistory.add(command);
+      });
 
-  void _undo() {
-    setState(() {
-      _commandHistory.undo();
-    });
-  }
+  void _undo() => setState(() => _commandHistory.undo());
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ShapeContainer(
@@ -223,29 +197,29 @@ class _CommandExampleState extends State<CommandExample> {
             ),
             const SizedBox(height: LayoutConstants.spaceM),
             PlatformButton(
-              child: Text('Change color'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeColor,
+              text: 'Change color',
             ),
             PlatformButton(
-              child: Text('Change height'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeHeight,
+              text: 'Change height',
             ),
             PlatformButton(
-              child: Text('Change width'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _changeWidth,
+              text: 'Change width',
             ),
-            Divider(),
+            const Divider(),
             PlatformButton(
-              child: Text('Undo'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _commandHistory.isEmpty ? null : _undo,
+              text: 'Undo',
             ),
             const SizedBox(height: LayoutConstants.spaceM),
             Row(

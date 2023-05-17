@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../custom_dialog.dart';
 
 class AndroidAlertDialog extends CustomDialog {
+  const AndroidAlertDialog();
+
   @override
-  String getTitle() {
-    return 'Android Alert Dialog';
-  }
+  String getTitle() => 'Android Alert Dialog';
 
   @override
   Widget create(BuildContext context) {
@@ -15,9 +15,7 @@ class AndroidAlertDialog extends CustomDialog {
       content: const Text('This is the material-style alert dialog!'),
       actions: <Widget>[
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: Navigator.of(context).pop,
           child: const Text('Close'),
         ),
       ],

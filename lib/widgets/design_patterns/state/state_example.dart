@@ -12,7 +12,7 @@ class StateExample extends StatefulWidget {
 }
 
 class _StateExampleState extends State<StateExample> {
-  final StateContext _stateContext = StateContext();
+  final _stateContext = StateContext();
 
   Future<void> _changeState() async {
     await _stateContext.nextState();
@@ -42,7 +42,7 @@ class _StateExampleState extends State<StateExample> {
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             StreamBuilder<IState>(
-              initialData: NoResultsState(),
+              initialData: const NoResultsState(),
               stream: _stateContext.outState,
               builder: (context, snapshot) => snapshot.data!.render(),
             ),

@@ -1,9 +1,7 @@
 class AudioApi {
-  bool turnSpeakersOn() {
-    return true;
-  }
+  const AudioApi();
 
-  bool turnSpeakersOff() {
-    return false;
-  }
+  bool turnSpeakersOn() => true;
+
+  bool turnSpeakersOff() => false;
 }

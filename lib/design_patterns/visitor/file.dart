@@ -18,9 +18,7 @@ abstract class File extends StatelessWidget implements IFile {
   });
 
   @override
-  int getSize() {
-    return size;
-  }
+  int getSize() => size;
 
   @override
   Widget render(BuildContext context) {
@@ -36,8 +34,8 @@ abstract class File extends StatelessWidget implements IFile {
           FileSizeConverter.bytesToString(size),
           style: Theme.of(context)
               .textTheme
-              .bodyMedium!
-              .copyWith(color: Colors.black54),
+              .bodyMedium
+              ?.copyWith(color: Colors.black54),
         ),
         dense: true,
       ),
@@ -45,7 +43,5 @@ abstract class File extends StatelessWidget implements IFile {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return render(context);
-  }
+  Widget build(BuildContext context) => render(context);
 }

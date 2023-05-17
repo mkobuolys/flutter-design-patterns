@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'file.dart';
 
-class AudioFile extends File {
+final class AudioFile extends File {
   const AudioFile({
     required super.title,
     required super.size,

@@ -1,5 +1,5 @@
 import 'contact.dart';
 
-abstract class IContactsAdapter {
+abstract interface class IContactsAdapter {
   List<Contact> getContacts();
 }

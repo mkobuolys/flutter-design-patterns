@@ -8,7 +8,7 @@ import '../../../data/models/design_pattern.dart';
 import '../../../helpers/helpers.dart';
 import '../../../widgets/logo_button.dart';
 
-class DetailsAppBar extends StatelessWidget with PreferredSizeWidget {
+class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DetailsAppBar({
     required this.designPattern,
   });

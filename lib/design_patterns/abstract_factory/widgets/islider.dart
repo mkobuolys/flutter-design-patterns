@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-abstract class ISlider {
+abstract interface class ISlider {
   Widget render(double value, ValueSetter<double> onChanged);
 }

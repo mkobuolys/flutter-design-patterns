@@ -4,17 +4,13 @@ import '../tree_iterators/itree_iterator.dart';
 import 'itree_collection.dart';
 
 class BreadthFirstTreeCollection implements ITreeCollection {
-  final Graph graph;
-
   const BreadthFirstTreeCollection(this.graph);
 
-  @override
-  ITreeIterator createIterator() {
-    return BreadthFirstIterator(this);
-  }
+  final Graph graph;
 
   @override
-  String getTitle() {
-    return 'Breadth-first';
-  }
+  ITreeIterator createIterator() => BreadthFirstIterator(this);
+
+  @override
+  String getTitle() => 'Breadth-first';
 }

@@ -1,7 +1,7 @@
 import 'directory.dart';
 import 'files/index.dart';
 
-abstract class IVisitor {
+abstract interface class IVisitor {
   String getTitle();
   String visitDirectory(Directory directory);
   String visitAudioFile(AudioFile file);

@@ -16,7 +16,7 @@ class OrderItemsTable extends StatelessWidget {
       columnSpacing: LayoutConstants.spaceL,
       horizontalMargin: LayoutConstants.marginM,
       headingRowHeight: LayoutConstants.spaceXL,
-      dataRowHeight: LayoutConstants.spaceXL,
+      dataRowMinHeight: LayoutConstants.spaceXL,
       columns: const <DataColumn>[
         DataColumn(
           label: Text(

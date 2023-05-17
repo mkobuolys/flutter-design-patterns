@@ -12,22 +12,19 @@ class ProxyExample extends StatefulWidget {
 }
 
 class _ProxyExampleState extends State<ProxyExample> {
-  final ICustomerDetailsService _customerDetailsServiceProxy =
-      CustomerDetailsServiceProxy(CustomerDetailsService());
-  final List<Customer> _customerList = List.generate(10, (_) => Customer());
+  final _customerDetailsServiceProxy = CustomerDetailsServiceProxy(
+    const CustomerDetailsService(),
+  );
+  final _customerList = List.generate(10, (_) => Customer());
 
-  void _showCustomerDetails(Customer customer) {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) {
-        return CustomerDetailsDialog(
+  void _showCustomerDetails(Customer customer) => showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => CustomerDetailsDialog(
           service: _customerDetailsServiceProxy,
           customer: customer,
-        );
-      },
-    );
-  }
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {

@@ -7,23 +7,18 @@ import '../widgets/sliders/android_slider.dart';
 import '../widgets/switches/android_switch.dart';
 
 class MaterialWidgetsFactory implements IWidgetsFactory {
-  @override
-  String getTitle() {
-    return 'Android widgets';
-  }
+  const MaterialWidgetsFactory();
 
   @override
-  IActivityIndicator createActivityIndicator() {
-    return AndroidActivityIndicator();
-  }
+  String getTitle() => 'Android widgets';
 
   @override
-  ISlider createSlider() {
-    return AndroidSlider();
-  }
+  IActivityIndicator createActivityIndicator() =>
+      const AndroidActivityIndicator();
 
   @override
-  ISwitch createSwitch() {
-    return AndroidSwitch();
-  }
+  ISlider createSlider() => const AndroidSlider();
+
+  @override
+  ISwitch createSwitch() => const AndroidSwitch();
 }

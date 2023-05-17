@@ -6,11 +6,11 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<GoRoute> get $appRoutes => [
+List<RouteBase> get $appRoutes => [
       $mainMenuRoute,
     ];
 
-GoRoute get $mainMenuRoute => GoRouteData.$route(
+RouteBase get $mainMenuRoute => GoRouteData.$route(
       path: '/',
       factory: $MainMenuRouteExtension._fromState,
       routes: [
@@ -30,7 +30,7 @@ extension $MainMenuRouteExtension on MainMenuRoute {
 
   void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
@@ -39,7 +39,7 @@ extension $MainMenuRouteExtension on MainMenuRoute {
 extension $DesignPatternDetailsRouteExtension on DesignPatternDetailsRoute {
   static DesignPatternDetailsRoute _fromState(GoRouterState state) =>
       DesignPatternDetailsRoute(
-        state.params['id']!,
+        state.pathParameters['id']!,
       );
 
   String get location => GoRouteData.$location(
@@ -48,7 +48,7 @@ extension $DesignPatternDetailsRouteExtension on DesignPatternDetailsRoute {
 
   void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);

@@ -4,17 +4,16 @@ import 'customer/customer_details.dart';
 import 'icustomer_details_service.dart';
 
 class CustomerDetailsService implements ICustomerDetailsService {
-  @override
-  Future<CustomerDetails> getCustomerDetails(String id) async {
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        final email = faker.internet.email();
-        final hobby = faker.sport.name();
-        final position = faker.job.title();
+  const CustomerDetailsService();
 
-        return CustomerDetails(id, email, hobby, position);
-      },
-    );
-  }
+  @override
+  Future<CustomerDetails> getCustomerDetails(String id) => Future.delayed(
+        const Duration(seconds: 2),
+        () => CustomerDetails(
+          customerId: id,
+          email: faker.internet.email(),
+          hobby: faker.sport.name(),
+          position: faker.job.title(),
+        ),
+      );
 }

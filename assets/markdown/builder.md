@@ -43,17 +43,13 @@ An abstract class which stores the _allergens_, _name_ fields and is extended by
 ```
 abstract class Ingredient {
   @protected
-  List<String> allergens;
+  late List<String> allergens;
   @protected
-  String name;
+  late String name;
 
-  List<String> getAllergens() {
-    return allergens;
-  }
+  List<String> getAllergens() => allergens;
 
-  String getName() {
-    return name;
-  }
+  String getName() => name;
 }
 ```
 
@@ -188,31 +184,20 @@ A simple class to store information about the burger: its price and a list of in
 ```
 class Burger {
   final List<Ingredient> _ingredients = [];
-  double _price;
+  late double _price;
 
-  void addIngredient(Ingredient ingredient) {
-    _ingredients.add(ingredient);
-  }
+  void addIngredient(Ingredient ingredient) => _ingredients.add(ingredient);
 
-  String getFormattedIngredients() {
-    return _ingredients.map((x) => x.getName()).join(', ');
-  }
+  String getFormattedIngredients() =>
+      _ingredients.map((x) => x.getName()).join(', ');
 
-  String getFormattedAllergens() {
-    var allergens = Set<String>();
+  String getFormattedAllergens() => <String>{
+        for (final ingredient in _ingredients) ...ingredient.getAllergens()
+      }.join(', ');
 
-    _ingredients.forEach((x) => allergens.addAll(x.getAllergens()));
+  String getFormattedPrice() => '\$${_price.toStringAsFixed(2)}';
 
-    return allergens.join(', ');
-  }
-
-  String getFormattedPrice() {
-    return '\$${_price.toStringAsFixed(2)}';
-  }
-
-  void setPrice(double price) {
-    _price = price;
-  }
+  void setPrice(double price) => _price = price;
 }
 ```
 
@@ -223,21 +208,15 @@ An abstract class which stores _burger_ and _price_ properties, defines some def
 ```
 abstract class BurgerBuilderBase {
   @protected
-  Burger burger;
+  late Burger burger;
   @protected
-  double price;
+  late double price;
 
-  void createBurger() {
-    burger = Burger();
-  }
+  void createBurger() => burger = Burger();
 
-  Burger getBurger() {
-    return burger;
-  }
+  Burger getBurger() => burger;
 
-  void setBurgerPrice() {
-    burger.setPrice(price);
-  }
+  void setBurgerPrice() => burger.setPrice(price);
 
   void addBuns();
   void addCheese();
@@ -246,7 +225,6 @@ abstract class BurgerBuilderBase {
   void addSeasoning();
   void addVegetables();
 }
-
 ```
 
 ### Concrete builders
@@ -423,17 +401,15 @@ A director class which manages the burger's build process and returns the build 
 
 ```
 class BurgerMaker {
-  BurgerBuilderBase burgerBuilder;
-
   BurgerMaker(this.burgerBuilder);
+
+  BurgerBuilderBase burgerBuilder;
 
   void changeBurgerBuilder(BurgerBuilderBase burgerBuilder) {
     this.burgerBuilder = burgerBuilder;
   }
 
-  Burger getBurger() {
-    return burgerBuilder.getBurger();
-  }
+  Burger getBurger() => burgerBuilder.getBurger();
 
   void prepareBurger() {
     burgerBuilder.createBurger();
@@ -457,34 +433,30 @@ The director class _BurgerMaker_ does not care about the specific implementation
 
 ```
 class BuilderExample extends StatefulWidget {
+  const BuilderExample();
+
   @override
   _BuilderExampleState createState() => _BuilderExampleState();
 }
 
 class _BuilderExampleState extends State<BuilderExample> {
-  final BurgerMaker _burgerMaker = BurgerMaker(HamburgerBuilder());
+  final _burgerMaker = BurgerMaker(HamburgerBuilder());
   final List<BurgerMenuItem> _burgerMenuItems = [];
 
-  BurgerMenuItem _selectedBurgerMenuItem;
-  Burger _selectedBurger;
+  late BurgerMenuItem _selectedBurgerMenuItem;
+  late Burger _selectedBurger;
 
   @override
   void initState() {
     super.initState();
 
     _burgerMenuItems.addAll([
-      BurgerMenuItem(
-        label: 'Hamburger',
-        burgerBuilder: HamburgerBuilder(),
-      ),
+      BurgerMenuItem(label: 'Hamburger', burgerBuilder: HamburgerBuilder()),
       BurgerMenuItem(
         label: 'Cheeseburger',
         burgerBuilder: CheeseburgerBuilder(),
       ),
-      BurgerMenuItem(
-        label: 'Big Mac\u00AE',
-        burgerBuilder: BigMacBuilder(),
-      ),
+      BurgerMenuItem(label: 'Big Mac\u00AE', burgerBuilder: BigMacBuilder()),
       BurgerMenuItem(
         label: 'McChicken\u00AE',
         burgerBuilder: McChickenBuilder(),
@@ -501,20 +473,20 @@ class _BuilderExampleState extends State<BuilderExample> {
     return _burgerMaker.getBurger();
   }
 
-  void _onBurgerMenuItemChanged(BurgerMenuItem selectedItem) {
-    setState(() {
-      _selectedBurgerMenuItem = selectedItem;
-      _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
-      _selectedBurger = _prepareSelectedBurger();
-    });
-  }
+  void _onBurgerMenuItemChanged(BurgerMenuItem? selectedItem) => setState(() {
+        _selectedBurgerMenuItem = selectedItem!;
+        _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
+        _selectedBurger = _prepareSelectedBurger();
+      });
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -522,7 +494,7 @@ class _BuilderExampleState extends State<BuilderExample> {
               children: <Widget>[
                 Text(
                   'Select menu item:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -538,16 +510,16 @@ class _BuilderExampleState extends State<BuilderExample> {
                   .toList(),
               onChanged: _onBurgerMenuItemChanged,
             ),
-            SizedBox(height: LayoutConstants.spaceL),
+            const SizedBox(height: LayoutConstants.spaceL),
             Row(
               children: <Widget>[
                 Text(
                   'Information:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
-            SizedBox(height: LayoutConstants.spaceM),
+            const SizedBox(height: LayoutConstants.spaceM),
             BurgerInformationColumn(burger: _selectedBurger),
           ],
         ),

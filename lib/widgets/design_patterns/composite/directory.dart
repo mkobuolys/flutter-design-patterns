@@ -12,9 +12,7 @@ class Directory extends StatelessWidget implements IFile {
 
   Directory(this.title, {this.isInitiallyExpanded = false});
 
-  void addFile(IFile file) {
-    files.add(file);
-  }
+  void addFile(IFile file) => files.add(file);
 
   @override
   int getSize() {
@@ -46,7 +44,5 @@ class Directory extends StatelessWidget implements IFile {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return render(context);
-  }
+  Widget build(BuildContext context) => render(context);
 }

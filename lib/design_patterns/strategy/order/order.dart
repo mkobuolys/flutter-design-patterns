@@ -6,7 +6,5 @@ class Order {
   double get price =>
       items.fold(0.0, (sum, orderItem) => sum + orderItem.price);
 
-  void addOrderItem(OrderItem orderItem) {
-    items.add(orderItem);
-  }
+  void addOrderItem(OrderItem orderItem) => items.add(orderItem);
 }

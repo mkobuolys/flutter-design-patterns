@@ -27,13 +27,11 @@ _FacadeExample_ widget contains the _SmartHomeFacade_ to communicate with the sm
 
 ```
 class AudioApi {
-  bool turnSpeakersOn() {
-    return true;
-  }
+  const AudioApi();
 
-  bool turnSpeakersOff() {
-    return false;
-  }
+  bool turnSpeakersOn() => true;
+
+  bool turnSpeakersOff() => false;
 }
 ```
 
@@ -41,13 +39,11 @@ class AudioApi {
 
 ```
 class CameraApi {
-  bool turnCameraOn() {
-    return true;
-  }
+  const CameraApi();
 
-  bool turnCameraOff() {
-    return false;
-  }
+  bool turnCameraOn() => true;
+
+  bool turnCameraOff() => false;
 }
 ```
 
@@ -55,15 +51,14 @@ class CameraApi {
 
 ```
 class NetflixApi {
-  bool connect() {
-    return true;
-  }
+  const NetflixApi();
 
-  bool disconnect() {
-    return false;
-  }
+  bool connect() => true;
+
+  bool disconnect() => false;
 
   void play(String title) {
+    // ignore: avoid_print
     print("'$title' has started started playing on Netflix.");
   }
 }
@@ -73,13 +68,11 @@ class NetflixApi {
 
 ```
 class PlaystationApi {
-  bool turnOn() {
-    return true;
-  }
+  const PlaystationApi();
 
-  bool turnOff() {
-    return false;
-  }
+  bool turnOn() => true;
+
+  bool turnOff() => false;
 }
 ```
 
@@ -87,13 +80,11 @@ class PlaystationApi {
 
 ```
 class SmartHomeApi {
-  bool turnLightsOn() {
-    return true;
-  }
+  const SmartHomeApi();
 
-  bool turnLightsOff() {
-    return false;
-  }
+  bool turnLightsOn() => true;
+
+  bool turnLightsOff() => false;
 }
 ```
 
@@ -101,13 +92,11 @@ class SmartHomeApi {
 
 ```
 class TvApi {
-  bool turnOn() {
-    return true;
-  }
+  const TvApi();
 
-  bool turnOff() {
-    return false;
-  }
+  bool turnOn() => true;
+
+  bool turnOff() => false;
 }
 ```
 
@@ -137,24 +126,29 @@ A facade class which uses APIs of the PlayStation and streaming camera and provi
 
 ```
 class GamingFacade {
-  final PlaystationApi _playstationApi = PlaystationApi();
-  final CameraApi _cameraApi = CameraApi();
+  const GamingFacade({
+    this.playstationApi = const PlaystationApi(),
+    this.cameraApi = const CameraApi(),
+  });
+
+  final PlaystationApi playstationApi;
+  final CameraApi cameraApi;
 
   void startGaming(SmartHomeState smartHomeState) {
-    smartHomeState.gamingConsoleOn = _playstationApi.turnOn();
+    smartHomeState.gamingConsoleOn = playstationApi.turnOn();
   }
 
   void stopGaming(SmartHomeState smartHomeState) {
-    smartHomeState.gamingConsoleOn = _playstationApi.turnOff();
+    smartHomeState.gamingConsoleOn = playstationApi.turnOff();
   }
 
   void startStreaming(SmartHomeState smartHomeState) {
-    smartHomeState.streamingCameraOn = _cameraApi.turnCameraOn();
+    smartHomeState.streamingCameraOn = cameraApi.turnCameraOn();
     startGaming(smartHomeState);
   }
 
   void stopStreaming(SmartHomeState smartHomeState) {
-    smartHomeState.streamingCameraOn = _cameraApi.turnCameraOff();
+    smartHomeState.streamingCameraOn = cameraApi.turnCameraOff();
     stopGaming(smartHomeState);
   }
 }
@@ -173,49 +167,57 @@ A facade class which uses APIs of the smart TV, audio devices, Netflix platform 
 
 ```
 class SmartHomeFacade {
-  final GamingFacade _gamingFacade = GamingFacade();
-  final TvApi _tvApi = TvApi();
-  final AudioApi _audioApi = AudioApi();
-  final NetflixApi _netflixApi = NetflixApi();
-  final SmartHomeApi _smartHomeApi = SmartHomeApi();
+  const SmartHomeFacade({
+    this.gamingFacade = const GamingFacade(),
+    this.tvApi = const TvApi(),
+    this.audioApi = const AudioApi(),
+    this.netflixApi = const NetflixApi(),
+    this.smartHomeApi = const SmartHomeApi(),
+  });
+
+  final GamingFacade gamingFacade;
+  final TvApi tvApi;
+  final AudioApi audioApi;
+  final NetflixApi netflixApi;
+  final SmartHomeApi smartHomeApi;
 
   void startMovie(SmartHomeState smartHomeState, String movieTitle) {
-    smartHomeState.lightsOn = _smartHomeApi.turnLightsOff();
-    smartHomeState.tvOn = _tvApi.turnOn();
-    smartHomeState.audioSystemOn = _audioApi.turnSpeakersOn();
-    smartHomeState.netflixConnected = _netflixApi.connect();
-    _netflixApi.play(movieTitle);
+    smartHomeState.lightsOn = smartHomeApi.turnLightsOff();
+    smartHomeState.tvOn = tvApi.turnOn();
+    smartHomeState.audioSystemOn = audioApi.turnSpeakersOn();
+    smartHomeState.netflixConnected = netflixApi.connect();
+    netflixApi.play(movieTitle);
   }
 
   void stopMovie(SmartHomeState smartHomeState) {
-    smartHomeState.netflixConnected = _netflixApi.disconnect();
-    smartHomeState.tvOn = _tvApi.turnOff();
-    smartHomeState.audioSystemOn = _audioApi.turnSpeakersOff();
-    smartHomeState.lightsOn = _smartHomeApi.turnLightsOn();
+    smartHomeState.netflixConnected = netflixApi.disconnect();
+    smartHomeState.tvOn = tvApi.turnOff();
+    smartHomeState.audioSystemOn = audioApi.turnSpeakersOff();
+    smartHomeState.lightsOn = smartHomeApi.turnLightsOn();
   }
 
   void startGaming(SmartHomeState smartHomeState) {
-    smartHomeState.lightsOn = _smartHomeApi.turnLightsOff();
-    smartHomeState.tvOn = _tvApi.turnOn();
-    _gamingFacade.startGaming(smartHomeState);
+    smartHomeState.lightsOn = smartHomeApi.turnLightsOff();
+    smartHomeState.tvOn = tvApi.turnOn();
+    gamingFacade.startGaming(smartHomeState);
   }
 
   void stopGaming(SmartHomeState smartHomeState) {
-    _gamingFacade.stopGaming(smartHomeState);
-    smartHomeState.tvOn = _tvApi.turnOff();
-    smartHomeState.lightsOn = _smartHomeApi.turnLightsOn();
+    gamingFacade.stopGaming(smartHomeState);
+    smartHomeState.tvOn = tvApi.turnOff();
+    smartHomeState.lightsOn = smartHomeApi.turnLightsOn();
   }
 
   void startStreaming(SmartHomeState smartHomeState) {
-    smartHomeState.lightsOn = _smartHomeApi.turnLightsOn();
-    smartHomeState.tvOn = _tvApi.turnOn();
-    _gamingFacade.startStreaming(smartHomeState);
+    smartHomeState.lightsOn = smartHomeApi.turnLightsOn();
+    smartHomeState.tvOn = tvApi.turnOn();
+    gamingFacade.startStreaming(smartHomeState);
   }
 
   void stopStreaming(SmartHomeState smartHomeState) {
-    _gamingFacade.stopStreaming(smartHomeState);
-    smartHomeState.tvOn = _tvApi.turnOff();
-    smartHomeState.lightsOn = _smartHomeApi.turnLightsOn();
+    gamingFacade.stopStreaming(smartHomeState);
+    smartHomeState.tvOn = tvApi.turnOff();
+    smartHomeState.lightsOn = smartHomeApi.turnLightsOn();
   }
 }
 ```
@@ -226,31 +228,31 @@ _FacadeExample_ widget contains the _SmartHomeState_ which hold the current stat
 
 ```
 class FacadeExample extends StatefulWidget {
+  const FacadeExample();
+
   @override
   _FacadeExampleState createState() => _FacadeExampleState();
 }
 
 class _FacadeExampleState extends State<FacadeExample> {
-  final SmartHomeFacade _smartHomeFacade = SmartHomeFacade();
-  final SmartHomeState _smartHomeState = SmartHomeState();
+  final _smartHomeFacade = const SmartHomeFacade();
+  final _smartHomeState = SmartHomeState();
 
-  bool _homeCinemaModeOn = false;
-  bool _gamingModeOn = false;
-  bool _streamingModeOn = false;
+  var _homeCinemaModeOn = false;
+  var _gamingModeOn = false;
+  var _streamingModeOn = false;
 
   bool get _isAnyModeOn =>
       _homeCinemaModeOn || _gamingModeOn || _streamingModeOn;
 
   void _changeHomeCinemaMode(bool activated) {
     if (activated) {
-      _smartHomeFacade.startMovie(_smartHomeState, "Movie title");
+      _smartHomeFacade.startMovie(_smartHomeState, 'Movie title');
     } else {
       _smartHomeFacade.stopMovie(_smartHomeState);
     }
 
-    setState(() {
-      _homeCinemaModeOn = activated;
-    });
+    setState(() => _homeCinemaModeOn = activated);
   }
 
   void _changeGamingMode(bool activated) {
@@ -260,9 +262,7 @@ class _FacadeExampleState extends State<FacadeExample> {
       _smartHomeFacade.stopGaming(_smartHomeState);
     }
 
-    setState(() {
-      _gamingModeOn = activated;
-    });
+    setState(() => _gamingModeOn = activated);
   }
 
   void _changeStreamingMode(bool activated) {
@@ -272,17 +272,17 @@ class _FacadeExampleState extends State<FacadeExample> {
       _smartHomeFacade.stopStreaming(_smartHomeState);
     }
 
-    setState(() {
-      _streamingModeOn = activated;
-    });
+    setState(() => _streamingModeOn = activated);
   }
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ModeSwitcher(

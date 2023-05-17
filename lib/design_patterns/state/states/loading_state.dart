@@ -8,20 +8,22 @@ import 'loaded_state.dart';
 import 'no_results_state.dart';
 
 class LoadingState implements IState {
-  final FakeApi _api = FakeApi();
+  const LoadingState({
+    this.api = const FakeApi(),
+  });
+
+  final FakeApi api;
 
   @override
-  Future nextState(StateContext context) async {
+  Future<void> nextState(StateContext context) async {
     try {
-      final resultList = await _api.getNames();
+      final resultList = await api.getNames();
 
-      if (resultList.isEmpty) {
-        context.setState(NoResultsState());
-      } else {
-        context.setState(LoadedState(resultList));
-      }
+      context.setState(
+        resultList.isEmpty ? const NoResultsState() : LoadedState(resultList),
+      );
     } on Exception {
-      context.setState(ErrorState());
+      context.setState(const ErrorState());
     }
   }
 

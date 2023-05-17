@@ -1,9 +1,4 @@
-import 'package:flutter/foundation.dart';
-
-abstract class Pizza {
-  @protected
-  late String description;
-
+abstract interface class Pizza {
   String getDescription();
   double getPrice();
 }

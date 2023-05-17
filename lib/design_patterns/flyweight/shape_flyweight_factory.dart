@@ -3,12 +3,12 @@ import 'shape_factory.dart';
 import 'shape_type.dart';
 
 class ShapeFlyweightFactory {
-  final ShapeFactory shapeFactory;
-  final Map<ShapeType, IPositionedShape> shapesMap = {};
-
   ShapeFlyweightFactory({
     required this.shapeFactory,
   });
+
+  final ShapeFactory shapeFactory;
+  final Map<ShapeType, IPositionedShape> shapesMap = {};
 
   IPositionedShape getShape(ShapeType shapeType) {
     if (!shapesMap.containsKey(shapeType)) {
@@ -18,7 +18,5 @@ class ShapeFlyweightFactory {
     return shapesMap[shapeType]!;
   }
 
-  int getShapeInstancesCount() {
-    return shapesMap.length;
-  }
+  int getShapeInstancesCount() => shapesMap.length;
 }

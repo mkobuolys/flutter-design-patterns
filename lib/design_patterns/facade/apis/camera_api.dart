@@ -1,9 +1,7 @@
 class CameraApi {
-  bool turnCameraOn() {
-    return true;
-  }
+  const CameraApi();
 
-  bool turnCameraOff() {
-    return false;
-  }
+  bool turnCameraOn() => true;
+
+  bool turnCameraOff() => false;
 }

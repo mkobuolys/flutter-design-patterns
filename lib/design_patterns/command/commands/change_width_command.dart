@@ -4,25 +4,17 @@ import '../command.dart';
 import '../shape.dart';
 
 class ChangeWidthCommand implements Command {
+  ChangeWidthCommand(this.shape) : previousWidth = shape.width;
+
+  final double previousWidth;
   Shape shape;
-  late double previousWidth;
-
-  ChangeWidthCommand(this.shape) {
-    previousWidth = shape.width;
-  }
 
   @override
-  void execute() {
-    shape.width = random.integer(150, min: 50).toDouble();
-  }
+  String getTitle() => 'Change width';
 
   @override
-  String getTitle() {
-    return 'Change width';
-  }
+  void execute() => shape.width = random.integer(150, min: 50).toDouble();
 
   @override
-  void undo() {
-    shape.width = previousWidth;
-  }
+  void undo() => shape.width = previousWidth;
 }

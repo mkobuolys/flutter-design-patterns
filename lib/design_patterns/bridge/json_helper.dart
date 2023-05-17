@@ -14,13 +14,10 @@ class JsonHelper {
   static T deserialiseObject<T extends EntityBase>(String jsonString) {
     final json = jsonDecode(jsonString)! as Map<String, dynamic>;
 
-    switch (T) {
-      case Customer:
-        return Customer.fromJson(json) as T;
-      case Order:
-        return Order.fromJson(json) as T;
-      default:
-        throw Exception("Type of '$T' is not supported.");
-    }
+    return switch (T) {
+      Customer => Customer.fromJson(json) as T,
+      Order => Order.fromJson(json) as T,
+      _ => throw Exception("Type of '$T' is not supported."),
+    };
   }
 }

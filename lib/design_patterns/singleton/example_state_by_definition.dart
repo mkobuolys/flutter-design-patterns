@@ -1,6 +1,6 @@
 import 'example_state_base.dart';
 
-class ExampleStateByDefinition extends ExampleStateBase {
+final class ExampleStateByDefinition extends ExampleStateBase {
   static ExampleStateByDefinition? _instance;
 
   ExampleStateByDefinition._internal() {

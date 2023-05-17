@@ -12,35 +12,25 @@ class PrototypeExample extends StatefulWidget {
 }
 
 class _PrototypeExampleState extends State<PrototypeExample> {
-  final Shape _circle = Circle.initial();
-  final Shape _rectangle = Rectangle.initial();
+  final _circle = Circle.initial();
+  final _rectangle = Rectangle.initial();
 
   Shape? _circleClone;
   Shape? _rectangleClone;
 
-  void _randomiseCircleProperties() {
-    setState(() {
-      _circle.randomiseProperties();
-    });
-  }
+  void _randomiseCircleProperties() => setState(
+        () => _circle.randomiseProperties(),
+      );
 
-  void _cloneCircle() {
-    setState(() {
-      _circleClone = _circle.clone();
-    });
-  }
+  void _cloneCircle() => setState(() => _circleClone = _circle.clone());
 
-  void _randomiseRectangleProperties() {
-    setState(() {
-      _rectangle.randomiseProperties();
-    });
-  }
+  void _randomiseRectangleProperties() => setState(
+        () => _rectangle.randomiseProperties(),
+      );
 
-  void _cloneRectangle() {
-    setState(() {
-      _rectangleClone = _rectangle.clone();
-    });
-  }
+  void _cloneRectangle() => setState(
+        () => _rectangleClone = _rectangle.clone(),
+      );
 
   @override
   Widget build(BuildContext context) {

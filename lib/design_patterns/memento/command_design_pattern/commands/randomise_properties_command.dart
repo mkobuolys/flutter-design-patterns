@@ -6,12 +6,11 @@ import '../../originator.dart';
 import '../icommand.dart';
 
 class RandomisePropertiesCommand implements ICommand {
-  final Originator originator;
-  late final IMemento _backup;
+  RandomisePropertiesCommand(this.originator)
+      : _backup = originator.createMemento();
 
-  RandomisePropertiesCommand(this.originator) {
-    _backup = originator.createMemento();
-  }
+  final Originator originator;
+  final IMemento _backup;
 
   @override
   void execute() {
@@ -28,7 +27,5 @@ class RandomisePropertiesCommand implements ICommand {
   }
 
   @override
-  void undo() {
-    originator.restore(_backup);
-  }
+  void undo() => originator.restore(_backup);
 }

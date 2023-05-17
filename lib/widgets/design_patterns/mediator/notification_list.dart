@@ -4,13 +4,13 @@ import '../../../constants/constants.dart';
 import '../../../design_patterns/mediator/mediator.dart';
 
 class NotificationList extends StatelessWidget {
-  final List<TeamMember> members;
-  final ValueSetter<TeamMember> onTap;
-
   const NotificationList({
     required this.members,
     required this.onTap,
   });
+
+  final List<TeamMember> members;
+  final ValueSetter<TeamMember> onTap;
 
   @override
   Widget build(BuildContext context) {

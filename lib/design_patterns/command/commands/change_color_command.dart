@@ -5,30 +5,22 @@ import '../command.dart';
 import '../shape.dart';
 
 class ChangeColorCommand implements Command {
+  ChangeColorCommand(this.shape) : previousColor = shape.color;
+
+  final Color previousColor;
   Shape shape;
-  late Color previousColor;
-
-  ChangeColorCommand(this.shape) {
-    previousColor = shape.color;
-  }
 
   @override
-  void execute() {
-    shape.color = Color.fromRGBO(
-      random.integer(255),
-      random.integer(255),
-      random.integer(255),
-      1.0,
-    );
-  }
+  String getTitle() => 'Change color';
 
   @override
-  String getTitle() {
-    return 'Change color';
-  }
+  void execute() => shape.color = Color.fromRGBO(
+        random.integer(255),
+        random.integer(255),
+        random.integer(255),
+        1.0,
+      );
 
   @override
-  void undo() {
-    shape.color = previousColor;
-  }
+  void undo() => shape.color = previousColor;
 }

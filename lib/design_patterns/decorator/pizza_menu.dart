@@ -16,21 +16,16 @@ class PizzaMenu {
 
   Map<int, PizzaToppingData> getPizzaToppingsDataMap() => _pizzaToppingsDataMap;
 
-  Pizza getPizza(int index, Map<int, PizzaToppingData> pizzaToppingsDataMap) {
-    switch (index) {
-      case 0:
-        return _getMargherita();
-      case 1:
-        return _getPepperoni();
-      case 2:
-        return _getCustom(pizzaToppingsDataMap);
-    }
-
-    throw Exception("Index of '$index' does not exist.");
-  }
+  Pizza getPizza(int index, Map<int, PizzaToppingData> pizzaToppingsDataMap) =>
+      switch (index) {
+        0 => _getMargherita(),
+        1 => _getPepperoni(),
+        2 => _getCustom(pizzaToppingsDataMap),
+        _ => throw Exception("Index of '$index' does not exist."),
+      };
 
   Pizza _getMargherita() {
-    Pizza pizza = PizzaBase('Pizza Margherita');
+    Pizza pizza = const PizzaBase('Pizza Margherita');
     pizza = Sauce(pizza);
     pizza = Mozzarella(pizza);
     pizza = Basil(pizza);
@@ -42,7 +37,7 @@ class PizzaMenu {
   }
 
   Pizza _getPepperoni() {
-    Pizza pizza = PizzaBase('Pizza Pepperoni');
+    Pizza pizza = const PizzaBase('Pizza Pepperoni');
     pizza = Sauce(pizza);
     pizza = Mozzarella(pizza);
     pizza = Pepperoni(pizza);
@@ -52,35 +47,15 @@ class PizzaMenu {
   }
 
   Pizza _getCustom(Map<int, PizzaToppingData> pizzaToppingsDataMap) {
-    Pizza pizza = PizzaBase('Custom Pizza');
+    Pizza pizza = const PizzaBase('Custom Pizza');
 
-    if (pizzaToppingsDataMap[1]!.selected) {
-      pizza = Basil(pizza);
-    }
-
-    if (pizzaToppingsDataMap[2]!.selected) {
-      pizza = Mozzarella(pizza);
-    }
-
-    if (pizzaToppingsDataMap[3]!.selected) {
-      pizza = OliveOil(pizza);
-    }
-
-    if (pizzaToppingsDataMap[4]!.selected) {
-      pizza = Oregano(pizza);
-    }
-
-    if (pizzaToppingsDataMap[5]!.selected) {
-      pizza = Pecorino(pizza);
-    }
-
-    if (pizzaToppingsDataMap[6]!.selected) {
-      pizza = Pepperoni(pizza);
-    }
-
-    if (pizzaToppingsDataMap[7]!.selected) {
-      pizza = Sauce(pizza);
-    }
+    if (pizzaToppingsDataMap[1]!.selected) pizza = Basil(pizza);
+    if (pizzaToppingsDataMap[2]!.selected) pizza = Mozzarella(pizza);
+    if (pizzaToppingsDataMap[3]!.selected) pizza = OliveOil(pizza);
+    if (pizzaToppingsDataMap[4]!.selected) pizza = Oregano(pizza);
+    if (pizzaToppingsDataMap[5]!.selected) pizza = Pecorino(pizza);
+    if (pizzaToppingsDataMap[6]!.selected) pizza = Pepperoni(pizza);
+    if (pizzaToppingsDataMap[7]!.selected) pizza = Sauce(pizza);
 
     return pizza;
   }

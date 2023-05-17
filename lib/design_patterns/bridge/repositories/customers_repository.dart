@@ -4,14 +4,12 @@ import '../irepository.dart';
 import '../istorage.dart';
 
 class CustomersRepository implements IRepository {
-  final IStorage storage;
-
   const CustomersRepository(this.storage);
 
+  final IStorage storage;
+
   @override
-  List<EntityBase> getAll() {
-    return storage.fetchAll<Customer>();
-  }
+  List<EntityBase> getAll() => storage.fetchAll<Customer>();
 
   @override
   void save(EntityBase entityBase) {

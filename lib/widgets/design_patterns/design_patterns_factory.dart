@@ -11,58 +11,32 @@ class DesignPatternsFactoryException implements Exception {
 class DesignPatternsFactory {
   const DesignPatternsFactory._();
 
-  static Widget create(String id) {
-    switch (id) {
-      case 'abstract-factory':
-        return const AbstractFactoryExample();
-      case 'adapter':
-        return const AdapterExample();
-      case 'bridge':
-        return const BridgeExample();
-      case 'builder':
-        return const BuilderExample();
-      case 'chain-of-responsibility':
-        return const ChainOfResponsibilityExample();
-      case 'command':
-        return const CommandExample();
-      case 'composite':
-        return const CompositeExample();
-      case 'decorator':
-        return const DecoratorExample();
-      case 'facade':
-        return const FacadeExample();
-      case 'factory-method':
-        return const FactoryMethodExample();
-      case 'flyweight':
-        return const FlyweightExample();
-      case 'interpreter':
-        return const InterpreterExample();
-      case 'iterator':
-        return const IteratorExample();
-      case 'mediator':
-        return const MediatorExample();
-      case 'memento':
-        return const MementoExample();
-      case 'observer':
-        return const ObserverExample();
-      case 'prototype':
-        return const PrototypeExample();
-      case 'proxy':
-        return const ProxyExample();
-      case 'singleton':
-        return const SingletonExample();
-      case 'state':
-        return const StateExample();
-      case 'strategy':
-        return const StrategyExample();
-      case 'template-method':
-        return const TemplateMethodExample();
-      case 'visitor':
-        return const VisitorExample();
-      default:
-        throw DesignPatternsFactoryException(
-          "Design pattern example with id '$id' could not be created.",
-        );
-    }
-  }
+  static Widget create(String id) => switch (id) {
+        'abstract-factory' => const AbstractFactoryExample(),
+        'adapter' => const AdapterExample(),
+        'bridge' => const BridgeExample(),
+        'builder' => const BuilderExample(),
+        'chain-of-responsibility' => const ChainOfResponsibilityExample(),
+        'command' => const CommandExample(),
+        'composite' => const CompositeExample(),
+        'decorator' => const DecoratorExample(),
+        'facade' => const FacadeExample(),
+        'factory-method' => const FactoryMethodExample(),
+        'flyweight' => const FlyweightExample(),
+        'interpreter' => const InterpreterExample(),
+        'iterator' => const IteratorExample(),
+        'mediator' => const MediatorExample(),
+        'memento' => const MementoExample(),
+        'observer' => const ObserverExample(),
+        'prototype' => const PrototypeExample(),
+        'proxy' => const ProxyExample(),
+        'singleton' => const SingletonExample(),
+        'state' => const StateExample(),
+        'strategy' => const StrategyExample(),
+        'template-method' => const TemplateMethodExample(),
+        'visitor' => const VisitorExample(),
+        _ => throw DesignPatternsFactoryException(
+            "Design pattern example with id '$id' could not be created.",
+          ),
+      };
 }

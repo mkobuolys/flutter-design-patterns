@@ -1,17 +1,11 @@
 import '../pizza_decorator.dart';
 
 class Pepperoni extends PizzaDecorator {
-  Pepperoni(super.pizza) {
-    description = 'Pepperoni';
-  }
+  const Pepperoni(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Pepperoni';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 1.5;
-  }
+  double getPrice() => pizza.getPrice() + 1.5;
 }

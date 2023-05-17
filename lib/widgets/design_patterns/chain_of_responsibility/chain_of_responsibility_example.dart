@@ -16,7 +16,7 @@ class ChainOfResponsibilityExample extends StatefulWidget {
 
 class _ChainOfResponsibilityExampleState
     extends State<ChainOfResponsibilityExample> {
-  final LogBloc logBloc = LogBloc();
+  final logBloc = LogBloc();
 
   late final LoggerBase logger;
 

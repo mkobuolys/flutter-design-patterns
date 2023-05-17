@@ -1,9 +1,7 @@
 class SmartHomeApi {
-  bool turnLightsOn() {
-    return true;
-  }
+  const SmartHomeApi();
 
-  bool turnLightsOff() {
-    return false;
-  }
+  bool turnLightsOn() => true;
+
+  bool turnLightsOff() => false;
 }

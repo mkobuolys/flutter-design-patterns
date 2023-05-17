@@ -1,9 +1,7 @@
 class ExpressionContext {
   final List<String> _solutionSteps = [];
 
-  List<String> getSolutionSteps() {
-    return _solutionSteps;
-  }
+  List<String> getSolutionSteps() => _solutionSteps;
 
   void addSolutionStep(String operatorSymbol, int left, int right, int result) {
     final solutionStep =

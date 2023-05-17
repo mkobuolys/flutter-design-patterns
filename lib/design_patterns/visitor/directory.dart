@@ -19,9 +19,7 @@ class Directory extends StatelessWidget implements IFile {
     this.isInitiallyExpanded = false,
   });
 
-  void addFile(IFile file) {
-    _files.add(file);
-  }
+  void addFile(IFile file) => _files.add(file);
 
   @override
   int getSize() {
@@ -53,12 +51,8 @@ class Directory extends StatelessWidget implements IFile {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return render(context);
-  }
+  Widget build(BuildContext context) => render(context);
 
   @override
-  String accept(IVisitor visitor) {
-    return visitor.visitDirectory(this);
-  }
+  String accept(IVisitor visitor) => visitor.visitDirectory(this);
 }

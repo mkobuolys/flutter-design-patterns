@@ -14,11 +14,11 @@ class DecoratorExample extends StatefulWidget {
 }
 
 class _DecoratorExampleState extends State<DecoratorExample> {
-  final PizzaMenu pizzaMenu = PizzaMenu();
+  final pizzaMenu = PizzaMenu();
 
   late final Map<int, PizzaToppingData> _pizzaToppingsDataMap;
   late Pizza _pizza;
-  int _selectedIndex = 0;
+  var _selectedIndex = 0;
 
   @override
   void initState() {
@@ -32,28 +32,20 @@ class _DecoratorExampleState extends State<DecoratorExample> {
     _setSelectedPizza(index);
   }
 
-  void _setSelectedIndex(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  void _setSelectedIndex(int index) => setState(() => _selectedIndex = index);
 
   void _onCustomPizzaChipSelected(int index, bool? selected) {
     _setChipSelected(index, selected!);
     _setSelectedPizza(_selectedIndex);
   }
 
-  void _setChipSelected(int index, bool selected) {
-    setState(() {
-      _pizzaToppingsDataMap[index]!.setSelected(isSelected: selected);
-    });
-  }
+  void _setChipSelected(int index, bool selected) => setState(() {
+        _pizzaToppingsDataMap[index]!.setSelected(isSelected: selected);
+      });
 
-  void _setSelectedPizza(int index) {
-    setState(() {
-      _pizza = pizzaMenu.getPizza(index, _pizzaToppingsDataMap);
-    });
-  }
+  void _setSelectedPizza(int index) => setState(() {
+        _pizza = pizzaMenu.getPizza(index, _pizzaToppingsDataMap);
+      });
 
   @override
   Widget build(BuildContext context) {

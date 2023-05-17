@@ -3,9 +3,9 @@ import 'dart:async';
 import '../stock_ticker.dart';
 import '../stock_ticker_symbol.dart';
 
-class GameStopStockTicker extends StockTicker {
+final class GameStopStockTicker extends StockTicker {
   GameStopStockTicker() {
-    title = StockTickerSymbol.GME.toShortString();
+    title = StockTickerSymbol.GME.name;
     stockTimer = Timer.periodic(
       const Duration(seconds: 2),
       (_) {

@@ -1,5 +1,5 @@
 import '../command_design_pattern/shape.dart';
 
-abstract class IMemento {
+abstract interface class IMemento {
   Shape getState();
 }

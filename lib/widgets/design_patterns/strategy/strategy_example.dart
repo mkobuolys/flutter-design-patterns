@@ -20,25 +20,17 @@ class _StrategyExampleState extends State<StrategyExample> {
     ParcelTerminalShippingStrategy(),
     PriorityShippingStrategy(),
   ];
-  int _selectedStrategyIndex = 0;
-  Order _order = Order();
+  var _selectedStrategyIndex = 0;
+  var _order = Order();
 
-  void _addToOrder() {
-    setState(() {
-      _order.addOrderItem(OrderItem.random());
-    });
-  }
+  void _addToOrder() => setState(() => _order.addOrderItem(OrderItem.random()));
 
-  void _clearOrder() {
-    setState(() {
-      _order = Order();
-    });
-  }
+  void _clearOrder() => setState(() => _order = Order());
 
   void _setSelectedStrategyIndex(int? index) {
-    setState(() {
-      _selectedStrategyIndex = index!;
-    });
+    if (index == null) return;
+
+    setState(() => _selectedStrategyIndex = index);
   }
 
   @override

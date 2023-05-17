@@ -1,17 +1,13 @@
 import 'pizza.dart';
 
-class PizzaBase extends Pizza {
-  PizzaBase(String description) {
-    this.description = description;
-  }
+class PizzaBase implements Pizza {
+  const PizzaBase(this.description);
+
+  final String description;
 
   @override
-  String getDescription() {
-    return description;
-  }
+  String getDescription() => description;
 
   @override
-  double getPrice() {
-    return 3.0;
-  }
+  double getPrice() => 3.0;
 }

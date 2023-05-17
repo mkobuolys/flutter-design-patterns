@@ -7,23 +7,17 @@ import '../widgets/sliders/ios_slider.dart';
 import '../widgets/switches/ios_switch.dart';
 
 class CupertinoWidgetsFactory implements IWidgetsFactory {
-  @override
-  String getTitle() {
-    return 'iOS widgets';
-  }
+  const CupertinoWidgetsFactory();
 
   @override
-  IActivityIndicator createActivityIndicator() {
-    return IosActivityIndicator();
-  }
+  String getTitle() => 'iOS widgets';
 
   @override
-  ISlider createSlider() {
-    return IosSlider();
-  }
+  IActivityIndicator createActivityIndicator() => const IosActivityIndicator();
 
   @override
-  ISwitch createSwitch() {
-    return IosSwitch();
-  }
+  ISlider createSlider() => const IosSlider();
+
+  @override
+  ISwitch createSwitch() => const IosSwitch();
 }

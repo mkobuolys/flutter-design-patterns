@@ -8,27 +8,16 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
   String label = 'Parcel terminal shipping';
 
   @override
-  double calculate(Order order) {
-    return order.items.fold<double>(
-      0.0,
-      (sum, item) => sum + _getOrderItemShippingPrice(item),
-    );
-  }
+  double calculate(Order order) => order.items.fold<double>(
+        0.0,
+        (sum, item) => sum + _getOrderItemShippingPrice(item),
+      );
 
-  double _getOrderItemShippingPrice(OrderItem orderItem) {
-    switch (orderItem.packageSize) {
-      case PackageSize.S:
-        return 1.99;
-      case PackageSize.M:
-        return 2.49;
-      case PackageSize.L:
-        return 2.99;
-      case PackageSize.XL:
-        return 3.49;
-      default:
-        throw Exception(
-          "Unknown shipping price for the package of size '${orderItem.packageSize}'.",
-        );
-    }
-  }
+  double _getOrderItemShippingPrice(OrderItem orderItem) =>
+      switch (orderItem.packageSize) {
+        PackageSize.S => 1.99,
+        PackageSize.M => 2.49,
+        PackageSize.L => 2.99,
+        PackageSize.XL => 3.49,
+      };
 }

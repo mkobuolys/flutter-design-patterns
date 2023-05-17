@@ -14,20 +14,20 @@ The _EntityBase_ is an abstract class which is used as a base class for all the 
 
 _Customer_ and _Order_ are concrete entities which extend the abstract class _EntityBase_. _Customer_ class contains _name_ and _email_ properties, _Customer.fromJson_ named constructor to map the JSON object to class fields and a _toJson()_ method to map class fields to the corresponding JSON map object. _Order_ class contain _dishes_ (a list of dishes of that order) and _total_ fields, a named constructor _Order.fromJson_ and a _toJson()_ method respectively.
 
-_IRepository_ is an abstract class which is used as an interface for the repositories:
+_IRepository_ is an abstract interface class which is used for the repositories:
 
 - _getAll()_ - returns all records from the repository;
 - _save()_ - saves an entity of type _EntityBase_ in the repository.
 
-_CustomersRepository_ and _OrdersRepository_ are concrete repository classes which extend the abstract class _IRepository_ and implement its abstract methods. Also, these classes contain a storage property of type _IStorage_ which is injected into the repository via the constructor.
+_CustomersRepository_ and _OrdersRepository_ are concrete repository classes which implement _IRepository_ interface. Also, these classes contain a storage property of type _IStorage_ which is injected into the repository via the constructor.
 
-_IStorage_ is an abstract class which is used as an interface for the storages:
+_IStorage_ is an abstract interface class which is used for the storages:
 
 - _getTitle()_ - returns the title of the storage. The method is used in UI;
 - _fetchAll\<T\>()_ - returns all the records of type _T_ from the storage;
 - _store\<T\>()_ - stores a record of type _T_ in the storage.
 
-_FileStorage_ and _SqlStorage_ are concrete storage classes which extend the abstract class _IStorage_ and implement its abstract methods. Additionally, _FileStorage_ class uses the _JsonHelper_ class and its static methods to serialise/deserialise JSON objects.
+_FileStorage_ and _SqlStorage_ are concrete storage classes which implement _IStorage_ interface. Additionally, _FileStorage_ class uses the _JsonHelper_ class and its static methods to serialise/deserialise JSON objects.
 
 _BridgeExample_ initialises and contains both - customer and order - repositories which are used to retrieve the corresponding data. Additionally, the storage type of these repositories could be changed between the _FileStorage_ and _SqlStorage_ separately and at the run-time.
 
@@ -37,13 +37,11 @@ An abstract class which stores the id field and is extended by all of the entity
 
 ```
 abstract class EntityBase {
-  String id;
+  EntityBase() : id = faker.guid.guid();
 
-  EntityBase() {
-    id = faker.guid.guid();
-  }
+  final String id;
 
-  EntityBase.fromJson(Map<String, dynamic> json) : id = json['id'];
+  EntityBase.fromJson(Map<String, dynamic> json) : id = json['id'] as String;
 }
 ```
 
@@ -53,13 +51,12 @@ A simple class to store information about the customer: its name and email. Also
 
 ```
 class Customer extends EntityBase {
-  late String name;
-  late String email;
+  Customer()
+      : name = faker.person.name(),
+        email = faker.internet.email();
 
-  Customer() {
-    name = faker.person.name();
-    email = faker.internet.email();
-  }
+  final String name;
+  final String email;
 
   Customer.fromJson(super.json)
       : name = json['name'] as String,
@@ -80,13 +77,15 @@ A simple class to store information about the order: a list of dishes it contain
 
 ```
 class Order extends EntityBase {
-  late List<String> dishes;
-  late double total;
+  Order()
+      : dishes = List.generate(
+          random.integer(3, min: 1),
+          (_) => faker.food.dish(),
+        ),
+        total = random.decimal(scale: 20, min: 5);
 
-  Order() {
-    dishes = List.generate(random.integer(3, min: 1), (_) => faker.food.dish());
-    total = random.decimal(scale: 20, min: 5);
-  }
+  final List<String> dishes;
+  final double total;
 
   Order.fromJson(super.json)
       : dishes = List.from(json['dishes'] as List),
@@ -107,31 +106,30 @@ A helper classes used by the _FileStorage_ to serialise objects of type _EntityB
 
 ```
 class JsonHelper {
+  const JsonHelper._();
+
   static String serialiseObject(EntityBase entityBase) {
     return jsonEncode(entityBase);
   }
 
-  static EntityBase deserialiseObject<T extends EntityBase>(String jsonString) {
-    var json = jsonDecode(jsonString);
+  static T deserialiseObject<T extends EntityBase>(String jsonString) {
+    final json = jsonDecode(jsonString)! as Map<String, dynamic>;
 
-    switch (T) {
-      case Customer:
-        return Customer.fromJson(json);
-      case Order:
-        return Order.fromJson(json);
-      default:
-        throw Exception("Type of '$T' is not supported.");
-    }
+    return switch (T) {
+      Customer => Customer.fromJson(json) as T,
+      Order => Order.fromJson(json) as T,
+      _ => throw Exception("Type of '$T' is not supported."),
+    };
   }
 }
 ```
 
 ### IRepository
 
-An interface which defines methods to be implemented by the derived repository classes. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines methods to be implemented by the derived repository classes.
 
 ```
-abstract class IRepository {
+abstract interface class IRepository {
   List<EntityBase> getAll();
   void save(EntityBase entityBase);
 }
@@ -143,18 +141,16 @@ abstract class IRepository {
 
 ```
 class CustomersRepository implements IRepository {
-  final IStorage storage;
-
   const CustomersRepository(this.storage);
 
+  final IStorage storage;
+
   @override
-  List<EntityBase> getAll() {
-    return storage.fetchAll<Customer>();
-  }
+  List<EntityBase> getAll() => storage.fetchAll<Customer>();
 
   @override
   void save(EntityBase entityBase) {
-    storage.store<Customer>(entityBase);
+    storage.store<Customer>(entityBase as Customer);
   }
 }
 ```
@@ -163,18 +159,16 @@ class CustomersRepository implements IRepository {
 
 ```
 class OrdersRepository implements IRepository {
-  final IStorage storage;
-
   const OrdersRepository(this.storage);
 
+  final IStorage storage;
+
   @override
-  List<EntityBase> getAll() {
-    return storage.fetchAll<Order>();
-  }
+  List<EntityBase> getAll() => storage.fetchAll<Order>();
 
   @override
   void save(EntityBase entityBase) {
-    storage.store<Order>(entityBase);
+    storage.store<Order>(entityBase as Order);
   }
 }
 ```
@@ -184,7 +178,7 @@ class OrdersRepository implements IRepository {
 An interface which defines methods to be implemented by the derived storage classes.
 
 ```
-abstract class IStorage {
+abstract interface class IStorage {
   String getTitle();
   List<T> fetchAll<T extends EntityBase>();
   void store<T extends EntityBase>(T entityBase);
@@ -197,31 +191,25 @@ abstract class IStorage {
 
 ```
 class FileStorage implements IStorage {
-  Map<Type, List<String>> fileStorage = Map<Type, List<String>>();
+  final Map<Type, List<String>> fileStorage = {};
 
   @override
-  String getTitle() {
-    return 'File Storage';
-  }
+  String getTitle() => 'File Storage';
 
   @override
   List<T> fetchAll<T extends EntityBase>() {
-    if (fileStorage.containsKey(T)) {
-      var files = fileStorage[T];
+    if (!fileStorage.containsKey(T)) return [];
 
-      return files.map<T>((f) => JsonHelper.deserialiseObject<T>(f)).toList();
-    }
+    final files = fileStorage[T]!;
 
-    return List<T>();
+    return files.map<T>((f) => JsonHelper.deserialiseObject<T>(f)).toList();
   }
 
   @override
   void store<T extends EntityBase>(T entityBase) {
-    if (!fileStorage.containsKey(T)) {
-      fileStorage[T] = List<String>();
-    }
+    if (!fileStorage.containsKey(T)) fileStorage[T] = [];
 
-    fileStorage[T].add(JsonHelper.serialiseObject(entityBase));
+    fileStorage[T]!.add(JsonHelper.serialiseObject(entityBase));
   }
 }
 ```
@@ -230,25 +218,20 @@ class FileStorage implements IStorage {
 
 ```
 class SqlStorage implements IStorage {
-  Map<Type, List<EntityBase>> sqlStorage = Map<Type, List<EntityBase>>();
+  final Map<Type, List<EntityBase>> sqlStorage = {};
 
   @override
-  String getTitle() {
-    return 'SQL Storage';
-  }
+  String getTitle() => 'SQL Storage';
 
   @override
-  List<T> fetchAll<T extends EntityBase>() {
-    return sqlStorage.containsKey(T) ? sqlStorage[T] : List<T>();
-  }
+  List<T> fetchAll<T extends EntityBase>() =>
+      sqlStorage.containsKey(T) ? sqlStorage[T]! as List<T> : [];
 
   @override
   void store<T extends EntityBase>(T entityBase) {
-    if (!sqlStorage.containsKey(T)) {
-      sqlStorage[T] = List<T>();
-    }
+    if (!sqlStorage.containsKey(T)) sqlStorage[T] = <T>[];
 
-    sqlStorage[T].add(entityBase);
+    sqlStorage[T]!.add(entityBase);
   }
 }
 ```
@@ -261,52 +244,56 @@ The concrete repository does not care about the specific type of storage it uses
 
 ```
 class BridgeExample extends StatefulWidget {
+  const BridgeExample();
+
   @override
   _BridgeExampleState createState() => _BridgeExampleState();
 }
 
 class _BridgeExampleState extends State<BridgeExample> {
-  final List<IStorage> _storages = [SqlStorage(), FileStorage()];
+  final _storages = [SqlStorage(), FileStorage()];
 
-  IRepository _customersRepository;
-  IRepository _ordersRepository;
+  late IRepository _customersRepository;
+  late IRepository _ordersRepository;
 
-  List<Customer> _customers;
-  List<Order> _orders;
+  late List<Customer> _customers;
+  late List<Order> _orders;
 
-  int _selectedCustomerStorageIndex = 0;
-  int _selectedOrderStorageIndex = 0;
+  var _selectedCustomerStorageIndex = 0;
+  var _selectedOrderStorageIndex = 0;
 
-  void _onSelectedCustomerStorageIndexChanged(int index) {
+  void _onSelectedCustomerStorageIndexChanged(int? index) {
+    if (index == null) return;
+
     setState(() {
       _selectedCustomerStorageIndex = index;
       _customersRepository = CustomersRepository(_storages[index]);
-      _customers = _customersRepository.getAll();
+      _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
-  void _onSelectedOrderStorageIndexChanged(int index) {
+  void _onSelectedOrderStorageIndexChanged(int? index) {
+    if (index == null) return;
+
     setState(() {
       _selectedOrderStorageIndex = index;
       _ordersRepository = OrdersRepository(_storages[index]);
-      _orders = _ordersRepository.getAll();
+      _orders = _ordersRepository.getAll() as List<Order>;
     });
   }
 
   void _addCustomer() {
     _customersRepository.save(Customer());
 
-    setState(() {
-      _customers = _customersRepository.getAll();
-    });
+    setState(
+      () => _customers = _customersRepository.getAll() as List<Customer>,
+    );
   }
 
   void _addOrder() {
     _ordersRepository.save(Order());
 
-    setState(() {
-      _orders = _ordersRepository.getAll();
-    });
+    setState(() => _orders = _ordersRepository.getAll() as List<Order>);
   }
 
   @override
@@ -315,18 +302,20 @@ class _BridgeExampleState extends State<BridgeExample> {
 
     _customersRepository =
         CustomersRepository(_storages[_selectedCustomerStorageIndex]);
-    _customers = _customersRepository.getAll();
+    _customers = _customersRepository.getAll() as List<Customer>;
 
     _ordersRepository = OrdersRepository(_storages[_selectedOrderStorageIndex]);
-    _orders = _ordersRepository.getAll();
+    _orders = _ordersRepository.getAll() as List<Order>;
   }
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -334,7 +323,7 @@ class _BridgeExampleState extends State<BridgeExample> {
               children: <Widget>[
                 Text(
                   'Select customers storage:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -344,23 +333,24 @@ class _BridgeExampleState extends State<BridgeExample> {
               onChanged: _onSelectedCustomerStorageIndexChanged,
             ),
             PlatformButton(
-              child: Text('Add'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addCustomer,
+              text: 'Add',
             ),
-            _customers.isNotEmpty
-                ? CustomersDatatable(customers: _customers)
-                : Text(
-                    '0 customers found',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
-            Divider(),
+            if (_customers.isNotEmpty)
+              CustomersDatatable(customers: _customers)
+            else
+              Text(
+                '0 customers found',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            const Divider(),
             Row(
               children: <Widget>[
                 Text(
                   'Select orders storage:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -370,17 +360,18 @@ class _BridgeExampleState extends State<BridgeExample> {
               onChanged: _onSelectedOrderStorageIndexChanged,
             ),
             PlatformButton(
-              child: Text('Add'),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _addOrder,
+              text: 'Add',
             ),
-            _orders.isNotEmpty
-                ? OrdersDatatable(orders: _orders)
-                : Text(
-                    '0 orders found',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
+            if (_orders.isNotEmpty)
+              OrdersDatatable(orders: _orders)
+            else
+              Text(
+                '0 orders found',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
           ],
         ),
       ),

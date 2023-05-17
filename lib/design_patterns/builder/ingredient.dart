@@ -6,11 +6,7 @@ abstract class Ingredient {
   @protected
   late String name;
 
-  List<String> getAllergens() {
-    return allergens;
-  }
+  List<String> getAllergens() => allergens;
 
-  String getName() {
-    return name;
-  }
+  String getName() => name;
 }

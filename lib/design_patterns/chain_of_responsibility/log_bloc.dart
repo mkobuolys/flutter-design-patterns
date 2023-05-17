@@ -5,8 +5,7 @@ import 'log_message.dart';
 
 class LogBloc {
   final List<LogMessage> _logs = [];
-  final StreamController<List<LogMessage>> _logStream =
-      StreamController<List<LogMessage>>();
+  final _logStream = StreamController<List<LogMessage>>();
 
   StreamSink<List<LogMessage>> get _inLogStream => _logStream.sink;
   Stream<List<LogMessage>> get outLogStream => _logStream.stream;

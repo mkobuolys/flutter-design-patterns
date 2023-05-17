@@ -15,11 +15,11 @@ The diagram shows only the Singleton implementation by definition (_ExampleState
 A base class for the abstraction of example's state which contains an initial text value, a single text property and methods to operate it.
 
 ```
-abstract class ExampleStateBase {
+base class ExampleStateBase {
   @protected
-  String initialText;
+  late String initialText;
   @protected
-  String stateText;
+  late String stateText;
   String get currentText => stateText;
 
   void setStateText(String text) {
@@ -39,21 +39,16 @@ Example's state is implemented in 3 different ways:
 - ExampleStateByDefinition - example's state is a Singleton which is implemented by definition.
 
 ```
-class ExampleStateByDefinition extends ExampleStateBase {
-  static ExampleStateByDefinition _instance;
+final class ExampleStateByDefinition extends ExampleStateBase {
+  static ExampleStateByDefinition? _instance;
 
   ExampleStateByDefinition._internal() {
     initialText = "A new 'ExampleStateByDefinition' instance has been created.";
     stateText = initialText;
-    print(stateText);
   }
 
   static ExampleStateByDefinition getState() {
-    if (_instance == null) {
-      _instance = ExampleStateByDefinition._internal();
-    }
-
-    return _instance;
+    return _instance ??= ExampleStateByDefinition._internal();
   }
 }
 ```
@@ -61,7 +56,7 @@ class ExampleStateByDefinition extends ExampleStateBase {
 - ExampleState - example's state is a Singleton which is implemented using the Dart language capabilities.
 
 ```
-class ExampleState extends ExampleStateBase {
+final class ExampleState extends ExampleStateBase {
   static final ExampleState _instance = ExampleState._internal();
 
   factory ExampleState() {
@@ -71,7 +66,6 @@ class ExampleState extends ExampleStateBase {
   ExampleState._internal() {
     initialText = "A new 'ExampleState' instance has been created.";
     stateText = initialText;
-    print(stateText);
   }
 }
 ```
@@ -79,12 +73,11 @@ class ExampleState extends ExampleStateBase {
 - ExampleStateWithoutSingleton - example's state is implemented without using a Singleton design pattern.
 
 ```
-class ExampleStateWithoutSingleton extends ExampleStateBase {
+final class ExampleStateWithoutSingleton extends ExampleStateBase {
   ExampleStateWithoutSingleton() {
     initialText =
         "A new 'ExampleStateWithoutSingleton' instance has been created.";
     stateText = initialText;
-    print(stateText);
   }
 }
 ```
@@ -95,6 +88,8 @@ Example uses all three different implementations of the state. Singleton impleme
 
 ```
 class SingletonExample extends StatefulWidget {
+  const SingletonExample();
+
   @override
   _SingletonExampleState createState() => _SingletonExampleState();
 }
@@ -107,14 +102,14 @@ class _SingletonExampleState extends State<SingletonExample> {
   ];
 
   void _setTextValues([String text = 'Singleton']) {
-    for (var state in stateList) {
+    for (final state in stateList) {
       state.setStateText(text);
     }
     setState(() {});
   }
 
   void _reset() {
-    for (var state in stateList) {
+    for (final state in stateList) {
       state.reset();
     }
     setState(() {});
@@ -123,34 +118,38 @@ class _SingletonExampleState extends State<SingletonExample> {
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             for (var state in stateList)
               Padding(
-                padding: const EdgeInsets.only(bottom: LayoutConstants.paddingL),
+                padding: const EdgeInsets.only(
+                  bottom: LayoutConstants.paddingL,
+                ),
                 child: SingletonExampleCard(
                   text: state.currentText,
                 ),
               ),
             const SizedBox(height: LayoutConstants.spaceL),
             PlatformButton(
-              child: Text("Change states\' text to 'Singleton'"),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _setTextValues,
+              text: "Change states' text to 'Singleton'",
             ),
             PlatformButton(
-              child: Text("Reset"),
               materialColor: Colors.black,
               materialTextColor: Colors.white,
               onPressed: _reset,
+              text: 'Reset',
             ),
             const SizedBox(height: LayoutConstants.spaceXL),
-            Text(
-              'Note: change states\' text and navigate the application (e.g. go to the tab "description" or main menu, then go back to this example) to see how the Singleton state behaves!',
+            const Text(
+              "Note: change states' text and navigate the application (e.g. go to main menu, then go back to this example) to see how the Singleton state behaves!",
               textAlign: TextAlign.justify,
             ),
           ],

@@ -6,21 +6,26 @@ import '../../student.dart';
 import '../../students_bmi_calculator.dart';
 
 class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
-  final XmlStudentsApi _api = XmlStudentsApi();
+  const StudentsXmlBmiCalculator({
+    this.api = const XmlStudentsApi(),
+  });
+
+  final XmlStudentsApi api;
 
   @override
   @protected
   List<Student> getStudentsData() {
-    final studentsXml = _api.getStudentsXml();
+    final studentsXml = api.getStudentsXml();
     final xmlDocument = XmlDocument.parse(studentsXml);
     final studentsList = <Student>[];
 
     for (final xmlElement in xmlDocument.findAllElements('student')) {
-      final fullName = xmlElement.findElements('fullname').single.text;
-      final age = int.parse(xmlElement.findElements('age').single.text);
+      final fullName = xmlElement.findElements('fullname').single.innerText;
+      final age = int.parse(xmlElement.findElements('age').single.innerText);
       final height =
-          double.parse(xmlElement.findElements('height').single.text);
-      final weight = int.parse(xmlElement.findElements('weight').single.text);
+          double.parse(xmlElement.findElements('height').single.innerText);
+      final weight =
+          int.parse(xmlElement.findElements('weight').single.innerText);
 
       studentsList.add(
         Student(

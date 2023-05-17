@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-abstract class ExampleStateBase {
+base class ExampleStateBase {
   @protected
   late String initialText;
   @protected

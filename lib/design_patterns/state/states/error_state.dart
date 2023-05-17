@@ -5,9 +5,11 @@ import '../state_context.dart';
 import 'loading_state.dart';
 
 class ErrorState implements IState {
+  const ErrorState();
+
   @override
-  Future nextState(StateContext context) async {
-    context.setState(LoadingState());
+  Future<void> nextState(StateContext context) async {
+    context.setState(const LoadingState());
   }
 
   @override
