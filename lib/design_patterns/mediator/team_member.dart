@@ -1,14 +1,14 @@
 import 'notification_hub.dart';
 
-abstract class TeamMember {
+base class TeamMember {
+  TeamMember({
+    required this.name,
+  });
+
   final String name;
 
   NotificationHub? notificationHub;
   String? lastNotification;
-
-  TeamMember({
-    required this.name,
-  });
 
   void receive(String from, String message) {
     lastNotification = '$from: "$message"';

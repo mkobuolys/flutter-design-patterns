@@ -1,14 +1,14 @@
 import '../notification_hub.dart';
 import '../team_member.dart';
 
-class TeamNotificationHub extends NotificationHub {
-  final _teamMembers = <TeamMember>[];
-
+class TeamNotificationHub implements NotificationHub {
   TeamNotificationHub({
     List<TeamMember>? members,
   }) {
     members?.forEach(register);
   }
+
+  final _teamMembers = <TeamMember>[];
 
   @override
   List<TeamMember> getTeamMembers() => _teamMembers;

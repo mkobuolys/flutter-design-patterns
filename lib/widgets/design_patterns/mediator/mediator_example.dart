@@ -32,23 +32,13 @@ class _MediatorExampleState extends State<MediatorExample> {
     _notificationHub = TeamNotificationHub(members: members);
   }
 
-  void _sendToAll() {
-    setState(() {
-      _admin.send('Hello');
-    });
-  }
+  void _sendToAll() => setState(() => _admin.send('Hello'));
 
-  void _sendToQa() {
-    setState(() {
-      _admin.sendTo<Tester>('BUG!');
-    });
-  }
+  void _sendToQa() => setState(() => _admin.sendTo<Tester>('BUG!'));
 
-  void _sendToDevelopers() {
-    setState(() {
-      _admin.sendTo<Developer>('Hello, World!');
-    });
-  }
+  void _sendToDevelopers() => setState(
+        () => _admin.sendTo<Developer>('Hello, World!'),
+      );
 
   void _addTeamMember() {
     final name = '${faker.person.firstName()} ${faker.person.lastName()}';
@@ -56,16 +46,12 @@ class _MediatorExampleState extends State<MediatorExample> {
         ? Tester(name: name)
         : Developer(name: name);
 
-    setState(() {
-      _notificationHub.register(teamMember);
-    });
+    setState(() => _notificationHub.register(teamMember));
   }
 
-  void _sendFromMember(TeamMember member) {
-    setState(() {
-      member.send('Hello from ${member.name}');
-    });
-  }
+  void _sendFromMember(TeamMember member) => setState(
+        () => member.send('Hello from ${member.name}'),
+      );
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'team_member.dart';
 
-abstract class NotificationHub {
+abstract interface class NotificationHub {
   List<TeamMember> getTeamMembers();
   void register(TeamMember member);
   void send(TeamMember sender, String message);
