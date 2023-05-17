@@ -12,11 +12,11 @@ The class diagram below shows the implementation of the **Flyweight** design pat
 
 The _ShapeType_ is an enumerator class defining possible shape types - Circle and Square.
 
-The _IPositionedShape_ is an abstract class which is used as an interface for the specific shape classes:
+The _IPositionedShape_ is an abstract interface class which is used for the specific shape classes:
 
 - _render()_ - renders the shape - returns the positioned shape widget. Also, the **extrinsic** state (x and y coordinates) are passed to this method to render the shape in the exact position.
 
-_Circle_ and _Square_ are concrete positioned shape classes which implement the abstract class _IPositionedShape_. Both of these shapes have their own **intrinsic** state: circle defines _color_ and _diameter_ properties while square contains _color_, _width_ properties and a getter _height_ which returns the same value as _width_.
+_Circle_ and _Square_ are concrete positioned shape classes which implement the _IPositionedShape_ interface. Both of these shapes have their own **intrinsic** state: circle defines _color_ and _diameter_ properties while square contains _color_, _width_ properties and a getter _height_ which returns the same value as _width_.
 
 The _ShapeFactory_ is a simple factory class which creates and returns a specific shape object via the _createShape()_ method by providing the _ShapeType_.
 
@@ -30,17 +30,17 @@ A special kind of class - _enumeration_ - to define different shape types.
 
 ```
 enum ShapeType {
-  Circle,
-  Square,
+  circle,
+  square,
 }
 ```
 
 ### IPositionedShape
 
-An interface which defines the _render()_ method to be implemented by concrete shape classes. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines the _render()_ method to be implemented by concrete shape classes.
 
 ```
-abstract class IPositionedShape {
+abstract interface class IPositionedShape {
   Widget render(double x, double y);
 }
 ```
@@ -51,14 +51,13 @@ abstract class IPositionedShape {
 
 ```
 class Circle implements IPositionedShape {
+  const Circle({
+    required this.color,
+    required this.diameter,
+  });
+
   final Color color;
   final double diameter;
-
-  Circle({
-    @required this.color,
-    @required this.diameter,
-  })  : assert(color != null),
-        assert(diameter != null);
 
   @override
   Widget render(double x, double y) {
@@ -82,16 +81,15 @@ class Circle implements IPositionedShape {
 
 ```
 class Square implements IPositionedShape {
+  const Square({
+    required this.color,
+    required this.width,
+  });
+
   final Color color;
   final double width;
 
-  Square({
-    @required this.color,
-    @required this.width,
-  })  : assert(color != null),
-        assert(width != null);
-
-  double get height => width;
+  double get _height => width;
 
   @override
   Widget render(double x, double y) {
@@ -99,7 +97,7 @@ class Square implements IPositionedShape {
       left: x,
       bottom: y,
       child: Container(
-        height: height,
+        height: _height,
         width: width,
         color: color,
       ),
@@ -114,23 +112,20 @@ A simple factory class which defines the _createShape()_ method to create a conc
 
 ```
 class ShapeFactory {
-  IPositionedShape createShape(ShapeType shapeType) {
-    switch (shapeType) {
-      case ShapeType.Circle:
-        return Circle(
-          color: Colors.red.withOpacity(0.2),
-          diameter: 10.0,
-        );
-      case ShapeType.Square:
-        return Square(
-          color: Colors.blue.withOpacity(0.2),
-          width: 10.0,
-        );
-      default:
-        throw new Exception("Shape type '$shapeType' is not supported.");
-    }
-  }
+  const ShapeFactory();
+
+  IPositionedShape createShape(ShapeType shapeType) => switch (shapeType) {
+        ShapeType.circle => Circle(
+            color: Colors.red.withOpacity(0.2),
+            diameter: 10.0,
+          ),
+        ShapeType.square => Square(
+            color: Colors.blue.withOpacity(0.2),
+            width: 10.0,
+          ),
+      };
 }
+
 ```
 
 ### ShapeFlyweightFactory
@@ -139,24 +134,22 @@ A flyweight factory class which keeps track of all the flyweight objects and cre
 
 ```
 class ShapeFlyweightFactory {
-  final ShapeFactory shapeFactory;
-  final Map<ShapeType, IPositionedShape> shapesMap = Map<ShapeType, IPositionedShape>();
-
   ShapeFlyweightFactory({
-    @required this.shapeFactory,
-  }) : assert(shapeFactory != null);
+    required this.shapeFactory,
+  });
+
+  final ShapeFactory shapeFactory;
+  final Map<ShapeType, IPositionedShape> shapesMap = {};
 
   IPositionedShape getShape(ShapeType shapeType) {
     if (!shapesMap.containsKey(shapeType)) {
       shapesMap[shapeType] = shapeFactory.createShape(shapeType);
     }
 
-    return shapesMap[shapeType];
+    return shapesMap[shapeType]!;
   }
 
-  int getShapeInstancesCount() {
-    return shapesMap.length;
-  }
+  int getShapeInstancesCount() => shapesMap.length;
 }
 ```
 
@@ -168,39 +161,39 @@ With the _ShapeFlyweightFactory_, client - _FlyweightExample_ widget - does not 
 
 ```
 class FlyweightExample extends StatefulWidget {
+  const FlyweightExample();
+
   @override
   _FlyweightExampleState createState() => _FlyweightExampleState();
 }
 
 class _FlyweightExampleState extends State<FlyweightExample> {
-  static const int SHAPES_COUNT = 1000;
+  static const shapesCount = 1000;
 
-  final ShapeFactory shapeFactory = ShapeFactory();
+  final shapeFactory = const ShapeFactory();
 
-  ShapeFlyweightFactory _shapeFlyweightFactory;
-  List<IPositionedShape> _shapesList;
+  late final ShapeFlyweightFactory _shapeFlyweightFactory;
+  late List<IPositionedShape> _shapesList;
 
-  int _shapeInstancesCount = 0;
-  bool _useFlyweightFactory = false;
+  var _shapeInstancesCount = 0;
+  var _useFlyweightFactory = false;
 
   @override
   void initState() {
     super.initState();
 
-    _shapeFlyweightFactory = ShapeFlyweightFactory(
-      shapeFactory: shapeFactory,
-    );
+    _shapeFlyweightFactory = ShapeFlyweightFactory(shapeFactory: shapeFactory);
 
     _buildShapesList();
   }
 
   void _buildShapesList() {
     var shapeInstancesCount = 0;
-    _shapesList = List<IPositionedShape>();
+    _shapesList = <IPositionedShape>[];
 
-    for (var i = 0; i < SHAPES_COUNT; i++) {
-      var shapeType = _getRandomShapeType();
-      var shape = _useFlyweightFactory
+    for (var i = 0; i < shapesCount; i++) {
+      final shapeType = _getRandomShapeType();
+      final shape = _useFlyweightFactory
           ? _shapeFlyweightFactory.getShape(shapeType)
           : shapeFactory.createShape(shapeType);
 
@@ -216,15 +209,13 @@ class _FlyweightExampleState extends State<FlyweightExample> {
   }
 
   ShapeType _getRandomShapeType() {
-    var values = ShapeType.values;
+    const values = ShapeType.values;
 
     return values[Random().nextInt(values.length)];
   }
 
   void _toggleUseFlyweightFactory(bool value) {
-    setState(() {
-      _useFlyweightFactory = value;
-    });
+    setState(() => _useFlyweightFactory = value);
 
     _buildShapesList();
   }
@@ -241,7 +232,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SwitchListTile.adaptive(
-              title: Text(
+              title: const Text(
                 'Use flyweight factory',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -256,7 +247,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
         Center(
           child: Text(
             'Shape instances count: $_shapeInstancesCount',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),

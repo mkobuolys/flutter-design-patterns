@@ -13,23 +13,21 @@ class FlyweightExample extends StatefulWidget {
 }
 
 class _FlyweightExampleState extends State<FlyweightExample> {
-  static const int shapesCount = 1000;
+  static const shapesCount = 1000;
 
   final shapeFactory = const ShapeFactory();
 
   late final ShapeFlyweightFactory _shapeFlyweightFactory;
   late List<IPositionedShape> _shapesList;
 
-  int _shapeInstancesCount = 0;
-  bool _useFlyweightFactory = false;
+  var _shapeInstancesCount = 0;
+  var _useFlyweightFactory = false;
 
   @override
   void initState() {
     super.initState();
 
-    _shapeFlyweightFactory = ShapeFlyweightFactory(
-      shapeFactory: shapeFactory,
-    );
+    _shapeFlyweightFactory = ShapeFlyweightFactory(shapeFactory: shapeFactory);
 
     _buildShapesList();
   }
@@ -62,9 +60,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
   }
 
   void _toggleUseFlyweightFactory(bool value) {
-    setState(() {
-      _useFlyweightFactory = value;
-    });
+    setState(() => _useFlyweightFactory = value);
 
     _buildShapesList();
   }
