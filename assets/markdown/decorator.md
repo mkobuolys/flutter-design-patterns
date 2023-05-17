@@ -29,7 +29,7 @@ _DecoratorExample_ initialises and contains the _PizzaMenu_ class object to retr
 
 ### Pizza
 
-An interface of the _Pizza_ component which defines a common contract for concrete component and decorator objects.
+An interface of the _Pizza_ component that defines a common contract for concrete component and decorator objects.
 
 ```
 abstract interface class Pizza {
@@ -40,7 +40,7 @@ abstract interface class Pizza {
 
 ### PizzaBase
 
-A concrete component which implement the _Pizza_ interface methods. An object of this class (its behaviour) gets decorated by the specific decorator classes.
+A concrete component that implements the _Pizza_ interface methods. An object of this class (its behaviour) gets decorated by the specific decorator classes.
 
 ```
 class PizzaBase implements Pizza {
@@ -58,7 +58,7 @@ class PizzaBase implements Pizza {
 
 ### PizzaDecorator
 
-An abstract decorator class which maintains a reference to a component class and forwards requests to it.
+An abstract decorator class that maintains a reference to a component class and forwards requests to it.
 
 ```
 abstract class PizzaDecorator implements Pizza {
@@ -164,7 +164,7 @@ class Sauce extends PizzaDecorator {
 
 ### PizzaToppingData
 
-A simple class which contains data used by the pizza topping's selection chip in the UI. The data consists of the _label_ property and the current selection state (whether the chip is currently selected or not) which could be changed by using the _setSelected()_ method.
+A simple class that contains data used by the pizza topping's selection chip in the UI. The data consists of the _label_ property and the current selection state (whether the chip is currently selected or not) which could be changed by using the _setSelected()_ method.
 
 ```
 class PizzaToppingData {
@@ -179,7 +179,7 @@ class PizzaToppingData {
 
 ### PizzaMenu
 
-A simple class which provides a map of _PizzaToppingData_ objects via the _getPizzaToppingsDataMap()_ method for the pizza toppings selection in UI. Also, the class defines a _getPizza()_ method which returns a _Pizza_ object that is built by using the pre-defined concrete decorator classes based on the pizza recipe - Margherita, Pepperoni or custom (based on the selected pizza toppings).
+A simple class that provides a map of _PizzaToppingData_ objects via the _getPizzaToppingsDataMap()_ method for the pizza toppings selection in UI. Also, the class defines a _getPizza()_ method which returns a _Pizza_ object that is built by using the pre-defined concrete decorator classes based on the pizza recipe - Margherita, Pepperoni or custom (based on the selected pizza toppings).
 
 This class (to be more specific, _getMargherita()_, _getPepperoni()_ and _getCustom()_ methods) represents the main idea of the decorator design pattern - a base component class is instantiated and then wrapped by the concrete decorator classes, hence extending the base class and its behaviour. As a result, it is possible to use wrapper classes and add or remove responsibilities from an object at runtime, for instance, as it is used in the _getCustom()_ method where the appropriate decorator classes are used based on the selected pizza toppings data in the UI.
 

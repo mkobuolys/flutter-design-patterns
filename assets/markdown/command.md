@@ -10,13 +10,13 @@ The class diagram below shows the implementation of the **Command** design patte
 
 ![Command Implementation Class Diagram](resource:assets/images/command/command_implementation.png)
 
-_Command_ is an abstract interface class which is used for all the specific commands:
+_Command_ defines a common interface for all the specific commands:
 
-- _execute()_ - an abstract method which executes the command;
-- _getTitle()_ - an abstract method which returns the command's title. Used in command history UI;
-- _undo()_ - an abstract method which undoes the command and returns the receiver to the previous state.
+- _execute()_ - executes the command;
+- _getTitle()_ - returns the command's title. Used in command history UI;
+- _undo()_ - undoes the command and returns the receiver to the previous state.
 
-_ChangeColorCommand_, _ChangeHeightCommand_ and _ChangeWidthCommand_ are concrete command classes which implement the abstract class _Command_ and its methods.
+_ChangeColorCommand_, _ChangeHeightCommand_ and _ChangeWidthCommand_ are concrete implementations of the _Command_ interface.
 
 _Shape_ is a receiver class which stores multiple properties defining the shape presented in UI: _color_, _height_ and _width_.
 
@@ -43,7 +43,7 @@ class Shape {
 
 ### Command
 
-An interface which defines methods to be implemented by the specific command classes.
+An interface that defines methods to be implemented by the specific command classes.
 
 ```
 abstract interface class Command {
@@ -122,7 +122,7 @@ class ChangeWidthCommand implements Command {
 
 ### CommandHistory
 
-A simple class which stores a list of already executed commands. Also, this class provides _isEmpty_ and _commandHistoryList_ getter methods to return true if the command history list is empty and return a list of command names stored in the command history respectively. A new command could be added to the command history list via the _add()_ method and the last command could be undone using the _undo()_ method (if the command history list is not empty).
+A simple class that stores a list of already executed commands. Also, this class provides _isEmpty_ and _commandHistoryList_ getter methods to return true if the command history list is empty and return a list of command names stored in the command history respectively. A new command could be added to the command history list via the _add()_ method and the last command could be undone using the _undo()_ method (if the command history list is not empty).
 
 ```
 class CommandHistory {

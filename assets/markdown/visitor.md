@@ -37,7 +37,7 @@ _VisitorExample_ contains a list of visitors implementing the _IVisitor_ interfa
 
 ### IFile
 
-An interface which defines methods to be implemented by specific files and directories. The interface also defines an _accept()_ method which is used for the Visitor design pattern implementation.
+An interface that defines methods to be implemented by specific files and directories. The interface also defines an _accept()_ method which is used for the Visitor design pattern implementation.
 
 ```
 abstract interface class IFile {

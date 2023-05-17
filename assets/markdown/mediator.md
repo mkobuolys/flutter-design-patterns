@@ -18,7 +18,7 @@ _TeamMember_ is a base class that is used by all the specific team member classe
 
 _Admin_, _Developer_ and _Tester_ are concrete team member classes that extend the abstract class _TeamMember_ as well as override the default _toString()_ method.
 
-_NotificationHub_ is an abstract interface class that is used by all the specific notification hubs and defines several methods:
+_NotificationHub_ defines an interface for all the specific notification hubs:
 
 - _getTeamMembers()_ - returns a list of team members of the hub;
 - _register()_ - registers a team member to the hub;

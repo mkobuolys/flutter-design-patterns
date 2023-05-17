@@ -32,7 +32,7 @@ _DefaultStockSubscriber_ and _GrowingStockSubscriber_ are concrete stock subscri
 
 ### StockTicker
 
-A base class implementing base methods for all the specific stock ticker classes. Property _title_ is used in the UI for stock ticker selection, _stockTimer_ periodically emits a new stock value that is stored in the _stock_ property by using the _setStock()_ method. The class also stores a list of stock subscribers that can subscribe to the stock ticker and unsubscribe from it by using the _subscribe()_ and _unsubscribe()_ respectively. Stock ticker subscribers are notified about the value change by calling the _notifySubscribers()_ method. The stock timer could be stopped by calling the _stopTicker()_ method.
+A base class implementing methods for all the specific stock ticker classes. Property _title_ is used in the UI for stock ticker selection, _stockTimer_ periodically emits a new stock value that is stored in the _stock_ property by using the _setStock()_ method. The class also stores a list of stock subscribers that can subscribe to the stock ticker and unsubscribe from it by using the _subscribe()_ and _unsubscribe()_ respectively. Stock ticker subscribers are notified about the value change by calling the _notifySubscribers()_ method. The stock timer could be stopped by calling the _stopTicker()_ method.
 
 ```
 base class StockTicker {

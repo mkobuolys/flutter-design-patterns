@@ -12,11 +12,11 @@ The class diagram below shows the implementation of the **Flyweight** design pat
 
 The _ShapeType_ is an enumerator class defining possible shape types - Circle and Square.
 
-The _IPositionedShape_ is an abstract interface class which is used for the specific shape classes:
+_IPositionedShape_ defines a common interface for the specific shape classes:
 
 - _render()_ - renders the shape - returns the positioned shape widget. Also, the **extrinsic** state (x and y coordinates) are passed to this method to render the shape in the exact position.
 
-_Circle_ and _Square_ are concrete positioned shape classes which implement the _IPositionedShape_ interface. Both of these shapes have their own **intrinsic** state: circle defines _color_ and _diameter_ properties while square contains _color_, _width_ properties and a getter _height_ which returns the same value as _width_.
+_Circle_ and _Square_ are concrete positioned shape implementations of the _IPositionedShape_ interface. Both of these shapes have their own **intrinsic** state: circle defines _color_ and _diameter_ properties while square contains _color_, _width_ properties and a getter _height_ which returns the same value as _width_.
 
 The _ShapeFactory_ is a simple factory class which creates and returns a specific shape object via the _createShape()_ method by providing the _ShapeType_.
 
@@ -37,7 +37,7 @@ enum ShapeType {
 
 ### IPositionedShape
 
-An interface which defines the _render()_ method to be implemented by concrete shape classes.
+An interface that defines the _render()_ method to be implemented by concrete shape classes.
 
 ```
 abstract interface class IPositionedShape {
@@ -108,7 +108,7 @@ class Square implements IPositionedShape {
 
 ### ShapeFactory
 
-A simple factory class which defines the _createShape()_ method to create a concrete shape by providing its type.
+A simple factory class that defines the _createShape()_ method to create a concrete shape by providing its type.
 
 ```
 class ShapeFactory {
@@ -125,12 +125,11 @@ class ShapeFactory {
           ),
       };
 }
-
 ```
 
 ### ShapeFlyweightFactory
 
-A flyweight factory class which keeps track of all the flyweight objects and creates them if needed.
+A flyweight factory class that keeps track of all the flyweight objects and creates them if needed.
 
 ```
 class ShapeFlyweightFactory {

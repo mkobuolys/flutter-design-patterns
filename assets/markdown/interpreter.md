@@ -25,7 +25,7 @@ _ExpressionSection_ uses the _ExpressionHelpers_ class to build the expression t
 
 ### IExpression
 
-An interface which defines the _interpret()_ method to be implemented by the terminal and nonterminal expression classes.
+An interface that defines the _interpret()_ method to be implemented by the terminal and nonterminal expression classes.
 
 ```
 abstract interface class IExpression {

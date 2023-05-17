@@ -102,7 +102,7 @@ class TvApi {
 
 ### SmartHomeState
 
-A class which holds the current state of all the smart devices at home.
+A class that holds the current state of all the smart devices at home.
 
 ```
 class SmartHomeState {
@@ -117,7 +117,7 @@ class SmartHomeState {
 
 ### GamingFacade
 
-A facade class which uses APIs of the PlayStation and streaming camera and provides simplified methods to use them:
+A facade class that uses APIs of the PlayStation and streaming camera and provides simplified methods to use them:
 
 - _startGaming()_ - uses the _PlaystationApi_ to turn the gaming console on;
 - _stopGaming()_ - uses the _PlaystationApi_ to turn the gaming console off;
@@ -156,7 +156,7 @@ class GamingFacade {
 
 ### SmartHomeFacade
 
-A facade class which uses APIs of the smart TV, audio devices, Netflix platform and smart home equipment. Also, _GamingFacade_ is used. Several methods are provided to simplify smart home actions:
+A facade class that uses APIs of the smart TV, audio devices, Netflix platform and smart home equipment. Also, _GamingFacade_ is used. Several methods are provided to simplify smart home actions:
 
 - _startMovie()_ - uses several different APIs to turn off the lights, turn on the smart TV and speakers, connect to the Netflix platform and start playing the selected movie;
 - _stopMovie()_ - uses several different APIs to disconnect from the Netflix, turn off the smart TV and speakers, also turns the lights back on;
@@ -224,7 +224,7 @@ class SmartHomeFacade {
 
 ### Example
 
-_FacadeExample_ widget contains the _SmartHomeState_ which hold the current state of smart devices and _SmartHomeFacade_ to simplify the "smart actions". This widget only knows the simplified methods provided by the smart home facade but does not care about their implementation details, dependencies between classes or other facades and the amount of different APIs used to execute the single action. This allows implementing a complicated logic to handle the smart home actions just by turning the switch ON/OFF in _ModeSwitcher_ widgets. Also, the implementation details of the smart devices' handling methods in the _SmartHomeFacade_ could be changed/improved without affecting the UI code.
+_FacadeExample_ widget contains the _SmartHomeState_ which holds the current state of smart devices and _SmartHomeFacade_ to simplify the "smart actions". This widget only knows the simplified methods provided by the smart home facade but does not care about their implementation details, dependencies between classes or other facades and the amount of different APIs used to execute the single action. This allows implementing a complicated logic to handle the smart home actions just by turning the switch ON/OFF in _ModeSwitcher_ widgets. Also, the implementation details of the smart devices' handling methods in the _SmartHomeFacade_ could be changed/improved without affecting the UI code.
 
 ```
 class FacadeExample extends StatefulWidget {

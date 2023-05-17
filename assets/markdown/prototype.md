@@ -12,9 +12,9 @@ The class diagram below shows the implementation of the **Prototype** design pat
 
 _Shape_ is an abstract class which is used as a base class for all the specific shapes. The class contains a _color_ property and defines several abstract methods:
 
-- _clone()_ - an abstract method to clone (copy) the specific shape;
-- _randomiseProperties()_ - an abstract method to randomise property values of the shape;
-- _render()_ - an abstract method to render the shape. The method is used in UI.
+- _clone()_ - clones (copies) the specific shape;
+- _randomiseProperties()_ - randomises property values of the shape;
+- _render()_ - renders the shape. The method is used in UI.
 
 _Circle_ and _Rectangle_ are concrete shape classes which extend the abstract class _Shape_ and implement its abstract methods.
 
@@ -22,7 +22,7 @@ _PrototypeExample_ initializes and contains several _Shape_ objects. These objec
 
 ### Shape
 
-An abstract class which stores the shape's colour and defines several abstract methods. Also, this class contains several constructors:
+An abstract class that stores the shape's colour and defines several abstract methods. Also, this class contains several constructors:
 
 - _Shape()_ - a basic constructor to create a shape object with the provided colour value;
 - _Shape.clone()_ - a named constructor to create a shape object as a copy of the provided _Shape_ value.
@@ -43,7 +43,7 @@ abstract class Shape {
 
 ### Shapes
 
-- _Circle_ - a specific class which defines a shape of a circle. The class defines a _radius_ property, extends the _Shape_ class and implements its abstract methods _clone()_, _randomiseProperties()_ and _render()_.
+- _Circle_ - a specific class that defines a shape of a circle. The class defines a _radius_ property, extends the _Shape_ class and implements its abstract methods _clone()_, _randomiseProperties()_ and _render()_.
 
 ```
 class Circle extends Shape {
@@ -95,7 +95,7 @@ class Circle extends Shape {
 }
 ```
 
-- _Rectangle_ - a specific class which defines a shape of a rectangle. The class defines _height_ and _width_ properties, extends the _Shape_ class and implements its abstract methods _clone()_, _randomiseProperties()_ and _render()_.
+- _Rectangle_ - a specific class that defines a shape of a rectangle. The class defines _height_ and _width_ properties, extends the _Shape_ class and implements its abstract methods _clone()_, _randomiseProperties()_ and _render()_.
 
 ```
 class Rectangle extends Shape {

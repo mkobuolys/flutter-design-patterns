@@ -10,16 +10,16 @@ The class diagram below shows the implementation of the **Abstract Factory** des
 
 ![Abstract Factory Implementation Class Diagram](resource:assets/images/abstract_factory/abstract_factory_implementation.png)
 
-_IWidgetsFactory_ is an abstract interface class which is used for all the specific widget factories:
+_IWidgetsFactory_ defines a common interface for all the specific widget factories:
 
-- _getTitle()_ - an abstract method which returns the title of the factory. Used in the UI;
-- _createActivityIndicator()_ - an abstract method which returns the specific implementation (UI component/widget) of the activity (process) indicator implementing the _IActivityIndicator_ interface;
-- _createSlider()_ - an abstract method which returns the specific implementation (UI component/widget) of the slider implementing the _ISlider_ interface;
-- _createSwitch()_ - an abstract method which returns the specific implementation (UI component/widget) of the switch button implementing the _ISwitch_ interface.
+- _getTitle()_ - returns the title of the factory. Used in the UI;
+- _createActivityIndicator()_ - returns the specific implementation (UI component/widget) of the activity (process) indicator implementing the _IActivityIndicator_ interface;
+- _createSlider()_ - returns the specific implementation (UI component/widget) of the slider implementing the _ISlider_ interface;
+- _createSwitch()_ - returns the specific implementation (UI component/widget) of the switch button implementing the _ISwitch_ interface.
 
-_MaterialWidgetsFactory_ and _CupertinoWidgetsFactory_ are concrete classes which implement the _IWidgetsFactory_ class and its methods. _MaterialWidgetsFactory_ creates Material style components (widgets) while the _CupertinoWidgetsFactory_ creates Cupertino style widgets.
+_MaterialWidgetsFactory_ and _CupertinoWidgetsFactory_ are concrete implementations of the _IWidgetsFactory_ interface. _MaterialWidgetsFactory_ creates Material style components (widgets) while the _CupertinoWidgetsFactory_ creates Cupertino style widgets.
 
-_IActivityIndicator_, _ISlider_ and _ISwitch_ are abstract interface classes which define the _render()_ method for each component. These classes are implemented by both - Material and Cupertino - widgets.
+_IActivityIndicator_, _ISlider_ and _ISwitch_ are interfaces that define the _render()_ method for each component. These classes are implemented by both - Material and Cupertino - widgets.
 
 _AndroidActivityIndicator_, _AndroidSlider_ and _AndroidSwitch_ are concrete implementations of the Material widgets implementing the _render()_ method of corresponding interfaces.
 
@@ -29,7 +29,7 @@ _AbstractFactoryExample_ contains a list of factories implementing the _IWidgets
 
 ### IWidgetsFactory
 
-An interface which defines methods to be implemented by the specific factory classes. These methods are used to create components (widgets) of the specific type defined by the concrete factory.
+An interface that defines methods to be implemented by the specific factory classes. These methods are used to create components (widgets) of the specific type defined by the concrete factory.
 
 ```
 abstract interface class IWidgetsFactory {
@@ -42,7 +42,7 @@ abstract interface class IWidgetsFactory {
 
 ### Widget factories
 
-- _MaterialWidgetsFactory_ - a concrete factory class which implements the _IWidgetsFactory_ interface and its methods creating the Material style widgets.
+- _MaterialWidgetsFactory_ - a concrete factory class that implements the _IWidgetsFactory_ interface and its methods creating the Material style widgets.
 
 ```
 class MaterialWidgetsFactory implements IWidgetsFactory {
@@ -63,7 +63,7 @@ class MaterialWidgetsFactory implements IWidgetsFactory {
 }
 ```
 
-- _CupertinoWidgetsFactory_ - a concrete factory class which implements the _IWidgetsFactory_ interface and its methods creating the Cupertino style widgets.
+- _CupertinoWidgetsFactory_ - a concrete factory class that implements the _IWidgetsFactory_ interface and its methods creating the Cupertino style widgets.
 
 ```
 class CupertinoWidgetsFactory implements IWidgetsFactory {
@@ -85,7 +85,7 @@ class CupertinoWidgetsFactory implements IWidgetsFactory {
 
 ### IActivityIndicator
 
-An interface which defines the _render()_ method to render the activity indicator component (widget).
+An interface that defines the _render()_ method to render the activity indicator component (widget).
 
 ```
 abstract interface class IActivityIndicator {
@@ -128,7 +128,7 @@ class IosActivityIndicator implements IActivityIndicator {
 
 ### ISlider
 
-An interface which defines the _render()_ method to render the slider component (widget).
+An interface that defines the _render()_ method to render the slider component (widget).
 
 ```
 abstract interface class ISlider {
@@ -176,7 +176,7 @@ class IosSlider implements ISlider {
 
 ### ISwitch
 
-An interface which defines the _render()_ method to render the switch component (widget).
+An interface that defines the _render()_ method to render the switch component (widget).
 
 ```
 abstract interface class ISwitch {

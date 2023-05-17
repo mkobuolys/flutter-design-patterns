@@ -10,18 +10,18 @@ The class diagram below shows the implementation of the **Memento** design patte
 
 ![Memento Implementation Class Diagram](resource:assets/images/memento/memento_implementation.png)
 
-_ICommand_ is an abstract interface class which is used for the specific command:
+_ICommand_ defines a common interface for the specific command:
 
-- _execute()_ - an abstract method which executes the command;
-- _undo()_ - an abstract method which undoes the command and returns the state to the previous snapshot of it.
+- _execute()_ - executes the command;
+- _undo()_ - undoes the command and returns the state to the previous snapshot of it.
 
 _RandomisePropertiesCommand_ is a concrete command which implements the abstract class _ICommand_ and its methods.
 
 _CommandHistory_ is a simple class which stores a list of already executed commands (_commandList_) and provides methods to add a new command to the command history list (_add()_) and undo the last command from that list (_undo()_).
 
-_IMemento_ is an abstract interface class which is used for the specific memento class:
+_IMemento_ defines a common interface for the specific memento class:
 
-- _getState()_ - an abstract method which returns the snapshot of the internal originator's state.
+- _getState()_ - returns the snapshot of the internal originator's state.
 
 _Memento_ is a class that acts as a snapshot of the originator's internal state which is stored in the _state_ property and returned via the _getState()_ method.
 
@@ -59,7 +59,7 @@ class Shape {
 
 ### ICommand
 
-An interface which defines methods to be implemented by the specific command classes.
+An interface that defines methods to be implemented by the specific command classes.
 
 ```
 abstract interface class ICommand {
@@ -101,7 +101,7 @@ class RandomisePropertiesCommand implements ICommand {
 
 ### CommandHistory
 
-A simple class which stores a list of already executed commands. Also, this class provides _isEmpty_ getter method to return true if the command history list is empty. A new command could be added to the command history list via the _add()_ method and the last command could be undone using the _undo()_ method (if the command history list is not empty).
+A simple class that stores a list of already executed commands. Also, this class provides _isEmpty_ getter method to return true if the command history list is empty. A new command could be added to the command history list via the _add()_ method and the last command could be undone using the _undo()_ method (if the command history list is not empty).
 
 ```
 class CommandHistory {
@@ -121,7 +121,7 @@ class CommandHistory {
 
 ### IMemento
 
-An interface which defines the _getState()_ method to be implemented by the specific Memento class.
+An interface that defines the _getState()_ method to be implemented by the specific Memento class.
 
 ```
 abstract interface class IMemento {

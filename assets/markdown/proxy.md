@@ -12,11 +12,11 @@ The class diagram below shows the implementation of the **Proxy** design pattern
 
 _Customer_ class is used to store information about the customer. One of its properties is the _CustomerDetails_ which stores additional data about the customer e.g. its email, hobby and position.
 
-_ICustomerDetailsService_ is an abstract interface class which is used for the customer details service:
+_ICustomerDetailsService_ defines an interface for the customer details service:
 
-- _getCustomerDetails()_ - an abstract method which returns details for the specific customer.
+- _getCustomerDetails()_ - returns details for the specific customer.
 
-_CustomerDetailsService_ is the "real" customer details service which implements the abstract class _ICustomerDetailsService_ and its methods.
+_CustomerDetailsService_ is the "real" customer details service that implements the _ICustomerDetailsService_ interface.
 
 _CustomerDetailsServiceProxy_ is a proxy service which contains the cache (dictionary object) and sends the request to the real _CustomerDetailsService_ only if the customer details object is not available in the cache.
 
@@ -56,12 +56,11 @@ class CustomerDetails {
   final String hobby;
   final String position;
 }
-
 ```
 
 ### ICustomerDetailsService
 
-An interface which defines the _getCustomerDetails()_ method to be implemented by the customer details service and its proxy.
+An interface that defines the _getCustomerDetails()_ method to be implemented by the customer details service and its proxy.
 
 ```
 abstract interface class ICustomerDetailsService {

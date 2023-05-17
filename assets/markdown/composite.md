@@ -19,7 +19,7 @@ _File_ class implements the _getSize()_ and _render()_ methods, additionally con
 
 ### IFile
 
-An interface which defines methods to be implemented by leaf and composite components.
+An interface that defines methods to be implemented by leaf and composite components.
 
 ```
 abstract interface class IFile {
@@ -30,7 +30,7 @@ abstract interface class IFile {
 
 ### File
 
-A concrete implementation of the _IFile_ interface which matches the _leaf_ class in the Composite design pattern. In _File_ class, _getSize()_ method simply returns the file size, _render()_ - returns file's UI widget which is used in the example screen.
+A concrete implementation of the _IFile_ interface which matches the _leaf_ class in the Composite design pattern. In the _File_ class, the _getSize()_ method simply returns the file size, and _render()_ - returns file's UI widget which is used in the example screen.
 
 ```
 base class File extends StatelessWidget implements IFile {

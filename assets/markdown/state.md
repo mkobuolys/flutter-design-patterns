@@ -29,7 +29,7 @@ _StateExample_ widget contains the _StateContext_ object to track and trigger st
 
 ### IState
 
-An interface which defines methods to be implemented by all specific state classes.
+An interface that defines methods to be implemented by all specific state classes.
 
 ```
 abstract interface class IState {
@@ -40,7 +40,7 @@ abstract interface class IState {
 
 ### StateContext
 
-A class which holds the current state in _currentState_ property and exposes it to the UI via _outState_ stream. The state context also defines a _nextState()_ method which is used by the UI to trigger the state's change. The current state itself is changed/set via the _setState()_ method by providing the next state of type _IState_ as a parameter to it.
+A class that holds the current state in _currentState_ property and exposes it to the UI via _outState_ stream. The state context also defines a _nextState()_ method which is used by the UI to trigger the state's change. The current state itself is changed/set via the _setState()_ method by providing the next state of type _IState_ as a parameter to it.
 
 ```
 class StateContext {
@@ -199,7 +199,7 @@ class LoadingState implements IState {
 
 ### FakeApi
 
-A fake API which is used to randomly generate a list of person names. The method _getNames()_ could return a list of names or throw an Exception (error) at random. Similarly, the _getRandomNames()_ method randomly returns a list of names or an empty list. This behaviour is implemented because of demonstration purposes to show all the possible different states in the UI.
+A fake API is used to randomly generate a list of person names. The method _getNames()_ could return a list of names or throw an Exception (error) at random. Similarly, the _getRandomNames()_ method randomly returns a list of names or an empty list. This behaviour is implemented because of demonstration purposes to show all the possible different states in the UI.
 
 ```
 class FakeApi {

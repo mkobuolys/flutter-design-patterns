@@ -34,7 +34,7 @@ _ChainOfResponsibilityExample_ creates a chain of loggers and uses public method
 
 ### LogLevel
 
-A special kind of class - _enumeration_ - to define different log levels. Also, there is a _LogLevelExtensions_ defined where the operator **<=** is overridden to compare whether one log level is lower or equal to the other.
+A special kind of class - _enumeration_ - to define different log levels. Also, the **<=** operator is overridden to compare whether one log level is lower or equal to the other.
 
 ```
 enum LogLevel {

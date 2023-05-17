@@ -21,7 +21,7 @@ _StrategyExample_ widget stores all different shipping costs calculation strateg
 
 ### IShippingCostsStrategy
 
-An interface which defines methods and properties to be implemented by all supported algorithms.
+An interface that defines methods and properties to be implemented by all supported algorithms.
 
 ```
 abstract interface class IShippingCostsStrategy {

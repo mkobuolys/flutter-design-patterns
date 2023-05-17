@@ -10,7 +10,7 @@ The class diagram below shows the implementation of **Builder** design pattern.
 
 ![Builder Implementation Class Diagram](resource:assets/images/builder/builder_implementation.png)
 
-The _Ingredient_ is an abstract class which is used as a base class for all the ingredient classes. The class contains _allergens_ and _name_ properties as well as _getAllergens()_ and _getName()_ methods to return values of these properties.
+The _Ingredient_ is an abstract class that is used as a base class for all the ingredient classes. The class contains _allergens_ and _name_ properties as well as _getAllergens()_ and _getName()_ methods to return values of these properties.
 
 There are a lot of concrete ingredient classes: _BigMacBun_, _RegularBun_, _BeefPatty_, _McChickenPatty_, _BigMacSauce_, _Ketchup_, _Mayonnaise_, _Mustard_, _Onions_, _PickleSlices_, _ShreddedLettuce_, _Cheese_ and _GrillSeasoning_. All of these classes represent a specific ingredient of a burger and contains a default constructor to set the _allergens_ and _name_ property values of the base class.
 
@@ -22,7 +22,7 @@ _Burger_ is a simple class representing the product of a builder. It contains _i
 - _getFormattedPrice()_ - returns a formatted price of a burger;
 - _setPrice()_ - sets the price for the burger.
 
-_BurgerBuilderBase_ is an abstract class which is used as a base class for all the burger builder classes. It contains _burger_ and _price_ properties to store the final product - burger - and its price correspondingly. Additionally, the class stores some methods with default implementation:
+_BurgerBuilderBase_ is an abstract class that is used as a base class for all the burger builder classes. It contains _burger_ and _price_ properties to store the final product - burger - and its price correspondingly. Additionally, the class stores some methods with default implementation:
 
 - _createBurger()_ - initialises a _Burger_ class object;
 - _getBurger()_ - returns the built burger result;
@@ -30,15 +30,15 @@ _BurgerBuilderBase_ is an abstract class which is used as a base class for all t
 
 _BurgerBuilderBase_ also contain several abstract methods which must be implemented in the specific implementation classes of the burger builder: _addBuns()_, _addCheese()_, _addPatties()_, _addSauces()_, _addSeasoning()_ and _addVegetables()_.
 
-_BigMacBuilder_, _CheeseburgerBuilder_, _HamburgerBuilder_ and _McChickenBuilder_ are concrete builder classes which extend the abstract class _BurgerBuilderBase_ and implement its abstract methods.
+_BigMacBuilder_, _CheeseburgerBuilder_, _HamburgerBuilder_ and _McChickenBuilder_ are concrete builder classes that extend the abstract class _BurgerBuilderBase_ and implement its abstract methods.
 
-_BurgerMaker_ is director class which manages the burger's build process. It contains a specific builder implementation as a _burgerBuilder_ property, _prepareBurger()_ method to build the burger and a _getBurger()_ method to return it. Also, the builder's implementation could be changed using the _changeBurgerBuilder()_ method.
+_BurgerMaker_ is director class that manages the burger's build process. It contains a specific builder implementation as a _burgerBuilder_ property, _prepareBurger()_ method to build the burger and a _getBurger()_ method to return it. Also, the builder's implementation could be changed using the _changeBurgerBuilder()_ method.
 
 _BuilderExample_ initialises and contains the _BurgerMaker_ class. Also, it references all the specific burger builders which could be changed at run-time using the UI dropdown selection.
 
 ### Ingredient
 
-An abstract class which stores the _allergens_, _name_ fields and is extended by all of the ingredient classes.
+An abstract class that stores the _allergens_, _name_ fields and is extended by all of the ingredient classes.
 
 ```
 abstract class Ingredient {
@@ -203,7 +203,7 @@ class Burger {
 
 ### BurgerBuilderBase
 
-An abstract class which stores _burger_ and _price_ properties, defines some default methods to create/return the burger object and set its price. Also, the class defines several abstract methods which must be implemented by the derived burger builder classes.
+An abstract class that stores _burger_ and _price_ properties, defines some default methods to create/return the burger object and set its price. Also, the class defines several abstract methods which must be implemented by the derived burger builder classes.
 
 ```
 abstract class BurgerBuilderBase {
@@ -397,7 +397,7 @@ class McChickenBuilder extends BurgerBuilderBase {
 
 ### BurgerMaker
 
-A director class which manages the burger's build process and returns the build result. A specific implementation of the builder is injected into the class via constructor.
+A director class that manages the burger's build process and returns the build result. A specific implementation of the builder is injected into the class via constructor.
 
 ```
 class BurgerMaker {

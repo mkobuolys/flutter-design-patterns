@@ -14,26 +14,26 @@ The _EntityBase_ is an abstract class which is used as a base class for all the 
 
 _Customer_ and _Order_ are concrete entities which extend the abstract class _EntityBase_. _Customer_ class contains _name_ and _email_ properties, _Customer.fromJson_ named constructor to map the JSON object to class fields and a _toJson()_ method to map class fields to the corresponding JSON map object. _Order_ class contain _dishes_ (a list of dishes of that order) and _total_ fields, a named constructor _Order.fromJson_ and a _toJson()_ method respectively.
 
-_IRepository_ is an abstract interface class which is used for the repositories:
+_IRepository_ defines a common interface for the repositories:
 
 - _getAll()_ - returns all records from the repository;
 - _save()_ - saves an entity of type _EntityBase_ in the repository.
 
-_CustomersRepository_ and _OrdersRepository_ are concrete repository classes which implement _IRepository_ interface. Also, these classes contain a storage property of type _IStorage_ which is injected into the repository via the constructor.
+_CustomersRepository_ and _OrdersRepository_ are concrete implementations of the _IRepository_ interface. Also, these classes contain a storage property of type _IStorage_ which is injected into the repository via the constructor.
 
-_IStorage_ is an abstract interface class which is used for the storages:
+_IStorage_ defines a common interface for the storages:
 
 - _getTitle()_ - returns the title of the storage. The method is used in UI;
 - _fetchAll\<T\>()_ - returns all the records of type _T_ from the storage;
 - _store\<T\>()_ - stores a record of type _T_ in the storage.
 
-_FileStorage_ and _SqlStorage_ are concrete storage classes which implement _IStorage_ interface. Additionally, _FileStorage_ class uses the _JsonHelper_ class and its static methods to serialise/deserialise JSON objects.
+_FileStorage_ and _SqlStorage_ are concrete implementations of the _IStorage_ interface. Additionally, _FileStorage_ class uses the _JsonHelper_ class and its static methods to serialise/deserialise JSON objects.
 
 _BridgeExample_ initialises and contains both - customer and order - repositories which are used to retrieve the corresponding data. Additionally, the storage type of these repositories could be changed between the _FileStorage_ and _SqlStorage_ separately and at the run-time.
 
 ### EntityBase
 
-An abstract class which stores the id field and is extended by all of the entity classes.
+An abstract class that stores the id field and is extended by all of the entity classes.
 
 ```
 abstract class EntityBase {
@@ -126,7 +126,7 @@ class JsonHelper {
 
 ### IRepository
 
-An interface which defines methods to be implemented by the derived repository classes.
+An interface that defines methods to be implemented by the derived repository classes.
 
 ```
 abstract interface class IRepository {
@@ -175,7 +175,7 @@ class OrdersRepository implements IRepository {
 
 ### IStorage
 
-An interface which defines methods to be implemented by the derived storage classes.
+An interface that defines methods to be implemented by the derived storage classes.
 
 ```
 abstract interface class IStorage {
@@ -240,7 +240,7 @@ class SqlStorage implements IStorage {
 
 _BridgeExample_ contains a list of storages - instances of _SqlStorage_ and _FileStorage_ classes. Also, it initialises _Customer_ and _Order_ repositories. In the repositories the concrete type of storage could be interchanged by triggering the _onSelectedCustomerStorageIndexChanged()_ for the _CustomersRepository_ and _onSelectedOrderStorageIndexChanged()_ for the _OrdersRepository_ respectively.
 
-The concrete repository does not care about the specific type of storage it uses as long as the storage implements the IStorage interface and all of its abstract methods. As a result, the abstraction (repository) is separated from the implementor (storage) - the concrete implementation of the storage could be changed for the repository at run-time, the repository does not depend on its implementation details.
+The concrete repository does not care about the specific type of storage it uses as long as the storage implements the IStorage interface and all of its methods. As a result, the abstraction (repository) is separated from the implementor (storage) - the concrete implementation of the storage could be changed for the repository at run-time, the repository does not depend on its implementation details.
 
 ```
 class BridgeExample extends StatefulWidget {

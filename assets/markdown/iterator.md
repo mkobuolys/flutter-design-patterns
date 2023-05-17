@@ -43,7 +43,7 @@ class Graph {
 
 ### ITreeCollection
 
-An interface which defines methods to be implemented by all specific tree collection classes.
+An interface that defines methods to be implemented by all specific tree collection classes.
 
 ```
 abstract interface class ITreeCollection {
@@ -54,7 +54,7 @@ abstract interface class ITreeCollection {
 
 ### Tree collections
 
-- _DepthFirstTreeCollection_ - a tree collection class which stores the graph object and implements the _createIterator()_ method to create an iterator which uses the depth-first algorithm to traverse the graph.
+- _DepthFirstTreeCollection_ - a tree collection class that stores the graph object and implements the _createIterator()_ method to create an iterator which uses the depth-first algorithm to traverse the graph.
 
 ```
 class DepthFirstTreeCollection implements ITreeCollection {
@@ -70,7 +70,7 @@ class DepthFirstTreeCollection implements ITreeCollection {
 }
 ```
 
-- _BreadthFirstTreeCollection_ - a tree collection class which stores the graph object and implements the _createIterator()_ method to create an iterator which uses the breadth-first algorithm to traverse the graph.
+- _BreadthFirstTreeCollection_ - a tree collection class that stores the graph object and implements the _createIterator()_ method to create an iterator which uses the breadth-first algorithm to traverse the graph.
 
 ```
 class BreadthFirstTreeCollection implements ITreeCollection {
@@ -88,7 +88,7 @@ class BreadthFirstTreeCollection implements ITreeCollection {
 
 ### ITreeIterator
 
-An interface which defines methods to be implemented by all specific iterators of the tree collection.
+An interface that defines methods to be implemented by all specific iterators of the tree collection.
 
 ```
 abstract interface class ITreeIterator {
