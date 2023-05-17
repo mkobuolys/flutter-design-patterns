@@ -15,7 +15,7 @@ class BridgeExample extends StatefulWidget {
 }
 
 class _BridgeExampleState extends State<BridgeExample> {
-  final List<IStorage> _storages = [SqlStorage(), FileStorage()];
+  final _storages = [SqlStorage(), FileStorage()];
 
   late IRepository _customersRepository;
   late IRepository _ordersRepository;
@@ -23,20 +23,24 @@ class _BridgeExampleState extends State<BridgeExample> {
   late List<Customer> _customers;
   late List<Order> _orders;
 
-  int _selectedCustomerStorageIndex = 0;
-  int _selectedOrderStorageIndex = 0;
+  var _selectedCustomerStorageIndex = 0;
+  var _selectedOrderStorageIndex = 0;
 
   void _onSelectedCustomerStorageIndexChanged(int? index) {
+    if (index == null) return;
+
     setState(() {
-      _selectedCustomerStorageIndex = index!;
+      _selectedCustomerStorageIndex = index;
       _customersRepository = CustomersRepository(_storages[index]);
       _customers = _customersRepository.getAll() as List<Customer>;
     });
   }
 
   void _onSelectedOrderStorageIndexChanged(int? index) {
+    if (index == null) return;
+
     setState(() {
-      _selectedOrderStorageIndex = index!;
+      _selectedOrderStorageIndex = index;
       _ordersRepository = OrdersRepository(_storages[index]);
       _orders = _ordersRepository.getAll() as List<Order>;
     });
@@ -45,17 +49,15 @@ class _BridgeExampleState extends State<BridgeExample> {
   void _addCustomer() {
     _customersRepository.save(Customer());
 
-    setState(() {
-      _customers = _customersRepository.getAll() as List<Customer>;
-    });
+    setState(
+      () => _customers = _customersRepository.getAll() as List<Customer>,
+    );
   }
 
   void _addOrder() {
     _ordersRepository.save(Order());
 
-    setState(() {
-      _orders = _ordersRepository.getAll() as List<Order>;
-    });
+    setState(() => _orders = _ordersRepository.getAll() as List<Order>);
   }
 
   @override
