@@ -3,9 +3,9 @@ import 'dart:async';
 import '../stock_ticker.dart';
 import '../stock_ticker_symbol.dart';
 
-class TeslaStockTicker extends StockTicker {
+final class TeslaStockTicker extends StockTicker {
   TeslaStockTicker() {
-    title = StockTickerSymbol.TSLA.toShortString();
+    title = StockTickerSymbol.TSLA.name;
     stockTimer = Timer.periodic(
       const Duration(seconds: 3),
       (_) {

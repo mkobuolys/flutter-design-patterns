@@ -10,7 +10,7 @@ The class diagram below shows the implementation of the **Observer** design patt
 
 ![Observer Implementation Class Diagram](resource:assets/images/observer/observer_implementation.png)
 
-_StockTicker_ is an abstract class that is used as a base class for all the specific stock ticker classes. The class contains _title_, _stockTimer_ and _stock_ properties, _subscribers_ list, provides several methods:
+_StockTicker_ is a base class that is used by all the specific stock ticker classes. The class contains _title_, _stockTimer_ and _stock_ properties, _subscribers_ list, provides several methods:
 
 - _subscribe()_ - subscribes to the stock ticker;
 - _unsubscribe()_ - unsubscribes from the stock ticker;
@@ -18,7 +18,7 @@ _StockTicker_ is an abstract class that is used as a base class for all the spec
 - _setStock()_ - sets stock value;
 - _stopTicker()_ - stops ticker emitting stock events.
 
-_GameStopStockTicker_, _GoogleStockTicker_ and _TeslaStockTicker_ are concrete stock ticker classes that extend the abstract class _StockTicker_.
+_GameStopStockTicker_, _GoogleStockTicker_ and _TeslaStockTicker_ are concrete stock ticker classes that extend the base _StockTicker_ class.
 
 _Stock_ class contains _symbol_, _changeDirection_, _price_ and _changeAmount_ properties to store info about the stock.
 
@@ -32,10 +32,10 @@ _DefaultStockSubscriber_ and _GrowingStockSubscriber_ are concrete stock subscri
 
 ### StockTicker
 
-An abstract class implementing base methods for all the specific stock ticker classes. Property _title_ is used in the UI for stock ticker selection, _stockTimer_ periodically emits a new stock value that is stored in the _stock_ property by using the _setStock()_ method. The class also stores a list of stock subscribers that can subscribe to the stock ticker and unsubscribe from it by using the _subscribe()_ and _unsubscribe()_ respectively. Stock ticker subscribers are notified about the value change by calling the _notifySubscribers()_ method. The stock timer could be stopped by calling the _stopTicker()_ method.
+A base class implementing base methods for all the specific stock ticker classes. Property _title_ is used in the UI for stock ticker selection, _stockTimer_ periodically emits a new stock value that is stored in the _stock_ property by using the _setStock()_ method. The class also stores a list of stock subscribers that can subscribe to the stock ticker and unsubscribe from it by using the _subscribe()_ and _unsubscribe()_ respectively. Stock ticker subscribers are notified about the value change by calling the _notifySubscribers()_ method. The stock timer could be stopped by calling the _stopTicker()_ method.
 
 ```
-abstract class StockTicker {
+base class StockTicker {
   late final String title;
   late final Timer stockTimer;
 
@@ -70,9 +70,7 @@ abstract class StockTicker {
     );
   }
 
-  void stopTicker() {
-    stockTimer.cancel();
-  }
+  void stopTicker() => stockTimer.cancel();
 }
 ```
 
@@ -83,9 +81,9 @@ All of the specific stock ticker classes extend the abstract _StockTicker_ class
 - _GameStopStockTicker_ - a stock ticker of the GameStop stocks that emits a new stock event every 2 seconds.
 
 ```
-class GameStopStockTicker extends StockTicker {
+final class GameStopStockTicker extends StockTicker {
   GameStopStockTicker() {
-    title = StockTickerSymbol.GME.toShortString();
+    title = StockTickerSymbol.GME.name;
     stockTimer = Timer.periodic(
       const Duration(seconds: 2),
       (_) {
@@ -100,9 +98,9 @@ class GameStopStockTicker extends StockTicker {
 - _TeslaStockTicker_ - a stock ticker of the Tesla stocks that emits a new stock event every 3 seconds.
 
 ```
-class TeslaStockTicker extends StockTicker {
+final class TeslaStockTicker extends StockTicker {
   TeslaStockTicker() {
-    title = StockTickerSymbol.TSLA.toShortString();
+    title = StockTickerSymbol.TSLA.name;
     stockTimer = Timer.periodic(
       const Duration(seconds: 3),
       (_) {
@@ -117,9 +115,9 @@ class TeslaStockTicker extends StockTicker {
 - _GoogleStockTicker_ - a stock ticker of the Google stocks that emits a new stock event every 5 seconds.
 
 ```
-class GoogleStockTicker extends StockTicker {
+final class GoogleStockTicker extends StockTicker {
   GoogleStockTicker() {
-    title = StockTickerSymbol.GOOGL.toShortString();
+    title = StockTickerSymbol.GOOGL.name;
     stockTimer = Timer.periodic(
       const Duration(seconds: 5),
       (_) {
@@ -137,33 +135,29 @@ A simple class to store information about the stock. _Stock_ class contains data
 
 ```
 class Stock {
-  final StockTickerSymbol symbol;
-  final StockChangeDirection changeDirection;
-  final double price;
-  final double changeAmount;
-
   const Stock({
     required this.symbol,
     required this.changeDirection,
     required this.price,
     required this.changeAmount,
   });
+
+  final StockTickerSymbol symbol;
+  final StockChangeDirection changeDirection;
+  final double price;
+  final double changeAmount;
 }
 ```
 
 ### StockTickerSymbol
 
-A special kind of class - _enumeration_ - to define supported stock ticker symbols. Also, there is a _StockTickerSymbolExtension_ defined where the _toShortString()_ method returns a short version of the enumeration string value.
+A special kind of class - _enumeration_ - to define supported stock ticker symbols.
 
 ```
 enum StockTickerSymbol {
   GME,
   GOOGL,
   TSLA,
-}
-
-extension StockTickerSymbolExtension on StockTickerSymbol {
-  String toShortString() => toString().split('.').last;
 }
 ```
 
@@ -186,7 +180,7 @@ An abstract class containing base properties for all the specific stock ticker c
 abstract class StockSubscriber {
   late final String title;
 
-  final id = faker.guid.guid()!;
+  final id = faker.guid.guid();
 
   @protected
   final StreamController<Stock> stockStreamController =
@@ -240,6 +234,8 @@ A specific subscriber class could be easily changed by using the _StockSubscribe
 
 ```
 class ObserverExample extends StatefulWidget {
+  const ObserverExample();
+
   @override
   _ObserverExampleState createState() => _ObserverExampleState();
 }
@@ -258,7 +254,7 @@ class _ObserverExampleState extends State<ObserverExample> {
 
   StreamSubscription<Stock>? _stockStreamSubscription;
   StockSubscriber _subscriber = DefaultStockSubscriber();
-  int _selectedSubscriberIndex = 0;
+  var _selectedSubscriberIndex = 0;
 
   @override
   void initState() {
@@ -278,11 +274,7 @@ class _ObserverExampleState extends State<ObserverExample> {
     super.dispose();
   }
 
-  void _onStockChange(Stock stock) {
-    setState(() {
-      _stockEntries.add(stock);
-    });
-  }
+  void _onStockChange(Stock stock) => setState(() => _stockEntries.add(stock));
 
   void _setSelectedSubscriberIndex(int? index) {
     for (final ticker in _stockTickers) {
@@ -312,9 +304,7 @@ class _ObserverExampleState extends State<ObserverExample> {
       stockTicker.subscribe(_subscriber);
     }
 
-    setState(() {
-      stockTickerModel.toggleSubscribed();
-    });
+    setState(() => stockTickerModel.toggleSubscribed());
   }
 
   @override
@@ -322,7 +312,9 @@ class _ObserverExampleState extends State<ObserverExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             StockSubscriberSelection(

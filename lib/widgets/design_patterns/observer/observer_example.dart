@@ -30,7 +30,7 @@ class _ObserverExampleState extends State<ObserverExample> {
 
   StreamSubscription<Stock>? _stockStreamSubscription;
   StockSubscriber _subscriber = DefaultStockSubscriber();
-  int _selectedSubscriberIndex = 0;
+  var _selectedSubscriberIndex = 0;
 
   @override
   void initState() {
@@ -50,11 +50,7 @@ class _ObserverExampleState extends State<ObserverExample> {
     super.dispose();
   }
 
-  void _onStockChange(Stock stock) {
-    setState(() {
-      _stockEntries.add(stock);
-    });
-  }
+  void _onStockChange(Stock stock) => setState(() => _stockEntries.add(stock));
 
   void _setSelectedSubscriberIndex(int? index) {
     for (final ticker in _stockTickers) {
@@ -84,9 +80,7 @@ class _ObserverExampleState extends State<ObserverExample> {
       stockTicker.subscribe(_subscriber);
     }
 
-    setState(() {
-      stockTickerModel.toggleSubscribed();
-    });
+    setState(() => stockTickerModel.toggleSubscribed());
   }
 
   @override

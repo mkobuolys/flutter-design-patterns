@@ -5,7 +5,3 @@ enum StockTickerSymbol {
   GOOGL,
   TSLA,
 }
-
-extension StockTickerSymbolExtension on StockTickerSymbol {
-  String toShortString() => toString().split('.').last;
-}

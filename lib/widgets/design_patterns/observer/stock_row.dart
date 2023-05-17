@@ -4,15 +4,15 @@ import '../../../constants/constants.dart';
 import '../../../design_patterns/observer/observer.dart';
 
 class StockRow extends StatelessWidget {
+  const StockRow({
+    required this.stock,
+  });
+
   final Stock stock;
 
   Color get color => stock.changeDirection == StockChangeDirection.growing
       ? Colors.green
       : Colors.red;
-
-  const StockRow({
-    required this.stock,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class StockRow extends StatelessWidget {
         SizedBox(
           width: LayoutConstants.spaceXL * 2,
           child: Text(
-            stock.symbol.toShortString(),
+            stock.symbol.name,
             style: TextStyle(color: color),
           ),
         ),

@@ -8,7 +8,7 @@ import 'stock_change_direction.dart';
 import 'stock_subscriber.dart';
 import 'stock_ticker_symbol.dart';
 
-abstract class StockTicker {
+base class StockTicker {
   late final String title;
   late final Timer stockTimer;
 
@@ -43,7 +43,5 @@ abstract class StockTicker {
     );
   }
 
-  void stopTicker() {
-    stockTimer.cancel();
-  }
+  void stopTicker() => stockTimer.cancel();
 }
