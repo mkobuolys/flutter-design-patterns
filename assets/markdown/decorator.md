@@ -15,7 +15,7 @@ _Pizza_ defines a common interface for wrappers (decorators) and wrapped objects
 - _getDescription()_ - returns the description of the pizza;
 - _getPrice()_ - returns the price of the pizza.
 
-_PizzaBase_ represents the component object which extends the _Pizza_ class and implements its abstract methods.
+_PizzaBase_ represents the component object which implements the _Pizza_ interface.
 
 _PizzaDecorator_ references the _Pizza_ object and forwards requests to it via the _getDescription()_ and _getPrice()_ methods.
 
@@ -29,12 +29,10 @@ _DecoratorExample_ initialises and contains the _PizzaMenu_ class object to retr
 
 ### Pizza
 
-An abstract class of the _Pizza_ component which defines a common interface for concrete component and decorator objects.
+An interface of the _Pizza_ component which defines a common contract for concrete component and decorator objects.
 
 ```
-abstract class Pizza {
-  String description;
-
+abstract interface class Pizza {
   String getDescription();
   double getPrice();
 }
@@ -42,23 +40,19 @@ abstract class Pizza {
 
 ### PizzaBase
 
-A concrete component which extends the _Pizza_ class and implements its methods. An object of this class (its behaviour) gets decorated by the specific decorator classes.
+A concrete component which implement the _Pizza_ interface methods. An object of this class (its behaviour) gets decorated by the specific decorator classes.
 
 ```
-class PizzaBase extends Pizza {
-  PizzaBase(String description) {
-    this.description = description;
-  }
+class PizzaBase implements Pizza {
+  const PizzaBase(this.description);
+
+  final String description;
 
   @override
-  String getDescription() {
-    return description;
-  }
+  String getDescription() => description;
 
   @override
-  double getPrice() {
-    return 3.0;
-  }
+  double getPrice() => 3.0;
 }
 ```
 
@@ -67,20 +61,16 @@ class PizzaBase extends Pizza {
 An abstract decorator class which maintains a reference to a component class and forwards requests to it.
 
 ```
-abstract class PizzaDecorator extends Pizza {
+abstract class PizzaDecorator implements Pizza {
+  const PizzaDecorator(this.pizza);
+
   final Pizza pizza;
 
-  PizzaDecorator(this.pizza);
+  @override
+  String getDescription() => pizza.getDescription();
 
   @override
-  String getDescription() {
-    return pizza.getDescription();
-  }
-
-  @override
-  double getPrice() {
-    return pizza.getPrice();
-  }
+  double getPrice() => pizza.getPrice();
 }
 ```
 
@@ -90,127 +80,85 @@ _Basil_, _Mozzarella_, _OliveOil_, _Oregano_, _Pecorino_, _Pepperoni_ and _Sauce
 
 ```
 class Basil extends PizzaDecorator {
-  Basil(super.pizza) {
-    description = 'Basil';
-  }
+  const Basil(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Basil';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 0.2;
-  }
+  double getPrice() => pizza.getPrice() + 0.2;
 }
 ```
 
 ```
 class Mozzarella extends PizzaDecorator {
-  Mozzarella(super.pizza) {
-    description = 'Mozzarella';
-  }
+  const Mozzarella(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Mozzarella';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 0.5;
-  }
+  double getPrice() => pizza.getPrice() + 0.5;
 }
 ```
 
 ```
 class OliveOil extends PizzaDecorator {
-  OliveOil(super.pizza) {
-    description = 'Olive Oil';
-  }
+  const OliveOil(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Olive Oil';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 0.1;
-  }
+  double getPrice() => pizza.getPrice() + 0.1;
 }
 ```
 
 ```
 class Oregano extends PizzaDecorator {
-  Oregano(super.pizza) {
-    description = 'Oregano';
-  }
+  const Oregano(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Oregano';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 0.2;
-  }
+  double getPrice() => pizza.getPrice() + 0.2;
 }
 ```
 
 ```
 class Pecorino extends PizzaDecorator {
-  Pecorino(super.pizza) {
-    description = 'Pecorino';
-  }
+  const Pecorino(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Pecorino';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 0.7;
-  }
+  double getPrice() => pizza.getPrice() + 0.7;
 }
 ```
 
 ```
 class Pepperoni extends PizzaDecorator {
-  Pepperoni(super.pizza) {
-    description = 'Pepperoni';
-  }
+  const Pepperoni(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Pepperoni';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 1.5;
-  }
+  double getPrice() => pizza.getPrice() + 1.5;
 }
 ```
 
 ```
 class Sauce extends PizzaDecorator {
-  Sauce(super.pizza) {
-    description = 'Sauce';
-  }
+  const Sauce(super.pizza);
 
   @override
-  String getDescription() {
-    return '${pizza.getDescription()}\n- $description';
-  }
+  String getDescription() => '${pizza.getDescription()}\n- Sauce';
 
   @override
-  double getPrice() {
-    return pizza.getPrice() + 0.3;
-  }
+  double getPrice() => pizza.getPrice() + 0.3;
 }
 ```
 
@@ -220,14 +168,12 @@ A simple class which contains data used by the pizza topping's selection chip in
 
 ```
 class PizzaToppingData {
+  PizzaToppingData(this.label);
+
   final String label;
   bool selected = false;
 
-  PizzaToppingData(this.label);
-
-  void setSelected(bool value) {
-    selected = value;
-  }
+  void setSelected({required bool isSelected}) => selected = isSelected;
 }
 ```
 
@@ -251,21 +197,16 @@ class PizzaMenu {
 
   Map<int, PizzaToppingData> getPizzaToppingsDataMap() => _pizzaToppingsDataMap;
 
-  Pizza getPizza(int index, Map<int, PizzaToppingData> pizzaToppingsDataMap) {
-    switch (index) {
-      case 0:
-        return _getMargherita();
-      case 1:
-        return _getPepperoni();
-      case 2:
-        return _getCustom(pizzaToppingsDataMap);
-    }
-
-    throw Exception("Index of '$index' does not exist.");
-  }
+  Pizza getPizza(int index, Map<int, PizzaToppingData> pizzaToppingsDataMap) =>
+      switch (index) {
+        0 => _getMargherita(),
+        1 => _getPepperoni(),
+        2 => _getCustom(pizzaToppingsDataMap),
+        _ => throw Exception("Index of '$index' does not exist."),
+      };
 
   Pizza _getMargherita() {
-    Pizza pizza = PizzaBase('Pizza Margherita');
+    Pizza pizza = const PizzaBase('Pizza Margherita');
     pizza = Sauce(pizza);
     pizza = Mozzarella(pizza);
     pizza = Basil(pizza);
@@ -277,7 +218,7 @@ class PizzaMenu {
   }
 
   Pizza _getPepperoni() {
-    Pizza pizza = PizzaBase('Pizza Pepperoni');
+    Pizza pizza = const PizzaBase('Pizza Pepperoni');
     pizza = Sauce(pizza);
     pizza = Mozzarella(pizza);
     pizza = Pepperoni(pizza);
@@ -287,35 +228,15 @@ class PizzaMenu {
   }
 
   Pizza _getCustom(Map<int, PizzaToppingData> pizzaToppingsDataMap) {
-    Pizza pizza = PizzaBase('Custom Pizza');
+    Pizza pizza = const PizzaBase('Custom Pizza');
 
-    if (pizzaToppingsDataMap[1].selected) {
-      pizza = Basil(pizza);
-    }
-
-    if (pizzaToppingsDataMap[2].selected) {
-      pizza = Mozzarella(pizza);
-    }
-
-    if (pizzaToppingsDataMap[3].selected) {
-      pizza = OliveOil(pizza);
-    }
-
-    if (pizzaToppingsDataMap[4].selected) {
-      pizza = Oregano(pizza);
-    }
-
-    if (pizzaToppingsDataMap[5].selected) {
-      pizza = Pecorino(pizza);
-    }
-
-    if (pizzaToppingsDataMap[6].selected) {
-      pizza = Pepperoni(pizza);
-    }
-
-    if (pizzaToppingsDataMap[7].selected) {
-      pizza = Sauce(pizza);
-    }
+    if (pizzaToppingsDataMap[1]!.selected) pizza = Basil(pizza);
+    if (pizzaToppingsDataMap[2]!.selected) pizza = Mozzarella(pizza);
+    if (pizzaToppingsDataMap[3]!.selected) pizza = OliveOil(pizza);
+    if (pizzaToppingsDataMap[4]!.selected) pizza = Oregano(pizza);
+    if (pizzaToppingsDataMap[5]!.selected) pizza = Pecorino(pizza);
+    if (pizzaToppingsDataMap[6]!.selected) pizza = Pepperoni(pizza);
+    if (pizzaToppingsDataMap[7]!.selected) pizza = Sauce(pizza);
 
     return pizza;
   }
@@ -328,16 +249,18 @@ _DecoratorExample_ contains the _PizzaMenu_ object which is used to get the spec
 
 ```
 class DecoratorExample extends StatefulWidget {
+  const DecoratorExample();
+
   @override
   _DecoratorExampleState createState() => _DecoratorExampleState();
 }
 
 class _DecoratorExampleState extends State<DecoratorExample> {
-  final PizzaMenu pizzaMenu = PizzaMenu();
+  final pizzaMenu = PizzaMenu();
 
-  Map<int, PizzaToppingData> _pizzaToppingsDataMap;
-  Pizza _pizza;
-  int _selectedIndex = 0;
+  late final Map<int, PizzaToppingData> _pizzaToppingsDataMap;
+  late Pizza _pizza;
+  var _selectedIndex = 0;
 
   @override
   void initState() {
@@ -346,47 +269,41 @@ class _DecoratorExampleState extends State<DecoratorExample> {
     _pizza = pizzaMenu.getPizza(0, _pizzaToppingsDataMap);
   }
 
-  void _onSelectedIndexChanged(int index) {
-    _setSelectedIndex(index);
+  void _onSelectedIndexChanged(int? index) {
+    _setSelectedIndex(index!);
     _setSelectedPizza(index);
   }
 
-  void _setSelectedIndex(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  void _setSelectedIndex(int index) => setState(() => _selectedIndex = index);
 
-  void _onCustomPizzaChipSelected(int index, bool selected) {
-    _setChipSelected(index, selected);
+  void _onCustomPizzaChipSelected(int index, bool? selected) {
+    _setChipSelected(index, selected!);
     _setSelectedPizza(_selectedIndex);
   }
 
-  void _setChipSelected(int index, bool selected) {
-    setState(() {
-      _pizzaToppingsDataMap[index].setSelected(selected);
-    });
-  }
+  void _setChipSelected(int index, bool selected) => setState(() {
+        _pizzaToppingsDataMap[index]!.setSelected(isSelected: selected);
+      });
 
-  void _setSelectedPizza(int index) {
-    setState(() {
-      _pizza = pizzaMenu.getPizza(index, _pizzaToppingsDataMap);
-    });
-  }
+  void _setSelectedPizza(int index) => setState(() {
+        _pizza = pizzaMenu.getPizza(index, _pizzaToppingsDataMap);
+      });
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
                 Text(
                   'Select your pizza:',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -394,14 +311,11 @@ class _DecoratorExampleState extends State<DecoratorExample> {
               selectedIndex: _selectedIndex,
               onChanged: _onSelectedIndexChanged,
             ),
-            AnimatedContainer(
-              height: _selectedIndex == 2 ? 100.0 : 0.0,
-              duration: const Duration(milliseconds: 500),
-              child: CustomPizzaSelection(
+            if (_selectedIndex == 2)
+              CustomPizzaSelection(
                 pizzaToppingsDataMap: _pizzaToppingsDataMap,
                 onSelected: _onCustomPizzaChipSelected,
               ),
-            ),
             PizzaInformation(
               pizza: _pizza,
             ),

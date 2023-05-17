@@ -1,17 +1,13 @@
 import 'pizza.dart';
 
-abstract class PizzaDecorator extends Pizza {
+abstract class PizzaDecorator implements Pizza {
+  const PizzaDecorator(this.pizza);
+
   final Pizza pizza;
 
-  PizzaDecorator(this.pizza);
+  @override
+  String getDescription() => pizza.getDescription();
 
   @override
-  String getDescription() {
-    return pizza.getDescription();
-  }
-
-  @override
-  double getPrice() {
-    return pizza.getPrice();
-  }
+  double getPrice() => pizza.getPrice();
 }
