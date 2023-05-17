@@ -10,7 +10,7 @@ The class diagram below shows the implementation of the **Abstract Factory** des
 
 ![Abstract Factory Implementation Class Diagram](resource:assets/images/abstract_factory/abstract_factory_implementation.png)
 
-_IWidgetsFactory_ is an abstract class which is used as an interface for all the specific widget factories:
+_IWidgetsFactory_ is an abstract interface class which is used for all the specific widget factories:
 
 - _getTitle()_ - an abstract method which returns the title of the factory. Used in the UI;
 - _createActivityIndicator()_ - an abstract method which returns the specific implementation (UI component/widget) of the activity (process) indicator implementing the _IActivityIndicator_ interface;
@@ -19,7 +19,7 @@ _IWidgetsFactory_ is an abstract class which is used as an interface for all the
 
 _MaterialWidgetsFactory_ and _CupertinoWidgetsFactory_ are concrete classes which implement the _IWidgetsFactory_ class and its methods. _MaterialWidgetsFactory_ creates Material style components (widgets) while the _CupertinoWidgetsFactory_ creates Cupertino style widgets.
 
-_IActivityIndicator_, _ISlider_ and _ISwitch_ are abstract classes which define the _render()_ method for each component. These classes are implemented by both - Material and Cupertino - widgets.
+_IActivityIndicator_, _ISlider_ and _ISwitch_ are abstract interface classes which define the _render()_ method for each component. These classes are implemented by both - Material and Cupertino - widgets.
 
 _AndroidActivityIndicator_, _AndroidSlider_ and _AndroidSwitch_ are concrete implementations of the Material widgets implementing the _render()_ method of corresponding interfaces.
 
@@ -29,10 +29,10 @@ _AbstractFactoryExample_ contains a list of factories implementing the _IWidgets
 
 ### IWidgetsFactory
 
-An interface which defines methods to be implemented by the specific factory classes. These methods are used to create components (widgets) of the specific type defined by the concrete factory. Dart language does not support the interface as a class type, so we define an interface by creating an abstract class and providing a method header (name, return type, parameters) without the default implementation.
+An interface which defines methods to be implemented by the specific factory classes. These methods are used to create components (widgets) of the specific type defined by the concrete factory.
 
 ```
-abstract class IWidgetsFactory {
+abstract interface class IWidgetsFactory {
   String getTitle();
   IActivityIndicator createActivityIndicator();
   ISlider createSlider();
@@ -46,25 +46,20 @@ abstract class IWidgetsFactory {
 
 ```
 class MaterialWidgetsFactory implements IWidgetsFactory {
-  @override
-  String getTitle() {
-    return 'Android widgets';
-  }
+  const MaterialWidgetsFactory();
 
   @override
-  IActivityIndicator createActivityIndicator() {
-    return AndroidActivityIndicator();
-  }
+  String getTitle() => 'Android widgets';
 
   @override
-  ISlider createSlider() {
-    return AndroidSlider();
-  }
+  IActivityIndicator createActivityIndicator() =>
+      const AndroidActivityIndicator();
 
   @override
-  ISwitch createSwitch() {
-    return AndroidSwitch();
-  }
+  ISlider createSlider() => const AndroidSlider();
+
+  @override
+  ISwitch createSwitch() => const AndroidSwitch();
 }
 ```
 
@@ -72,25 +67,19 @@ class MaterialWidgetsFactory implements IWidgetsFactory {
 
 ```
 class CupertinoWidgetsFactory implements IWidgetsFactory {
-  @override
-  String getTitle() {
-    return 'iOS widgets';
-  }
+  const CupertinoWidgetsFactory();
 
   @override
-  IActivityIndicator createActivityIndicator() {
-    return IosActivityIndicator();
-  }
+  String getTitle() => 'iOS widgets';
 
   @override
-  ISlider createSlider() {
-    return IosSlider();
-  }
+  IActivityIndicator createActivityIndicator() => const IosActivityIndicator();
 
   @override
-  ISwitch createSwitch() {
-    return IosSwitch();
-  }
+  ISlider createSlider() => const IosSlider();
+
+  @override
+  ISwitch createSwitch() => const IosSwitch();
 }
 ```
 
@@ -99,7 +88,7 @@ class CupertinoWidgetsFactory implements IWidgetsFactory {
 An interface which defines the _render()_ method to render the activity indicator component (widget).
 
 ```
-abstract class IActivityIndicator {
+abstract interface class IActivityIndicator {
   Widget render();
 }
 ```
@@ -110,10 +99,12 @@ abstract class IActivityIndicator {
 
 ```
 class AndroidActivityIndicator implements IActivityIndicator {
+  const AndroidActivityIndicator();
+
   @override
   Widget render() {
     return CircularProgressIndicator(
-      backgroundColor: Color(0xFFECECEC),
+      backgroundColor: const Color(0xFFECECEC),
       valueColor: AlwaysStoppedAnimation<Color>(
         Colors.black.withOpacity(0.65),
       ),
@@ -126,9 +117,11 @@ class AndroidActivityIndicator implements IActivityIndicator {
 
 ```
 class IosActivityIndicator implements IActivityIndicator {
+  const IosActivityIndicator();
+
   @override
   Widget render() {
-    return CupertinoActivityIndicator();
+    return const CupertinoActivityIndicator();
   }
 }
 ```
@@ -138,7 +131,7 @@ class IosActivityIndicator implements IActivityIndicator {
 An interface which defines the _render()_ method to render the slider component (widget).
 
 ```
-abstract class ISlider {
+abstract interface class ISlider {
   Widget render(double value, ValueSetter<double> onChanged);
 }
 ```
@@ -149,12 +142,13 @@ abstract class ISlider {
 
 ```
 class AndroidSlider implements ISlider {
+  const AndroidSlider();
+
   @override
   Widget render(double value, ValueSetter<double> onChanged) {
     return Slider(
       activeColor: Colors.black,
       inactiveColor: Colors.grey,
-      min: 0.0,
       max: 100.0,
       value: value,
       onChanged: onChanged,
@@ -167,10 +161,11 @@ class AndroidSlider implements ISlider {
 
 ```
 class IosSlider implements ISlider {
+  const IosSlider();
+
   @override
   Widget render(double value, ValueSetter<double> onChanged) {
     return CupertinoSlider(
-      min: 0.0,
       max: 100.0,
       value: value,
       onChanged: onChanged,
@@ -184,8 +179,8 @@ class IosSlider implements ISlider {
 An interface which defines the _render()_ method to render the switch component (widget).
 
 ```
-abstract class ISwitch {
-  Widget render(bool value, ValueSetter<bool> onChanged);
+abstract interface class ISwitch {
+  Widget render({required bool value, required ValueSetter<bool> onChanged});
 }
 ```
 
@@ -195,8 +190,10 @@ abstract class ISwitch {
 
 ```
 class AndroidSwitch implements ISwitch {
+  const AndroidSwitch();
+
   @override
-  Widget render(bool value, ValueSetter<bool> onChanged) {
+  Widget render({required bool value, required ValueSetter<bool> onChanged}) {
     return Switch(
       activeColor: Colors.black,
       value: value,
@@ -210,8 +207,10 @@ class AndroidSwitch implements ISwitch {
 
 ```
 class IosSwitch implements ISwitch {
+  const IosSwitch();
+
   @override
-  Widget render(bool value, ValueSetter<bool> onChanged) {
+  Widget render({required bool value, required ValueSetter<bool> onChanged}) {
     return CupertinoSwitch(
       value: value,
       onChanged: onChanged,
@@ -228,26 +227,28 @@ As you can see in the _build()_ method, the example widget does not care about t
 
 ```
 class AbstractFactoryExample extends StatefulWidget {
+  const AbstractFactoryExample();
+
   @override
   _AbstractFactoryExampleState createState() => _AbstractFactoryExampleState();
 }
 
 class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
-  final List<IWidgetsFactory> widgetsFactoryList = [
+  final List<IWidgetsFactory> widgetsFactoryList = const [
     MaterialWidgetsFactory(),
     CupertinoWidgetsFactory(),
   ];
 
-  int _selectedFactoryIndex = 0;
+  var _selectedFactoryIndex = 0;
 
-  IActivityIndicator _activityIndicator;
+  late IActivityIndicator _activityIndicator;
 
-  ISlider _slider;
-  double _sliderValue = 50.0;
+  late ISlider _slider;
+  var _sliderValue = 50.0;
   String get _sliderValueString => _sliderValue.toStringAsFixed(0);
 
-  ISwitch _switch;
-  bool _switchValue = false;
+  late ISwitch _switch;
+  var _switchValue = false;
   String get _switchValueString => _switchValue ? 'ON' : 'OFF';
 
   @override
@@ -263,31 +264,27 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
     _switch = widgetsFactoryList[_selectedFactoryIndex].createSwitch();
   }
 
-  void _setSelectedFactoryIndex(int index) {
+  void _setSelectedFactoryIndex(int? index) {
+    if (index == null) return;
+
     setState(() {
       _selectedFactoryIndex = index;
       _createWidgets();
     });
   }
 
-  void _setSliderValue(double value) {
-    setState(() {
-      _sliderValue = value;
-    });
-  }
+  void _setSliderValue(double value) => setState(() => _sliderValue = value);
 
-  void _setSwitchValue(bool value) {
-    setState(() {
-      _switchValue = value;
-    });
-  }
+  void _setSwitchValue(bool value) => setState(() => _switchValue = value);
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             FactorySelection(
@@ -298,29 +295,32 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
             const SizedBox(height: LayoutConstants.spaceL),
             Text(
               'Widgets showcase',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Process indicator',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             _activityIndicator.render(),
             const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Slider ($_sliderValueString%)',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             _slider.render(_sliderValue, _setSliderValue),
             const SizedBox(height: LayoutConstants.spaceXL),
             Text(
               'Switch ($_switchValueString)',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            _switch.render(_switchValue, _setSwitchValue),
+            _switch.render(
+              value: _switchValue,
+              onChanged: _setSwitchValue,
+            ),
           ],
         ),
       ),

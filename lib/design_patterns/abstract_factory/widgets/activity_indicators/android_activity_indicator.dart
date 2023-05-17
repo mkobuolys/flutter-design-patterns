@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../iactivity_indicator.dart';
 
 class AndroidActivityIndicator implements IActivityIndicator {
+  const AndroidActivityIndicator();
+
   @override
   Widget render() {
     return CircularProgressIndicator(

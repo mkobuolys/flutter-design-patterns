@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-abstract class IActivityIndicator {
+abstract interface class IActivityIndicator {
   Widget render();
 }
