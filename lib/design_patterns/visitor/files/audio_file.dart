@@ -4,8 +4,6 @@ import '../file.dart';
 import '../ivisitor.dart';
 
 class AudioFile extends File {
-  final String albumTitle;
-
   const AudioFile({
     required this.albumTitle,
     required super.title,
@@ -13,8 +11,8 @@ class AudioFile extends File {
     required super.size,
   }) : super(icon: Icons.music_note);
 
+  final String albumTitle;
+
   @override
-  String accept(IVisitor visitor) {
-    return visitor.visitAudioFile(this);
-  }
+  String accept(IVisitor visitor) => visitor.visitAudioFile(this);
 }

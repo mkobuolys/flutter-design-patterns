@@ -4,6 +4,8 @@ import '../files/index.dart';
 import '../ivisitor.dart';
 
 class HumanReadableVisitor implements IVisitor {
+  const HumanReadableVisitor();
+
   @override
   String getTitle() => 'Export as text';
 

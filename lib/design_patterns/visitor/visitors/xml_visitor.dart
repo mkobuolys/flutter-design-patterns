@@ -4,6 +4,8 @@ import '../files/index.dart';
 import '../ivisitor.dart';
 
 class XmlVisitor implements IVisitor {
+  const XmlVisitor();
+
   @override
   String getTitle() => 'Export as XML';
 
@@ -24,17 +26,13 @@ class XmlVisitor implements IVisitor {
     final isRootDirectory = directory.level == 0;
     final buffer = StringBuffer();
 
-    if (isRootDirectory) {
-      buffer.write('<files>\n');
-    }
+    if (isRootDirectory) buffer.write('<files>\n');
 
     for (final file in directory.files) {
       buffer.write(file.accept(this));
     }
 
-    if (isRootDirectory) {
-      buffer.write('</files>\n');
-    }
+    if (isRootDirectory) buffer.write('</files>\n');
 
     return buffer.toString();
   }

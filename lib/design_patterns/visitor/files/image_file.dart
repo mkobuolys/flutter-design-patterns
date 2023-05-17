@@ -4,8 +4,6 @@ import '../file.dart';
 import '../ivisitor.dart';
 
 class ImageFile extends File {
-  final String resolution;
-
   const ImageFile({
     required this.resolution,
     required super.title,
@@ -13,8 +11,8 @@ class ImageFile extends File {
     required super.size,
   }) : super(icon: Icons.image);
 
+  final String resolution;
+
   @override
-  String accept(IVisitor visitor) {
-    return visitor.visitImageFile(this);
-  }
+  String accept(IVisitor visitor) => visitor.visitImageFile(this);
 }
