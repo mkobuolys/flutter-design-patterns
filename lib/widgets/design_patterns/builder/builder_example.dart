@@ -13,7 +13,7 @@ class BuilderExample extends StatefulWidget {
 }
 
 class _BuilderExampleState extends State<BuilderExample> {
-  final BurgerMaker _burgerMaker = BurgerMaker(HamburgerBuilder());
+  final _burgerMaker = BurgerMaker(HamburgerBuilder());
   final List<BurgerMenuItem> _burgerMenuItems = [];
 
   late BurgerMenuItem _selectedBurgerMenuItem;
@@ -24,18 +24,12 @@ class _BuilderExampleState extends State<BuilderExample> {
     super.initState();
 
     _burgerMenuItems.addAll([
-      BurgerMenuItem(
-        label: 'Hamburger',
-        burgerBuilder: HamburgerBuilder(),
-      ),
+      BurgerMenuItem(label: 'Hamburger', burgerBuilder: HamburgerBuilder()),
       BurgerMenuItem(
         label: 'Cheeseburger',
         burgerBuilder: CheeseburgerBuilder(),
       ),
-      BurgerMenuItem(
-        label: 'Big Mac\u00AE',
-        burgerBuilder: BigMacBuilder(),
-      ),
+      BurgerMenuItem(label: 'Big Mac\u00AE', burgerBuilder: BigMacBuilder()),
       BurgerMenuItem(
         label: 'McChicken\u00AE',
         burgerBuilder: McChickenBuilder(),
@@ -52,13 +46,11 @@ class _BuilderExampleState extends State<BuilderExample> {
     return _burgerMaker.getBurger();
   }
 
-  void _onBurgerMenuItemChanged(BurgerMenuItem? selectedItem) {
-    setState(() {
-      _selectedBurgerMenuItem = selectedItem!;
-      _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
-      _selectedBurger = _prepareSelectedBurger();
-    });
-  }
+  void _onBurgerMenuItemChanged(BurgerMenuItem? selectedItem) => setState(() {
+        _selectedBurgerMenuItem = selectedItem!;
+        _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
+        _selectedBurger = _prepareSelectedBurger();
+      });
 
   @override
   Widget build(BuildContext context) {

@@ -8,17 +8,11 @@ abstract class BurgerBuilderBase {
   @protected
   late double price;
 
-  void createBurger() {
-    burger = Burger();
-  }
+  void createBurger() => burger = Burger();
 
-  Burger getBurger() {
-    return burger;
-  }
+  Burger getBurger() => burger;
 
-  void setBurgerPrice() {
-    burger.setPrice(price);
-  }
+  void setBurgerPrice() => burger.setPrice(price);
 
   void addBuns();
   void addCheese();
