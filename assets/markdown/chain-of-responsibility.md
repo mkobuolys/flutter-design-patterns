@@ -37,10 +37,12 @@ _ChainOfResponsibilityExample_ creates a chain of loggers and uses public method
 A special kind of class - _enumeration_ - to define different log levels. Also, there is a _LogLevelExtensions_ defined where the operator **<=** is overridden to compare whether one log level is lower or equal to the other.
 
 ```
-enum LogLevel { Debug, Info, Error }
+enum LogLevel {
+  debug,
+  info,
+  error;
 
-extension LogLevelExtensions on LogLevel {
-  bool operator <=(LogLevel logLevel) => this.index <= logLevel.index;
+  bool operator <=(LogLevel logLevel) => index <= logLevel.index;
 }
 ```
 
@@ -50,42 +52,30 @@ A simple class to store information about the log entry: log level and message. 
 
 ```
 class LogMessage {
+  const LogMessage({
+    required this.logLevel,
+    required this.message,
+  });
+
   final LogLevel logLevel;
   final String message;
-
-  const LogMessage({
-    @required this.logLevel,
-    @required this.message,
-  })  : assert(logLevel != null),
-        assert(message != null);
 
   String get _logLevelString =>
       logLevel.toString().split('.').last.toUpperCase();
 
-  Color _getLogEntryColor() {
-    switch (logLevel) {
-      case LogLevel.Debug:
-        return Colors.grey;
-      case LogLevel.Info:
-        return Colors.blue;
-      case LogLevel.Error:
-        return Colors.red;
-      default:
-        throw Exception("Log level '$logLevel' is not supported.");
-    }
-  }
+  Color _getLogEntryColor() => switch (logLevel) {
+        LogLevel.debug => Colors.grey,
+        LogLevel.info => Colors.blue,
+        LogLevel.error => Colors.red,
+      };
 
-  Widget getFormattedMessage() {
-    return Text(
-      '$_logLevelString: $message',
-      style: TextStyle(
-        color: _getLogEntryColor(),
-      ),
-      textAlign: TextAlign.justify,
-      overflow: TextOverflow.ellipsis,
-      maxLines: 2,
-    );
-  }
+  Widget getFormattedMessage() => Text(
+        '$_logLevelString: $message',
+        style: TextStyle(color: _getLogEntryColor()),
+        textAlign: TextAlign.justify,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
+      );
 }
 ```
 
@@ -95,9 +85,8 @@ A Business Logic component (BLoC) class to store log messages and provide them t
 
 ```
 class LogBloc {
-  final List<LogMessage> _logs = List<LogMessage>();
-  final StreamController<List<LogMessage>> _logStream =
-      StreamController<List<LogMessage>>();
+  final List<LogMessage> _logs = [];
+  final _logStream = StreamController<List<LogMessage>>();
 
   StreamSink<List<LogMessage>> get _inLogStream => _logStream.sink;
   Stream<List<LogMessage>> get outLogStream => _logStream.stream;
@@ -119,12 +108,12 @@ A simple class that represents the actual external logging service. Instead of s
 
 ```
 class ExternalLoggingService {
+  const ExternalLoggingService(this.logBloc);
+
   final LogBloc logBloc;
 
-  ExternalLoggingService(this.logBloc);
-
   void logMessage(LogLevel logLevel, String message) {
-    var logMessage = LogMessage(logLevel: logLevel, message: message);
+    final logMessage = LogMessage(logLevel: logLevel, message: message);
 
     // Send log message to the external logging service
 
@@ -140,12 +129,12 @@ A simple class that represents the actual mail logging service. Instead of sendi
 
 ```
 class MailService {
+  const MailService(this.logBloc);
+
   final LogBloc logBloc;
 
-  MailService(this.logBloc);
-
   void sendErrorMail(LogLevel logLevel, String message) {
-    var logMessage = LogMessage(logLevel: logLevel, message: message);
+    final logMessage = LogMessage(logLevel: logLevel, message: message);
 
     // Send error mail
 
@@ -161,26 +150,24 @@ An abstract class for the base logger implementation. It stores the log level an
 
 ```
 abstract class LoggerBase {
-  @protected
-  final LogLevel logLevel;
-  final LoggerBase? _nextLogger;
-
   const LoggerBase({
     required this.logLevel,
     LoggerBase? nextLogger,
   }) : _nextLogger = nextLogger;
 
+  @protected
+  final LogLevel logLevel;
+  final LoggerBase? _nextLogger;
+
   void logMessage(LogLevel level, String message) {
-    if (logLevel <= level) {
-      log(message);
-    }
+    if (logLevel <= level) log(message);
 
     _nextLogger?.logMessage(level, message);
   }
 
-  void logDebug(String message) => logMessage(LogLevel.Debug, message);
-  void logInfo(String message) => logMessage(LogLevel.Info, message);
-  void logError(String message) => logMessage(LogLevel.Error, message);
+  void logDebug(String message) => logMessage(LogLevel.debug, message);
+  void logInfo(String message) => logMessage(LogLevel.info, message);
+  void logError(String message) => logMessage(LogLevel.error, message);
 
   void log(String message);
 }
@@ -192,12 +179,12 @@ abstract class LoggerBase {
 
 ```
 class DebugLogger extends LoggerBase {
-  final LogBloc logBloc;
-
   const DebugLogger(
     this.logBloc, {
     super.nextLogger,
-  }) : super(logLevel: LogLevel.Debug);
+  }) : super(logLevel: LogLevel.debug);
+
+  final LogBloc logBloc;
 
   @override
   void log(String message) {
@@ -212,13 +199,13 @@ class DebugLogger extends LoggerBase {
 
 ```
 class InfoLogger extends LoggerBase {
-  late ExternalLoggingService externalLoggingService;
-
   InfoLogger(
     LogBloc logBloc, {
     super.nextLogger,
   })  : externalLoggingService = ExternalLoggingService(logBloc),
-        super(logLevel: LogLevel.Info);
+        super(logLevel: LogLevel.info);
+
+  final ExternalLoggingService externalLoggingService;
 
   @override
   void log(String message) {
@@ -231,13 +218,13 @@ class InfoLogger extends LoggerBase {
 
 ```
 class ErrorLogger extends LoggerBase {
-  late MailService mailService;
-
   ErrorLogger(
     LogBloc logBloc, {
     super.nextLogger,
   })  : mailService = MailService(logBloc),
-        super(logLevel: LogLevel.Error);
+        super(logLevel: LogLevel.error);
+
+  final MailService mailService;
 
   @override
   void log(String message) {
@@ -263,7 +250,7 @@ class ChainOfResponsibilityExample extends StatefulWidget {
 
 class _ChainOfResponsibilityExampleState
     extends State<ChainOfResponsibilityExample> {
-  final LogBloc logBloc = LogBloc();
+  final logBloc = LogBloc();
 
   late final LoggerBase logger;
 

@@ -3,9 +3,9 @@ import '../log_level.dart';
 import '../log_message.dart';
 
 class ExternalLoggingService {
-  final LogBloc logBloc;
+  const ExternalLoggingService(this.logBloc);
 
-  ExternalLoggingService(this.logBloc);
+  final LogBloc logBloc;
 
   void logMessage(LogLevel logLevel, String message) {
     final logMessage = LogMessage(logLevel: logLevel, message: message);
