@@ -13,26 +13,20 @@ class MementoExample extends StatefulWidget {
 }
 
 class _MementoExampleState extends State<MementoExample> {
-  final CommandHistory _commandHistory = CommandHistory();
-  final Originator _originator = Originator();
+  final _commandHistory = CommandHistory();
+  final _originator = Originator();
 
   void _randomiseProperties() {
     final command = RandomisePropertiesCommand(_originator);
     _executeCommand(command);
   }
 
-  void _executeCommand(ICommand command) {
-    setState(() {
-      command.execute();
-      _commandHistory.add(command);
-    });
-  }
+  void _executeCommand(ICommand command) => setState(() {
+        command.execute();
+        _commandHistory.add(command);
+      });
 
-  void _undo() {
-    setState(() {
-      _commandHistory.undo();
-    });
-  }
+  void _undo() => setState(() => _commandHistory.undo());
 
   @override
   Widget build(BuildContext context) {
