@@ -4,22 +4,18 @@ import 'package:flutter/material.dart';
 import '../shape.dart';
 
 class Circle extends Shape {
-  late double radius;
-
   Circle(super.color, this.radius);
 
-  Circle.initial([super.color = Colors.black]) {
-    radius = 50.0;
-  }
+  Circle.initial([super.color = Colors.black]) : radius = 50.0;
 
-  Circle.clone(Circle source) : super.clone(source) {
-    radius = source.radius;
-  }
+  Circle.clone(Circle super.source)
+      : radius = source.radius,
+        super.clone();
+
+  double radius;
 
   @override
-  Shape clone() {
-    return Circle.clone(this);
-  }
+  Shape clone() => Circle.clone(this);
 
   @override
   void randomiseProperties() {

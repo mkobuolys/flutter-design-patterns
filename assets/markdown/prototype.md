@@ -29,13 +29,11 @@ An abstract class which stores the shape's colour and defines several abstract m
 
 ```
 abstract class Shape {
-  Color color;
-
   Shape(this.color);
 
-  Shape.clone(Shape source) {
-    color = source.color;
-  }
+  Shape.clone(Shape source) : color = source.color;
+
+  Color color;
 
   Shape clone();
   void randomiseProperties();
@@ -49,22 +47,18 @@ abstract class Shape {
 
 ```
 class Circle extends Shape {
-  late double radius;
-
   Circle(super.color, this.radius);
 
-  Circle.initial([super.color = Colors.black]) {
-    radius = 50.0;
-  }
+  Circle.initial([super.color = Colors.black]) : radius = 50.0;
 
-  Circle.clone(Circle source) : super.clone(source) {
-    radius = source.radius;
-  }
+  Circle.clone(Circle super.source)
+      : radius = source.radius,
+        super.clone();
+
+  double radius;
 
   @override
-  Shape clone() {
-    return Circle.clone(this);
-  }
+  Shape clone() => Circle.clone(this);
 
   @override
   void randomiseProperties() {
@@ -105,25 +99,22 @@ class Circle extends Shape {
 
 ```
 class Rectangle extends Shape {
-  late double height;
-  late double width;
-
   Rectangle(super.color, this.height, this.width);
 
-  Rectangle.initial([super.color = Colors.black]) {
-    height = 100.0;
-    width = 100.0;
-  }
+  Rectangle.initial([super.color = Colors.black])
+      : height = 100.0,
+        width = 100.0;
 
-  Rectangle.clone(Rectangle source) : super.clone(source) {
-    height = source.height;
-    width = source.width;
-  }
+  Rectangle.clone(Rectangle super.source)
+      : height = source.height,
+        width = source.width,
+        super.clone();
+
+  double height;
+  double width;
 
   @override
-  Shape clone() {
-    return Rectangle.clone(this);
-  }
+  Shape clone() => Rectangle.clone(this);
 
   @override
   void randomiseProperties() {
@@ -168,47 +159,41 @@ The _PrototypeExample_ does not care about the specific type of shape object as 
 
 ```
 class PrototypeExample extends StatefulWidget {
+  const PrototypeExample();
+
   @override
   _PrototypeExampleState createState() => _PrototypeExampleState();
 }
 
 class _PrototypeExampleState extends State<PrototypeExample> {
-  final Shape _circle = Circle.initial();
-  final Shape _rectangle = Rectangle.initial();
+  final _circle = Circle.initial();
+  final _rectangle = Rectangle.initial();
 
-  Shape _circleClone;
-  Shape _rectangleClone;
+  Shape? _circleClone;
+  Shape? _rectangleClone;
 
-  void _randomiseCircleProperties() {
-    setState(() {
-      _circle.randomiseProperties();
-    });
-  }
+  void _randomiseCircleProperties() => setState(
+        () => _circle.randomiseProperties(),
+      );
 
-  void _cloneCircle() {
-    setState(() {
-      _circleClone = _circle.clone();
-    });
-  }
+  void _cloneCircle() => setState(() => _circleClone = _circle.clone());
 
-  void _randomiseRectangleProperties() {
-    setState(() {
-      _rectangle.randomiseProperties();
-    });
-  }
+  void _randomiseRectangleProperties() => setState(
+        () => _rectangle.randomiseProperties(),
+      );
 
-  void _cloneRectangle() {
-    setState(() {
-      _rectangleClone = _rectangle.clone();
-    });
-  }
+  void _cloneRectangle() => setState(
+        () => _rectangleClone = _rectangle.clone(),
+      );
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
-      behavior: ScrollBehavior(),
+      behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
+        padding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingL,
+        ),
         child: Column(
           children: <Widget>[
             ShapeColumn(
@@ -217,7 +202,7 @@ class _PrototypeExampleState extends State<PrototypeExample> {
               onClonePressed: _cloneCircle,
               onRandomisePropertiesPressed: _randomiseCircleProperties,
             ),
-            Divider(),
+            const Divider(),
             ShapeColumn(
               shape: _rectangle,
               shapeClone: _rectangleClone,
