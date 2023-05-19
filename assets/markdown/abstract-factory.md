@@ -10,28 +10,28 @@ The class diagram below shows the implementation of the **Abstract Factory** des
 
 ![Abstract Factory Implementation Class Diagram](resource:assets/images/abstract_factory/abstract_factory_implementation.png)
 
-_IWidgetsFactory_ defines a common interface for all the specific widget factories:
+`IWidgetsFactory` defines a common interface for all the specific widget factories:
 
-- _getTitle()_ - returns the title of the factory. Used in the UI;
-- _createActivityIndicator()_ - returns the specific implementation (UI component/widget) of the activity (process) indicator implementing the _IActivityIndicator_ interface;
-- _createSlider()_ - returns the specific implementation (UI component/widget) of the slider implementing the _ISlider_ interface;
-- _createSwitch()_ - returns the specific implementation (UI component/widget) of the switch button implementing the _ISwitch_ interface.
+- `getTitle()` - returns the title of the factory. Used in the UI;
+- `createActivityIndicator()` - returns the specific implementation (UI component/widget) of the activity (process) indicator implementing the `IActivityIndicator` interface;
+- `createSlider()` - returns the specific implementation (UI component/widget) of the slider implementing the `ISlider` interface;
+- `createSwitch()` - returns the specific implementation (UI component/widget) of the switch button implementing the `ISwitch` interface.
 
-_MaterialWidgetsFactory_ and _CupertinoWidgetsFactory_ are concrete implementations of the _IWidgetsFactory_ interface. _MaterialWidgetsFactory_ creates Material style components (widgets) while the _CupertinoWidgetsFactory_ creates Cupertino style widgets.
+`MaterialWidgetsFactory` and `CupertinoWidgetsFactory` are concrete implementations of the `IWidgetsFactory` interface. `MaterialWidgetsFactory` creates Material style components (widgets) while the `CupertinoWidgetsFactory` creates Cupertino style widgets.
 
-_IActivityIndicator_, _ISlider_ and _ISwitch_ are interfaces that define the _render()_ method for each component. These classes are implemented by both - Material and Cupertino - widgets.
+`IActivityIndicator`, `ISlider` and `ISwitch` are interfaces that define the `render()` method for each component. These classes are implemented by both - Material and Cupertino - widgets.
 
-_AndroidActivityIndicator_, _AndroidSlider_ and _AndroidSwitch_ are concrete implementations of the Material widgets implementing the _render()_ method of corresponding interfaces.
+`AndroidActivityIndicator`, `AndroidSlider` and `AndroidSwitch` are concrete implementations of the Material widgets implementing the `render()` method of corresponding interfaces.
 
-_IosActivityIndicator_, _IosSlider_ and _IosSwitch_ are concrete implementations of the Cupertino widgets implementing the _render()_ method of corresponding interfaces.
+`IosActivityIndicator`, `IosSlider` and `IosSwitch` are concrete implementations of the Cupertino widgets implementing the `render()` method of corresponding interfaces.
 
-_AbstractFactoryExample_ contains a list of factories implementing the _IWidgetsFactory_ interface. After selecting the specific factory, the example widget uses its methods to create the corresponding widgets/UI components.
+`AbstractFactoryExample` contains a list of factories implementing the `IWidgetsFactory` interface. After selecting the specific factory, the example widget uses its methods to create the corresponding widgets/UI components.
 
 ### IWidgetsFactory
 
 An interface that defines methods to be implemented by the specific factory classes. These methods are used to create components (widgets) of the specific type defined by the concrete factory.
 
-```
+```dart
 abstract interface class IWidgetsFactory {
   String getTitle();
   IActivityIndicator createActivityIndicator();
@@ -42,9 +42,9 @@ abstract interface class IWidgetsFactory {
 
 ### Widget factories
 
-- _MaterialWidgetsFactory_ - a concrete factory class that implements the _IWidgetsFactory_ interface and its methods creating the Material style widgets.
+- `MaterialWidgetsFactory` - a concrete factory class that implements the `IWidgetsFactory` interface and its methods creating the Material style widgets.
 
-```
+```dart
 class MaterialWidgetsFactory implements IWidgetsFactory {
   const MaterialWidgetsFactory();
 
@@ -63,9 +63,9 @@ class MaterialWidgetsFactory implements IWidgetsFactory {
 }
 ```
 
-- _CupertinoWidgetsFactory_ - a concrete factory class that implements the _IWidgetsFactory_ interface and its methods creating the Cupertino style widgets.
+- `CupertinoWidgetsFactory` - a concrete factory class that implements the `IWidgetsFactory` interface and its methods creating the Cupertino style widgets.
 
-```
+```dart
 class CupertinoWidgetsFactory implements IWidgetsFactory {
   const CupertinoWidgetsFactory();
 
@@ -85,9 +85,9 @@ class CupertinoWidgetsFactory implements IWidgetsFactory {
 
 ### IActivityIndicator
 
-An interface that defines the _render()_ method to render the activity indicator component (widget).
+An interface that defines the `render()` method to render the activity indicator component (widget).
 
-```
+```dart
 abstract interface class IActivityIndicator {
   Widget render();
 }
@@ -95,9 +95,9 @@ abstract interface class IActivityIndicator {
 
 ### Activity indicator widgets
 
-- _AndroidActivityIndicator_ - a specific implementation of the activity indicator component returning the Material style widget _CircularProgressIndicator_.
+- `AndroidActivityIndicator` - a specific implementation of the activity indicator component returning the Material style widget `CircularProgressIndicator`.
 
-```
+```dart
 class AndroidActivityIndicator implements IActivityIndicator {
   const AndroidActivityIndicator();
 
@@ -113,9 +113,9 @@ class AndroidActivityIndicator implements IActivityIndicator {
 }
 ```
 
-- _IosActivityIndicator_ - a specific implementation of the activity indicator component returning the Cupertino style widget _CupertinoActivityIndicator_.
+- `IosActivityIndicator` - a specific implementation of the activity indicator component returning the Cupertino style widget `CupertinoActivityIndicator`.
 
-```
+```dart
 class IosActivityIndicator implements IActivityIndicator {
   const IosActivityIndicator();
 
@@ -128,9 +128,9 @@ class IosActivityIndicator implements IActivityIndicator {
 
 ### ISlider
 
-An interface that defines the _render()_ method to render the slider component (widget).
+An interface that defines the `render()` method to render the slider component (widget).
 
-```
+```dart
 abstract interface class ISlider {
   Widget render(double value, ValueSetter<double> onChanged);
 }
@@ -138,9 +138,9 @@ abstract interface class ISlider {
 
 ### Slider widgets
 
-- _AndroidSlider_ - a specific implementation of the slider component returning the Material style widget _Slider_.
+- `AndroidSlider` - a specific implementation of the slider component returning the Material style widget `Slider`.
 
-```
+```dart
 class AndroidSlider implements ISlider {
   const AndroidSlider();
 
@@ -157,9 +157,9 @@ class AndroidSlider implements ISlider {
 }
 ```
 
-- _IosSlider_ - a specific implementation of the slider component returning the Cupertino style widget _CupertinoSlider_.
+- `IosSlider` - a specific implementation of the slider component returning the Cupertino style widget `CupertinoSlider`.
 
-```
+```dart
 class IosSlider implements ISlider {
   const IosSlider();
 
@@ -176,9 +176,9 @@ class IosSlider implements ISlider {
 
 ### ISwitch
 
-An interface that defines the _render()_ method to render the switch component (widget).
+An interface that defines the `render()` method to render the switch component (widget).
 
-```
+```dart
 abstract interface class ISwitch {
   Widget render({required bool value, required ValueSetter<bool> onChanged});
 }
@@ -186,9 +186,9 @@ abstract interface class ISwitch {
 
 ### Switch widgets
 
-- _AndroidSwitch_ - a specific implementation of the switch button component returning the Material style widget _Switch_.
+- `AndroidSwitch` - a specific implementation of the switch button component returning the Material style widget `Switch`.
 
-```
+```dart
 class AndroidSwitch implements ISwitch {
   const AndroidSwitch();
 
@@ -203,9 +203,9 @@ class AndroidSwitch implements ISwitch {
 }
 ```
 
-- _IosSwitch_ - a specific implementation of the switch button component returning the Cupertino style widget _CupertinoSwitch_.
+- `IosSwitch` - a specific implementation of the switch button component returning the Cupertino style widget `CupertinoSwitch`.
 
-```
+```dart
 class IosSwitch implements ISwitch {
   const IosSwitch();
 
@@ -221,11 +221,11 @@ class IosSwitch implements ISwitch {
 
 ### Example
 
-_AbstractFactoryExample_ contains a list of _IWidgetsFactory_ objects (factories). After selecting the specific factory from the list, corresponding widgets are created using the factory methods and provided to the UI.
+`AbstractFactoryExample` contains a list of `IWidgetsFactory` objects (factories). After selecting the specific factory from the list, corresponding widgets are created using the factory methods and provided to the UI.
 
-As you can see in the _build()_ method, the example widget does not care about the selected concrete factory as long as it implements the _IWidgetsFactory_ interface which methods return components implementing the corresponding common interfaces among all the factories and providing the _render()_ methods used in the UI. Also, the implementation of the specific widgets is encapsulated and defined in separate widget classes implementing the _render()_ method. Hence, the UI logic is not tightly coupled to any factory or component class which implementation details could be changed independently without affecting the implementation of the UI itself.
+As you can see in the `build()` method, the example widget does not care about the selected concrete factory as long as it implements the `IWidgetsFactory` interface which methods return components implementing the corresponding common interfaces among all the factories and providing the `render()` methods used in the UI. Also, the implementation of the specific widgets is encapsulated and defined in separate widget classes implementing the `render()` method. Hence, the UI logic is not tightly coupled to any factory or component class which implementation details could be changed independently without affecting the implementation of the UI itself.
 
-```
+```dart
 class AbstractFactoryExample extends StatefulWidget {
   const AbstractFactoryExample();
 
