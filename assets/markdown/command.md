@@ -144,7 +144,7 @@ class CommandHistory {
 
 ### Example
 
-`CommandExample` contains `CommandHistory` and `Shape` objects. Also, this widget contains several `PlatformButton` components, each of which uses a specific function executing a concrete command. After the command's execution, it is added to the command history list stored in the `CommandHistory` object. If the command history is not empty, the `Undo_ button is enabled and the last command could be undone.
+`CommandExample` contains `CommandHistory` and `Shape` objects. Also, this widget contains several `PlatformButton` components, each of which uses a specific function executing a concrete command. After the command's execution, it is added to the command history list stored in the `CommandHistory` object. If the command history is not empty, the `Undo` button is enabled and the last command could be undone.
 
 As you can see in this example, the client code (UI elements, command history, etc.) isn’t coupled to concrete command classes because it works with commands via the command interface. This approach allows introducing new commands into the application without breaking any existing code.
 

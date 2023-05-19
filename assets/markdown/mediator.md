@@ -14,7 +14,7 @@ The class diagram below shows the implementation of the **Mediator** design patt
 
 - `receive()` - receives the notification from the notification hub;
 - `send()` - sends a notification;
-- `sendTo\<T\>()` - sends a notification to specific team members.
+- `sendTo<T>()` - sends a notification to specific team members.
 
 `Admin`, `Developer` and `Tester` are concrete team member classes that extend the abstract class `TeamMember` as well as override the default `toString()` method.
 
@@ -23,7 +23,7 @@ The class diagram below shows the implementation of the **Mediator** design patt
 - `getTeamMembers()` - returns a list of team members of the hub;
 - `register()` - registers a team member to the hub;
 - `send()` - sends a notification to registered team members;
-- `sendTo\<T\>()` - sends a notification to specific registered team members.
+- `sendTo<T>()` - sends a notification to specific registered team members.
 
 `TeamNotificationHub` is a concrete notification hub that implements the `NotificationHub` interface. Also, this class contain a list of registered team members - `teamMembers`.
 
@@ -31,7 +31,7 @@ The class diagram below shows the implementation of the **Mediator** design patt
 
 ### TeamMember
 
-A base class implementing methods for all the specific team member classes. Method `receive()` sets the `lastNotification` value, `send()` and `sendTo\<T\>()` methods send notification by using the corresponding `notificationHub` methods.
+A base class implementing methods for all the specific team member classes. Method `receive()` sets the `lastNotification` value, `send()` and `sendTo<T>()` methods send notification by using the corresponding `notificationHub` methods.
 
 ```dart
 base class TeamMember {
@@ -103,7 +103,7 @@ final class Tester extends TeamMember {
 
 ### NotificationHub
 
-An abstract interface class that defines methods to be implemented by specific notification hub classes. Method `getTeamMembers()` returns a list of registered team members to the hub, `register()` registers a new member to the hub. Method `send()` sends the notification to all the registered team members to the hub (excluding sender) while `sendTo\<T\>()` sends the notification to team members of a specific type (excluding sender).
+An abstract interface class that defines methods to be implemented by specific notification hub classes. Method `getTeamMembers()` returns a list of registered team members to the hub, `register()` registers a new member to the hub. Method `send()` sends the notification to all the registered team members to the hub (excluding sender) while `sendTo<T>()` sends the notification to team members of a specific type (excluding sender).
 
 ```dart
 abstract interface class NotificationHub {

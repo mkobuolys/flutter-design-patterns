@@ -84,7 +84,7 @@ final class ExampleStateWithoutSingleton extends ExampleStateBase {
 
 ### Example
 
-Example uses all three different implementations of the state. Singleton implementations (_ExampleStateByDefinition_ and _ExampleState_) create a new state object only on the first creation of the _SingletonExample_ widget, but the _ExampleStateWithoutSingleton_ instance is created on each creation of the _SingletonExample_ widget.
+Example uses all three different implementations of the state. Singleton implementations (`ExampleStateByDefinition` and `ExampleState`) create a new state object only on the first creation of the `SingletonExample` widget, but the `ExampleStateWithoutSingleton` instance is created on each creation of the `SingletonExample` widget.
 
 ```dart
 class SingletonExample extends StatefulWidget {

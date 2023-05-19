@@ -114,7 +114,7 @@ class CustomerDetailsServiceProxy implements ICustomerDetailsService {
 
 ### Example
 
-`ProxyExample` contains the proxy object of the real customer details service. When the user wants to see customer details, the `showDialog()` method is triggered (via the _showCustomerDetails()_ method) which opens the dialog window of type _CustomerDetailsDialog_ and passes the proxy object via its constructor as well as the selected customer's information - the _Customer_ object.
+`ProxyExample` contains the proxy object of the real customer details service. When the user wants to see customer details, the `showDialog()` method is triggered (via the `showCustomerDetails()` method) which opens the dialog window of type `CustomerDetailsDialog` and passes the proxy object via its constructor as well as the selected customer's information - the `Customer` object.
 
 ```dart
 class ProxyExample extends StatefulWidget {
