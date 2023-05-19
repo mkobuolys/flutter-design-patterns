@@ -10,22 +10,22 @@ The class diagram below shows the implementation of the **Interpreter** design p
 
 ![Interpreter Implementation Class Diagram](resource:assets/images/interpreter/interpreter_implementation.png)
 
-_IExpression_ defines a common interface for both terminal and nonterminal expressions which implement the _interpret()_ method:
+`IExpression` defines a common interface for both terminal and nonterminal expressions which implement the `interpret()` method:
 
-- _Number_ - a terminal expression for numbers;
-- _Multiply_ - a nonterminal expression of the multiplication operation;
-- _Subtract_ - a nonterminal expression of the subtraction operation;
-- _Add_ - a nonterminal expression of the addition operation.
+- `Number` - a terminal expression for numbers;
+- `Multiply` - a nonterminal expression of the multiplication operation;
+- `Subtract` - a nonterminal expression of the subtraction operation;
+- `Add` - a nonterminal expression of the addition operation.
 
-All of the nonterminal expressions contain left and right expressions of type _IExpression_ which are used in the _interpret()_ method to calculate the result of the operation.
+All of the nonterminal expressions contain left and right expressions of type `IExpression` which are used in the `interpret()` method to calculate the result of the operation.
 
-_ExpressionContext_ class contains the solution steps of the postfix expression and is used by the _ExpressionSection_ widget to retrieve those steps and the _IExpression_ interface implementing classes to add a specific solution step to the context.
+`ExpressionContext` class contains the solution steps of the postfix expression and is used by the `ExpressionSection` widget to retrieve those steps and the `IExpression` interface implementing classes to add a specific solution step to the context.
 
-_ExpressionSection_ uses the _ExpressionHelpers_ class to build the expression tree of the postfix expression and the _ExpressionContext_ to retrieve the solution steps of the specific postfix expression.
+`ExpressionSection` uses the `ExpressionHelpers` class to build the expression tree of the postfix expression and the `ExpressionContext` to retrieve the solution steps of the specific postfix expression.
 
 ### IExpression
 
-An interface that defines the _interpret()_ method to be implemented by the terminal and nonterminal expression classes.
+An interface that defines the `interpret()` method to be implemented by the terminal and nonterminal expression classes.
 
 ```
 abstract interface class IExpression {
@@ -35,9 +35,9 @@ abstract interface class IExpression {
 
 ### ExpressionContext
 
-A class to define the context which stores the solution steps of the postfix expression and is used by the _Client_ and classes implementing the _IExpression_ interface.
+A class to define the context which stores the solution steps of the postfix expression and is used by the `Client` and classes implementing the `IExpression` interface.
 
-```
+```dart
 class ExpressionContext {
   final List<String> _solutionSteps = [];
 
@@ -54,9 +54,9 @@ class ExpressionContext {
 
 ### ExpressionHelpers
 
-A helper class which is used by the _Client_ to build the expression tree from the provided postfix expression input.
+A helper class which is used by the `Client` to build the expression tree from the provided postfix expression input.
 
-```
+```dart
 class ExpressionHelpers {
   const ExpressionHelpers._();
 
@@ -105,7 +105,7 @@ class ExpressionHelpers {
 
 A terminal expression class to define the number in postfix expression.
 
-```
+```dart
 class Number implements IExpression {
   const Number(this.number);
 
@@ -118,9 +118,9 @@ class Number implements IExpression {
 
 ### Nonterminal expressions
 
-- _Add_ - defines the addition operation and adds the addition solution step to the _ExpressionContext_. The result of this operation - left and right expressions' sum.
+- `Add` - defines the addition operation and adds the addition solution step to the `ExpressionContext`. The result of this operation - left and right expressions' sum.
 
-```
+```dart
 class Add implements IExpression {
   const Add(this.leftExpression, this.rightExpression);
 
@@ -140,9 +140,9 @@ class Add implements IExpression {
 }
 ```
 
-- _Subtract_ - defines the subtraction operation and adds the subtraction solution step to the _ExpressionContext_. The result of this operation - left and right expressions' difference.
+- `Subtract` - defines the subtraction operation and adds the subtraction solution step to the `ExpressionContext`. The result of this operation - left and right expressions' difference.
 
-```
+```dart
 class Subtract implements IExpression {
   const Subtract(this.leftExpression, this.rightExpression);
 
@@ -162,9 +162,9 @@ class Subtract implements IExpression {
 }
 ```
 
-- _Multiply_ - defines the multiplication operation and adds the multiplication solution step to the _ExpressionContext_. The result of this operation - left and right expressions' product.
+- `Multiply` - defines the multiplication operation and adds the multiplication solution step to the `ExpressionContext`. The result of this operation - left and right expressions' product.
 
-```
+```dart
 class Multiply implements IExpression {
   const Multiply(this.leftExpression, this.rightExpression);
 
@@ -186,9 +186,9 @@ class Multiply implements IExpression {
 
 ### Example
 
-- _InterpreterExample_ widget contains the list of postfix expressions. For each expression in the \__postfixExpressions_ list, an _ExpressionSection_ widget is created and a specific postfix expression is passed to it using the constructor.
+- `InterpreterExample` widget contains the list of postfix expressions. For each expression in the `_postfixExpressions` list, an `ExpressionSection` widget is created and a specific postfix expression is passed to it using the constructor.
 
-```
+```dart
 class InterpreterExample extends StatefulWidget {
   const InterpreterExample();
 
@@ -227,9 +227,9 @@ class _InterpreterExampleState extends State<InterpreterExample> {
 }
 ```
 
-- _ExpressionSection_ uses the provided _postfixExpression_ and builds its expression tree using the _ExpressionHelpers_ class on the 'Solve' button click. The _buildExpressionTree()_ method returns a single nonterminal expression of type _IExpression_ which is used to calculate the final result of the provided postfix expression. The widget/method itself does not care about the specific implementation of the nonterminal expression, it only calls the _interpret()_ method on the expression to get the final result. Also, a list of solution steps to get the final result are retrieved from the _ExpressionContext_ using the _getSolutionSteps()_ method and presented in the UI.
+- `ExpressionSection` uses the provided `postfixExpression` and builds its expression tree using the `ExpressionHelpers` class on the 'Solve' button click. The `buildExpressionTree()` method returns a single nonterminal expression of type `IExpression` which is used to calculate the final result of the provided postfix expression. The widget/method itself does not care about the specific implementation of the nonterminal expression, it only calls the `interpret()` method on the expression to get the final result. Also, a list of solution steps to get the final result are retrieved from the `ExpressionContext` using the `getSolutionSteps()` method and presented in the UI.
 
-```
+```dart
 class ExpressionSection extends StatefulWidget {
   final String postfixExpression;
 

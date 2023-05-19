@@ -10,20 +10,20 @@ The class diagram below shows the implementation of **Template Method** design p
 
 ![Template Method Implementation Class Diagram](resource:assets/images/template_method/template_method_implementation.png)
 
-The main class in the diagram is _StudentsBmiCalculator_. Its primary purpose is to define a template of the BMI calculation algorithm which returns a list of _Student_ objects (with the calculated BMI for each student) as a result via _calculateBmiAndReturnStudentList()_ method. This abstract class is used as a template for the concrete implementations of the students' BMI calculation algorithm - _StudentsXmlBmiCalculator_, _StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_. _StudentsXmlBmiCalculator_ uses the _XmlStudentsApi_ to retrieve students information as an XML string and returns it as a list of _Student_ objects via the overridden _getStudentsData()_ method. Both of the other two implementations (_StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_) uses the _JsonStudentsApi_ to retrieve students information in JSON format and returns the parsed data via the overridden _getStudentsData()_ method. However, _TeenageStudentsJsonBmiCalculator_ additionally reimplements (overrides) the _doStudentsFiltering()_ hook method to filter out non-teenage students before calculating the BMI values. _StudentsSection_ UI widget uses the _StudentsBmiCalculator_ abstraction to retrieve and represent the calculated results in _TemplateMethodExample_ widget.
+The main class in the diagram is `StudentsBmiCalculator`. Its primary purpose is to define a template of the BMI calculation algorithm which returns a list of `Student` objects (with the calculated BMI for each student) as a result via `calculateBmiAndReturnStudentList()` method. This abstract class is used as a template for the concrete implementations of the students' BMI calculation algorithm - `StudentsXmlBmiCalculator`, `StudentsJsonBmiCalculator` and `TeenageStudentsJsonBmiCalculator`. `StudentsXmlBmiCalculator` uses the `XmlStudentsApi` to retrieve students information as an XML string and returns it as a list of `Student` objects via the overridden `getStudentsData()` method. Both of the other two implementations (`StudentsJsonBmiCalculator` and `TeenageStudentsJsonBmiCalculator`) uses the `JsonStudentsApi` to retrieve students information in JSON format and returns the parsed data via the overridden `getStudentsData()` method. However, `TeenageStudentsJsonBmiCalculator` additionally reimplements (overrides) the `doStudentsFiltering()` hook method to filter out non-teenage students before calculating the BMI values. `StudentsSection` UI widget uses the `StudentsBmiCalculator` abstraction to retrieve and represent the calculated results in `TemplateMethodExample` widget.
 
 ### StudentsBmiCalculator
 
 An abstract (template) class for the BMI calculation algorithm. The algorithm consists of several steps:
 
-1.  Retrieve students data - _getStudentsData()_;
-2.  Do students filtering (if needed) - _doStudentsFiltering()_;
-3.  Calculate the BMI for each student - _\_calculateStudentsBmi()_;
-4.  Return students data - _return studentList_.
+1.  Retrieve students data - `getStudentsData()`;
+2.  Do students filtering (if needed) - `doStudentsFiltering()`;
+3.  Calculate the BMI for each student - ``calculateStudentsBmi()`;
+4.  Return students data - `return studentList`.
 
-The first step is mandatory and should be implemented in each concrete implementation of the students BMI calculator - that is, the method _getStudentsData()_ is abstract and must be overridden in the derived class. Students filtering step is optional, yet it could be overridden in the derived class. For this reason, _doStudentsFiltering()_ method has a default implementation which does not change the workflow of the algorithm by default - this kind of method is called a **hook** method. Other steps are defined in the algorithm's template itself, are common for all implementations and could not be changed.
+The first step is mandatory and should be implemented in each concrete implementation of the students BMI calculator - that is, the method `getStudentsData()` is abstract and must be overridden in the derived class. Students filtering step is optional, yet it could be overridden in the derived class. For this reason, `doStudentsFiltering()` method has a default implementation which does not change the workflow of the algorithm by default - this kind of method is called a **hook** method. Other steps are defined in the algorithm's template itself, are common for all implementations and could not be changed.
 
-```
+```dart
 abstract class StudentsBmiCalculator {
   const StudentsBmiCalculator();
 
@@ -58,9 +58,9 @@ abstract class StudentsBmiCalculator {
 
 ### StudentsXmlBmiCalculator
 
-A concrete implementation of the BMI calculation algorithm which uses _XmlStudentsApi_ to retrieve data and implements the _getStudentsData()_ method.
+A concrete implementation of the BMI calculation algorithm which uses `XmlStudentsApi` to retrieve data and implements the `getStudentsData()` method.
 
-```
+```dart
 class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
   const StudentsXmlBmiCalculator({
     this.api = const XmlStudentsApi(),
@@ -100,9 +100,9 @@ class StudentsXmlBmiCalculator extends StudentsBmiCalculator {
 
 ### StudentsJsonBmiCalculator
 
-A concrete implementation of the BMI calculation algorithm which uses _JsonStudentsApi_ to retrieve data and implements the _getStudentsData()_ method.
+A concrete implementation of the BMI calculation algorithm which uses `JsonStudentsApi` to retrieve data and implements the `getStudentsData()` method.
 
-```
+```dart
 class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
   const StudentsJsonBmiCalculator({
     this.api = const JsonStudentsApi(),
@@ -134,9 +134,9 @@ class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
 
 ### TeenageStudentsJsonBmiCalculator
 
-A concrete implementation of the BMI calculation algorithm which uses _JsonStudentsApi_ to retrieve data and implements the _getStudentsData()_ method. Additionally, the _doStudentsFiltering()_ hook method is overridden to filter out non-teenage students.
+A concrete implementation of the BMI calculation algorithm which uses `JsonStudentsApi` to retrieve data and implements the `getStudentsData()` method. Additionally, the `doStudentsFiltering()` hook method is overridden to filter out non-teenage students.
 
-```
+```dart
 class TeenageStudentsJsonBmiCalculator extends StudentsBmiCalculator {
   const TeenageStudentsJsonBmiCalculator({
     this.api = const JsonStudentsApi(),
@@ -178,7 +178,7 @@ class TeenageStudentsJsonBmiCalculator extends StudentsBmiCalculator {
 
 A simple class to store the student's information.
 
-```
+```dart
 class Student {
   final String fullName;
   final int age;
@@ -199,7 +199,7 @@ class Student {
 
 A fake API which returns students' information as JSON string.
 
-```
+```dart
 class JsonStudentsApi {
   static const _studentsJson = '''
   {
@@ -242,7 +242,7 @@ class JsonStudentsApi {
 
 A fake API which returns students' information as an XML string.
 
-```
+```dart
 class XmlStudentsApi {
   static const _studentsXml = '''
   <?xml version="1.0"?>
@@ -282,9 +282,9 @@ class XmlStudentsApi {
 
 ### Example
 
-- TemplateMethodExample - implements the example widget. This widget uses _StudentsSection_ component which requires a specific BMI calculator of type _StudentsBmiCalculator_ to be provided via a constructor. For this example, we inject three different implementations of BMI calculator (_StudentsXmlBmiCalculator_, _StudentsJsonBmiCalculator_ and _TeenageStudentsJsonBmiCalculator_) which extend the same template (base class) - _StudentsBmiCalculator_ - to three different _StudentsSection_ widgets.
+- TemplateMethodExample - implements the example widget. This widget uses `StudentsSection` component which requires a specific BMI calculator of type `StudentsBmiCalculator` to be provided via a constructor. For this example, we inject three different implementations of BMI calculator (`StudentsXmlBmiCalculator`, `StudentsJsonBmiCalculator` and `TeenageStudentsJsonBmiCalculator`) which extend the same template (base class) - `StudentsBmiCalculator` - to three different `StudentsSection` widgets.
 
-```
+```dart
 class TemplateMethodExample extends StatelessWidget {
   const TemplateMethodExample();
 
@@ -321,9 +321,9 @@ class TemplateMethodExample extends StatelessWidget {
 }
 ```
 
-- StudentsSection - uses the injected BMI calculator of type _StudentsBmiCalculator_. The widget does not care about the specific implementation of the BMI calculator as long as it uses (extends) the same template (base class). This lets us provide different students' BMI calculation algorithms/implementations without making any changes to the UI code.
+- StudentsSection - uses the injected BMI calculator of type `StudentsBmiCalculator`. The widget does not care about the specific implementation of the BMI calculator as long as it uses (extends) the same template (base class). This lets us provide different students' BMI calculation algorithms/implementations without making any changes to the UI code.
 
-```
+```dart
 class StudentsSection extends StatefulWidget {
   final StudentsBmiCalculator bmiCalculator;
   final String headerText;
@@ -349,7 +349,7 @@ class _StudentsSectionState extends State<StudentsSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
-	    ...
+	   // ...
     );
   }
 }

@@ -10,36 +10,36 @@ The class diagram below shows the implementation of the **Visitor** design patte
 
 ![Visitor Implementation Class Diagram](resource:assets/images/visitor/visitor_implementation.png)
 
-_IFile_ defines a common interface for both _File_ and _Directory_ classes:
+`IFile` defines a common interface for both `File` and `Directory` classes:
 
-- _getSize()_ - returns the size of the file;
-- _render()_ - renders the component's UI;
-- _accept()_ - delegates request to a visitor.
+- `getSize()` - returns the size of the file;
+- `render()` - renders the component's UI;
+- `accept()` - delegates request to a visitor.
 
-_File_ class implements the _getSize()_ and _render()_ methods, additionally contains _title_, _fileExtension_, _size_ and _icon_ properties.
+`File` class implements the `getSize()` and `render()` methods, additionally contains `title`, `fileExtension`, `size` and `icon` properties.
 
-_AudioFile_, _ImageFile_, _TextFile_ and _VideoFile_ are concrete file classes implementing the _accept()_ method from _IFile_ interface and containing some additional information about the specific file.
+`AudioFile`, `ImageFile`, `TextFile` and `VideoFile` are concrete file classes implementing the `accept()` method from `IFile` interface and containing some additional information about the specific file.
 
-_Directory_ implements the same required methods as _File_, but it also contains _title_, _level_, _isInitiallyExpanded_ properties and _files_ list, containing the _IFile_ objects. It also defines the _addFile()_ method, which allows adding _IFile_ objects to the directory (_files_ list). Similarly as in specific file classes, _accept()_ method is implemented here as well.
+`Directory` implements the same required methods as `File`, but it also contains `title`, `level`, `isInitiallyExpanded` properties and `files` list, containing the `IFile` objects. It also defines the `addFile()` method, which allows adding `IFile` objects to the directory (`files` list). Similarly as in specific file classes, `accept()` method is implemented here as well.
 
-_IVisitor_ defines a common interface for the specific visitor classes:
+`IVisitor` defines a common interface for the specific visitor classes:
 
-- _getTitle()_ - returns the title of the visitor that is used in the UI;
-- _visitDirectory()_ - defines a visiting method for the _Directory_ class;
-- _visitAudioFile()_ - defines a visiting method for the _AudioFile_ class;
-- _visitImageFile()_ - defines a visiting method for the _ImageFile_ class;
-- _visitTextFile()_ - defines a visiting method for the _TextFile_ class;
-- _visitVideoFile()_ - defines a visiting method for the _VideoFile_ class.
+- `getTitle()` - returns the title of the visitor that is used in the UI;
+- `visitDirectory()` - defines a visiting method for the `Directory` class;
+- `visitAudioFile()` - defines a visiting method for the `AudioFile` class;
+- `visitImageFile()` - defines a visiting method for the `ImageFile` class;
+- `visitTextFile()` - defines a visiting method for the `TextFile` class;
+- `visitVideoFile()` - defines a visiting method for the `VideoFile` class.
 
-_HumanReadableVisitor_ and _XmlVisitor_ are concrete visitor classes that implement visit methods for each specific file type.
+`HumanReadableVisitor` and `XmlVisitor` are concrete visitor classes that implement visit methods for each specific file type.
 
-_VisitorExample_ contains a list of visitors implementing the _IVisitor_ interface and the composite file structure. The selected visitor is used to format the visible files structure as text and provide it to the UI.
+`VisitorExample` contains a list of visitors implementing the `IVisitor` interface and the composite file structure. The selected visitor is used to format the visible files structure as text and provide it to the UI.
 
 ### IFile
 
-An interface that defines methods to be implemented by specific files and directories. The interface also defines an _accept()_ method which is used for the Visitor design pattern implementation.
+An interface that defines methods to be implemented by specific files and directories. The interface also defines an `accept()` method which is used for the Visitor design pattern implementation.
 
-```
+```dart
 abstract interface class IFile {
   int getSize();
   Widget render(BuildContext context);
@@ -49,9 +49,9 @@ abstract interface class IFile {
 
 ### File
 
-A concrete implementation of the _IFile_ interface. In _File_ class, _getSize()_ method simply returns the file size, _render()_ - returns file's UI widget which is used in the example screen.
+A concrete implementation of the `IFile` interface. In `File` class, `getSize()` method simply returns the file size, `render()` - returns file's UI widget which is used in the example screen.
 
-```
+```dart
 abstract class File extends StatelessWidget implements IFile {
   final String title;
   final String fileExtension;
@@ -97,11 +97,11 @@ abstract class File extends StatelessWidget implements IFile {
 
 ### Concrete file classes
 
-All of the specific file type classes implement the _accept()_ method that delegates request to the specific visitor's method.
+All of the specific file type classes implement the `accept()` method that delegates request to the specific visitor's method.
 
-- _AudioFile_ - a specific file class representing the audio file type that contains an additional _albumTitle_ property.
+- `AudioFile` - a specific file class representing the audio file type that contains an additional `albumTitle` property.
 
-```
+```dart
 class AudioFile extends File {
   const AudioFile({
     required this.albumTitle,
@@ -117,9 +117,9 @@ class AudioFile extends File {
 }
 ```
 
-- _ImageFile_ - a specific file class representing the image file type that contains an additional _resolution_ property.
+- `ImageFile` - a specific file class representing the image file type that contains an additional `resolution` property.
 
-```
+```dart
 class ImageFile extends File {
   const ImageFile({
     required this.resolution,
@@ -135,9 +135,9 @@ class ImageFile extends File {
 }
 ```
 
-- _TextFile_ - a specific file class representing the text file type that contains an additional _content_ property.
+- `TextFile` - a specific file class representing the text file type that contains an additional `content` property.
 
-```
+```dart
 class TextFile extends File {
   const TextFile({
     required this.content,
@@ -153,9 +153,9 @@ class TextFile extends File {
 }
 ```
 
-- _VideoFile_ - a specific file class representing the video file type that contains an additional _directedBy_ property.
+- `VideoFile` - a specific file class representing the video file type that contains an additional `directedBy` property.
 
-```
+```dart
 class VideoFile extends File {
   const VideoFile({
     required this.directedBy,
@@ -173,9 +173,9 @@ class VideoFile extends File {
 
 ### Directory
 
-A concrete implementation of the _IFile_ interface. Similarly as in _File_ class, _render()_ returns directory's UI widget which is used in the example screen. However, in this class _getSize()_ method calculates the directory size by calling the _getSize()_ method for each item in the _files_ list and adding up the results. Also, the class implements the _accept()_ method that delegates request to the specific visitor's method for the directory.
+A concrete implementation of the `IFile` interface. Similarly as in `File` class, `render()` returns directory's UI widget which is used in the example screen. However, in this class `getSize()` method calculates the directory size by calling the `getSize()` method for each item in the `files` list and adding up the results. Also, the class implements the `accept()` method that delegates request to the specific visitor's method for the directory.
 
-```
+```dart
 class Directory extends StatelessWidget implements IFile {
   final String title;
   final int level;
@@ -233,7 +233,7 @@ class Directory extends StatelessWidget implements IFile {
 
 An interface which defines methods to be implemented by all specific visitors.
 
-```
+```dart
 abstract interface class IVisitor {
   String getTitle();
   String visitDirectory(Directory directory);
@@ -246,9 +246,9 @@ abstract interface class IVisitor {
 
 ### Concrete visitors
 
-- _HumanReadableVisitor_ - implements the specific visitor that provides file information of each file type in a human-readable format.
+- `HumanReadableVisitor` - implements the specific visitor that provides file information of each file type in a human-readable format.
 
-```
+```dart
 class HumanReadableVisitor implements IVisitor {
   const HumanReadableVisitor();
 
@@ -332,9 +332,9 @@ class HumanReadableVisitor implements IVisitor {
 }
 ```
 
-- _XmlVisitor_ - implements the specific visitor that provides file information of each file type in XML format.
+- `XmlVisitor` - implements the specific visitor that provides file information of each file type in XML format.
 
-```
+```dart
 class XmlVisitor implements IVisitor {
   const XmlVisitor();
 
@@ -429,11 +429,11 @@ class XmlVisitor implements IVisitor {
 
 ### Example
 
-The _VisitorExample_ widget contains the _buildMediaDirectory()_ method which builds the file structure for the example. Also, it contains a list of different visitors and provides it to the _FilesVisitorSelection_ widget where the index of a specific visitor is selected by triggering the _setSelectedVisitorIndex()_ method.
+The `VisitorExample` widget contains the `buildMediaDirectory()` method which builds the file structure for the example. Also, it contains a list of different visitors and provides it to the `FilesVisitorSelection` widget where the index of a specific visitor is selected by triggering the `setSelectedVisitorIndex()` method.
 
-When exporting files' information and providing it in the modal via the _showFilesDialog()_ method, the example widget does not care about the concrete selected visitor as long as it implements the _IVisitor_ interface. The selected visitor is just applied to the whole file structure by passing it as a parameter to the _accept()_ method, hence retrieving the formatted files' structure as text and providing it to the opened _FilesDialog_ modal.
+When exporting files' information and providing it in the modal via the `showFilesDialog()` method, the example widget does not care about the concrete selected visitor as long as it implements the `IVisitor` interface. The selected visitor is just applied to the whole file structure by passing it as a parameter to the `accept()` method, hence retrieving the formatted files' structure as text and providing it to the opened `FilesDialog` modal.
 
-```
+```dart
 class VisitorExample extends StatefulWidget {
   const VisitorExample();
 

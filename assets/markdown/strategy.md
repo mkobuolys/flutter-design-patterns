@@ -10,14 +10,14 @@ The class diagram below shows the implementation of the **Strategy** design patt
 
 ![Strategy Implementation Class Diagram](resource:assets/images/strategy/strategy_implementation.png)
 
-_IShippingCostsStrategy_ defines a common interface for all the specific strategies:
+`IShippingCostsStrategy` defines a common interface for all the specific strategies:
 
-- _label_ - a text label of the strategy which is used in UI;
-- _calculate()_ - method to calculate shipping costs for the order. It uses information from the Order class object passed as a parameter.
+- `label` - a text label of the strategy which is used in UI;
+- `calculate()` - method to calculate shipping costs for the order. It uses information from the Order class object passed as a parameter.
 
-_InStorePickupStrategy_, _ParcelTerminalShippingStrategy_ and _PriorityShippingStrategy_ are concrete implementations of the _IShippingCostsStrategy_ interface. Each of the strategies provides a specific algorithm for the shipping costs calculation and defines it in the _calculate()_ method.
+`InStorePickupStrategy`, `ParcelTerminalShippingStrategy` and `PriorityShippingStrategy` are concrete implementations of the `IShippingCostsStrategy` interface. Each of the strategies provides a specific algorithm for the shipping costs calculation and defines it in the `calculate()` method.
 
-_StrategyExample_ widget stores all different shipping costs calculation strategies in the _shippingCostsStrategyList_ variable.
+`StrategyExample` widget stores all different shipping costs calculation strategies in the `shippingCostsStrategyList` variable.
 
 ### IShippingCostsStrategy
 
@@ -30,11 +30,11 @@ abstract interface class IShippingCostsStrategy {
 }
 ```
 
-### Specific implementations of the _IShippingCostsStrategy_ interface
+### Specific implementations of the `IShippingCostsStrategy` interface
 
-- _InStorePickupStrategy_ - implements the shipping strategy which requires the customer to pick-up the order in the store. Hence, there are no shipping costs and the _calculate()_ method returns 0.
+- `InStorePickupStrategy` - implements the shipping strategy which requires the customer to pick-up the order in the store. Hence, there are no shipping costs and the `calculate()` method returns 0.
 
-```
+```dart
 class InStorePickupStrategy implements IShippingCostsStrategy {
   @override
   String label = 'In-store pickup';
@@ -44,9 +44,9 @@ class InStorePickupStrategy implements IShippingCostsStrategy {
 }
 ```
 
-- _ParcelTerminalShippingStrategy_ - implements the shipping strategy when order is delivered using the parcel terminal service. When using parcel terminals, each order item is sent separately and the shipping cost depends on the parcel size. The final shipping price is calculated by adding up the separate shipping cost of each order item.
+- `ParcelTerminalShippingStrategy` - implements the shipping strategy when order is delivered using the parcel terminal service. When using parcel terminals, each order item is sent separately and the shipping cost depends on the parcel size. The final shipping price is calculated by adding up the separate shipping cost of each order item.
 
-```
+```dart
 class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
   @override
   String label = 'Parcel terminal shipping';
@@ -67,9 +67,9 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
 }
 ```
 
-- _PriorityShippingStrategy_ - implements the shipping strategy which has a fixed shipping cost for a single order. In this case, the _calculate()_ method returns a specific price of 9.99.
+- `PriorityShippingStrategy` - implements the shipping strategy which has a fixed shipping cost for a single order. In this case, the `calculate()` method returns a specific price of 9.99.
 
-```
+```dart
 class PriorityShippingStrategy implements IShippingCostsStrategy {
   @override
   String label = 'Priority shipping';
@@ -81,9 +81,9 @@ class PriorityShippingStrategy implements IShippingCostsStrategy {
 
 ### Order
 
-A simple class to store an order's information. _Order_ class contains a list of order items, provides a method to add a new _OrderItem_ to the order, also defines a getter method _price_ which returns the total price of the order (without shipping).
+A simple class to store an order's information. `Order` class contains a list of order items, provides a method to add a new `OrderItem` to the order, also defines a getter method `price` which returns the total price of the order (without shipping).
 
-```
+```dart
 class Order {
   final List<OrderItem> items = [];
 
@@ -96,9 +96,9 @@ class Order {
 
 ### OrderItem
 
-A simple class to store information of a single order item. _OrderItem_ class contains properties to store order item's title, price and the package (parcel) size. Also, the class exposes a named factory constructor _OrderItem.random()_ which allows creating/generating an _OrderItem_ with random property values.
+A simple class to store information of a single order item. `OrderItem` class contains properties to store order item's title, price and the package (parcel) size. Also, the class exposes a named factory constructor `OrderItem.random()` which allows creating/generating an `OrderItem` with random property values.
 
-```
+```dart
 class OrderItem {
   const OrderItem({
     required this.title,
@@ -124,9 +124,9 @@ class OrderItem {
 
 ### PackageSize
 
-A special kind of class - _enumeration_ - to define different package size of the order item.
+A special kind of class - `enumeration` - to define different package size of the order item.
 
-```
+```dart
 enum PackageSize {
   S,
   M,
@@ -137,9 +137,9 @@ enum PackageSize {
 
 ### Example
 
-- _StrategyExample_ - implements the example widget of the Strategy design pattern. It contains a list of different shipping strategies (_shippingCostsStrategyList_) and provides it to the _ShippingOptions_ widget where the index of a specific strategy is selected by triggering the _setSelectedStrategyIndex()_ method. Then, the selected strategy is injected into the _OrderSummary_ widget where the final price of the order is calculated.
+- `StrategyExample` - implements the example widget of the Strategy design pattern. It contains a list of different shipping strategies (`shippingCostsStrategyList`) and provides it to the `ShippingOptions` widget where the index of a specific strategy is selected by triggering the `setSelectedStrategyIndex()` method. Then, the selected strategy is injected into the `OrderSummary` widget where the final price of the order is calculated.
 
-```
+```dart
 class StrategyExample extends StatefulWidget {
   const StrategyExample();
 
@@ -229,9 +229,9 @@ class _StrategyExampleState extends State<StrategyExample> {
 }
 ```
 
-- _ShippingOptions_ - handles the selection of a specific shipping strategy. The widget provides a radio button list item for each strategy in the _shippingOptions_ list. After selecting a specific shipping strategy, the _onChanged()_ method is triggered and the selected index is passed to the parent widget (_StrategyExample_). This implementation allows us to change the specific shipping costs calculation strategy at run-time.
+- `ShippingOptions` - handles the selection of a specific shipping strategy. The widget provides a radio button list item for each strategy in the `shippingOptions` list. After selecting a specific shipping strategy, the `onChanged()` method is triggered and the selected index is passed to the parent widget (`StrategyExample`). This implementation allows us to change the specific shipping costs calculation strategy at run-time.
 
-```
+```dart
 class ShippingOptions extends StatelessWidget {
   final List<IShippingCostsStrategy> shippingOptions;
   final int selectedIndex;
@@ -272,9 +272,9 @@ class ShippingOptions extends StatelessWidget {
 }
 ```
 
-- _OrderSummary_ - uses the injected shipping strategy of type _IShippingCostsStrategy_ for the final order's price calculation. The widget only cares about the type of a shipping strategy, but not its specific implementation. Hence, we can provide different shipping costs calculation strategies of type _IShippingCostsStrategy_ without making any changes to the UI.
+- `OrderSummary` - uses the injected shipping strategy of type `IShippingCostsStrategy` for the final order's price calculation. The widget only cares about the type of a shipping strategy, but not its specific implementation. Hence, we can provide different shipping costs calculation strategies of type `IShippingCostsStrategy` without making any changes to the UI.
 
-```
+```dart
 class OrderSummary extends StatelessWidget {
   final Order order;
   final IShippingCostsStrategy shippingCostsStrategy;

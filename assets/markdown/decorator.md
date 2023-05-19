@@ -10,28 +10,28 @@ The class diagram below shows the implementation of the **Decorator** design pat
 
 ![Decorator Implementation Class Diagram](resource:assets/images/decorator/decorator_implementation.png)
 
-_Pizza_ defines a common interface for wrappers (decorators) and wrapped objects:
+`Pizza` defines a common interface for wrappers (decorators) and wrapped objects:
 
-- _getDescription()_ - returns the description of the pizza;
-- _getPrice()_ - returns the price of the pizza.
+- `getDescription()` - returns the description of the pizza;
+- `getPrice()` - returns the price of the pizza.
 
-_PizzaBase_ represents the component object which implements the _Pizza_ interface.
+`PizzaBase` represents the component object which implements the `Pizza` interface.
 
-_PizzaDecorator_ references the _Pizza_ object and forwards requests to it via the _getDescription()_ and _getPrice()_ methods.
+`PizzaDecorator` references the `Pizza` object and forwards requests to it via the `getDescription()` and `getPrice()` methods.
 
-_Basil_, _Mozzarella_, _OliveOil_, _Oregano_, _Pecorino_, _Pepperoni_ and _Sauce_ are concrete decorators extending the _PizzaDecorator_ class and overriding its default behaviour by adding some extra functionality/calculations of their own.
+`Basil`, `Mozzarella`, `OliveOil`, `Oregano`, `Pecorino`, `Pepperoni` and `Sauce` are concrete decorators extending the `PizzaDecorator` class and overriding its default behaviour by adding some extra functionality/calculations of their own.
 
-_PizzaToppingData_ class stores information about the pizza topping's selection chip used in the UI - its label and whether it is selected or not.
+`PizzaToppingData` class stores information about the pizza topping's selection chip used in the UI - its label and whether it is selected or not.
 
-_PizzaMenu_ class provides a _getPizzaToppingsDataMap()_ method to retrieve the pizza topping's selection chip data. Also, _getPizza()_ method is defined to return the specific _Pizza_ object based on the selected index in the UI or the selected pizza toppings.
+`PizzaMenu` class provides a `getPizzaToppingsDataMap()` method to retrieve the pizza topping's selection chip data. Also, `getPizza()` method is defined to return the specific `Pizza` object based on the selected index in the UI or the selected pizza toppings.
 
-_DecoratorExample_ initialises and contains the _PizzaMenu_ class object to retrieve the selected _Pizza_ object based on the user's selection in the UI.
+`DecoratorExample` initialises and contains the `PizzaMenu` class object to retrieve the selected `Pizza` object based on the user's selection in the UI.
 
 ### Pizza
 
-An interface of the _Pizza_ component that defines a common contract for concrete component and decorator objects.
+An interface of the `Pizza` component that defines a common contract for concrete component and decorator objects.
 
-```
+```dart
 abstract interface class Pizza {
   String getDescription();
   double getPrice();
@@ -40,9 +40,9 @@ abstract interface class Pizza {
 
 ### PizzaBase
 
-A concrete component that implements the _Pizza_ interface methods. An object of this class (its behaviour) gets decorated by the specific decorator classes.
+A concrete component that implements the `Pizza` interface methods. An object of this class (its behaviour) gets decorated by the specific decorator classes.
 
-```
+```dart
 class PizzaBase implements Pizza {
   const PizzaBase(this.description);
 
@@ -60,7 +60,7 @@ class PizzaBase implements Pizza {
 
 An abstract decorator class that maintains a reference to a component class and forwards requests to it.
 
-```
+```dart
 abstract class PizzaDecorator implements Pizza {
   const PizzaDecorator(this.pizza);
 
@@ -76,9 +76,9 @@ abstract class PizzaDecorator implements Pizza {
 
 ### Concrete pizza decorators
 
-_Basil_, _Mozzarella_, _OliveOil_, _Oregano_, _Pecorino_, _Pepperoni_ and _Sauce_ are concrete decorator classes of the _Pizza_ component. Each of these classes wraps the pizza object and adds additional value for the final price in the _getPrice()_ method, also extends the final pizza's description in the _getDescription()_ method.
+`Basil`, `Mozzarella`, `OliveOil`, `Oregano`, `Pecorino`, `Pepperoni` and `Sauce` are concrete decorator classes of the `Pizza` component. Each of these classes wraps the pizza object and adds additional value for the final price in the `getPrice()` method, also extends the final pizza's description in the `getDescription()` method.
 
-```
+```dart
 class Basil extends PizzaDecorator {
   const Basil(super.pizza);
 
@@ -90,7 +90,7 @@ class Basil extends PizzaDecorator {
 }
 ```
 
-```
+```dart
 class Mozzarella extends PizzaDecorator {
   const Mozzarella(super.pizza);
 
@@ -102,7 +102,7 @@ class Mozzarella extends PizzaDecorator {
 }
 ```
 
-```
+```dart
 class OliveOil extends PizzaDecorator {
   const OliveOil(super.pizza);
 
@@ -114,7 +114,7 @@ class OliveOil extends PizzaDecorator {
 }
 ```
 
-```
+```dart
 class Oregano extends PizzaDecorator {
   const Oregano(super.pizza);
 
@@ -126,7 +126,7 @@ class Oregano extends PizzaDecorator {
 }
 ```
 
-```
+```dart
 class Pecorino extends PizzaDecorator {
   const Pecorino(super.pizza);
 
@@ -138,7 +138,7 @@ class Pecorino extends PizzaDecorator {
 }
 ```
 
-```
+```dart
 class Pepperoni extends PizzaDecorator {
   const Pepperoni(super.pizza);
 
@@ -150,7 +150,7 @@ class Pepperoni extends PizzaDecorator {
 }
 ```
 
-```
+```dart
 class Sauce extends PizzaDecorator {
   const Sauce(super.pizza);
 
@@ -164,9 +164,9 @@ class Sauce extends PizzaDecorator {
 
 ### PizzaToppingData
 
-A simple class that contains data used by the pizza topping's selection chip in the UI. The data consists of the _label_ property and the current selection state (whether the chip is currently selected or not) which could be changed by using the _setSelected()_ method.
+A simple class that contains data used by the pizza topping's selection chip in the UI. The data consists of the `label` property and the current selection state (whether the chip is currently selected or not) which could be changed by using the `setSelected()` method.
 
-```
+```dart
 class PizzaToppingData {
   PizzaToppingData(this.label);
 
@@ -179,11 +179,11 @@ class PizzaToppingData {
 
 ### PizzaMenu
 
-A simple class that provides a map of _PizzaToppingData_ objects via the _getPizzaToppingsDataMap()_ method for the pizza toppings selection in UI. Also, the class defines a _getPizza()_ method which returns a _Pizza_ object that is built by using the pre-defined concrete decorator classes based on the pizza recipe - Margherita, Pepperoni or custom (based on the selected pizza toppings).
+A simple class that provides a map of `PizzaToppingData` objects via the `getPizzaToppingsDataMap()` method for the pizza toppings selection in UI. Also, the class defines a `getPizza()` method which returns a `Pizza` object that is built by using the pre-defined concrete decorator classes based on the pizza recipe - Margherita, Pepperoni or custom (based on the selected pizza toppings).
 
-This class (to be more specific, _getMargherita()_, _getPepperoni()_ and _getCustom()_ methods) represents the main idea of the decorator design pattern - a base component class is instantiated and then wrapped by the concrete decorator classes, hence extending the base class and its behaviour. As a result, it is possible to use wrapper classes and add or remove responsibilities from an object at runtime, for instance, as it is used in the _getCustom()_ method where the appropriate decorator classes are used based on the selected pizza toppings data in the UI.
+This class (to be more specific, `getMargherita()`, `getPepperoni()` and `getCustom()` methods) represents the main idea of the decorator design pattern - a base component class is instantiated and then wrapped by the concrete decorator classes, hence extending the base class and its behaviour. As a result, it is possible to use wrapper classes and add or remove responsibilities from an object at runtime, for instance, as it is used in the `getCustom()` method where the appropriate decorator classes are used based on the selected pizza toppings data in the UI.
 
-```
+```dart
 class PizzaMenu {
   final Map<int, PizzaToppingData> _pizzaToppingsDataMap = {
     1: PizzaToppingData('Basil'),
@@ -245,9 +245,9 @@ class PizzaMenu {
 
 ### Example
 
-_DecoratorExample_ contains the _PizzaMenu_ object which is used to get the specific _Pizza_ object based on the user's selection. Also, all the logic related to the decorator's design pattern and its implementation is extracted to the _PizzaMenu_ class, the _DecoratorExample_ widget only uses it to retrieve the necessary data to be represented in the UI.
+`DecoratorExample` contains the `PizzaMenu` object which is used to get the specific `Pizza` object based on the user's selection. Also, all the logic related to the decorator's design pattern and its implementation is extracted to the `PizzaMenu` class, the `DecoratorExample` widget only uses it to retrieve the necessary data to be represented in the UI.
 
-```
+```dart
 class DecoratorExample extends StatefulWidget {
   const DecoratorExample();
 

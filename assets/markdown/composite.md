@@ -10,18 +10,18 @@ The class diagram below shows the implementation of **Composite** design pattern
 
 ![Composite Implementation Class Diagram](resource:assets/images/composite/composite_implementation.png)
 
-_IFile_ defines a common interface for both _File_ (leaf) and _Directory_ (composite) classes:
+`IFile` defines a common interface for both `File` (leaf) and `Directory` (composite) classes:
 
-- _getSize()_ - returns size of the file;
-- _render()_ - renders the component's UI.
+- `getSize()` - returns size of the file;
+- `render()` - renders the component's UI.
 
-_File_ class implements the _getSize()_ and _render()_ methods, additionally contains _title_, _size_ and _icon_ properties. _Directory_ implements the same required methods, but it also contains _title_, _isInitiallyExpanded_ and _files_ list, containing the _IFile_ objects, defines _addFile()_ method, which allows adding _IFile_ objects to the directory (_files_ list). _AudioFile_, _ImageFile_, _TextFile_ and _VideoFile_ classes extend the _File_ class to specify a concrete type of the file.
+`File` class implements the `getSize()` and `render()` methods, additionally contains `title`, `size` and `icon` properties. `Directory` implements the same required methods, but it also contains `title`, `isInitiallyExpanded` and `files` list, containing the `IFile` objects, defines `addFile()` method, which allows adding `IFile` objects to the directory (`files` list). `AudioFile`, `ImageFile`, `TextFile` and `VideoFile` classes extend the `File` class to specify a concrete type of the file.
 
 ### IFile
 
 An interface that defines methods to be implemented by leaf and composite components.
 
-```
+```dart
 abstract interface class IFile {
   int getSize();
   Widget render(BuildContext context);
@@ -30,9 +30,9 @@ abstract interface class IFile {
 
 ### File
 
-A concrete implementation of the _IFile_ interface which matches the _leaf_ class in the Composite design pattern. In the _File_ class, the _getSize()_ method simply returns the file size, and _render()_ - returns file's UI widget which is used in the example screen.
+A concrete implementation of the `IFile` interface which matches the `leaf` class in the Composite design pattern. In the `File` class, the `getSize()` method simply returns the file size, and `render()` - returns file's UI widget which is used in the example screen.
 
-```
+```dart
 base class File extends StatelessWidget implements IFile {
   final String title;
   final int size;
@@ -76,9 +76,9 @@ base class File extends StatelessWidget implements IFile {
 
 ### Concrete classes extending File
 
-All of these classes extend the _File_ class and specify the concrete file type by providing a unique icon for the corresponding file type.
+All of these classes extend the `File` class and specify the concrete file type by providing a unique icon for the corresponding file type.
 
-```
+```dart
 final class AudioFile extends File {
   const AudioFile({
     required super.title,
@@ -110,9 +110,9 @@ final class VideoFile extends File {
 
 ### Directory
 
-A concrete implementation of the _IFile_ interface which matches the _composite_ class in the Composite design pattern. Similar as in _File_ class, _render()_ returns directory's UI widget which is used in the example screen. However, in this class _getSize()_ method calculates the directory size by calling the _getSize()_ method for each item in the _files_ list and adding up the results. This is the main idea of the Composite design pattern which allows the composite class to treat all the elements in the containing list uniformly as long as they implement the same interface.
+A concrete implementation of the `IFile` interface which matches the `composite` class in the Composite design pattern. Similar as in `File` class, `render()` returns directory's UI widget which is used in the example screen. However, in this class `getSize()` method calculates the directory size by calling the `getSize()` method for each item in the `files` list and adding up the results. This is the main idea of the Composite design pattern which allows the composite class to treat all the elements in the containing list uniformly as long as they implement the same interface.
 
-```
+```dart
 class Directory extends StatelessWidget implements IFile {
   final String title;
   final bool isInitiallyExpanded;
@@ -159,9 +159,9 @@ class Directory extends StatelessWidget implements IFile {
 
 ### Example
 
-_CompositeExample_ widget contains the _buildMediaDirectory()_ method which builds the file structure for the example. This method illustrates the Composite design pattern - even though the components are of a different type, they could be handled in the same manner since the implemented interface of _IFile_ is the same for all components. This allows us to put _Directory_ objects inside other directories, mix them along with concrete _File_ objects hence building the tree structure of _IFile_ components.
+`CompositeExample` widget contains the `buildMediaDirectory()` method which builds the file structure for the example. This method illustrates the Composite design pattern - even though the components are of a different type, they could be handled in the same manner since the implemented interface of `IFile` is the same for all components. This allows us to put `Directory` objects inside other directories, mix them along with concrete `File` objects hence building the tree structure of `IFile` components.
 
-```
+```dart
 class CompositeExample extends StatelessWidget {
   const CompositeExample();
 

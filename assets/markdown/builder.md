@@ -10,37 +10,37 @@ The class diagram below shows the implementation of **Builder** design pattern.
 
 ![Builder Implementation Class Diagram](resource:assets/images/builder/builder_implementation.png)
 
-The _Ingredient_ is an abstract class that is used as a base class for all the ingredient classes. The class contains _allergens_ and _name_ properties as well as _getAllergens()_ and _getName()_ methods to return values of these properties.
+The `Ingredient` is an abstract class that is used as a base class for all the ingredient classes. The class contains `allergens` and `name` properties as well as `getAllergens()` and `getName()` methods to return values of these properties.
 
-There are a lot of concrete ingredient classes: _BigMacBun_, _RegularBun_, _BeefPatty_, _McChickenPatty_, _BigMacSauce_, _Ketchup_, _Mayonnaise_, _Mustard_, _Onions_, _PickleSlices_, _ShreddedLettuce_, _Cheese_ and _GrillSeasoning_. All of these classes represent a specific ingredient of a burger and contains a default constructor to set the _allergens_ and _name_ property values of the base class.
+There are a lot of concrete ingredient classes: `BigMacBun`, `RegularBun`, `BeefPatty`, `McChickenPatty`, `BigMacSauce`, `Ketchup`, `Mayonnaise`, `Mustard`, `Onions`, `PickleSlices`, `ShreddedLettuce`, `Cheese` and `GrillSeasoning`. All of these classes represent a specific ingredient of a burger and contains a default constructor to set the `allergens` and `name` property values of the base class.
 
-_Burger_ is a simple class representing the product of a builder. It contains _ingredients_ list and _price_ property to store the corresponding values. Also, the class contains several methods:
+`Burger` is a simple class representing the product of a builder. It contains `ingredients` list and `price` property to store the corresponding values. Also, the class contains several methods:
 
-- _addIngredient()_ - adds an ingredient to the burger;
-- _getFormattedIngredients()_ - returns a formatted ingredients' list of a burger (separated by commas);
-- _getFormattedAllergens()_ - returns a formatted allergens' list of a burger (separated by commas);
-- _getFormattedPrice()_ - returns a formatted price of a burger;
-- _setPrice()_ - sets the price for the burger.
+- `addIngredient()` - adds an ingredient to the burger;
+- `getFormattedIngredients()` - returns a formatted ingredients' list of a burger (separated by commas);
+- `getFormattedAllergens()` - returns a formatted allergens' list of a burger (separated by commas);
+- `getFormattedPrice()` - returns a formatted price of a burger;
+- `setPrice()` - sets the price for the burger.
 
-_BurgerBuilderBase_ is an abstract class that is used as a base class for all the burger builder classes. It contains _burger_ and _price_ properties to store the final product - burger - and its price correspondingly. Additionally, the class stores some methods with default implementation:
+`BurgerBuilderBase` is an abstract class that is used as a base class for all the burger builder classes. It contains `burger` and `price` properties to store the final product - burger - and its price correspondingly. Additionally, the class stores some methods with default implementation:
 
-- _createBurger()_ - initialises a _Burger_ class object;
-- _getBurger()_ - returns the built burger result;
-- _setBurgerPrice()_ - sets the price for the burger object.
+- `createBurger()` - initialises a `Burger` class object;
+- `getBurger()` - returns the built burger result;
+- `setBurgerPrice()` - sets the price for the burger object.
 
-_BurgerBuilderBase_ also contain several abstract methods which must be implemented in the specific implementation classes of the burger builder: _addBuns()_, _addCheese()_, _addPatties()_, _addSauces()_, _addSeasoning()_ and _addVegetables()_.
+`BurgerBuilderBase` also contain several abstract methods which must be implemented in the specific implementation classes of the burger builder: `addBuns()`, `addCheese()`, `addPatties()`, `addSauces()`, `addSeasoning()` and `addVegetables()`.
 
-_BigMacBuilder_, _CheeseburgerBuilder_, _HamburgerBuilder_ and _McChickenBuilder_ are concrete builder classes that extend the abstract class _BurgerBuilderBase_ and implement its abstract methods.
+`BigMacBuilder`, `CheeseburgerBuilder`, `HamburgerBuilder` and `McChickenBuilder` are concrete builder classes that extend the abstract class `BurgerBuilderBase` and implement its abstract methods.
 
-_BurgerMaker_ is director class that manages the burger's build process. It contains a specific builder implementation as a _burgerBuilder_ property, _prepareBurger()_ method to build the burger and a _getBurger()_ method to return it. Also, the builder's implementation could be changed using the _changeBurgerBuilder()_ method.
+`BurgerMaker` is director class that manages the burger's build process. It contains a specific builder implementation as a `burgerBuilder` property, `prepareBurger()` method to build the burger and a `getBurger()` method to return it. Also, the builder's implementation could be changed using the `changeBurgerBuilder()` method.
 
-_BuilderExample_ initialises and contains the _BurgerMaker_ class. Also, it references all the specific burger builders which could be changed at run-time using the UI dropdown selection.
+`BuilderExample` initialises and contains the `BurgerMaker` class. Also, it references all the specific burger builders which could be changed at run-time using the UI dropdown selection.
 
 ### Ingredient
 
-An abstract class that stores the _allergens_, _name_ fields and is extended by all of the ingredient classes.
+An abstract class that stores the `allergens`, `name` fields and is extended by all of the ingredient classes.
 
-```
+```dart
 abstract class Ingredient {
   @protected
   late List<String> allergens;
@@ -55,9 +55,9 @@ abstract class Ingredient {
 
 ### Concrete ingredients
 
-All of these classes represent a specific ingredient by extending the _Ingredient_ class and specifying an allergens' list as well as the name value.
+All of these classes represent a specific ingredient by extending the `Ingredient` class and specifying an allergens' list as well as the name value.
 
-```
+```dart
 class BigMacBun extends Ingredient {
   BigMacBun() {
     name = 'Big Mac Bun';
@@ -66,7 +66,7 @@ class BigMacBun extends Ingredient {
 }
 ```
 
-```
+```dart
 class RegularBun extends Ingredient {
   RegularBun() {
     name = 'Regular Bun';
@@ -75,7 +75,7 @@ class RegularBun extends Ingredient {
 }
 ```
 
-```
+```dart
 class BeefPatty extends Ingredient {
   BeefPatty() {
     name = 'Beef Patty';
@@ -84,7 +84,7 @@ class BeefPatty extends Ingredient {
 }
 ```
 
-```
+```dart
 class McChickenPatty extends Ingredient {
   McChickenPatty() {
     name = 'McChicken Patty';
@@ -96,7 +96,7 @@ class McChickenPatty extends Ingredient {
 }
 ```
 
-```
+```dart
 class BigMacSauce extends Ingredient {
   BigMacSauce() {
     name = 'Big Mac Sauce';
@@ -105,7 +105,7 @@ class BigMacSauce extends Ingredient {
 }
 ```
 
-```
+```dart
 class Ketchup extends Ingredient {
   Ketchup() {
     name = 'Ketchup';
@@ -114,7 +114,7 @@ class Ketchup extends Ingredient {
 }
 ```
 
-```
+```dart
 class Mayonnaise extends Ingredient {
   Mayonnaise() {
     name = 'Mayonnaise';
@@ -123,7 +123,7 @@ class Mayonnaise extends Ingredient {
 }
 ```
 
-```
+```dart
 class Mustard extends Ingredient {
   Mustard() {
     name = 'Mustard';
@@ -132,7 +132,7 @@ class Mustard extends Ingredient {
 }
 ```
 
-```
+```dart
 class Onions extends Ingredient {
   Onions() {
     name = 'Onions';
@@ -141,7 +141,7 @@ class Onions extends Ingredient {
 }
 ```
 
-```
+```dart
 class PickleSlices extends Ingredient {
   PickleSlices() {
     name = 'Pickle Slices';
@@ -150,7 +150,7 @@ class PickleSlices extends Ingredient {
 }
 ```
 
-```
+```dart
 class ShreddedLettuce extends Ingredient {
   ShreddedLettuce() {
     name = 'Shredded Lettuce';
@@ -159,7 +159,7 @@ class ShreddedLettuce extends Ingredient {
 }
 ```
 
-```
+```dart
 class Cheese extends Ingredient {
   Cheese() {
     name = 'Cheese';
@@ -168,7 +168,7 @@ class Cheese extends Ingredient {
 }
 ```
 
-```
+```dart
 class GrillSeasoning extends Ingredient {
   GrillSeasoning() {
     name = 'Grill Seasoning';
@@ -179,9 +179,9 @@ class GrillSeasoning extends Ingredient {
 
 ### Burger
 
-A simple class to store information about the burger: its price and a list of ingredients it contains. Also, class methods, such as _getFormattedIngredients()_, _getFormattedAllergens()_ and _getFormattedPrice()_, returns these values in human-readable format.
+A simple class to store information about the burger: its price and a list of ingredients it contains. Also, class methods, such as `getFormattedIngredients()`, `getFormattedAllergens()` and `getFormattedPrice()`, returns these values in human-readable format.
 
-```
+```dart
 class Burger {
   final List<Ingredient> _ingredients = [];
   late double _price;
@@ -203,9 +203,9 @@ class Burger {
 
 ### BurgerBuilderBase
 
-An abstract class that stores _burger_ and _price_ properties, defines some default methods to create/return the burger object and set its price. Also, the class defines several abstract methods which must be implemented by the derived burger builder classes.
+An abstract class that stores `burger` and `price` properties, defines some default methods to create/return the burger object and set its price. Also, the class defines several abstract methods which must be implemented by the derived burger builder classes.
 
-```
+```dart
 abstract class BurgerBuilderBase {
   @protected
   late Burger burger;
@@ -229,9 +229,9 @@ abstract class BurgerBuilderBase {
 
 ### Concrete builders
 
-- _BigMacBuilder_ - builds a Big Mac using the following ingredients: _BigMacBun_, _Cheese_, _BeefPatty_, _BigMacSauce_, _GrillSeasoning_, _Onions_, _PickleSlices_ and _ShreddedLettuce_.
+- `BigMacBuilder` - builds a Big Mac using the following ingredients: `BigMacBun`, `Cheese`, `BeefPatty`, `BigMacSauce`, `GrillSeasoning`, `Onions`, `PickleSlices` and `ShreddedLettuce`.
 
-```
+```dart
 class BigMacBuilder extends BurgerBuilderBase {
   BigMacBuilder() {
     price = 3.99;
@@ -271,9 +271,9 @@ class BigMacBuilder extends BurgerBuilderBase {
 }
 ```
 
-- _CheeseburgerBuilder_ - builds a cheeseburger using the following ingredients: _RegularBun_, _Cheese_, _BeefPatty_, _Ketchup_, _Mustard_, _GrillSeasoning_, _Onions_ and _PickleSlices_.
+- `CheeseburgerBuilder` - builds a cheeseburger using the following ingredients: `RegularBun`, `Cheese`, `BeefPatty`, `Ketchup`, `Mustard`, `GrillSeasoning`, `Onions` and `PickleSlices`.
 
-```
+```dart
 class CheeseburgerBuilder extends BurgerBuilderBase {
   CheeseburgerBuilder() {
     price = 1.09;
@@ -313,9 +313,9 @@ class CheeseburgerBuilder extends BurgerBuilderBase {
 }
 ```
 
-- _HamburgerBuilder_ - builds a cheeseburger using the following ingredients: _RegularBun_, _BeefPatty_, _Ketchup_, _Mustard_, _GrillSeasoning_, _Onions_ and _PickleSlices_. _AddCheese()_ method is not relevant for this builder, hence the implementation is not provided (skipped).
+- `HamburgerBuilder` - builds a cheeseburger using the following ingredients: `RegularBun`, `BeefPatty`, `Ketchup`, `Mustard`, `GrillSeasoning`, `Onions` and `PickleSlices`. `AddCheese()` method is not relevant for this builder, hence the implementation is not provided (skipped).
 
-```
+```dart
 class HamburgerBuilder extends BurgerBuilderBase {
   HamburgerBuilder() {
     price = 1.0;
@@ -355,9 +355,9 @@ class HamburgerBuilder extends BurgerBuilderBase {
 }
 ```
 
-- _McChickenBuilder_ - builds a cheeseburger using the following ingredients: _RegularBun_, _McChickenPatty_, _Mayonnaise_ and _ShreddedLettuce_. _AddCheese()_ and _addSeasoning()_ methods are not relevant for this builder, hence the implementation is not provided (skipped).
+- `McChickenBuilder` - builds a cheeseburger using the following ingredients: `RegularBun`, `McChickenPatty`, `Mayonnaise` and `ShreddedLettuce`. `AddCheese()` and `addSeasoning()` methods are not relevant for this builder, hence the implementation is not provided (skipped).
 
-```
+```dart
 class McChickenBuilder extends BurgerBuilderBase {
   McChickenBuilder() {
     price = 1.29;
@@ -399,7 +399,7 @@ class McChickenBuilder extends BurgerBuilderBase {
 
 A director class that manages the burger's build process and returns the build result. A specific implementation of the builder is injected into the class via constructor.
 
-```
+```dart
 class BurgerMaker {
   BurgerMaker(this.burgerBuilder);
 
@@ -427,11 +427,11 @@ class BurgerMaker {
 
 ### Example
 
-_BuilderExample_ initialises and contains the _BurgerMaker_ class object. Also, it contains a list of _BurgerMenuItem_ objects/selection items which is used to select the specific builder using UI.
+`BuilderExample` initialises and contains the `BurgerMaker` class object. Also, it contains a list of `BurgerMenuItem` objects/selection items which is used to select the specific builder using UI.
 
-The director class _BurgerMaker_ does not care about the specific implementation of the builder - the specific implementation could be changed at run-time, hence providing a different result. Also, this kind of implementation allows easily adding a new builder (as long as it extends the _BurgerBuilderBase_ class) to provide another different product's representation without breaking the existing code.
+The director class `BurgerMaker` does not care about the specific implementation of the builder - the specific implementation could be changed at run-time, hence providing a different result. Also, this kind of implementation allows easily adding a new builder (as long as it extends the `BurgerBuilderBase` class) to provide another different product's representation without breaking the existing code.
 
-```
+```dart
 class BuilderExample extends StatefulWidget {
   const BuilderExample();
 

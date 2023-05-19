@@ -10,24 +10,24 @@ The class diagram below shows the implementation of the **Prototype** design pat
 
 ![Prototype Implementation Class Diagram](resource:assets/images/prototype/prototype_implementation.png)
 
-_Shape_ is an abstract class which is used as a base class for all the specific shapes. The class contains a _color_ property and defines several abstract methods:
+`Shape` is an abstract class which is used as a base class for all the specific shapes. The class contains a `color` property and defines several abstract methods:
 
-- _clone()_ - clones (copies) the specific shape;
-- _randomiseProperties()_ - randomises property values of the shape;
-- _render()_ - renders the shape. The method is used in UI.
+- `clone()` - clones (copies) the specific shape;
+- `randomiseProperties()` - randomises property values of the shape;
+- `render()` - renders the shape. The method is used in UI.
 
-_Circle_ and _Rectangle_ are concrete shape classes which extend the abstract class _Shape_ and implement its abstract methods.
+`Circle` and `Rectangle` are concrete shape classes which extend the abstract class `Shape` and implement its abstract methods.
 
-_PrototypeExample_ initializes and contains several _Shape_ objects. These objects are rendered in the UI using the _render()_ method. Also, specific shape objects could be copied using _clone()_ and their properties could be randomised using _randomiseProperties()_ methods respectively.
+`PrototypeExample` initializes and contains several `Shape` objects. These objects are rendered in the UI using the `render()` method. Also, specific shape objects could be copied using `clone()` and their properties could be randomised using `randomiseProperties()` methods respectively.
 
 ### Shape
 
 An abstract class that stores the shape's colour and defines several abstract methods. Also, this class contains several constructors:
 
-- _Shape()_ - a basic constructor to create a shape object with the provided colour value;
-- _Shape.clone()_ - a named constructor to create a shape object as a copy of the provided _Shape_ value.
+- `Shape()` - a basic constructor to create a shape object with the provided colour value;
+- `Shape.clone()` - a named constructor to create a shape object as a copy of the provided `Shape` value.
 
-```
+```dart
 abstract class Shape {
   Shape(this.color);
 
@@ -43,9 +43,9 @@ abstract class Shape {
 
 ### Shapes
 
-- _Circle_ - a specific class that defines a shape of a circle. The class defines a _radius_ property, extends the _Shape_ class and implements its abstract methods _clone()_, _randomiseProperties()_ and _render()_.
+- `Circle` - a specific class that defines a shape of a circle. The class defines a `radius` property, extends the `Shape` class and implements its abstract methods `clone()`, `randomiseProperties()` and `render()`.
 
-```
+```dart
 class Circle extends Shape {
   Circle(super.color, this.radius);
 
@@ -95,9 +95,9 @@ class Circle extends Shape {
 }
 ```
 
-- _Rectangle_ - a specific class that defines a shape of a rectangle. The class defines _height_ and _width_ properties, extends the _Shape_ class and implements its abstract methods _clone()_, _randomiseProperties()_ and _render()_.
+- `Rectangle` - a specific class that defines a shape of a rectangle. The class defines `height` and `width` properties, extends the `Shape` class and implements its abstract methods `clone()`, `randomiseProperties()` and `render()`.
 
-```
+```dart
 class Rectangle extends Shape {
   Rectangle(super.color, this.height, this.width);
 
@@ -153,11 +153,11 @@ class Rectangle extends Shape {
 
 ### Example
 
-_PrototypeExample_ contains a couple of _Shape_ objects - _Circle_ and _Rectangle_. By pressing the _Randomise properties_ button, the values of shape's properties are randomised (the _randomiseProperties()_ method is called on the shape). Also, if the _Clone_ button is pressed, the _clone()_ method is called on the shape and a copy of that particular shape is crated with the exact same values of all the properties.
+`PrototypeExample` contains a couple of `Shape` objects - `Circle` and `Rectangle`. By pressing the `Randomise properties` button, the values of shape's properties are randomised (the `randomiseProperties()` method is called on the shape). Also, if the `Clone` button is pressed, the `clone()` method is called on the shape and a copy of that particular shape is crated with the exact same values of all the properties.
 
-The _PrototypeExample_ does not care about the specific type of shape object as long as it extends the _Shape_ abstract class and implements all of its abstract methods. As a result, the _clone()_ method could be called on any shape, all of its properties are copied even though these are different on different shapes e.g. the circle has only the _radius_ property which is specific for that particular shape, while the rectangle has two different properties - _height_ and _width_.
+The `PrototypeExample` does not care about the specific type of shape object as long as it extends the `Shape` abstract class and implements all of its abstract methods. As a result, the `clone()` method could be called on any shape, all of its properties are copied even though these are different on different shapes e.g. the circle has only the `radius` property which is specific for that particular shape, while the rectangle has two different properties - `height` and `width`.
 
-```
+```dart
 class PrototypeExample extends StatefulWidget {
   const PrototypeExample();
 

@@ -16,8 +16,8 @@ dependencies:
   flutter_markdown: ^0.6.14
   flutter_riverpod: ^2.3.6
   font_awesome_flutter: ^10.4.0
-  highlight: ^0.7.0
   go_router: ^7.0.1
+  highlight: ^0.7.0
   riverpod_annotation: ^2.1.1
   url_launcher: ^6.1.11
   url_strategy: ^0.2.0

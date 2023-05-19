@@ -10,22 +10,22 @@ The class diagram below shows the implementation of **Facade** design pattern.
 
 ![Facade Implementation Class Diagram](resource:assets/images/facade/facade_implementation.png)
 
-There are several APIs provided to communicate with smart devices (turn them on and off): _AudioApi_, _CameraApi_, _PlaystationApi_, _SmartHomeApi_ and _TvApi_. _NetflixApi_ provides methods to connect to the Netflix platform, disconnect from it and play the selected movie.
+There are several APIs provided to communicate with smart devices (turn them on and off): `AudioApi`, `CameraApi`, `PlaystationApi`, `SmartHomeApi` and `TvApi`. `NetflixApi` provides methods to connect to the Netflix platform, disconnect from it and play the selected movie.
 
 APIs are used by the facade classes:
 
-- _GamingFacade_ - uses the _PlaystationApi_ and _CameraApi_ and provides methods related to gaming and streaming actions;
-- _SmartHomeFacade_ - uses the _AudioApi_, _CameraApi_, _SmartHomeApi_, _TvApi_ and _NetflixApi_. It provides methods for gaming, streaming actions (_GamingFacade_ is reused with some additional communication together with other smart devices) and actions related to playing a movie from the Netflix platform.
+- `GamingFacade` - uses the `PlaystationApi` and `CameraApi` and provides methods related to gaming and streaming actions;
+- `SmartHomeFacade` - uses the `AudioApi`, `CameraApi`, `SmartHomeApi`, `TvApi` and `NetflixApi`. It provides methods for gaming, streaming actions (`GamingFacade` is reused with some additional communication together with other smart devices) and actions related to playing a movie from the Netflix platform.
 
-Both of the facades use the _SmartHomeState_ class to save the current state of smart devices.
+Both of the facades use the `SmartHomeState` class to save the current state of smart devices.
 
-_FacadeExample_ widget contains the _SmartHomeFacade_ to communicate with the smart devices using the provided action methods in the facade.
+`FacadeExample` widget contains the `SmartHomeFacade` to communicate with the smart devices using the provided action methods in the facade.
 
 ### APIs
 
-- _AudioApi_ - an API to turn the smart speakers ON/OFF.
+- `AudioApi` - an API to turn the smart speakers ON/OFF.
 
-```
+```dart
 class AudioApi {
   const AudioApi();
 
@@ -35,9 +35,9 @@ class AudioApi {
 }
 ```
 
-- _CameraApi_ - an API to turn the streaming camera ON/OFF.
+- `CameraApi` - an API to turn the streaming camera ON/OFF.
 
-```
+```dart
 class CameraApi {
   const CameraApi();
 
@@ -47,9 +47,9 @@ class CameraApi {
 }
 ```
 
-- _NetflixApi_ - an API to connect to the Netflix platform, disconnect from it and play the movie.
+- `NetflixApi` - an API to connect to the Netflix platform, disconnect from it and play the movie.
 
-```
+```dart
 class NetflixApi {
   const NetflixApi();
 
@@ -58,15 +58,15 @@ class NetflixApi {
   bool disconnect() => false;
 
   void play(String title) {
-    // ignore: avoid_print
+    // ignore: avoid`print
     print("'$title' has started started playing on Netflix.");
   }
 }
 ```
 
-- _PlaystationApi_ - an API to turn the gaming console (PlayStation) ON/OFF.
+- `PlaystationApi` - an API to turn the gaming console (PlayStation) ON/OFF.
 
-```
+```dart
 class PlaystationApi {
   const PlaystationApi();
 
@@ -76,9 +76,9 @@ class PlaystationApi {
 }
 ```
 
-- _SmartHomeApi_ - an API to turn the smart lights ON/OFF.
+- `SmartHomeApi` - an API to turn the smart lights ON/OFF.
 
-```
+```dart
 class SmartHomeApi {
   const SmartHomeApi();
 
@@ -88,9 +88,9 @@ class SmartHomeApi {
 }
 ```
 
-- _TvApi_ - an API to turn the smart TV ON/OFF.
+- `TvApi` - an API to turn the smart TV ON/OFF.
 
-```
+```dart
 class TvApi {
   const TvApi();
 
@@ -104,7 +104,7 @@ class TvApi {
 
 A class that holds the current state of all the smart devices at home.
 
-```
+```dart
 class SmartHomeState {
   bool tvOn = false;
   bool audioSystemOn = false;
@@ -119,12 +119,12 @@ class SmartHomeState {
 
 A facade class that uses APIs of the PlayStation and streaming camera and provides simplified methods to use them:
 
-- _startGaming()_ - uses the _PlaystationApi_ to turn the gaming console on;
-- _stopGaming()_ - uses the _PlaystationApi_ to turn the gaming console off;
-- _startStreaming()_ - uses the _CameraApi_ to turn the streaming camera on and calls the _startGaming_ method;
-- _stopStreaming()_ - uses the _CameraApi_ to turn the streaming camera off and calls the _stopGaming_ method.
+- `startGaming()` - uses the `PlaystationApi` to turn the gaming console on;
+- `stopGaming()` - uses the `PlaystationApi` to turn the gaming console off;
+- `startStreaming()` - uses the `CameraApi` to turn the streaming camera on and calls the `startGaming` method;
+- `stopStreaming()` - uses the `CameraApi` to turn the streaming camera off and calls the `stopGaming` method.
 
-```
+```dart
 class GamingFacade {
   const GamingFacade({
     this.playstationApi = const PlaystationApi(),
@@ -156,16 +156,16 @@ class GamingFacade {
 
 ### SmartHomeFacade
 
-A facade class that uses APIs of the smart TV, audio devices, Netflix platform and smart home equipment. Also, _GamingFacade_ is used. Several methods are provided to simplify smart home actions:
+A facade class that uses APIs of the smart TV, audio devices, Netflix platform and smart home equipment. Also, `GamingFacade` is used. Several methods are provided to simplify smart home actions:
 
-- _startMovie()_ - uses several different APIs to turn off the lights, turn on the smart TV and speakers, connect to the Netflix platform and start playing the selected movie;
-- _stopMovie()_ - uses several different APIs to disconnect from the Netflix, turn off the smart TV and speakers, also turns the lights back on;
-- _startGaming()_ - uses the _SmartHomeApi_ to turn the lights off, turns the smart TV on via the _TvApi_ and calls the _GamingFacade_ to start the gaming session;
-- _stopGaming()_ - uses the _GamingFacade_ to stop the gaming session, turns the smart TV off using the _TvApi_ and turns the lights back on via _SmartHomeApi_;
-- _startStreaming()_ - uses the _SmartHomeApi_ to turn the lights on, turns the smart TV on via the _TvApi_ and calls the _GamingFacade_ to start the streaming session;
-- _stopStreaming()_ - uses the _GamingFacade_ to stop the streaming session, turns the smart TV off using the _TvApi_ and turns the lights back on via _SmartHomeApi_.
+- `startMovie()` - uses several different APIs to turn off the lights, turn on the smart TV and speakers, connect to the Netflix platform and start playing the selected movie;
+- `stopMovie()` - uses several different APIs to disconnect from the Netflix, turn off the smart TV and speakers, also turns the lights back on;
+- `startGaming()` - uses the `SmartHomeApi` to turn the lights off, turns the smart TV on via the `TvApi` and calls the `GamingFacade` to start the gaming session;
+- `stopGaming()` - uses the `GamingFacade` to stop the gaming session, turns the smart TV off using the `TvApi` and turns the lights back on via `SmartHomeApi`;
+- `startStreaming()` - uses the `SmartHomeApi` to turn the lights on, turns the smart TV on via the `TvApi` and calls the `GamingFacade` to start the streaming session;
+- `stopStreaming()` - uses the `GamingFacade` to stop the streaming session, turns the smart TV off using the `TvApi` and turns the lights back on via `SmartHomeApi`.
 
-```
+```dart
 class SmartHomeFacade {
   const SmartHomeFacade({
     this.gamingFacade = const GamingFacade(),
@@ -224,9 +224,9 @@ class SmartHomeFacade {
 
 ### Example
 
-_FacadeExample_ widget contains the _SmartHomeState_ which holds the current state of smart devices and _SmartHomeFacade_ to simplify the "smart actions". This widget only knows the simplified methods provided by the smart home facade but does not care about their implementation details, dependencies between classes or other facades and the amount of different APIs used to execute the single action. This allows implementing a complicated logic to handle the smart home actions just by turning the switch ON/OFF in _ModeSwitcher_ widgets. Also, the implementation details of the smart devices' handling methods in the _SmartHomeFacade_ could be changed/improved without affecting the UI code.
+`FacadeExample` widget contains the `SmartHomeState` which holds the current state of smart devices and `SmartHomeFacade` to simplify the "smart actions". This widget only knows the simplified methods provided by the smart home facade but does not care about their implementation details, dependencies between classes or other facades and the amount of different APIs used to execute the single action. This allows implementing a complicated logic to handle the smart home actions just by turning the switch ON/OFF in `ModeSwitcher` widgets. Also, the implementation details of the smart devices' handling methods in the `SmartHomeFacade` could be changed/improved without affecting the UI code.
 
-```
+```dart
 class FacadeExample extends StatefulWidget {
   const FacadeExample();
 

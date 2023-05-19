@@ -10,31 +10,31 @@ The class diagram below shows the implementation of the **Observer** design patt
 
 ![Observer Implementation Class Diagram](resource:assets/images/observer/observer_implementation.png)
 
-_StockTicker_ is a base class that is used by all the specific stock ticker classes. The class contains _title_, _stockTimer_ and _stock_ properties, _subscribers_ list, provides several methods:
+`StockTicker` is a base class that is used by all the specific stock ticker classes. The class contains `title`, `stockTimer` and `stock` properties, `subscribers` list, provides several methods:
 
-- _subscribe()_ - subscribes to the stock ticker;
-- _unsubscribe()_ - unsubscribes from the stock ticker;
-- _notifySubscribers()_ - notifies subscribers about the stock change;
-- _setStock()_ - sets stock value;
-- _stopTicker()_ - stops ticker emitting stock events.
+- `subscribe()` - subscribes to the stock ticker;
+- `unsubscribe()` - unsubscribes from the stock ticker;
+- `notifySubscribers()` - notifies subscribers about the stock change;
+- `setStock()` - sets stock value;
+- `stopTicker()` - stops ticker emitting stock events.
 
-_GameStopStockTicker_, _GoogleStockTicker_ and _TeslaStockTicker_ are concrete stock ticker classes that extend the base _StockTicker_ class.
+`GameStopStockTicker`, `GoogleStockTicker` and `TeslaStockTicker` are concrete stock ticker classes that extend the base `StockTicker` class.
 
-_Stock_ class contains _symbol_, _changeDirection_, _price_ and _changeAmount_ properties to store info about the stock.
+`Stock` class contains `symbol`, `changeDirection`, `price` and `changeAmount` properties to store info about the stock.
 
-_StockTickerSymbol_ is an enumerator class defining supported stock ticker symbols - GME, GOOGL and TSLA.
+`StockTickerSymbol` is an enumerator class defining supported stock ticker symbols - GME, GOOGL and TSLA.
 
-_StockChangeDirection_ is an enumerator class defining stock change directions - growing and falling.
+`StockChangeDirection` is an enumerator class defining stock change directions - growing and falling.
 
-_StockSubscriber_ is an abstract class that is used as a base class for all the specific stock subscriber classes. The class contains _title_, _id_ and _stockStreamController_ properties, _stockStream_ getter and defines the abstract _update()_ method to update subscriber state.
+`StockSubscriber` is an abstract class that is used as a base class for all the specific stock subscriber classes. The class contains `title`, `id` and `stockStreamController` properties, `stockStream` getter and defines the abstract `update()` method to update subscriber state.
 
-_DefaultStockSubscriber_ and _GrowingStockSubscriber_ are concrete stock subscriber classes that extend the abstract class _StockSubscriber_.
+`DefaultStockSubscriber` and `GrowingStockSubscriber` are concrete stock subscriber classes that extend the abstract class `StockSubscriber`.
 
 ### StockTicker
 
-A base class implementing methods for all the specific stock ticker classes. Property _title_ is used in the UI for stock ticker selection, _stockTimer_ periodically emits a new stock value that is stored in the _stock_ property by using the _setStock()_ method. The class also stores a list of stock subscribers that can subscribe to the stock ticker and unsubscribe from it by using the _subscribe()_ and _unsubscribe()_ respectively. Stock ticker subscribers are notified about the value change by calling the _notifySubscribers()_ method. The stock timer could be stopped by calling the _stopTicker()_ method.
+A base class implementing methods for all the specific stock ticker classes. Property `title` is used in the UI for stock ticker selection, `stockTimer` periodically emits a new stock value that is stored in the `stock` property by using the `setStock()` method. The class also stores a list of stock subscribers that can subscribe to the stock ticker and unsubscribe from it by using the `subscribe()` and `unsubscribe()` respectively. Stock ticker subscribers are notified about the value change by calling the `notifySubscribers()` method. The stock timer could be stopped by calling the `stopTicker()` method.
 
-```
+```dart
 base class StockTicker {
   late final String title;
   late final Timer stockTimer;
@@ -76,11 +76,11 @@ base class StockTicker {
 
 ### Concrete stock ticker classes
 
-All of the specific stock ticker classes extend the abstract _StockTicker_ class.
+All of the specific stock ticker classes extend the abstract `StockTicker` class.
 
-- _GameStopStockTicker_ - a stock ticker of the GameStop stocks that emits a new stock event every 2 seconds.
+- `GameStopStockTicker` - a stock ticker of the GameStop stocks that emits a new stock event every 2 seconds.
 
-```
+```dart
 final class GameStopStockTicker extends StockTicker {
   GameStopStockTicker() {
     title = StockTickerSymbol.GME.name;
@@ -95,9 +95,9 @@ final class GameStopStockTicker extends StockTicker {
 }
 ```
 
-- _TeslaStockTicker_ - a stock ticker of the Tesla stocks that emits a new stock event every 3 seconds.
+- `TeslaStockTicker` - a stock ticker of the Tesla stocks that emits a new stock event every 3 seconds.
 
-```
+```dart
 final class TeslaStockTicker extends StockTicker {
   TeslaStockTicker() {
     title = StockTickerSymbol.TSLA.name;
@@ -112,9 +112,9 @@ final class TeslaStockTicker extends StockTicker {
 }
 ```
 
-- _GoogleStockTicker_ - a stock ticker of the Google stocks that emits a new stock event every 5 seconds.
+- `GoogleStockTicker` - a stock ticker of the Google stocks that emits a new stock event every 5 seconds.
 
-```
+```dart
 final class GoogleStockTicker extends StockTicker {
   GoogleStockTicker() {
     title = StockTickerSymbol.GOOGL.name;
@@ -131,9 +131,9 @@ final class GoogleStockTicker extends StockTicker {
 
 ### Stock
 
-A simple class to store information about the stock. _Stock_ class contains data about the stocker ticker symbol, stock change direction, current price and the change amount.
+A simple class to store information about the stock. `Stock` class contains data about the stocker ticker symbol, stock change direction, current price and the change amount.
 
-```
+```dart
 class Stock {
   const Stock({
     required this.symbol,
@@ -151,9 +151,9 @@ class Stock {
 
 ### StockTickerSymbol
 
-A special kind of class - _enumeration_ - to define supported stock ticker symbols.
+A special kind of class - `enumeration` - to define supported stock ticker symbols.
 
-```
+```dart
 enum StockTickerSymbol {
   GME,
   GOOGL,
@@ -163,9 +163,9 @@ enum StockTickerSymbol {
 
 ### StockChangeDirection
 
-A special kind of class - _enumeration_ - to define stock change directions.
+A special kind of class - `enumeration` - to define stock change directions.
 
-```
+```dart
 enum StockChangeDirection {
   falling,
   growing,
@@ -174,9 +174,9 @@ enum StockChangeDirection {
 
 ### StockSubscriber
 
-An abstract class containing base properties for all the specific stock ticker classes. Property _title_ is used in the UI for stock subscriber selection, _id_ uniquely identifies the subscriber. Updated stock values are added to the _stockStreamController_ and emitted via the _stockStream_. Abstract method _update()_ is defined and must be implemented by all the concrete stock subscriber classes.
+An abstract class containing base properties for all the specific stock ticker classes. Property `title` is used in the UI for stock subscriber selection, `id` uniquely identifies the subscriber. Updated stock values are added to the `stockStreamController` and emitted via the `stockStream`. Abstract method `update()` is defined and must be implemented by all the concrete stock subscriber classes.
 
-```
+```dart
 abstract class StockSubscriber {
   late final String title;
 
@@ -194,9 +194,9 @@ abstract class StockSubscriber {
 
 ### Concrete stock subscriber classes
 
-- _DefaultStockSubscriber_ - a default stock subscriber that emits every stock change on update.
+- `DefaultStockSubscriber` - a default stock subscriber that emits every stock change on update.
 
-```
+```dart
 class DefaultStockSubscriber extends StockSubscriber {
   DefaultStockSubscriber() {
     title = 'All stocks';
@@ -209,9 +209,9 @@ class DefaultStockSubscriber extends StockSubscriber {
 }
 ```
 
-- _GrowingStockSubscriber_ - a growing stock subscriber that emits only growing stock changes on update.
+- `GrowingStockSubscriber` - a growing stock subscriber that emits only growing stock changes on update.
 
-```
+```dart
 class GrowingStockSubscriber extends StockSubscriber {
   GrowingStockSubscriber() {
     title = 'Growing stocks';
@@ -228,11 +228,11 @@ class GrowingStockSubscriber extends StockSubscriber {
 
 ### Example
 
-_ObserverExample_ contains a list of _StockSubscriber_ as well as a list of _StockTickerModel_ objects (specific _StockTicker_ class with a flag of whether the user is subscribed to the stock ticker or not).
+`ObserverExample` contains a list of `StockSubscriber` as well as a list of `StockTickerModel` objects (specific `StockTicker` class with a flag of whether the user is subscribed to the stock ticker or not).
 
-A specific subscriber class could be easily changed by using the _StockSubscriberSelection_ widget. Also, _StockTickerSelection_ allows easily subscribe/unsubscribe from the specific stock ticker at run-time.
+A specific subscriber class could be easily changed by using the `StockSubscriberSelection` widget. Also, `StockTickerSelection` allows easily subscribe/unsubscribe from the specific stock ticker at run-time.
 
-```
+```dart
 class ObserverExample extends StatefulWidget {
   const ObserverExample();
 

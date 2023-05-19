@@ -10,25 +10,25 @@ The class diagram below shows the implementation of the **Command** design patte
 
 ![Command Implementation Class Diagram](resource:assets/images/command/command_implementation.png)
 
-_Command_ defines a common interface for all the specific commands:
+`Command` defines a common interface for all the specific commands:
 
-- _execute()_ - executes the command;
-- _getTitle()_ - returns the command's title. Used in command history UI;
-- _undo()_ - undoes the command and returns the receiver to the previous state.
+- `execute()` - executes the command;
+- `getTitle()` - returns the command's title. Used in command history UI;
+- `undo()` - undoes the command and returns the receiver to the previous state.
 
-_ChangeColorCommand_, _ChangeHeightCommand_ and _ChangeWidthCommand_ are concrete implementations of the _Command_ interface.
+`ChangeColorCommand`, `ChangeHeightCommand` and `ChangeWidthCommand` are concrete implementations of the `Command` interface.
 
-_Shape_ is a receiver class which stores multiple properties defining the shape presented in UI: _color_, _height_ and _width_.
+`Shape` is a receiver class which stores multiple properties defining the shape presented in UI: `color`, `height` and `width`.
 
-_CommandHistory_ is a simple class which stores a list of already executed commands (_commandList_) and provides methods to add a new command to the command history list (_add()_) and undo the last command from that list (_undo()_).
+`CommandHistory` is a simple class which stores a list of already executed commands (`commandList`) and provides methods to add a new command to the command history list (`add()`) and undo the last command from that list (`undo()`).
 
-_CommandExample_ initializes and contains _CommandHistory_, _Shape_ objects. Also, this component contains multiple _PlatformButton_ widgets which have a specific implementation of _Command_ assigned to each of them. When the button is pressed, the command is executed and added to the command history list stored in _CommandHistory_ object.
+`CommandExample` initializes and contains `CommandHistory`, `Shape` objects. Also, this component contains multiple `PlatformButton` widgets which have a specific implementation of `Command` assigned to each of them. When the button is pressed, the command is executed and added to the command history list stored in `CommandHistory` object.
 
 ### Shape
 
 A simple class to store information about the shape: its color, height and width. Also, this class contains a named constructor to create a shape object with pre-defined initial values.
 
-```
+```dart
 class Shape {
   Shape.initial()
       : color = Colors.black,
@@ -45,7 +45,7 @@ class Shape {
 
 An interface that defines methods to be implemented by the specific command classes.
 
-```
+```dart
 abstract interface class Command {
   void execute();
   String getTitle();
@@ -55,9 +55,9 @@ abstract interface class Command {
 
 ### Commands
 
-- _ChangeColorCommand_ - a specific implementation of the command which changes the color of the _Shape_ object.
+- `ChangeColorCommand` - a specific implementation of the command which changes the color of the `Shape` object.
 
-```
+```dart
 class ChangeColorCommand implements Command {
   ChangeColorCommand(this.shape) : previousColor = shape.color;
 
@@ -80,9 +80,9 @@ class ChangeColorCommand implements Command {
 }
 ```
 
-- _ChangeHeightCommand_ - a specific implementation of the command which changes the height of the _Shape_ object.
+- `ChangeHeightCommand` - a specific implementation of the command which changes the height of the `Shape` object.
 
-```
+```dart
 class ChangeHeightCommand implements Command {
   ChangeHeightCommand(this.shape) : previousHeight = shape.height;
 
@@ -100,9 +100,9 @@ class ChangeHeightCommand implements Command {
 }
 ```
 
-- _ChangeWidthCommand_ - a specific implementation of the command which changes the width of the _Shape_ object.
+- `ChangeWidthCommand` - a specific implementation of the command which changes the width of the `Shape` object.
 
-```
+```dart
 class ChangeWidthCommand implements Command {
   ChangeWidthCommand(this.shape) : previousWidth = shape.width;
 
@@ -122,9 +122,9 @@ class ChangeWidthCommand implements Command {
 
 ### CommandHistory
 
-A simple class that stores a list of already executed commands. Also, this class provides _isEmpty_ and _commandHistoryList_ getter methods to return true if the command history list is empty and return a list of command names stored in the command history respectively. A new command could be added to the command history list via the _add()_ method and the last command could be undone using the _undo()_ method (if the command history list is not empty).
+A simple class that stores a list of already executed commands. Also, this class provides `isEmpty` and `commandHistoryList` getter methods to return true if the command history list is empty and return a list of command names stored in the command history respectively. A new command could be added to the command history list via the `add()` method and the last command could be undone using the `undo()` method (if the command history list is not empty).
 
-```
+```dart
 class CommandHistory {
   final _commandList = ListQueue<Command>();
 
@@ -144,11 +144,11 @@ class CommandHistory {
 
 ### Example
 
-_CommandExample_ contains _CommandHistory_ and _Shape_ objects. Also, this widget contains several _PlatformButton_ components, each of which uses a specific function executing a concrete command. After the command's execution, it is added to the command history list stored in the _CommandHistory_ object. If the command history is not empty, the _Undo_ button is enabled and the last command could be undone.
+`CommandExample` contains `CommandHistory` and `Shape` objects. Also, this widget contains several `PlatformButton` components, each of which uses a specific function executing a concrete command. After the command's execution, it is added to the command history list stored in the `CommandHistory` object. If the command history is not empty, the `Undo_ button is enabled and the last command could be undone.
 
 As you can see in this example, the client code (UI elements, command history, etc.) isn’t coupled to concrete command classes because it works with commands via the command interface. This approach allows introducing new commands into the application without breaking any existing code.
 
-```
+```dart
 class CommandExample extends StatefulWidget {
   const CommandExample();
 

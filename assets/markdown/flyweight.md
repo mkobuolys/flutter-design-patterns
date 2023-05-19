@@ -10,25 +10,25 @@ The class diagram below shows the implementation of the **Flyweight** design pat
 
 ![Flyweight Implementation Class Diagram](resource:assets/images/flyweight/flyweight_implementation.png)
 
-The _ShapeType_ is an enumerator class defining possible shape types - Circle and Square.
+The `ShapeType` is an enumerator class defining possible shape types - Circle and Square.
 
-_IPositionedShape_ defines a common interface for the specific shape classes:
+`IPositionedShape` defines a common interface for the specific shape classes:
 
-- _render()_ - renders the shape - returns the positioned shape widget. Also, the **extrinsic** state (x and y coordinates) are passed to this method to render the shape in the exact position.
+- `render()` - renders the shape - returns the positioned shape widget. Also, the **extrinsic** state (x and y coordinates) are passed to this method to render the shape in the exact position.
 
-_Circle_ and _Square_ are concrete positioned shape implementations of the _IPositionedShape_ interface. Both of these shapes have their own **intrinsic** state: circle defines _color_ and _diameter_ properties while square contains _color_, _width_ properties and a getter _height_ which returns the same value as _width_.
+`Circle` and `Square` are concrete positioned shape implementations of the `IPositionedShape` interface. Both of these shapes have their own **intrinsic** state: circle defines `color` and `diameter` properties while square contains `color`, `width` properties and a getter `height` which returns the same value as `width`.
 
-The _ShapeFactory_ is a simple factory class which creates and returns a specific shape object via the _createShape()_ method by providing the _ShapeType_.
+The `ShapeFactory` is a simple factory class which creates and returns a specific shape object via the `createShape()` method by providing the `ShapeType`.
 
-The _ShapeFlyweightFactory_ is a flyweight factory which contains a map of flyweight objects - _shapesMap_. When the concrete flyweight is requested via the _getShape()_ method, the flyweight factory checks whether it exists in the map and returns it from there. Otherwise, a new instance of the shape is created using the _ShapeFactory_ and persisted in the map object for further usage.
+The `ShapeFlyweightFactory` is a flyweight factory which contains a map of flyweight objects - `shapesMap`. When the concrete flyweight is requested via the `getShape()` method, the flyweight factory checks whether it exists in the map and returns it from there. Otherwise, a new instance of the shape is created using the `ShapeFactory` and persisted in the map object for further usage.
 
-The _FlyweightExample_ initialises and contains the _ShapeFlyweightFactory_ object. Also, it contains a list of positioned shape - _shapesList_ - which is built using the _ShapeFlyweightFactory_ and flyweight positioned shape objects.
+The `FlyweightExample` initialises and contains the `ShapeFlyweightFactory` object. Also, it contains a list of positioned shape - `shapesList` - which is built using the `ShapeFlyweightFactory` and flyweight positioned shape objects.
 
 ### ShapeType
 
-A special kind of class - _enumeration_ - to define different shape types.
+A special kind of class - `enumeration` - to define different shape types.
 
-```
+```dart
 enum ShapeType {
   circle,
   square,
@@ -37,9 +37,9 @@ enum ShapeType {
 
 ### IPositionedShape
 
-An interface that defines the _render()_ method to be implemented by concrete shape classes.
+An interface that defines the `render()` method to be implemented by concrete shape classes.
 
-```
+```dart
 abstract interface class IPositionedShape {
   Widget render(double x, double y);
 }
@@ -47,9 +47,9 @@ abstract interface class IPositionedShape {
 
 ### Concrete shapes
 
-- _Circle_ - a specific implementation of the _IPositionedShape_ interface representing the shape of a circle.
+- `Circle` - a specific implementation of the `IPositionedShape` interface representing the shape of a circle.
 
-```
+```dart
 class Circle implements IPositionedShape {
   const Circle({
     required this.color,
@@ -77,9 +77,9 @@ class Circle implements IPositionedShape {
 }
 ```
 
-- _Square_ - a specific implementation of the _IPositionedShape_ interface representing the shape of a square.
+- `Square` - a specific implementation of the `IPositionedShape` interface representing the shape of a square.
 
-```
+```dart
 class Square implements IPositionedShape {
   const Square({
     required this.color,
@@ -108,9 +108,9 @@ class Square implements IPositionedShape {
 
 ### ShapeFactory
 
-A simple factory class that defines the _createShape()_ method to create a concrete shape by providing its type.
+A simple factory class that defines the `createShape()` method to create a concrete shape by providing its type.
 
-```
+```dart
 class ShapeFactory {
   const ShapeFactory();
 
@@ -131,7 +131,7 @@ class ShapeFactory {
 
 A flyweight factory class that keeps track of all the flyweight objects and creates them if needed.
 
-```
+```dart
 class ShapeFlyweightFactory {
   ShapeFlyweightFactory({
     required this.shapeFactory,
@@ -154,11 +154,11 @@ class ShapeFlyweightFactory {
 
 ### Example
 
-_FlyweightExample_ initialises and contains the _ShapeFlyweightFactory_ class object. Also, for demonstration purposes, the _ShapeFactory_ object is initialised here, too. Based on the selected option, either the _ShapeFactory_ or _ShapeFlyweightFactory_ is used to populate a list of _IPositionedShape_ objects which are rendered in the background of the example screen.
+`FlyweightExample` initialises and contains the `ShapeFlyweightFactory` class object. Also, for demonstration purposes, the `ShapeFactory` object is initialised here, too. Based on the selected option, either the `ShapeFactory` or `ShapeFlyweightFactory` is used to populate a list of `IPositionedShape` objects which are rendered in the background of the example screen.
 
-With the _ShapeFlyweightFactory_, client - _FlyweightExample_ widget - does not care about the flyweight objects' creation or management. _IPositionedShape_ objects are requested from the factory by passing the _ShapeType_, flyweight factory keeps all the instances of the needed shapes itself, only returns references to them. Hence, only a single instance of a shape object per type could be created and reused when needed.
+With the `ShapeFlyweightFactory`, client - `FlyweightExample` widget - does not care about the flyweight objects' creation or management. `IPositionedShape` objects are requested from the factory by passing the `ShapeType`, flyweight factory keeps all the instances of the needed shapes itself, only returns references to them. Hence, only a single instance of a shape object per type could be created and reused when needed.
 
-```
+```dart
 class FlyweightExample extends StatefulWidget {
   const FlyweightExample();
 

@@ -211,7 +211,7 @@ Map<String, TextStyle?> _syntaxTheme(ThemeData theme) {
       color: const Color.fromRGBO(191, 58, 91, 1.0),
     ),
     'subst': textStyle?.copyWith(
-      color: const Color.fromRGBO(206, 138, 116, 1.0),
+      color: const Color.fromRGBO(64, 103, 230, 1.0),
     ),
     'built_in': textStyle?.copyWith(
       color: const Color.fromRGBO(156, 109, 217, 1.0),
@@ -264,10 +264,10 @@ Map<String, TextStyle?> _syntaxTheme(ThemeData theme) {
     ),
     'comment': textStyle?.copyWith(
       fontWeight: FontWeight.w400,
-      color: const Color.fromRGBO(50, 50, 50, 1.0),
+      color: const Color.fromRGBO(130, 130, 130, 1.0),
     ),
     'doctag': textStyle?.copyWith(
-      color: const Color.fromRGBO(50, 50, 50, 1.0),
+      color: const Color.fromRGBO(130, 130, 130, 1.0),
     ),
   };
 }

@@ -10,28 +10,28 @@ The class diagram below shows the implementation of the **Iterator** design patt
 
 ![Iterator Implementation Class Diagram](resource:assets/images/iterator/iterator_implementation.png)
 
-_ITreeCollection_ defines a common interface for all the specific tree collections:
+`ITreeCollection` defines a common interface for all the specific tree collections:
 
-- _createIterator()_ - creates an iterator for the specific tree collection;
-- _getTitle()_ - returns the title of the tree collection which is used in the UI.
+- `createIterator()` - creates an iterator for the specific tree collection;
+- `getTitle()` - returns the title of the tree collection which is used in the UI.
 
-_DepthFirstTreeCollection_ and _BreadthFirstTreeCollection_ are concrete implementations of the _ITreeCollection_ interface. _DepthFirstTreeCollection_ creates the _DepthFirstIterator_ while _BreadthFirstTreeCollection_ creates the _BreadthFirstIterator_. Also, both of these collections stores the _Graph_ object to save the tree data structure itself.
+`DepthFirstTreeCollection` and `BreadthFirstTreeCollection` are concrete implementations of the `ITreeCollection` interface. `DepthFirstTreeCollection` creates the `DepthFirstIterator` while `BreadthFirstTreeCollection` creates the `BreadthFirstIterator`. Also, both of these collections stores the `Graph` object to save the tree data structure itself.
 
-_ITreeIterator_ defines a common interface for all specific iterators of the tree collection:
+`ITreeIterator` defines a common interface for all specific iterators of the tree collection:
 
-- _hasNext()_ - returns true if the iterator did not reach the end of the collection yet, otherwise false;
-- _getNext()_ - returns the next value of the collection;
-- _reset()_ - resets the iterator and sets the current position of it to the beginning.
+- `hasNext()` - returns true if the iterator did not reach the end of the collection yet, otherwise false;
+- `getNext()` - returns the next value of the collection;
+- `reset()` - resets the iterator and sets the current position of it to the beginning.
 
-_DepthFirstIterator_ and _BreadthFirstIterator_ are concrete implementations of the _ITreeIterator_ interface. _DepthFirstIterator_ implements the **depth-first** algorithm to traverse the tree collection. Correspondingly, _BreadthFirstIterator_ implements the **breadth-first** algorithm. The main difference between these two algorithms is the order in which all of the nodes are visited. Hence, the depth-first algorithm is implemented using the **stack** data structure while the breadth-first algorithm uses the **queue** data structure to store nodes (vertices) which should be visited next.
+`DepthFirstIterator` and `BreadthFirstIterator` are concrete implementations of the `ITreeIterator` interface. `DepthFirstIterator` implements the **depth-first** algorithm to traverse the tree collection. Correspondingly, `BreadthFirstIterator` implements the **breadth-first** algorithm. The main difference between these two algorithms is the order in which all of the nodes are visited. Hence, the depth-first algorithm is implemented using the **stack** data structure while the breadth-first algorithm uses the **queue** data structure to store nodes (vertices) which should be visited next.
 
-_IteratorExample_ references both interfaces - _ITreeCollection_ and _ITreeIterator_ - to specify the required tree collection and create an appropriate iterator for it.
+`IteratorExample` references both interfaces - `ITreeCollection` and `ITreeIterator` - to specify the required tree collection and create an appropriate iterator for it.
 
 ### Graph
 
-A class which stores the adjacency list of the graph. It is stored as a map data structure where the key represents the node's (vertix) id and the value is a list of vertices (ids of other nodes) adjacent to the vertex of that id (key). Also, this class defines the _addEdge()_ method to add an edge to the adjacency list.
+A class which stores the adjacency list of the graph. It is stored as a map data structure where the key represents the node's (vertix) id and the value is a list of vertices (ids of other nodes) adjacent to the vertex of that id (key). Also, this class defines the `addEdge()` method to add an edge to the adjacency list.
 
-```
+```dart
 class Graph {
   final Map<int, Set<int>> adjacencyList = {};
 
@@ -45,7 +45,7 @@ class Graph {
 
 An interface that defines methods to be implemented by all specific tree collection classes.
 
-```
+```dart
 abstract interface class ITreeCollection {
   ITreeIterator createIterator();
   String getTitle();
@@ -54,9 +54,9 @@ abstract interface class ITreeCollection {
 
 ### Tree collections
 
-- _DepthFirstTreeCollection_ - a tree collection class that stores the graph object and implements the _createIterator()_ method to create an iterator which uses the depth-first algorithm to traverse the graph.
+- `DepthFirstTreeCollection` - a tree collection class that stores the graph object and implements the `createIterator()` method to create an iterator which uses the depth-first algorithm to traverse the graph.
 
-```
+```dart
 class DepthFirstTreeCollection implements ITreeCollection {
   const DepthFirstTreeCollection(this.graph);
 
@@ -70,9 +70,9 @@ class DepthFirstTreeCollection implements ITreeCollection {
 }
 ```
 
-- _BreadthFirstTreeCollection_ - a tree collection class that stores the graph object and implements the _createIterator()_ method to create an iterator which uses the breadth-first algorithm to traverse the graph.
+- `BreadthFirstTreeCollection` - a tree collection class that stores the graph object and implements the `createIterator()` method to create an iterator which uses the breadth-first algorithm to traverse the graph.
 
-```
+```dart
 class BreadthFirstTreeCollection implements ITreeCollection {
   const BreadthFirstTreeCollection(this.graph);
 
@@ -90,7 +90,7 @@ class BreadthFirstTreeCollection implements ITreeCollection {
 
 An interface that defines methods to be implemented by all specific iterators of the tree collection.
 
-```
+```dart
 abstract interface class ITreeIterator {
   bool hasNext();
   int? getNext();
@@ -100,9 +100,9 @@ abstract interface class ITreeIterator {
 
 ### Tree iterators
 
-- _DepthFirstIterator_ - a specific implementation of the tree iterator which traverses the tree collection by using the depth-first algorithm. This algorithm uses the **stack** data structure to store vertices (nodes) which should be visited next using the _getNext()_ method.
+- `DepthFirstIterator` - a specific implementation of the tree iterator which traverses the tree collection by using the depth-first algorithm. This algorithm uses the **stack** data structure to store vertices (nodes) which should be visited next using the `getNext()` method.
 
-```
+```dart
 class DepthFirstIterator implements ITreeIterator {
   final DepthFirstTreeCollection treeCollection;
   final Set<int> visitedNodes = <int>{};
@@ -148,9 +148,9 @@ class DepthFirstIterator implements ITreeIterator {
 }
 ```
 
-- _BreadthFirstIterator_ - a specific implementation of the tree iterator which traverses the tree collection by using the breadth-first algorithm. This algorithm uses the **queue** data structure to store vertices (nodes) which should be visited next using the _getNext()_ method.
+- `BreadthFirstIterator` - a specific implementation of the tree iterator which traverses the tree collection by using the breadth-first algorithm. This algorithm uses the **queue** data structure to store vertices (nodes) which should be visited next using the `getNext()` method.
 
-```
+```dart
 class BreadthFirstIterator implements ITreeIterator {
   final BreadthFirstTreeCollection treeCollection;
   final Set<int> visitedNodes = <int>{};
@@ -198,10 +198,10 @@ class BreadthFirstIterator implements ITreeIterator {
 
 ### Example
 
-_IteratorExample_ widget is responsible for building the tree (graph) using the _Graph_ class and contains a list of tree collection objects. After selecting the specific tree collection from the list and triggering the _traverseTree()_ method, an appropriate iterator of that particular tree collection is created and used to traverse the tree data structure.
-As you can see in the _traverseTree()_ method, all the implementation details of the tree collection's traversal are hidden from the client, it only uses the _hasNext()_ and _getNext()_ methods defined by the _ITreeIterator_ interface to iterate through all of the vertices (nodes) of the built _Graph_ object (tree).
+`IteratorExample` widget is responsible for building the tree (graph) using the `Graph` class and contains a list of tree collection objects. After selecting the specific tree collection from the list and triggering the `traverseTree()` method, an appropriate iterator of that particular tree collection is created and used to traverse the tree data structure.
+As you can see in the `traverseTree()` method, all the implementation details of the tree collection's traversal are hidden from the client, it only uses the `hasNext()` and `getNext()` methods defined by the `ITreeIterator` interface to iterate through all of the vertices (nodes) of the built `Graph` object (tree).
 
-```
+```dart
 class IteratorExample extends StatefulWidget {
   const IteratorExample();
 
