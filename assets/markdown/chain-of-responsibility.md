@@ -34,7 +34,7 @@ All the specific loggers use or inject the `LogBloc` class to mock the actual lo
 
 ### LogLevel
 
-A special kind of class - `enumeration` - to define different log levels. Also, the **`<=`** operator is overridden to compare whether one log level is lower or equal to the other.
+A special kind of class - `enumeration` - to define different log levels. Also, the `<=` operator is overridden to compare whether one log level is lower or equal to the other.
 
 ```dart
 enum LogLevel {

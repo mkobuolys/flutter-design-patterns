@@ -1,27 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../../../helpers/dart_sytax_highlighter.dart';
+import '../../../constants/layout_constants.dart';
+import '../../../helpers/dart_syntax_highlighter.dart';
 import '../../../helpers/url_launcher.dart';
 
 class RichMarkdownBody extends StatelessWidget {
   const RichMarkdownBody({this.data, super.key});
 
   final String? data;
-
-  String parseSyntaxLanguage(String data) {
-    String parsed = data;
-    final RegExp codeSign = RegExp('`{3} *');
-    final RegExp pattern = RegExp(r'`{3} *\w+');
-    for (final RegExpMatch match in pattern.allMatches(data)) {
-      final String? lang = match.group(0)?.split(codeSign)[1];
-      parsed = parsed.replaceFirst(match.group(0).toString(), '```$lang');
-      log('lang: $lang');
-    }
-    return parsed;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +29,10 @@ class RichMarkdownBody extends StatelessWidget {
         h5: textTheme.titleMedium,
         h6: textTheme.titleLarge,
         p: bodyMedium,
-        blockSpacing: 8,
+        blockSpacing: LayoutConstants.paddingM,
         blockquotePadding: const EdgeInsets.symmetric(
           horizontal: 12,
-          vertical: 8,
+          vertical: LayoutConstants.paddingM,
         ),
         horizontalRuleDecoration: BoxDecoration(
           border: Border(
@@ -60,13 +47,13 @@ class RichMarkdownBody extends StatelessWidget {
           border: Border(
             left: BorderSide(
               color: theme.colorScheme.surface,
-              width: 3,
+              width: LayoutConstants.spaceS,
             ),
           ),
         ),
         codeblockDecoration: BoxDecoration(
           color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(LayoutConstants.spaceS),
           border: Border.all(
             color: theme.colorScheme.outline.withOpacity(0.2),
           ),
@@ -79,7 +66,7 @@ class RichMarkdownBody extends StatelessWidget {
           color: theme.colorScheme.onSurface.withOpacity(0.6),
         ),
         code: bodyMedium?.copyWith(
-          color: theme.colorScheme.primary.withOpacity(1.0),
+          color: theme.colorScheme.primary,
         ),
         em: bodyMedium?.copyWith(fontStyle: FontStyle.italic),
         strong: bodyMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -87,7 +74,9 @@ class RichMarkdownBody extends StatelessWidget {
         listBullet: bodyMedium?.copyWith(
           color: textTheme.bodySmall?.color,
         ),
-        listBulletPadding: const EdgeInsets.symmetric(horizontal: 2),
+        listBulletPadding: const EdgeInsets.symmetric(
+          horizontal: LayoutConstants.paddingXS,
+        ),
         tableBody: bodyMedium?.copyWith(
           color: textTheme.bodyMedium?.color?.withOpacity(0.8),
         ),
@@ -96,7 +85,7 @@ class RichMarkdownBody extends StatelessWidget {
           color: textTheme.bodyLarge?.color,
         ),
         tableHeadAlign: TextAlign.center,
-        tableCellsPadding: const EdgeInsets.all(8),
+        tableCellsPadding: const EdgeInsets.all(LayoutConstants.paddingM),
         tableBorder: TableBorder.all(
           color: theme.colorScheme.onSurface.withOpacity(0.6),
         ),

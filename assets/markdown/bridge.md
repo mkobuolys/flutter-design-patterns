@@ -24,8 +24,8 @@ The `EntityBase` is an abstract class which is used as a base class for all the 
 `IStorage` defines a common interface for the storages:
 
 - `getTitle()` - returns the title of the storage. The method is used in UI;
-- `fetchAll\<T\>()` - returns all the records of type `T` from the storage;
-- `store\<T\>()` - stores a record of type `T` in the storage.
+- `fetchAll<T>()` - returns all the records of type `T` from the storage;
+- `store<T>()` - stores a record of type `T` in the storage.
 
 `FileStorage` and `SqlStorage` are concrete implementations of the `IStorage` interface. Additionally, `FileStorage` class uses the `JsonHelper` class and its static methods to serialise/deserialise JSON objects.
 

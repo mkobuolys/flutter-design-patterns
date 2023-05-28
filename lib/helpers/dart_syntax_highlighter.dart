@@ -20,8 +20,7 @@ class DartSyntaxHighlighter extends SyntaxHighlighter {
   }
 
   List<TextSpan> _convert(List<Node> nodes) {
-    final List<TextSpan> spans = [];
-    var currentSpans = spans;
+    List<TextSpan> currentSpans = [];
     final List<List<TextSpan>> stack = [];
 
     void traverse(Node node) {
@@ -33,16 +32,19 @@ class DartSyntaxHighlighter extends SyntaxHighlighter {
         );
       } else if (node.children != null) {
         final List<TextSpan> tmp = [];
+
         currentSpans.add(
           TextSpan(children: tmp, style: _syntaxTheme[node.className]),
         );
+
         stack.add(currentSpans);
         currentSpans = tmp;
 
         node.children?.forEach((n) {
           traverse(n);
+
           if (n == node.children?.last) {
-            currentSpans = stack.isEmpty ? spans : stack.removeLast();
+            currentSpans = stack.isEmpty ? currentSpans : stack.removeLast();
           }
         });
       }
@@ -51,7 +53,8 @@ class DartSyntaxHighlighter extends SyntaxHighlighter {
     for (final node in nodes) {
       traverse(node);
     }
-    return spans;
+
+    return currentSpans;
   }
 
   Map<String, TextStyle?> get _syntaxTheme {
