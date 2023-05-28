@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' show Color, TextSpan, TextStyle, Theme;
+import 'package:flutter/material.dart'
+    show BuildContext, Color, TextSpan, TextStyle, Theme;
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:highlight/highlight.dart';
 
@@ -34,7 +34,10 @@ class DartSyntaxHighlighter extends SyntaxHighlighter {
         final List<TextSpan> tmp = [];
 
         currentSpans.add(
-          TextSpan(children: tmp, style: _syntaxTheme[node.className]),
+          TextSpan(
+            children: tmp,
+            style: _syntaxTheme[node.className],
+          ),
         );
 
         stack.add(currentSpans);

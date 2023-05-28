@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../../../constants/layout_constants.dart';
+import '../../../constants/constants.dart';
 import '../../../helpers/dart_syntax_highlighter.dart';
 import '../../../helpers/url_launcher.dart';
 
@@ -16,7 +16,7 @@ class RichMarkdownBody extends StatelessWidget {
 
     final textTheme = theme.textTheme;
     final bodyMedium = textTheme.bodyMedium;
-    final fontSize = theme.textTheme.bodyMedium?.fontSize ?? 14.0;
+    final fontSize = bodyMedium?.fontSize ?? 14.0;
 
     return MarkdownBody(
       selectable: true,
@@ -29,9 +29,9 @@ class RichMarkdownBody extends StatelessWidget {
         h5: textTheme.titleMedium,
         h6: textTheme.titleLarge,
         p: bodyMedium,
-        blockSpacing: LayoutConstants.paddingM,
+        blockSpacing: LayoutConstants.spaceM,
         blockquotePadding: const EdgeInsets.symmetric(
-          horizontal: 12,
+          horizontal: LayoutConstants.paddingM * 1.5,
           vertical: LayoutConstants.paddingM,
         ),
         horizontalRuleDecoration: BoxDecoration(
@@ -66,7 +66,8 @@ class RichMarkdownBody extends StatelessWidget {
           color: theme.colorScheme.onSurface.withOpacity(0.6),
         ),
         code: bodyMedium?.copyWith(
-          color: theme.colorScheme.primary,
+          color: theme.colorScheme.onSurface,
+          backgroundColor: theme.colorScheme.surface,
         ),
         em: bodyMedium?.copyWith(fontStyle: FontStyle.italic),
         strong: bodyMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -92,7 +93,7 @@ class RichMarkdownBody extends StatelessWidget {
       ),
       onTapLink: (_, link, __) => UrlLauncher.launchUrl(link ?? ''),
       syntaxHighlighter: DartSyntaxHighlighter(context),
-      data: data ??'',
+      data: data ?? '',
     );
   }
 }
