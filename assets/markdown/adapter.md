@@ -10,13 +10,13 @@ The class diagram below shows the implementation of Adapter design pattern using
 
 ![Adapter Implementation Class Diagram](resource:assets/images/adapter/adapter_implementation.png)
 
-First of all, there are two APIs: _JsonContactsApi_ and _XmlContactsApi_. These two APIs have different methods to return contacts information in two different formats — JSON and XML. Hence, two different adapters should be created to convert the specific contacts’ representation to the required format which is needed in the _ContactsSection_ component (widget) — list of _Contact_ objects. To unify the contract (interface) of adapters, _IContactsAdapter_ abstract interface class is created which requires implementing the _getContacts()_ method in all the implementations of this interface. _JsonContactsAdapter_ implements the _IContactsAdapter_, uses the _JsonContactsApi_ to retrieve contacts information as a JSON string, then parses it to a list of _Contact_ objects and returns it via _getContacts()_ method. Accordingly, _XmlContactsAdapter_ is implemented in the same manner, but it receives the data from _XmlContactsApi_ in XML format.
+First of all, there are two APIs: `JsonContactsApi` and `XmlContactsApi`. These two APIs have different methods to return contacts information in two different formats — JSON and XML. Hence, two different adapters should be created to convert the specific contacts’ representation to the required format which is needed in the `ContactsSection` component (widget) — list of `Contact` objects. To unify the contract (interface) of adapters, `IContactsAdapter` abstract interface class is created which requires implementing the `getContacts()` method in all the implementations of this interface. `JsonContactsAdapter` implements the `IContactsAdapter`, uses the `JsonContactsApi` to retrieve contacts information as a JSON string, then parses it to a list of `Contact` objects and returns it via `getContacts()` method. Accordingly, `XmlContactsAdapter` is implemented in the same manner, but it receives the data from `XmlContactsApi` in XML format.
 
 ### Contact
 
 A simple class to store the contact's information.
 
-```
+```dart
 class Contact {
   final String fullName;
   final String email;
@@ -34,7 +34,7 @@ class Contact {
 
 A fake API which returns contacts' information as JSON string.
 
-```
+```dart
 class JsonContactsApi {
   static const _contactsJson = '''
   {
@@ -68,7 +68,7 @@ class JsonContactsApi {
 
 A fake API which returns contacts' information as XML string.
 
-```
+```dart
 class XmlContactsApi {
   static const _contactsXml = '''
   <?xml version="1.0"?>
@@ -99,9 +99,9 @@ class XmlContactsApi {
 
 ### IContactsAdapter
 
-A contract (interface) which unifies adapters and requires them to implement the method _getContacts()_.
+A contract (interface) which unifies adapters and requires them to implement the method `getContacts()`.
 
-```
+```dart
 abstract interface class IContactsAdapter {
   List<Contact> getContacts();
 }
@@ -109,9 +109,9 @@ abstract interface class IContactsAdapter {
 
 ### JsonContactsAdapter
 
-An adapter, which implements the _getContacts()_ method. Inside the method, contacts' information is retrieved from _JsonContactsApi_ and parsed to the required return type.
+An adapter, which implements the `getContacts()` method. Inside the method, contacts' information is retrieved from `JsonContactsApi` and parsed to the required return type.
 
-```
+```dart
 class JsonContactsAdapter implements IContactsAdapter {
   const JsonContactsAdapter({
     this.api = const JsonContactsApi(),
@@ -147,9 +147,9 @@ class JsonContactsAdapter implements IContactsAdapter {
 
 ### XmlContactsAdapter
 
-An adapter, which implements the _getContacts()_ method. Inside the method, contacts' information is retrieved from _XmlContactsApi_ and parsed to the required return type.
+An adapter, which implements the `getContacts()` method. Inside the method, contacts' information is retrieved from `XmlContactsApi` and parsed to the required return type.
 
-```
+```dart
 class XmlContactsAdapter implements IContactsAdapter {
   const XmlContactsAdapter({
     this.api = const XmlContactsApi(),
@@ -192,9 +192,9 @@ class XmlContactsAdapter implements IContactsAdapter {
 
 ### Example
 
-- AdapterExample - implements the example widget. This widget uses _ContactsSection_ component which requires a specific adapter of type _IContactsAdapter_ to be injected via constructor.
+- AdapterExample - implements the example widget. This widget uses `ContactsSection` component which requires a specific adapter of type `IContactsAdapter` to be injected via constructor.
 
-```
+```dart
 class AdapterExample extends StatelessWidget {
   const AdapterExample();
 
@@ -226,9 +226,9 @@ class AdapterExample extends StatelessWidget {
 }
 ```
 
-- ContactsSection - uses the injected adapter of type _IContactsAdapter_. The widget only cares about the adapter's type, but not its specific implementation. Hence, we can provide different adapters of type _IContactsAdapter_ which load the contacts' information from different data sources without making any changes to the UI.
+- ContactsSection - uses the injected adapter of type `IContactsAdapter`. The widget only cares about the adapter's type, but not its specific implementation. Hence, we can provide different adapters of type `IContactsAdapter` which load the contacts' information from different data sources without making any changes to the UI.
 
-```
+```dart
 class ContactsSection extends StatefulWidget {
   final IContactsAdapter adapter;
   final String headerText;
@@ -254,7 +254,7 @@ class _ContactsSectionState extends State<ContactsSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
-	    ...
+	   // ...
     );
   }
 }

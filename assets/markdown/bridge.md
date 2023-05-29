@@ -10,32 +10,32 @@ The class diagram below shows the implementation of the **Bridge** design patter
 
 ![Bridge Implementation Class Diagram](resource:assets/images/bridge/bridge_implementation.png)
 
-The _EntityBase_ is an abstract class which is used as a base class for all the entity classes. The class contains an _id_ property and a named constructor _EntityBase.fromJson_ to map the JSON object to the class field.
+The `EntityBase` is an abstract class which is used as a base class for all the entity classes. The class contains an `id` property and a named constructor `EntityBase.fromJson` to map the JSON object to the class field.
 
-_Customer_ and _Order_ are concrete entities which extend the abstract class _EntityBase_. _Customer_ class contains _name_ and _email_ properties, _Customer.fromJson_ named constructor to map the JSON object to class fields and a _toJson()_ method to map class fields to the corresponding JSON map object. _Order_ class contain _dishes_ (a list of dishes of that order) and _total_ fields, a named constructor _Order.fromJson_ and a _toJson()_ method respectively.
+`Customer` and `Order` are concrete entities which extend the abstract class `EntityBase`. `Customer` class contains `name` and `email` properties, `Customer.fromJson` named constructor to map the JSON object to class fields and a `toJson()` method to map class fields to the corresponding JSON map object. `Order` class contain `dishes` (a list of dishes of that order) and `total` fields, a named constructor `Order.fromJson` and a `toJson()` method respectively.
 
-_IRepository_ defines a common interface for the repositories:
+`IRepository` defines a common interface for the repositories:
 
-- _getAll()_ - returns all records from the repository;
-- _save()_ - saves an entity of type _EntityBase_ in the repository.
+- `getAll()` - returns all records from the repository;
+- `save()` - saves an entity of type `EntityBase` in the repository.
 
-_CustomersRepository_ and _OrdersRepository_ are concrete implementations of the _IRepository_ interface. Also, these classes contain a storage property of type _IStorage_ which is injected into the repository via the constructor.
+`CustomersRepository` and `OrdersRepository` are concrete implementations of the `IRepository` interface. Also, these classes contain a storage property of type `IStorage` which is injected into the repository via the constructor.
 
-_IStorage_ defines a common interface for the storages:
+`IStorage` defines a common interface for the storages:
 
-- _getTitle()_ - returns the title of the storage. The method is used in UI;
-- _fetchAll\<T\>()_ - returns all the records of type _T_ from the storage;
-- _store\<T\>()_ - stores a record of type _T_ in the storage.
+- `getTitle()` - returns the title of the storage. The method is used in UI;
+- `fetchAll<T>()` - returns all the records of type `T` from the storage;
+- `store<T>()` - stores a record of type `T` in the storage.
 
-_FileStorage_ and _SqlStorage_ are concrete implementations of the _IStorage_ interface. Additionally, _FileStorage_ class uses the _JsonHelper_ class and its static methods to serialise/deserialise JSON objects.
+`FileStorage` and `SqlStorage` are concrete implementations of the `IStorage` interface. Additionally, `FileStorage` class uses the `JsonHelper` class and its static methods to serialise/deserialise JSON objects.
 
-_BridgeExample_ initialises and contains both - customer and order - repositories which are used to retrieve the corresponding data. Additionally, the storage type of these repositories could be changed between the _FileStorage_ and _SqlStorage_ separately and at the run-time.
+`BridgeExample` initialises and contains both - customer and order - repositories which are used to retrieve the corresponding data. Additionally, the storage type of these repositories could be changed between the `FileStorage` and `SqlStorage` separately and at the run-time.
 
 ### EntityBase
 
 An abstract class that stores the id field and is extended by all of the entity classes.
 
-```
+```dart
 abstract class EntityBase {
   EntityBase() : id = faker.guid.guid();
 
@@ -49,7 +49,7 @@ abstract class EntityBase {
 
 A simple class to store information about the customer: its name and email. Also, the constructor generates random values when initialising the Customer object.
 
-```
+```dart
 class Customer extends EntityBase {
   Customer()
       : name = faker.person.name(),
@@ -75,7 +75,7 @@ class Customer extends EntityBase {
 
 A simple class to store information about the order: a list of dishes it contains and the total price of the order. Also, the constructor generates random values when initialising the Order object.
 
-```
+```dart
 class Order extends EntityBase {
   Order()
       : dishes = List.generate(
@@ -102,9 +102,9 @@ class Order extends EntityBase {
 
 ### JsonHelper
 
-A helper classes used by the _FileStorage_ to serialise objects of type _EntityBase_ to JSON objects and deserialise them from the JSON string.
+A helper classes used by the `FileStorage` to serialise objects of type `EntityBase` to JSON objects and deserialize them from the JSON string.
 
-```
+```dart
 class JsonHelper {
   const JsonHelper._();
 
@@ -128,7 +128,7 @@ class JsonHelper {
 
 An interface that defines methods to be implemented by the derived repository classes.
 
-```
+```dart
 abstract interface class IRepository {
   List<EntityBase> getAll();
   void save(EntityBase entityBase);
@@ -137,9 +137,9 @@ abstract interface class IRepository {
 
 ### Concrete repositories
 
-- _CustomersRepository_ - a specific implementation of the _IRepository_ interface to store customers' data.
+- `CustomersRepository` - a specific implementation of the `IRepository` interface to store customers' data.
 
-```
+```dart
 class CustomersRepository implements IRepository {
   const CustomersRepository(this.storage);
 
@@ -155,9 +155,9 @@ class CustomersRepository implements IRepository {
 }
 ```
 
-- _OrdersRepository_ - a specific implementation of the _IRepository_ interface to store orders' data.
+- `OrdersRepository` - a specific implementation of the `IRepository` interface to store orders' data.
 
-```
+```dart
 class OrdersRepository implements IRepository {
   const OrdersRepository(this.storage);
 
@@ -177,7 +177,7 @@ class OrdersRepository implements IRepository {
 
 An interface that defines methods to be implemented by the derived storage classes.
 
-```
+```dart
 abstract interface class IStorage {
   String getTitle();
   List<T> fetchAll<T extends EntityBase>();
@@ -187,9 +187,9 @@ abstract interface class IStorage {
 
 ### Concrete storages
 
-- _FileStorage_ - a specific implementation of the _IStorage_ interface to store an object in the storage as a file - this behaviour is mocked by storing an object as a JSON string.
+- `FileStorage` - a specific implementation of the `IStorage` interface to store an object in the storage as a file - this behaviour is mocked by storing an object as a JSON string.
 
-```
+```dart
 class FileStorage implements IStorage {
   final Map<Type, List<String>> fileStorage = {};
 
@@ -214,9 +214,9 @@ class FileStorage implements IStorage {
 }
 ```
 
-- _SqlStorage_ - a specific implementation of the _IStorage_ interface to store an object in the storage as an entity - this behaviour is mocked by using the Map data structure and appending entities of the same type to the list.
+- `SqlStorage` - a specific implementation of the `IStorage` interface to store an object in the storage as an entity - this behaviour is mocked by using the Map data structure and appending entities of the same type to the list.
 
-```
+```dart
 class SqlStorage implements IStorage {
   final Map<Type, List<EntityBase>> sqlStorage = {};
 
@@ -238,11 +238,11 @@ class SqlStorage implements IStorage {
 
 ### Example
 
-_BridgeExample_ contains a list of storages - instances of _SqlStorage_ and _FileStorage_ classes. Also, it initialises _Customer_ and _Order_ repositories. In the repositories the concrete type of storage could be interchanged by triggering the _onSelectedCustomerStorageIndexChanged()_ for the _CustomersRepository_ and _onSelectedOrderStorageIndexChanged()_ for the _OrdersRepository_ respectively.
+`BridgeExample` contains a list of storages - instances of `SqlStorage` and `FileStorage` classes. Also, it initialises `Customer` and `Order` repositories. In the repositories the concrete type of storage could be interchanged by triggering the `onSelectedCustomerStorageIndexChanged()` for the `CustomersRepository` and `onSelectedOrderStorageIndexChanged()` for the `OrdersRepository` respectively.
 
 The concrete repository does not care about the specific type of storage it uses as long as the storage implements the IStorage interface and all of its methods. As a result, the abstraction (repository) is separated from the implementor (storage) - the concrete implementation of the storage could be changed for the repository at run-time, the repository does not depend on its implementation details.
 
-```
+```dart
 class BridgeExample extends StatefulWidget {
   const BridgeExample();
 

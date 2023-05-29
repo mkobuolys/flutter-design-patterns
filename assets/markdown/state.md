@@ -10,28 +10,28 @@ The class diagram below shows the implementation of the **State** design pattern
 
 ![State Implementation Class Diagram](resource:assets/images/state/state_implementation.png)
 
-_IState_ defines a common interface for all the specific states:
+`IState` defines a common interface for all the specific states:
 
-- _nextState()_ - changes the current state in _StateContext_ object to the next state;
-- _render()_ - renders the UI of a specific state.
+- `nextState()` - changes the current state in `StateContext` object to the next state;
+- `render()` - renders the UI of a specific state.
 
-_NoResultsState_, _ErrorState_, _LoadingState_ and _LoadedState_ are concrete implementations of the _IState_ interface. Each of the states defines its representational UI component via _render()_ method, also uses a specific state (or states, if the next state is chosen from several possible options based on the context) of type _IState_ in _nextState()_, which will be changed by calling the _nextState()_ method. In addition to this, _LoadedState_ contains a list of names, which is injected using the state's constructor, and _LoadingState_ uses the _FakeApi_ to retrieve a list of randomly generated names.
+`NoResultsState`, `ErrorState`, `LoadingState` and `LoadedState` are concrete implementations of the `IState` interface. Each of the states defines its representational UI component via `render()` method, also uses a specific state (or states, if the next state is chosen from several possible options based on the context) of type `IState` in `nextState()`, which will be changed by calling the `nextState()` method. In addition to this, `LoadedState` contains a list of names, which is injected using the state's constructor, and `LoadingState` uses the `FakeApi` to retrieve a list of randomly generated names.
 
-_StateContext_ saves the current state of type _IState_ in private _currentState_ property, defines several methods:
+`StateContext` saves the current state of type `IState` in private `currentState` property, defines several methods:
 
-- _setState()_ - changes the current state;
-- _nextState()_ - triggers the _nextState()_ method on the current state;
-- _dispose()_ - safely closes the _stateStream_ stream.
+- `setState()` - changes the current state;
+- `nextState()` - triggers the `nextState()` method on the current state;
+- `dispose()` - safely closes the `stateStream` stream.
 
-The current state is exposed to the UI by using the _outState_ stream.
+The current state is exposed to the UI by using the `outState` stream.
 
-_StateExample_ widget contains the _StateContext_ object to track and trigger state changes, also uses the _NoResultsState_ as the initial state for the example.
+`StateExample` widget contains the `StateContext` object to track and trigger state changes, also uses the `NoResultsState` as the initial state for the example.
 
 ### IState
 
 An interface that defines methods to be implemented by all specific state classes.
 
-```
+```dart
 abstract interface class IState {
   Future<void> nextState(StateContext context);
   Widget render();
@@ -40,9 +40,9 @@ abstract interface class IState {
 
 ### StateContext
 
-A class that holds the current state in _currentState_ property and exposes it to the UI via _outState_ stream. The state context also defines a _nextState()_ method which is used by the UI to trigger the state's change. The current state itself is changed/set via the _setState()_ method by providing the next state of type _IState_ as a parameter to it.
+A class that holds the current state in `currentState` property and exposes it to the UI via `outState` stream. The state context also defines a `nextState()` method which is used by the UI to trigger the state's change. The current state itself is changed/set via the `setState()` method by providing the next state of type `IState` as a parameter to it.
 
-```
+```dart
 class StateContext {
   final _stateStream = StreamController<IState>();
   Sink<IState> get _inState => _stateStream.sink;
@@ -78,11 +78,11 @@ class StateContext {
 }
 ```
 
-### Specific implementations of the _IState_ interface
+### Specific implementations of the `IState` interface
 
-- _ErrorState_ - implements the specific state which is used when an unhandled error occurs in API and the error widget should be shown.
+- `ErrorState` - implements the specific state which is used when an unhandled error occurs in API and the error widget should be shown.
 
-```
+```dart
 class ErrorState implements IState {
   const ErrorState();
 
@@ -105,9 +105,9 @@ class ErrorState implements IState {
 }
 ```
 
-- _LoadedState_ - implements the specific state which is used when resources are loaded from the API without an error and the result widget should be provided to the screen.
+- `LoadedState` - implements the specific state which is used when resources are loaded from the API without an error and the result widget should be provided to the screen.
 
-```
+```dart
 class LoadedState implements IState {
   const LoadedState(this.names);
 
@@ -140,9 +140,9 @@ class LoadedState implements IState {
 }
 ```
 
-- _NoResultsState_ - implements the specific state which is used when a list of resources is loaded from the API without an error, but the list is empty. Also, this state is used initially in the _StateExample_ widget.
+- `NoResultsState` - implements the specific state which is used when a list of resources is loaded from the API without an error, but the list is empty. Also, this state is used initially in the `StateExample` widget.
 
-```
+```dart
 class NoResultsState implements IState {
   const NoResultsState();
 
@@ -162,9 +162,9 @@ class NoResultsState implements IState {
 }
 ```
 
-- _LoadingState_ - implements the specific state which is used on resources loading from the _FakeApi_. Also, based on the loaded result, the next state is set in _nextState()_ method.
+- `LoadingState` - implements the specific state which is used on resources loading from the `FakeApi`. Also, based on the loaded result, the next state is set in `nextState()` method.
 
-```
+```dart
 class LoadingState implements IState {
   const LoadingState({
     this.api = const FakeApi(),
@@ -199,9 +199,9 @@ class LoadingState implements IState {
 
 ### FakeApi
 
-A fake API is used to randomly generate a list of person names. The method _getNames()_ could return a list of names or throw an Exception (error) at random. Similarly, the _getRandomNames()_ method randomly returns a list of names or an empty list. This behaviour is implemented because of demonstration purposes to show all the possible different states in the UI.
+A fake API is used to randomly generate a list of person names. The method `getNames()` could return a list of names or throw an Exception (error) at random. Similarly, the `getRandomNames()` method randomly returns a list of names or an empty list. This behaviour is implemented because of demonstration purposes to show all the possible different states in the UI.
 
-```
+```dart
 class FakeApi {
   const FakeApi();
 
@@ -223,9 +223,9 @@ class FakeApi {
 
 ### Example
 
-_StateExample_ widget contains the _StateContext_, subscribes to the current state's stream _outState_ and provides an appropriate UI widget by executing the state's _render()_ method. The current state could be changed by triggering the _changeState()_ method (pressing the _Load names_ button in UI). _StateExample_ widget is only aware of the initial state class - _NoResultsState_ but does not know any details about other possible states, since their handling is defined in _StateContext_ class. This allows to separate business logic from the representational code, add new states of type _IState_ to the application without applying any changes to the UI components.
+`StateExample` widget contains the `StateContext`, subscribes to the current state's stream `outState` and provides an appropriate UI widget by executing the state's `render()` method. The current state could be changed by triggering the `changeState()` method (pressing the `Load names` button in UI). `StateExample` widget is only aware of the initial state class - `NoResultsState` but does not know any details about other possible states, since their handling is defined in `StateContext` class. This allows to separate business logic from the representational code, add new states of type `IState` to the application without applying any changes to the UI components.
 
-```
+```dart
 class StateExample extends StatefulWidget {
   const StateExample();
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../data/models/design_pattern.dart';
 import '../../../../data/repositories/markdown_repository.dart';
 import '../../../../themes.dart';
+import 'rich_markdown_body.dart';
 
 class MarkdownView extends ConsumerWidget {
   const MarkdownView({
@@ -34,11 +34,7 @@ class MarkdownView extends ConsumerWidget {
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             markdown.when(
-              data: (data) => MarkdownBody(
-                data: data,
-                fitContent: false,
-                selectable: true,
-              ),
+              data: (data) => RichMarkdownBody(data: data),
               loading: () => Center(
                 child: CircularProgressIndicator(
                   backgroundColor: lightBackgroundColor,

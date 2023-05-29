@@ -10,30 +10,30 @@ The class diagram below shows the implementation of the **Mediator** design patt
 
 ![Mediator Implementation Class Diagram](resource:assets/images/mediator/mediator_implementation.png)
 
-_TeamMember_ is a base class that is used by all the specific team member classes. The class contains _name_, _lastNotification_ and _notificationHub_ properties, provides several methods:
+`TeamMember` is a base class that is used by all the specific team member classes. The class contains `name`, `lastNotification` and `notificationHub` properties, provides several methods:
 
-- _receive()_ - receives the notification from the notification hub;
-- _send()_ - sends a notification;
-- _sendTo\<T\>()_ - sends a notification to specific team members.
+- `receive()` - receives the notification from the notification hub;
+- `send()` - sends a notification;
+- `sendTo<T>()` - sends a notification to specific team members.
 
-_Admin_, _Developer_ and _Tester_ are concrete team member classes that extend the abstract class _TeamMember_ as well as override the default _toString()_ method.
+`Admin`, `Developer` and `Tester` are concrete team member classes that extend the abstract class `TeamMember` as well as override the default `toString()` method.
 
-_NotificationHub_ defines an interface for all the specific notification hubs:
+`NotificationHub` defines an interface for all the specific notification hubs:
 
-- _getTeamMembers()_ - returns a list of team members of the hub;
-- _register()_ - registers a team member to the hub;
-- _send()_ - sends a notification to registered team members;
-- _sendTo\<T\>()_ - sends a notification to specific registered team members.
+- `getTeamMembers()` - returns a list of team members of the hub;
+- `register()` - registers a team member to the hub;
+- `send()` - sends a notification to registered team members;
+- `sendTo<T>()` - sends a notification to specific registered team members.
 
-_TeamNotificationHub_ is a concrete notification hub that implements the _NotificationHub_ interface. Also, this class contain a list of registered team members - _teamMembers_.
+`TeamNotificationHub` is a concrete notification hub that implements the `NotificationHub` interface. Also, this class contain a list of registered team members - `teamMembers`.
 
-_MediatorExample_ initialises and contains a notification hub property to send and receive notifications, register team members to the hub.
+`MediatorExample` initialises and contains a notification hub property to send and receive notifications, register team members to the hub.
 
 ### TeamMember
 
-A base class implementing methods for all the specific team member classes. Method _receive()_ sets the _lastNotification_ value, _send()_ and _sendTo\<T\>()_ methods send notification by using the corresponding _notificationHub_ methods.
+A base class implementing methods for all the specific team member classes. Method `receive()` sets the `lastNotification` value, `send()` and `sendTo<T>()` methods send notification by using the corresponding `notificationHub` methods.
 
-```
+```dart
 base class TeamMember {
   TeamMember({
     required this.name,
@@ -60,11 +60,11 @@ base class TeamMember {
 
 ### Concrete team member classes
 
-All of the specific team member classes extend the _TeamMember_ and override the default _toString()_ method.
+All of the specific team member classes extend the `TeamMember` and override the default `toString()` method.
 
-- _Admin_ - a team member class representing the admin role.
+- `Admin` - a team member class representing the admin role.
 
-```
+```dart
 final class Admin extends TeamMember {
   Admin({
     required super.name,
@@ -75,9 +75,9 @@ final class Admin extends TeamMember {
 }
 ```
 
-- _Developer_ - a team member class representing the developer role.
+- `Developer` - a team member class representing the developer role.
 
-```
+```dart
 final class Developer extends TeamMember {
   Developer({
     required super.name,
@@ -88,9 +88,9 @@ final class Developer extends TeamMember {
 }
 ```
 
-- _Tester_ - a team member class representing the tester (QA) role.
+- `Tester` - a team member class representing the tester (QA) role.
 
-```
+```dart
 final class Tester extends TeamMember {
   Tester({
     required super.name,
@@ -103,9 +103,9 @@ final class Tester extends TeamMember {
 
 ### NotificationHub
 
-An abstract interface class that defines methods to be implemented by specific notification hub classes. Method _getTeamMembers()_ returns a list of registered team members to the hub, _register()_ registers a new member to the hub. Method _send()_ sends the notification to all the registered team members to the hub (excluding sender) while _sendTo\<T\>()_ sends the notification to team members of a specific type (excluding sender).
+An abstract interface class that defines methods to be implemented by specific notification hub classes. Method `getTeamMembers()` returns a list of registered team members to the hub, `register()` registers a new member to the hub. Method `send()` sends the notification to all the registered team members to the hub (excluding sender) while `sendTo<T>()` sends the notification to team members of a specific type (excluding sender).
 
-```
+```dart
 abstract interface class NotificationHub {
   List<TeamMember> getTeamMembers();
   void register(TeamMember member);
@@ -116,9 +116,9 @@ abstract interface class NotificationHub {
 
 ### TeamNotificationHub
 
-A specific notification hub implementing _NotificationHub_ interface. The class also contains private _teamMembers_ property - a list of registered team members to the hub.
+A specific notification hub implementing `NotificationHub` interface. The class also contains private `teamMembers` property - a list of registered team members to the hub.
 
-```
+```dart
 class TeamNotificationHub implements NotificationHub {
   TeamNotificationHub({
     List<TeamMember>? members,
@@ -161,11 +161,11 @@ class TeamNotificationHub implements NotificationHub {
 
 ### Example
 
-The _MediatorExample_ widget initialises the _TeamNotificationHub_ and later uses it to send notifications between team members.
+The `MediatorExample` widget initialises the `TeamNotificationHub` and later uses it to send notifications between team members.
 
 Specific team members do not contain any reference about the others, they are completely decoupled. For communication, the notification hub is used that handles all the necessary logic to send and receive notifications from the team.
 
-```
+```dart
 class MediatorExample extends StatefulWidget {
   const MediatorExample();
 

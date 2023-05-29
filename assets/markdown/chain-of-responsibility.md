@@ -10,33 +10,33 @@ The class diagram below shows the implementation of the **Chain of Responsibilit
 
 ![Chain of Responsibility Implementation Class Diagram](resource:assets/images/chain_of_responsibility/chain_of_responsibility_implementation.png)
 
-The _LogLevel_ is an enumerator class defining possible log levels - Debug, Info and Error.
+The `LogLevel` is an enumerator class defining possible log levels - Debug, Info and Error.
 
-_LogMessage_ class is used to store information about the log message: its log level and the message text. It also provides a public _getFormattedMessage()_ method to format the log entry as a Widget object (for that, a private helper method _getLogEntryColor()_ and a getter _logLevelString_ are used).
+`LogMessage` class is used to store information about the log message: its log level and the message text. It also provides a public `getFormattedMessage()` method to format the log entry as a Widget object (for that, a private helper method `getLogEntryColor()` and a getter `logLevelString` are used).
 
-_LoggerBase_ is an abstract class which is used as a base class for all the specific loggers:
+`LoggerBase` is an abstract class which is used as a base class for all the specific loggers:
 
-- _logMessage()_ - logs message using the _log()_ method and passes the request along the chain;
-- _logDebug()_ - logs the message with a log level of Debug;
-- _logInfo()_ - logs the message with a log level of Info;
-- _logError()_ - logs the message with a log level of Error;
-- _log()_ - an abstract method to log the message (must be implemented by specific logger).
+- `logMessage()` - logs message using the `log()` method and passes the request along the chain;
+- `logDebug()` - logs the message with a log level of Debug;
+- `logInfo()` - logs the message with a log level of Info;
+- `logError()` - logs the message with a log level of Error;
+- `log()` - an abstract method to log the message (must be implemented by specific logger).
 
-Also, the _LoggerBase_ contains a reference to the next logger (_nextLogger_) and logger's log level (_logLevel_).
+Also, the `LoggerBase` contains a reference to the next logger (`nextLogger`) and logger's log level (`logLevel`).
 
-_DebugLogger_, _InfoLogger_ and _ErrorLogger_ are concrete logger classes which extend the _LoggerBase_ class and implement the abstract _log()_ method. _InfoLogger_ uses the _ExternalLoggingService_ to log messages, _ErrorLogger_ - the _MailService_.
+`DebugLogger`, `InfoLogger` and `ErrorLogger` are concrete logger classes which extend the `LoggerBase` class and implement the abstract `log()` method. `InfoLogger` uses the `ExternalLoggingService` to log messages, `ErrorLogger` - the `MailService`.
 
-All the specific loggers use or inject the _LogBloc_ class to mock the actual logging and provide log entries to the UI.
+All the specific loggers use or inject the `LogBloc` class to mock the actual logging and provide log entries to the UI.
 
-_LogBloc_ stores a list of logs and exposes them through the stream - _outLogStream_. Also, it defines the _log()_ method to add a new log to the list and notify _outLogStream_ subscribers with an updated log entries list.
+`LogBloc` stores a list of logs and exposes them through the stream - `outLogStream`. Also, it defines the `log()` method to add a new log to the list and notify `outLogStream` subscribers with an updated log entries list.
 
-_ChainOfResponsibilityExample_ creates a chain of loggers and uses public methods defined in _LoggerBase_ to log messages. It also initialises and contains the _LogBloc_ instance to store log entries and later show them in the UI.
+`ChainOfResponsibilityExample` creates a chain of loggers and uses public methods defined in `LoggerBase` to log messages. It also initialises and contains the `LogBloc` instance to store log entries and later show them in the UI.
 
 ### LogLevel
 
-A special kind of class - _enumeration_ - to define different log levels. Also, the **<=** operator is overridden to compare whether one log level is lower or equal to the other.
+A special kind of class - `enumeration` - to define different log levels. Also, the `<=` operator is overridden to compare whether one log level is lower or equal to the other.
 
-```
+```dart
 enum LogLevel {
   debug,
   info,
@@ -48,9 +48,9 @@ enum LogLevel {
 
 ### LogMessage
 
-A simple class to store information about the log entry: log level and message. Also, this class defines a private getter _logLevelString_ to return the text representation of a specific log level and a private method _getLogEntryColor()_ to return the log entry color based on the log level. The _getFormattedMessage()_ method returns the formatted log entry as a _Text_ widget which is used in the UI.
+A simple class to store information about the log entry: log level and message. Also, this class defines a private getter `logLevelString` to return the text representation of a specific log level and a private method `getLogEntryColor()` to return the log entry color based on the log level. The `getFormattedMessage()` method returns the formatted log entry as a `Text` widget which is used in the UI.
 
-```
+```dart
 class LogMessage {
   const LogMessage({
     required this.logLevel,
@@ -81,9 +81,9 @@ class LogMessage {
 
 ### LogBloc
 
-A Business Logic component (BLoC) class to store log messages and provide them to the UI through a public stream. New log entries are added to the logs list via the _log()_ method while all the logs could be accessed through the public _outLogStream_.
+A Business Logic component (BLoC) class to store log messages and provide them to the UI through a public stream. New log entries are added to the logs list via the `log()` method while all the logs could be accessed through the public `outLogStream`.
 
-```
+```dart
 class LogBloc {
   final List<LogMessage> _logs = [];
   final _logStream = StreamController<List<LogMessage>>();
@@ -104,9 +104,9 @@ class LogBloc {
 
 ### ExternalLoggingService
 
-A simple class that represents the actual external logging service. Instead of sending the log message to some kind of 3rd party logging service (which, in fact, could be called in the _logMessage()_ method), it just logs the message to UI through the _LogBloc_.
+A simple class that represents the actual external logging service. Instead of sending the log message to some kind of 3rd party logging service (which, in fact, could be called in the `logMessage()` method), it just logs the message to UI through the `LogBloc`.
 
-```
+```dart
 class ExternalLoggingService {
   const ExternalLoggingService(this.logBloc);
 
@@ -125,9 +125,9 @@ class ExternalLoggingService {
 
 ### MailService
 
-A simple class that represents the actual mail logging service. Instead of sending the log message as an email to the user, it just logs the message to UI through the _LogBloc_.
+A simple class that represents the actual mail logging service. Instead of sending the log message as an email to the user, it just logs the message to UI through the `LogBloc`.
 
-```
+```dart
 class MailService {
   const MailService(this.logBloc);
 
@@ -146,9 +146,9 @@ class MailService {
 
 ### LoggerBase
 
-An abstract class for the base logger implementation. It stores the log level and a reference (successor) to the next logger in the chain. Also, the class implements a common _logMessage()_ method that logs the message if its log level is lower than the current logger's and then forwards the message to the successor (if there is one). The abstract _log()_ method must be implemented by specific loggers extending the _LoggerBase_ class.
+An abstract class for the base logger implementation. It stores the log level and a reference (successor) to the next logger in the chain. Also, the class implements a common `logMessage()` method that logs the message if its log level is lower than the current logger's and then forwards the message to the successor (if there is one). The abstract `log()` method must be implemented by specific loggers extending the `LoggerBase` class.
 
-```
+```dart
 abstract class LoggerBase {
   const LoggerBase({
     required this.logLevel,
@@ -175,9 +175,9 @@ abstract class LoggerBase {
 
 ### Concrete loggers
 
-- _DebugLogger_ - a specific implementation of the logger that sets the log level to _Debug_ and simply logs the message to UI through the _LogBloc_.
+- `DebugLogger` - a specific implementation of the logger that sets the log level to `Debug` and simply logs the message to UI through the `LogBloc`.
 
-```
+```dart
 class DebugLogger extends LoggerBase {
   const DebugLogger(
     this.logBloc, {
@@ -195,9 +195,9 @@ class DebugLogger extends LoggerBase {
 }
 ```
 
-- _InfoLogger_ - a specific implementation of the logger that sets the log level to _Info_ and uses the _ExternalLoggingService_ to log the message.
+- `InfoLogger` - a specific implementation of the logger that sets the log level to `Info` and uses the `ExternalLoggingService` to log the message.
 
-```
+```dart
 class InfoLogger extends LoggerBase {
   InfoLogger(
     LogBloc logBloc, {
@@ -214,9 +214,9 @@ class InfoLogger extends LoggerBase {
 }
 ```
 
-- _ErrorLogger_ - a specific implementation of the logger that sets the log level to _Error_ and uses the _MailService_ to log the message.
+- `ErrorLogger` - a specific implementation of the logger that sets the log level to `Error` and uses the `MailService` to log the message.
 
-```
+```dart
 class ErrorLogger extends LoggerBase {
   ErrorLogger(
     LogBloc logBloc, {
@@ -235,11 +235,11 @@ class ErrorLogger extends LoggerBase {
 
 ### Example
 
-The _ChainOfResponsibilityExample_ widget initialises and contains the loggers' chain object (see the _initState()_ method). Also, for demonstration purposes, the _LogBloc_ object is initialised there, too, and used to send logs and retrieve a list of them through the stream - _outLogStream_.
+The `ChainOfResponsibilityExample` widget initialises and contains the loggers' chain object (see the `initState()` method). Also, for demonstration purposes, the `LogBloc` object is initialised there, too, and used to send logs and retrieve a list of them through the stream - `outLogStream`.
 
-By creating a chain of loggers, the client - _ChainOfResponsibilityExample_ widget - does not care about the details on which specific logger should handle the log entry, it just passes (logs) the message to a chain of loggers. This way, the sender (client) and receiver (logger) are decoupled, the loggers' chain itself could be built at run-time in any order or structure e.g. you can skip the Debug logger for non-local environments and only use the Info -> Error chain.
+By creating a chain of loggers, the client - `ChainOfResponsibilityExample` widget - does not care about the details on which specific logger should handle the log entry, it just passes (logs) the message to a chain of loggers. This way, the sender (client) and receiver (logger) are decoupled, the loggers' chain itself could be built at run-time in any order or structure e.g. you can skip the Debug logger for non-local environments and only use the Info -> Error chain.
 
-```
+```dart
 class ChainOfResponsibilityExample extends StatefulWidget {
   const ChainOfResponsibilityExample();
 
