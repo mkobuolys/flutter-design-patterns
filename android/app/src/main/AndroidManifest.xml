@@ -1,5 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mangirdaskazlauskas.flutter_design_patterns">
+   <application
         android:label="flutter_design_patterns"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
