@@ -19,12 +19,6 @@ class UrlLauncher {
       throw UrlLauncherException('Could not parse $url');
     }
 
-    final canLaunchUrl = await url_launcher.canLaunchUrl(uri);
-
-    if (!canLaunchUrl) {
-      throw UrlLauncherException('Could not launch $uri');
-    }
-
     try {
       await url_launcher.launchUrl(uri);
     } on Exception catch (e, st) {
