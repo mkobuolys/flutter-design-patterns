@@ -45,9 +45,7 @@ class _ImageViewState extends State<ImageView>
     _controller.value = _animationReset!.value;
     if (_controllerReset.isAnimating) return;
 
-    _animationReset?.removeListener(_onAnimateReset);
-    _animationReset = null;
-    _controllerReset.reset();
+    _resetAndRemoveListener();
   }
 
   void _onDoubleTap() => isInitial ? _animateScaleIn() : _animateScaleOut();
@@ -95,6 +93,11 @@ class _ImageViewState extends State<ImageView>
 
   void _animateResetStop() {
     _controllerReset.stop();
+
+    _resetAndRemoveListener();
+  }
+
+  void _resetAndRemoveListener() {
     _animationReset?.removeListener(_onAnimateReset);
     _animationReset = null;
     _controllerReset.reset();
