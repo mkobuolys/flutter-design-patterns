@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../themes.dart';
-import 'platform_specific/platform_back_button.dart';
 
 class ImageView extends StatefulWidget {
   const ImageView({required this.uri, super.key});
@@ -19,6 +19,7 @@ class _ImageViewState extends State<ImageView>
   late TransformationController _controller;
   late Animation<Matrix4>? _animationReset;
   late AnimationController _controllerReset;
+
   Offset _tapPosition = Offset.zero;
 
   bool get isInitial => _controller.value == Matrix4.identity();
@@ -42,41 +43,34 @@ class _ImageViewState extends State<ImageView>
 
   void _onAnimateReset() {
     _controller.value = _animationReset!.value;
-    if (!_controllerReset.isAnimating) {
-      _animationReset?.removeListener(_onAnimateReset);
-      _animationReset = null;
-      _controllerReset.reset();
-    }
+    if (_controllerReset.isAnimating) return;
+
+    _animationReset?.removeListener(_onAnimateReset);
+    _animationReset = null;
+    _controllerReset.reset();
   }
 
-  void _onDoubleTap() {
-    if (isInitial) {
-      _animateScaleIn();
-    } else {
-      _animateScaleOut();
-    }
-  }
+  void _onDoubleTap() => isInitial ? _animateScaleIn() : _animateScaleOut();
 
-  // little hack as there is no way to get onTapDown triggered
-  // when onDoubleTap is registered
-  // track issue: (https://github.com/flutter/flutter/issues/10048)
+// little hack as there is no way to get onTapDown triggered
+// when onDoubleTap is registered
+// track issue: (https://github.com/flutter/flutter/issues/10048)
   void _onTapDown(TapDownDetails details) {
-    if (_tapPosition != Offset.zero &&
-        (details.globalPosition.dx - _tapPosition.dx < 20 &&
+    if (_tapPosition == Offset.zero &&
+        !(details.globalPosition.dx - _tapPosition.dx < 20 &&
             details.globalPosition.dy - _tapPosition.dy < 20)) {
-    } else {
       _tapPosition = details.globalPosition;
     }
+
     Timer(const Duration(milliseconds: 500), () {
       _tapPosition = Offset.zero;
     });
   }
 
   void _animateScaleIn() {
-    final offset = Offset(
-      -MediaQuery.of(context).size.width / 4,
-      -MediaQuery.of(context).size.height / 4,
-    );
+    final size = MediaQuery.of(context).size;
+    final offset = Offset(-size.width / 4, -size.height / 4);
+
     _animateResetInitialize(
       _controller.value.clone()
         ..scale(2.5)
@@ -94,6 +88,7 @@ class _ImageViewState extends State<ImageView>
       begin: _controller.value,
       end: end,
     ).animate(_controllerReset);
+
     _animationReset?.addListener(_onAnimateReset);
     _controllerReset.forward();
   }
@@ -105,12 +100,12 @@ class _ImageViewState extends State<ImageView>
     _controllerReset.reset();
   }
 
+  /// If the user tries to cause a transformation while the reset animation is
+  /// running, cancel the reset animation.
   void _onInteractionStart(ScaleStartDetails details) {
-    // If the user tries to cause a transformation while the reset animation is
-    // running, cancel the reset animation.
-    if (_controllerReset.status == AnimationStatus.forward) {
-      _animateResetStop();
-    }
+    if (_controllerReset.status != AnimationStatus.forward) return;
+
+    _animateResetStop();
   }
 
   @override
@@ -119,7 +114,7 @@ class _ImageViewState extends State<ImageView>
       appBar: AppBar(
         elevation: 0,
         backgroundColor: lightBackgroundColor,
-        leading: const PlatformBackButton(color: Colors.black),
+        leading: const CloseButton(color: Colors.black),
       ),
       body: GestureDetector(
         onTap: context.pop,
