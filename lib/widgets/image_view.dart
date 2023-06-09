@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../themes.dart';
-
 class ImageView extends StatefulWidget {
-  const ImageView({required this.uri, super.key});
+  const ImageView({
+    required this.uri,
+    super.key,
+  });
 
   final Uri uri;
 
@@ -20,9 +21,7 @@ class _ImageViewState extends State<ImageView>
   late Animation<Matrix4>? _animationReset;
   late AnimationController _controllerReset;
 
-  Offset _tapPosition = Offset.zero;
-
-  bool get isInitial => _controller.value == Matrix4.identity();
+  var _tapPosition = Offset.zero;
 
   @override
   void initState() {
@@ -41,18 +40,9 @@ class _ImageViewState extends State<ImageView>
     super.dispose();
   }
 
-  void _onAnimateReset() {
-    _controller.value = _animationReset!.value;
-    if (_controllerReset.isAnimating) return;
-
-    _resetAndRemoveListener();
-  }
-
-  void _onDoubleTap() => isInitial ? _animateScaleIn() : _animateScaleOut();
-
-// little hack as there is no way to get onTapDown triggered
-// when onDoubleTap is registered
-// track issue: (https://github.com/flutter/flutter/issues/10048)
+  // little hack as there is no way to get onTapDown triggered
+  // when onDoubleTap is registered
+  // track issue: (https://github.com/flutter/flutter/issues/10048)
   void _onTapDown(TapDownDetails details) {
     if (_tapPosition == Offset.zero &&
         !(details.globalPosition.dx - _tapPosition.dx < 20 &&
@@ -60,10 +50,12 @@ class _ImageViewState extends State<ImageView>
       _tapPosition = details.globalPosition;
     }
 
-    Timer(const Duration(milliseconds: 500), () {
-      _tapPosition = Offset.zero;
-    });
+    Timer(const Duration(milliseconds: 500), () => _tapPosition = Offset.zero);
   }
+
+  void _onDoubleTap() => _controller.value == Matrix4.identity()
+      ? _animateScaleIn()
+      : _animateScaleOut();
 
   void _animateScaleIn() {
     final size = MediaQuery.of(context).size;
@@ -76,9 +68,7 @@ class _ImageViewState extends State<ImageView>
     );
   }
 
-  void _animateScaleOut() {
-    _animateResetInitialize(Matrix4.identity());
-  }
+  void _animateScaleOut() => _animateResetInitialize(Matrix4.identity());
 
   void _animateResetInitialize(Matrix4 end) {
     _controllerReset.reset();
@@ -91,16 +81,18 @@ class _ImageViewState extends State<ImageView>
     _controllerReset.forward();
   }
 
-  void _animateResetStop() {
-    _controllerReset.stop();
-
-    _resetAndRemoveListener();
-  }
-
   void _resetAndRemoveListener() {
     _animationReset?.removeListener(_onAnimateReset);
     _animationReset = null;
     _controllerReset.reset();
+  }
+
+  void _onAnimateReset() {
+    _controller.value = _animationReset!.value;
+
+    if (_controllerReset.isAnimating) return;
+
+    _resetAndRemoveListener();
   }
 
   /// If the user tries to cause a transformation while the reset animation is
@@ -111,12 +103,18 @@ class _ImageViewState extends State<ImageView>
     _animateResetStop();
   }
 
+  void _animateResetStop() {
+    _controllerReset.stop();
+
+    _resetAndRemoveListener();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: lightBackgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         leading: const CloseButton(color: Colors.black),
       ),
       body: GestureDetector(

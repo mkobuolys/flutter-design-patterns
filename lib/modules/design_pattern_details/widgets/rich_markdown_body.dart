@@ -94,19 +94,17 @@ class RichMarkdownBody extends StatelessWidget {
       ),
       onTapLink: (_, link, __) => UrlLauncher.launchUrl(link ?? ''),
       syntaxHighlighter: DartSyntaxHighlighter(context),
-      imageBuilder: (uri, _, __) {
-        return GestureDetector(
-          onTap: () => Navigator.of(context).push(
-            PageRouteBuilder(
-              pageBuilder: (_, __, ___) => ImageView(uri: uri),
-            ),
+      imageBuilder: (uri, _, __) => GestureDetector(
+        onTap: () => Navigator.of(context).push(
+          PageRouteBuilder(
+            pageBuilder: (_, __, ___) => ImageView(uri: uri),
           ),
-          child: Hero(
-            tag: uri,
-            child: Image.asset(uri.path),
-          ),
-        );
-      },
+        ),
+        child: Hero(
+          tag: uri,
+          child: Image.asset(uri.path),
+        ),
+      ),
       data: data ?? '',
     );
   }
