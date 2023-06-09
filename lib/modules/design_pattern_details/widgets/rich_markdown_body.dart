@@ -4,6 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import '../../../constants/constants.dart';
 import '../../../helpers/dart_syntax_highlighter.dart';
 import '../../../helpers/url_launcher.dart';
+import '../../../widgets/image_view.dart';
 
 class RichMarkdownBody extends StatelessWidget {
   const RichMarkdownBody({this.data, super.key});
@@ -93,6 +94,19 @@ class RichMarkdownBody extends StatelessWidget {
       ),
       onTapLink: (_, link, __) => UrlLauncher.launchUrl(link ?? ''),
       syntaxHighlighter: DartSyntaxHighlighter(context),
+      imageBuilder: (uri, _, __) {
+        return GestureDetector(
+          onTap: () => Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => ImageView(uri: uri),
+            ),
+          ),
+          child: Hero(
+            tag: uri,
+            child: Image.asset(uri.path),
+          ),
+        );
+      },
       data: data ?? '',
     );
   }
