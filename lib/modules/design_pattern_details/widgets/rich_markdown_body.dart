@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_selectionarea/flutter_markdown_selectionarea.dart';
 
 import '../../../constants/constants.dart';
 import '../../../helpers/dart_syntax_highlighter.dart';
@@ -20,7 +20,6 @@ class RichMarkdownBody extends StatelessWidget {
     final fontSize = bodyMedium?.fontSize ?? 14.0;
 
     return MarkdownBody(
-      selectable: true,
       fitContent: false,
       styleSheet: MarkdownStyleSheet(
         h1: textTheme.headlineMedium,
