@@ -53,11 +53,11 @@ class _ExpressionSectionState extends State<ExpressionSection> {
           secondChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              for (var solutionStep in _solutionSteps)
+              for (final solutionStep in _solutionSteps)
                 Text(
                   solutionStep,
                   style: Theme.of(context).textTheme.titleSmall,
-                )
+                ),
             ],
           ),
           crossFadeState: _solutionSteps.isEmpty

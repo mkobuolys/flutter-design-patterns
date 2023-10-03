@@ -39,7 +39,7 @@ class OrderItemsTable extends StatelessWidget {
         ),
       ],
       rows: <DataRow>[
-        for (var orderItem in orderItems)
+        for (final orderItem in orderItems)
           DataRow(
             cells: <DataCell>[
               DataCell(Text(orderItem.title)),

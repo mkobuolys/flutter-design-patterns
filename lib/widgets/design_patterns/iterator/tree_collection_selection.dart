@@ -17,9 +17,9 @@ class TreeCollectionSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < treeCollections.length; i++)
+        for (final (i, collection) in treeCollections.indexed)
           RadioListTile(
-            title: Text(treeCollections[i].getTitle()),
+            title: Text(collection.getTitle()),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

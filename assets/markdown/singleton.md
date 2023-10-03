@@ -98,7 +98,7 @@ class _SingletonExampleState extends State<SingletonExample> {
   final List<ExampleStateBase> stateList = [
     ExampleState(),
     ExampleStateByDefinition.getState(),
-    ExampleStateWithoutSingleton()
+    ExampleStateWithoutSingleton(),
   ];
 
   void _setTextValues([String text = 'Singleton']) {
@@ -125,14 +125,12 @@ class _SingletonExampleState extends State<SingletonExample> {
         ),
         child: Column(
           children: <Widget>[
-            for (var state in stateList)
+            for (final state in stateList)
               Padding(
                 padding: const EdgeInsets.only(
                   bottom: LayoutConstants.paddingL,
                 ),
-                child: SingletonExampleCard(
-                  text: state.currentText,
-                ),
+                child: SingletonExampleCard(text: state.currentText),
               ),
             const SizedBox(height: LayoutConstants.spaceL),
             PlatformButton(

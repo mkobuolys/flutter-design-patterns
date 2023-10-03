@@ -10,7 +10,7 @@ class Burger {
       _ingredients.map((x) => x.getName()).join(', ');
 
   String getFormattedAllergens() => <String>{
-        for (final ingredient in _ingredients) ...ingredient.getAllergens()
+        for (final ingredient in _ingredients) ...ingredient.getAllergens(),
       }.join(', ');
 
   String getFormattedPrice() => '\$${_price.toStringAsFixed(2)}';

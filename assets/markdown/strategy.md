@@ -255,9 +255,9 @@ class ShippingOptions extends StatelessWidget {
               'Select shipping type:',
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            for (var i = 0; i < shippingOptions.length; i++)
+            for (final (i, option) in shippingOptions.indexed)
               RadioListTile<int>(
-                title: Text(shippingOptions[i].label),
+                title: Text(option.label),
                 value: i,
                 groupValue: selectedIndex,
                 onChanged: onChanged,

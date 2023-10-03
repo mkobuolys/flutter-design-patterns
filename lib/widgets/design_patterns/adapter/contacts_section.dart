@@ -66,10 +66,7 @@ class _ContactsSectionContent extends StatelessWidget {
           )
         : Column(
             children: <Widget>[
-              for (var contact in contacts)
-                ContactCard(
-                  contact: contact,
-                )
+              for (final contact in contacts) ContactCard(contact: contact),
             ],
           );
   }

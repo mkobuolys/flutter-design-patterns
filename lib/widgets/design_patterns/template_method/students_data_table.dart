@@ -56,7 +56,7 @@ class StudentsDataTable extends StatelessWidget {
           ),
         ],
         rows: <DataRow>[
-          for (var student in students)
+          for (final student in students)
             DataRow(
               cells: <DataCell>[
                 DataCell(Text(student.fullName)),

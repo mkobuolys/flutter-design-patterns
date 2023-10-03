@@ -17,9 +17,9 @@ class StockSubscriberSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < stockSubscriberList.length; i++)
+        for (final (i, subscriber) in stockSubscriberList.indexed)
           RadioListTile(
-            title: Text(stockSubscriberList[i].title),
+            title: Text(subscriber.title),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

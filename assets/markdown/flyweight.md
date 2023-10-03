@@ -223,19 +223,14 @@ class _FlyweightExampleState extends State<FlyweightExample> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        for (var shape in _shapesList)
-          PositionedShapeWrapper(
-            shape: shape,
-          ),
+        for (final shape in _shapesList) PositionedShapeWrapper(shape: shape),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SwitchListTile.adaptive(
               title: const Text(
                 'Use flyweight factory',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               activeColor: Colors.black,
               value: _useFlyweightFactory,
@@ -246,9 +241,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
         Center(
           child: Text(
             'Shape instances count: $_shapeInstancesCount',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
       ],

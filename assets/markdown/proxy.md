@@ -155,7 +155,7 @@ class _ProxyExampleState extends State<ProxyExample> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            for (var customer in _customerList)
+            for (final customer in _customerList)
               Card(
                 child: ListTile(
                   leading: CircleAvatar(

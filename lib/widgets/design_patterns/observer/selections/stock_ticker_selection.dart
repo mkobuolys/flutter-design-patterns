@@ -16,14 +16,14 @@ class StockTickerSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        for (var i = 0; i < stockTickers.length; i++)
+        for (final (i, stockTickerModel) in stockTickers.indexed)
           Expanded(
             child: _TickerTile(
-              stockTickerModel: stockTickers[i],
+              stockTickerModel: stockTickerModel,
               index: i,
               onChanged: onChanged,
             ),
-          )
+          ),
       ],
     );
   }

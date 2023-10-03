@@ -17,9 +17,9 @@ class StorageSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < storages.length; i++)
+        for (final (i, storage) in storages.indexed)
           RadioListTile(
-            title: Text(storages[i].getTitle()),
+            title: Text(storage.getTitle()),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

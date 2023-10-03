@@ -34,7 +34,7 @@ class CustomersDatatable extends StatelessWidget {
           ),
         ],
         rows: <DataRow>[
-          for (var customer in customers)
+          for (final customer in customers)
             DataRow(
               cells: <DataCell>[
                 DataCell(Text(customer.name)),

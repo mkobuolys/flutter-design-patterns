@@ -15,8 +15,8 @@ class JsonHelper {
     final json = jsonDecode(jsonString)! as Map<String, dynamic>;
 
     return switch (T) {
-      Customer _ => Customer.fromJson(json) as T,
-      Order _ => Order.fromJson(json) as T,
+      const (Customer) => Customer.fromJson(json) as T,
+      const (Order) => Order.fromJson(json) as T,
       _ => throw Exception("Type of '$T' is not supported."),
     };
   }

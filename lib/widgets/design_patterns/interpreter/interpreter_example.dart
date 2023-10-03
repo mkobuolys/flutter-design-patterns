@@ -15,7 +15,7 @@ class _InterpreterExampleState extends State<InterpreterExample> {
     '20 3 5 * - 2 3 * +',
     '1 1 1 1 1 + + + * 2 -',
     '123 12 1 - - 12 9 * -',
-    '9 8 7 6 5 4 3 2 1 + - + - + - + -'
+    '9 8 7 6 5 4 3 2 1 + - + - + - + -',
   ];
 
   @override
@@ -29,10 +29,8 @@ class _InterpreterExampleState extends State<InterpreterExample> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            for (var postfixExpression in _postfixExpressions)
-              ExpressionSection(
-                postfixExpression: postfixExpression,
-              ),
+            for (final postfixExpression in _postfixExpressions)
+              ExpressionSection(postfixExpression: postfixExpression),
           ],
         ),
       ),

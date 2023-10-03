@@ -329,9 +329,9 @@ class _ObserverExampleState extends State<ObserverExample> {
             Column(
               children: [
                 for (final stock in _stockEntries.reversed)
-                  StockRow(stock: stock)
+                  StockRow(stock: stock),
               ],
-            )
+            ),
           ],
         ),
       ),

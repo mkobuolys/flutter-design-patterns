@@ -17,9 +17,9 @@ class FactorySelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < widgetsFactoryList.length; i++)
+        for (final (i, widgetsFactory) in widgetsFactoryList.indexed)
           RadioListTile(
-            title: Text(widgetsFactoryList[i].getTitle()),
+            title: Text(widgetsFactory.getTitle()),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

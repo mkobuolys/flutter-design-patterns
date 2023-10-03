@@ -33,7 +33,7 @@ class _BuilderExampleState extends State<BuilderExample> {
       BurgerMenuItem(
         label: 'McChicken\u00AE',
         burgerBuilder: McChickenBuilder(),
-      )
+      ),
     ]);
 
     _selectedBurgerMenuItem = _burgerMenuItems[0];

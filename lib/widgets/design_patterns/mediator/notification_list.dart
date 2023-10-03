@@ -62,7 +62,7 @@ class NotificationList extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
       ],
     );
   }

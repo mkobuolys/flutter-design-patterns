@@ -17,9 +17,9 @@ class DialogSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < customDialogList.length; i++)
+        for (final (i, dialog) in customDialogList.indexed)
           RadioListTile(
-            title: Text(customDialogList[i].getTitle()),
+            title: Text(dialog.getTitle()),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

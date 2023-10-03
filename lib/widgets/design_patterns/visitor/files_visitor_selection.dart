@@ -17,9 +17,9 @@ class FilesVisitorSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < visitorsList.length; i++)
+        for (final (i, visitor) in visitorsList.indexed)
           RadioListTile(
-            title: Text(visitorsList[i].getTitle()),
+            title: Text(visitor.getTitle()),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

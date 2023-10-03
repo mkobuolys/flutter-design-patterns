@@ -35,7 +35,7 @@ class OrdersDatatable extends StatelessWidget {
           ),
         ],
         rows: <DataRow>[
-          for (var order in orders)
+          for (final order in orders)
             DataRow(
               cells: <DataCell>[
                 DataCell(Text(order.dishes.join(', '))),

@@ -5,7 +5,7 @@ class McChickenPatty extends Ingredient {
     name = 'McChicken Patty';
     allergens = [
       'Wheat',
-      'Cooked in the same fryer that we use for Buttermilk Crispy Chicken which contains a milk allergen'
+      'Cooked in the same fryer that we use for Buttermilk Crispy Chicken which contains a milk allergen',
     ];
   }
 }

@@ -14,14 +14,12 @@ class LogMessagesColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        for (var logMessage in logMessages)
+        for (final logMessage in logMessages)
           Row(
             children: <Widget>[
-              Expanded(
-                child: logMessage.getFormattedMessage(),
-              ),
+              Expanded(child: logMessage.getFormattedMessage()),
             ],
-          )
+          ),
       ],
     );
   }

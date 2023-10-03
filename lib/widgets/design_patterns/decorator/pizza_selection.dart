@@ -15,9 +15,9 @@ class PizzaSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < _labels.length; i++)
+        for (final (i, label) in _labels.indexed)
           RadioListTile(
-            title: Text(_labels[i]),
+            title: Text(label),
             value: i,
             groupValue: selectedIndex,
             selected: i == selectedIndex,

@@ -90,7 +90,7 @@ class McChickenPatty extends Ingredient {
     name = 'McChicken Patty';
     allergens = [
       'Wheat',
-      'Cooked in the same fryer that we use for Buttermilk Crispy Chicken which contains a milk allergen'
+      'Cooked in the same fryer that we use for Buttermilk Crispy Chicken which contains a milk allergen',
     ];
   }
 }
@@ -192,7 +192,7 @@ class Burger {
       _ingredients.map((x) => x.getName()).join(', ');
 
   String getFormattedAllergens() => <String>{
-        for (final ingredient in _ingredients) ...ingredient.getAllergens()
+        for (final ingredient in _ingredients) ...ingredient.getAllergens(),
       }.join(', ');
 
   String getFormattedPrice() => '\$${_price.toStringAsFixed(2)}';
@@ -460,7 +460,7 @@ class _BuilderExampleState extends State<BuilderExample> {
       BurgerMenuItem(
         label: 'McChicken\u00AE',
         burgerBuilder: McChickenBuilder(),
-      )
+      ),
     ]);
 
     _selectedBurgerMenuItem = _burgerMenuItems[0];
