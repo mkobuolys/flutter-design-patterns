@@ -46,8 +46,6 @@ class _SystemHash {
   }
 }
 
-typedef MarkdownRef = AutoDisposeFutureProviderRef<String>;
-
 /// See also [markdown].
 @ProviderFor(markdown)
 const markdownProvider = MarkdownFamily();
@@ -94,10 +92,10 @@ class MarkdownFamily extends Family<AsyncValue<String>> {
 class MarkdownProvider extends AutoDisposeFutureProvider<String> {
   /// See also [markdown].
   MarkdownProvider(
-    this.id,
-  ) : super.internal(
+    String id,
+  ) : this._internal(
           (ref) => markdown(
-            ref,
+            ref as MarkdownRef,
             id,
           ),
           from: markdownProvider,
@@ -108,9 +106,43 @@ class MarkdownProvider extends AutoDisposeFutureProvider<String> {
                   : _$markdownHash,
           dependencies: MarkdownFamily._dependencies,
           allTransitiveDependencies: MarkdownFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  MarkdownProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<String> Function(MarkdownRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: MarkdownProvider._internal(
+        (ref) => create(ref as MarkdownRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<String> createElement() {
+    return _MarkdownProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -125,4 +157,18 @@ class MarkdownProvider extends AutoDisposeFutureProvider<String> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin MarkdownRef on AutoDisposeFutureProviderRef<String> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _MarkdownProviderElement extends AutoDisposeFutureProviderElement<String>
+    with MarkdownRef {
+  _MarkdownProviderElement(super.provider);
+
+  @override
+  String get id => (origin as MarkdownProvider).id;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

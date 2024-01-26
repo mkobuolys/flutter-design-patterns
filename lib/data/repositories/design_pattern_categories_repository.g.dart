@@ -65,8 +65,6 @@ class _SystemHash {
   }
 }
 
-typedef DesignPatternRef = AutoDisposeFutureProviderRef<DesignPattern>;
-
 /// See also [designPattern].
 @ProviderFor(designPattern)
 const designPatternProvider = DesignPatternFamily();
@@ -113,10 +111,10 @@ class DesignPatternFamily extends Family<AsyncValue<DesignPattern>> {
 class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
   /// See also [designPattern].
   DesignPatternProvider(
-    this.id,
-  ) : super.internal(
+    String id,
+  ) : this._internal(
           (ref) => designPattern(
-            ref,
+            ref as DesignPatternRef,
             id,
           ),
           from: designPatternProvider,
@@ -128,9 +126,43 @@ class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
           dependencies: DesignPatternFamily._dependencies,
           allTransitiveDependencies:
               DesignPatternFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  DesignPatternProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<DesignPattern> Function(DesignPatternRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: DesignPatternProvider._internal(
+        (ref) => create(ref as DesignPatternRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<DesignPattern> createElement() {
+    return _DesignPatternProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -145,4 +177,19 @@ class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin DesignPatternRef on AutoDisposeFutureProviderRef<DesignPattern> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _DesignPatternProviderElement
+    extends AutoDisposeFutureProviderElement<DesignPattern>
+    with DesignPatternRef {
+  _DesignPatternProviderElement(super.provider);
+
+  @override
+  String get id => (origin as DesignPatternProvider).id;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

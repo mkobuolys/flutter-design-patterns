@@ -10,8 +10,7 @@ class LogoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Image.asset('assets/images/logo.png'),
-      splashRadius: 20.0,
+      icon: Image.asset('assets/images/logo.png', width: 24.0),
       onPressed: onPressed,
     );
   }

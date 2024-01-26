@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,19 +21,47 @@ GoRouter router(_) => GoRouter(
   ],
 )
 @immutable
-class MainMenuRoute extends GoRouteData {
+class MainMenuRoute extends GoRouteData with _CustomTransitionPageMixin {
   const MainMenuRoute();
 
   @override
-  Widget build(_, __) => const MainMenuPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    const child = MainMenuPage();
+
+    return buildCustomTransitionPage(context, state, child);
+  }
 }
 
 @immutable
-class DesignPatternDetailsRoute extends GoRouteData {
+class DesignPatternDetailsRoute extends GoRouteData
+    with _CustomTransitionPageMixin {
   const DesignPatternDetailsRoute(this.id);
 
   final String id;
 
   @override
-  Widget build(_, __) => DesignPatternDetailsPage(id: id);
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    final child = DesignPatternDetailsPage(id: id);
+
+    return buildCustomTransitionPage(context, state, child);
+  }
+}
+
+mixin _CustomTransitionPageMixin on GoRouteData {
+  Page<void> buildCustomTransitionPage(
+    BuildContext context,
+    GoRouterState state,
+    Widget child,
+  ) {
+    if (kIsWeb) {
+      return CustomTransitionPage(
+        key: state.pageKey,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(opacity: animation, child: child),
+        child: child,
+      );
+    }
+
+    return MaterialPage(key: state.pageKey, child: child);
+  }
 }
