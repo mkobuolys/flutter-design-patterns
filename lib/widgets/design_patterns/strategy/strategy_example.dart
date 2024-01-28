@@ -49,42 +49,25 @@ class _StrategyExampleState extends State<StrategyExample> {
               onClear: _clearOrder,
             ),
             const SizedBox(height: LayoutConstants.spaceM),
-            Stack(
+            Column(
               children: <Widget>[
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 500),
-                  opacity: _order.items.isEmpty ? 1.0 : 0.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Your order is empty',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ],
-                  ),
+                if (_order.items.isEmpty)
+                  Text(
+                    'Your order is empty',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  )
+                else
+                  OrderItemsTable(orderItems: _order.items),
+                const SizedBox(height: LayoutConstants.spaceM),
+                ShippingOptions(
+                  selectedIndex: _selectedStrategyIndex,
+                  shippingOptions: _shippingCostsStrategyList,
+                  onChanged: _setSelectedStrategyIndex,
                 ),
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 500),
-                  opacity: _order.items.isEmpty ? 0.0 : 1.0,
-                  child: Column(
-                    children: <Widget>[
-                      OrderItemsTable(
-                        orderItems: _order.items,
-                      ),
-                      const SizedBox(height: LayoutConstants.spaceM),
-                      ShippingOptions(
-                        selectedIndex: _selectedStrategyIndex,
-                        shippingOptions: _shippingCostsStrategyList,
-                        onChanged: _setSelectedStrategyIndex,
-                      ),
-                      OrderSummary(
-                        shippingCostsStrategy:
-                            _shippingCostsStrategyList[_selectedStrategyIndex],
-                        order: _order,
-                      ),
-                    ],
-                  ),
+                OrderSummary(
+                  shippingCostsStrategy:
+                      _shippingCostsStrategyList[_selectedStrategyIndex],
+                  order: _order,
                 ),
               ],
             ),

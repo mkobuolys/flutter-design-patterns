@@ -20,29 +20,49 @@ class CustomPizzaSelection extends StatelessWidget {
       children: <Widget>[
         for (var i = 0; i < pizzaToppingsDataMap.length; i++)
           i == 0
-              ? ChoiceChip(
-                  label: const Text(
-                    'Pizza Base',
-                    style: TextStyle(color: Colors.white),
-                  ),
+              ? _ChoiceChip(
+                  label: 'Pizza Base',
                   selected: true,
-                  selectedColor: Colors.black,
                   onSelected: (_) {},
                 )
-              : ChoiceChip(
-                  label: Text(
-                    pizzaToppingsDataMap[i]!.label,
-                    style: TextStyle(
-                      color: pizzaToppingsDataMap[i]!.selected
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
+              : _ChoiceChip(
+                  label: pizzaToppingsDataMap[i]!.label,
                   selected: pizzaToppingsDataMap[i]!.selected,
-                  selectedColor: Colors.black,
                   onSelected: (bool? selected) => onSelected(i, selected),
                 ),
       ],
+    );
+  }
+}
+
+class _ChoiceChip extends StatelessWidget {
+  const _ChoiceChip({
+    required this.label,
+    required this.selected,
+    required this.onSelected,
+  });
+
+  final String label;
+  final bool selected;
+  final ValueSetter<bool> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = selected ? Colors.white : Colors.black;
+
+    return ChoiceChip(
+      color: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return Colors.black;
+        }
+
+        return Colors.white;
+      }),
+      label: Text(label),
+      labelStyle: TextStyle(color: color),
+      checkmarkColor: color,
+      selected: selected,
+      onSelected: onSelected,
     );
   }
 }
