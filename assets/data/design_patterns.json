@@ -8,31 +8,31 @@
         "id": "abstract-factory",
         "title": "Abstract Factory",
         "description": "Provide an interface for creating families of related or dependent objects without specifying their concrete classes.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-11-abstract-factory"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-11-abstract-factory"
       },
       {
         "id": "builder",
         "title": "Builder",
         "description": "Separate the construction of a complex object from its representation so that the same construction process can create different representations.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-18-builder"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-18-builder"
       },
       {
         "id": "factory-method",
         "title": "Factory Method",
         "description": "Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to sub­classes.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-10-factory-method"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-10-factory-method"
       },
       {
         "id": "prototype",
         "title": "Prototype",
         "description": "Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-14-prototype"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-14-prototype"
       },
       {
         "id": "singleton",
         "title": "Singleton",
         "description": "Ensure a class only has one instance, and provide a global point of access to it.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-1-singleton"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-1-singleton"
       }
     ]
   },
@@ -45,43 +45,43 @@
         "id": "adapter",
         "title": "Adapter",
         "description": "Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-2-adapter"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-2-adapter"
       },
       {
         "id": "bridge",
         "title": "Bridge",
         "description": "Decouple an abstraction from its implementation so that the two can vary independently.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-17-bridge"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-17-bridge"
       },
       {
         "id": "composite",
         "title": "Composite",
         "description": "Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-4-composite"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-4-composite"
       },
       {
         "id": "decorator",
         "title": "Decorator",
         "description": "Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-16-decorator"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-16-decorator"
       },
       {
         "id": "facade",
         "title": "Facade",
         "description": "Provide an unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-7-facade"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-7-facade"
       },
       {
         "id": "flyweight",
         "title": "Flyweight",
         "description": "Use sharing to support large numbers of fine-grained objects efficiently.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-19-flyweight"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-19-flyweight"
       },
       {
         "id": "proxy",
         "title": "Proxy",
         "description": "Provide a surrogate or placeholder for another object to control access to it.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-15-proxy"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-15-proxy"
       }
     ]
   },
@@ -94,67 +94,67 @@
         "id": "chain-of-responsibility",
         "title": "Chain of Responsibility",
         "description": "Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-20-chain-of-responsibility"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-20-chain-of-responsibility"
       },
       {
         "id": "command",
         "title": "Command",
         "description": "Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable opera­tions.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-12-command"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-12-command"
       },
       {
         "id": "interpreter",
         "title": "Interpreter",
         "description": "Given a language, define a representation for its grammar along with an inter­preter that uses the representation to interpret sentences in the language.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-8-interpreter"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-8-interpreter"
       },
       {
         "id": "iterator",
         "title": "Iterator",
         "description": "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-9-iterator"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-9-iterator"
       },
       {
         "id": "mediator",
         "title": "Mediator",
         "description": "Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-22-mediator"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-22-mediator"
       },
       {
         "id": "memento",
         "title": "Memento",
         "description": "Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-13-memento"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-13-memento"
       },
       {
         "id": "observer",
         "title": "Observer",
         "description": "Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-23-observer"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-23-observer"
       },
       {
         "id": "state",
         "title": "State",
         "description": "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-6-state"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-6-state"
       },
       {
         "id": "strategy",
         "title": "Strategy",
         "description": "Define a family of algorithms, encapsulate each one, and make them interchange­able. Strategy lets the algorithm vary independently from clients that use it.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-5-strategy"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-5-strategy"
       },
       {
         "id": "template-method",
         "title": "Template Method",
         "description": "Define the skeleton of an algorithm in an operation, deferring some steps to sub­classes. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-3-template-method"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-3-template-method"
       },
       {
         "id": "visitor",
         "title": "Visitor",
         "description": "Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.",
-        "articleUrl": "https://kazlauskas.dev/flutter-design-patterns-21-visitor"
+        "articleUrl": "https://kazlauskas.dev/blog/flutter-design-patterns-21-visitor"
       }
     ]
   }

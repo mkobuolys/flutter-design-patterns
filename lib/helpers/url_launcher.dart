@@ -9,7 +9,7 @@ class UrlLauncher {
 
   static Future<void> launchFlutterDesignPatternsIntroductionPage() =>
       launchUrl(
-        'https://kazlauskas.dev/flutter-design-patterns-0-introduction',
+        'https://kazlauskas.dev/blog/flutter-design-patterns-0-introduction',
       );
 
   static Future<void> launchUrl(String url) async {
