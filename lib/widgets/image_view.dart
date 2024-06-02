@@ -114,7 +114,7 @@ class _ImageViewState extends State<ImageView>
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         leading: const CloseButton(color: Colors.black),
       ),
       body: GestureDetector(
