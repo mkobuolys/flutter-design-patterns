@@ -11,7 +11,7 @@ part 'router.g.dart';
 GoRouter router(_) => GoRouter(
       routes: $appRoutes,
       redirect: (context, state) =>
-          state.location.isEmpty ? const MainMenuRoute().location : null,
+          state.uri.toString().isEmpty ? const MainMenuRoute().location : null,
     );
 
 @TypedGoRoute<MainMenuRoute>(
