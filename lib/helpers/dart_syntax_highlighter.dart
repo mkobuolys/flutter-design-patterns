@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart'
     show BuildContext, Color, TextSpan, TextStyle, Theme;
-import 'package:flutter_markdown_selectionarea/flutter_markdown_selectionarea.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:highlight/highlight.dart';
 
 class DartSyntaxHighlighter extends SyntaxHighlighter {

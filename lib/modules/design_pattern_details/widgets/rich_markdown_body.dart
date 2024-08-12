@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown_selectionarea/flutter_markdown_selectionarea.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../../constants/constants.dart';
 import '../../../helpers/dart_syntax_highlighter.dart';
