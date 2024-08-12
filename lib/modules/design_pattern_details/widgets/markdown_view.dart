@@ -22,30 +22,33 @@ class MarkdownView extends ConsumerWidget {
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(LayoutConstants.paddingL),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              designPattern.description,
-              style: Theme.of(context).textTheme.titleMedium,
-              textAlign: TextAlign.justify,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 99,
-            ),
-            const SizedBox(height: LayoutConstants.spaceL),
-            markdown.when(
-              data: (data) => RichMarkdownBody(data: data),
-              loading: () => Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: lightBackgroundColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.black.withOpacity(0.65),
+        child: SelectionArea(
+          focusNode: FocusNode(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                designPattern.description,
+                style: Theme.of(context).textTheme.titleMedium,
+                textAlign: TextAlign.justify,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 99,
+              ),
+              const SizedBox(height: LayoutConstants.spaceL),
+              markdown.when(
+                data: (data) => RichMarkdownBody(data: data),
+                loading: () => Center(
+                  child: CircularProgressIndicator(
+                    backgroundColor: lightBackgroundColor,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Colors.black.withOpacity(0.65),
+                    ),
                   ),
                 ),
+                error: (_, __) => const Text('Oops, something went wrong...'),
               ),
-              error: (_, __) => const Text('Oops, something went wrong...'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

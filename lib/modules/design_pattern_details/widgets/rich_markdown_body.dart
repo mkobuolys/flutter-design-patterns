@@ -20,7 +20,6 @@ class RichMarkdownBody extends StatelessWidget {
     final fontSize = bodyMedium?.fontSize ?? 14.0;
 
     return MarkdownBody(
-      selectable: true,
       fitContent: false,
       styleSheet: MarkdownStyleSheet(
         h1: textTheme.headlineMedium,
