@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as faker;
 import 'package:flutter/material.dart';
 
 import '../../memento/imemento.dart';
@@ -17,13 +17,13 @@ class RandomisePropertiesCommand implements ICommand {
     final shape = originator.state;
 
     shape.color = Color.fromRGBO(
-      random.integer(255),
-      random.integer(255),
-      random.integer(255),
+      faker.random.integer(255),
+      faker.random.integer(255),
+      faker.random.integer(255),
       1.0,
     );
-    shape.height = random.integer(150, min: 50).toDouble();
-    shape.width = random.integer(150, min: 50).toDouble();
+    shape.height = faker.random.integer(150, min: 50).toDouble();
+    shape.width = faker.random.integer(150, min: 50).toDouble();
   }
 
   @override
