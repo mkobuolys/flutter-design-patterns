@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as faker;
 import 'package:flutter/material.dart';
 
 import '../command.dart';
@@ -15,9 +15,9 @@ class ChangeColorCommand implements Command {
 
   @override
   void execute() => shape.color = Color.fromRGBO(
-        random.integer(255),
-        random.integer(255),
-        random.integer(255),
+        faker.random.integer(255),
+        faker.random.integer(255),
+        faker.random.integer(255),
         1.0,
       );
 
