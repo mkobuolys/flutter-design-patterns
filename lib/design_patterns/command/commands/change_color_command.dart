@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' hide Color;
 import 'package:flutter/material.dart';
 
 import '../command.dart';

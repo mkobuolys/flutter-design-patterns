@@ -62,7 +62,7 @@ extension $DesignPatternDetailsRouteExtension on DesignPatternDetailsRoute {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerHash() => r'ad2e290396c92a7229e87dc91b315b4471fe6b4c';
+String _$routerHash() => r'7aea5ccfc73a19a14afda1df517396c9a3ca6182';
 
 /// See also [router].
 @ProviderFor(router)
@@ -75,6 +75,8 @@ final routerProvider = AutoDisposeProvider<GoRouter>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef RouterRef = AutoDisposeProviderRef<GoRouter>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

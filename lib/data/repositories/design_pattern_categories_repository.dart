@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../constants/constants.dart';
@@ -16,16 +17,14 @@ DesignPatternCategoriesRepository designPatternCategoriesRepository(_) {
 }
 
 @riverpod
-Future<List<DesignPatternCategory>> designPatternCategories(
-  DesignPatternCategoriesRef ref,
-) {
+Future<List<DesignPatternCategory>> designPatternCategories(Ref ref) {
   final repository = ref.watch(designPatternCategoriesRepositoryProvider);
 
   return repository.get();
 }
 
 @riverpod
-Future<DesignPattern> designPattern(DesignPatternRef ref, String id) async {
+Future<DesignPattern> designPattern(Ref ref, String id) async {
   final categories = await ref.watch(designPatternCategoriesProvider.future);
 
   return categories

@@ -22,8 +22,10 @@ final markdownRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef MarkdownRepositoryRef = AutoDisposeProviderRef<MarkdownRepository>;
-String _$markdownHash() => r'805f6990bbb5c342a781a60e6f758dcdf7b09ac1';
+String _$markdownHash() => r'2796d0b1e0771c1c7d491f96d27d3e2681d75100';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -158,6 +160,8 @@ class MarkdownProvider extends AutoDisposeFutureProvider<String> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MarkdownRef on AutoDisposeFutureProviderRef<String> {
   /// The parameter `id` of this provider.
   String get id;
@@ -171,4 +175,4 @@ class _MarkdownProviderElement extends AutoDisposeFutureProviderElement<String>
   String get id => (origin as MarkdownProvider).id;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../constants/constants.dart';
@@ -9,7 +10,7 @@ part 'markdown_repository.g.dart';
 MarkdownRepository markdownRepository(_) => const MarkdownRepository();
 
 @riverpod
-Future<String> markdown(MarkdownRef ref, String id) {
+Future<String> markdown(Ref ref, String id) {
   return ref.watch(markdownRepositoryProvider).get(id);
 }
 

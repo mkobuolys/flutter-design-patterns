@@ -22,10 +22,12 @@ final designPatternCategoriesRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DesignPatternCategoriesRepositoryRef
     = AutoDisposeProviderRef<DesignPatternCategoriesRepository>;
 String _$designPatternCategoriesHash() =>
-    r'7e5ef69bc420e15f5241981f102ee7afd974ab6e';
+    r'64eb21aa9b8a453d7935dc056ac5b831acd68963';
 
 /// See also [designPatternCategories].
 @ProviderFor(designPatternCategories)
@@ -40,9 +42,11 @@ final designPatternCategoriesProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DesignPatternCategoriesRef
     = AutoDisposeFutureProviderRef<List<DesignPatternCategory>>;
-String _$designPatternHash() => r'80372c1c21e1e99f398455df68519f3943028830';
+String _$designPatternHash() => r'6850de04d434e12ead1948cca345849187431451';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -178,6 +182,8 @@ class DesignPatternProvider extends AutoDisposeFutureProvider<DesignPattern> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin DesignPatternRef on AutoDisposeFutureProviderRef<DesignPattern> {
   /// The parameter `id` of this provider.
   String get id;
@@ -192,4 +198,4 @@ class _DesignPatternProviderElement
   String get id => (origin as DesignPatternProvider).id;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

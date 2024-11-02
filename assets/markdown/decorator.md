@@ -298,6 +298,7 @@ class _DecoratorExampleState extends State<DecoratorExample> {
           horizontal: LayoutConstants.paddingL,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               children: <Widget>[
