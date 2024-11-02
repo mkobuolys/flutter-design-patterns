@@ -10,8 +10,11 @@ part 'router.g.dart';
 @riverpod
 GoRouter router(_) => GoRouter(
       routes: $appRoutes,
-      redirect: (context, state) =>
-          state.location.isEmpty ? const MainMenuRoute().location : null,
+      redirect: (context, state) {
+        final uri = state.uri.toString();
+
+        return uri.isEmpty ? const MainMenuRoute().location : null;
+      },
     );
 
 @TypedGoRoute<MainMenuRoute>(
