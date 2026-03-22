@@ -13,32 +13,32 @@ final lightTheme = ThemeData.from(
     headlineMedium: TextStyle(
       fontFamily: 'RobotoMedium',
       fontSize: 34.0,
-      color: Colors.black.withOpacity(0.75),
+      color: Colors.black.withValues(alpha: 0.75),
     ),
     headlineSmall: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 24.0,
-      color: Colors.black.withOpacity(0.65),
+      color: Colors.black.withValues(alpha: 0.65),
     ),
     titleLarge: TextStyle(
       fontFamily: 'RobotoMedium',
       fontSize: 20.0,
-      color: Colors.black.withOpacity(0.65),
+      color: Colors.black.withValues(alpha: 0.65),
     ),
     titleMedium: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 16.0,
-      color: Colors.black.withOpacity(0.65),
+      color: Colors.black.withValues(alpha: 0.65),
     ),
     bodyLarge: TextStyle(
       fontFamily: 'RobotoMedium',
       fontSize: 14.0,
-      color: Colors.black.withOpacity(0.65),
+      color: Colors.black.withValues(alpha: 0.65),
     ),
     bodyMedium: TextStyle(
       fontFamily: 'Roboto',
       fontSize: 14.0,
-      color: Colors.black.withOpacity(0.65),
+      color: Colors.black.withValues(alpha: 0.65),
     ),
   ),
 );

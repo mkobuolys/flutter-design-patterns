@@ -57,11 +57,11 @@ class _TabsLayoutState extends State<TabsLayout>
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             label: 'Description',
-            icon: Icon(FontAwesomeIcons.fileLines),
+            icon: FaIcon(FontAwesomeIcons.fileLines),
           ),
           BottomNavigationBarItem(
             label: 'Example',
-            icon: Icon(FontAwesomeIcons.lightbulb),
+            icon: FaIcon(FontAwesomeIcons.lightbulb),
           ),
         ],
         onTap: _onBottomNavigationBarItemTap,

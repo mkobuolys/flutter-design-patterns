@@ -9,11 +9,11 @@ class ShapeFactory {
 
   IPositionedShape createShape(ShapeType shapeType) => switch (shapeType) {
         ShapeType.circle => Circle(
-            color: Colors.red.withOpacity(0.2),
+            color: Colors.red.withValues(alpha: 0.2),
             diameter: 10.0,
           ),
         ShapeType.square => Square(
-            color: Colors.blue.withOpacity(0.2),
+            color: Colors.blue.withValues(alpha: 0.2),
             width: 10.0,
           ),
       };

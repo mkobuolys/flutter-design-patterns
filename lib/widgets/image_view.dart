@@ -63,8 +63,8 @@ class _ImageViewState extends State<ImageView>
 
     _animateResetInitialize(
       _controller.value.clone()
-        ..scale(2.5)
-        ..translate(offset.dx, offset.dy),
+        ..scaleByDouble(2.5, 2.5, 2.5, 1.0)
+        ..translateByDouble(offset.dx, offset.dy, 0.0, 1.0),
     );
   }
 
@@ -130,7 +130,7 @@ class _ImageViewState extends State<ImageView>
               onDoubleTap: _onDoubleTap,
               child: Hero(
                 tag: widget.uri,
-                child: Image.asset(widget.uri.path),
+                child: Image.asset(widget.uri.toString()),
               ),
             ),
           ),

@@ -33,7 +33,7 @@ class MainMenuPage extends ConsumerWidget {
                   loading: () => CircularProgressIndicator(
                     backgroundColor: lightBackgroundColor,
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.black.withOpacity(0.65),
+                      Colors.black.withValues(alpha: 0.65),
                     ),
                   ),
                   error: (_, __) => const Text('Oops, something went wrong...'),

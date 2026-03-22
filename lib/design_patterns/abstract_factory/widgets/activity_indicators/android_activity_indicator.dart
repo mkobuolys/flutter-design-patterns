@@ -10,7 +10,7 @@ class AndroidActivityIndicator implements IActivityIndicator {
     return CircularProgressIndicator(
       backgroundColor: const Color(0xFFECECEC),
       valueColor: AlwaysStoppedAnimation<Color>(
-        Colors.black.withOpacity(0.65),
+        Colors.black.withValues(alpha: 0.65),
       ),
     );
   }

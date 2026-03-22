@@ -15,7 +15,7 @@ class ModeSwitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
       title: Text(title),
-      activeColor: Colors.black,
+      activeTrackColor: Colors.black,
       value: activated,
       onChanged: onChanged,
     );

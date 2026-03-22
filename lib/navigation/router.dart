@@ -8,7 +8,7 @@ import 'pages/pages.dart';
 part 'router.g.dart';
 
 @riverpod
-GoRouter router(_) => GoRouter(
+GoRouter router(Ref ref) => GoRouter(
       routes: $appRoutes,
       redirect: (context, state) {
         final uri = state.uri.toString();
@@ -24,7 +24,7 @@ GoRouter router(_) => GoRouter(
   ],
 )
 @immutable
-class MainMenuRoute extends GoRouteData with _CustomTransitionPageMixin {
+class MainMenuRoute extends GoRouteData with $MainMenuRoute, _CustomTransitionPageMixin {
   const MainMenuRoute();
 
   @override
@@ -37,7 +37,7 @@ class MainMenuRoute extends GoRouteData with _CustomTransitionPageMixin {
 
 @immutable
 class DesignPatternDetailsRoute extends GoRouteData
-    with _CustomTransitionPageMixin {
+    with $DesignPatternDetailsRoute, _CustomTransitionPageMixin {
   const DesignPatternDetailsRoute(this.id);
 
   final String id;

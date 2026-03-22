@@ -78,7 +78,7 @@ class _FlyweightExampleState extends State<FlyweightExample> {
                 'Use flyweight factory',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              activeColor: Colors.black,
+              activeTrackColor: Colors.black,
               value: _useFlyweightFactory,
               onChanged: _toggleUseFlyweightFactory,
             ),

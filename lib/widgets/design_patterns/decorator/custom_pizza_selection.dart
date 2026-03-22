@@ -53,7 +53,7 @@ class _ChoiceChip extends StatelessWidget {
     return ChoiceChip(
       color: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return Colors.black;
+          return null;
         }
 
         return Colors.white;

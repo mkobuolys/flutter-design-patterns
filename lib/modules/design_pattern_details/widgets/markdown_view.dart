@@ -39,7 +39,7 @@ class MarkdownView extends ConsumerWidget {
                 child: CircularProgressIndicator(
                   backgroundColor: lightBackgroundColor,
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.black.withOpacity(0.65),
+                    Colors.black.withValues(alpha: 0.65),
                   ),
                 ),
               ),

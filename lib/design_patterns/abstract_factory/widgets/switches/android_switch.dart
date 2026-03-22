@@ -8,7 +8,7 @@ class AndroidSwitch implements ISwitch {
   @override
   Widget render({required bool value, required ValueSetter<bool> onChanged}) {
     return Switch(
-      activeColor: Colors.black,
+      activeThumbColor: Colors.black,
       value: value,
       onChanged: onChanged,
     );

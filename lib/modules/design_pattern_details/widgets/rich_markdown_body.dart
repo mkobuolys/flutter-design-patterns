@@ -38,13 +38,13 @@ class RichMarkdownBody extends StatelessWidget {
         horizontalRuleDecoration: BoxDecoration(
           border: Border(
             top: BorderSide(
-              color: theme.colorScheme.primary.withOpacity(0.2),
+              color: theme.colorScheme.primary.withValues(alpha: 0.2),
               width: 3,
             ),
           ),
         ),
         blockquoteDecoration: BoxDecoration(
-          color: theme.colorScheme.surface.withOpacity(0.2),
+          color: theme.colorScheme.surface.withValues(alpha: 0.2),
           border: Border(
             left: BorderSide(
               color: theme.colorScheme.surface,
@@ -56,7 +56,7 @@ class RichMarkdownBody extends StatelessWidget {
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(LayoutConstants.spaceS),
           border: Border.all(
-            color: theme.colorScheme.outline.withOpacity(0.2),
+            color: theme.colorScheme.outline.withValues(alpha: 0.2),
           ),
         ),
         a: bodyMedium?.copyWith(
@@ -64,7 +64,7 @@ class RichMarkdownBody extends StatelessWidget {
           decoration: TextDecoration.underline,
         ),
         blockquote: bodyMedium?.copyWith(
-          color: theme.colorScheme.onSurface.withOpacity(0.6),
+          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
         ),
         code: bodyMedium?.copyWith(
           color: theme.colorScheme.onSurface,
@@ -80,7 +80,7 @@ class RichMarkdownBody extends StatelessWidget {
           horizontal: LayoutConstants.paddingXS,
         ),
         tableBody: bodyMedium?.copyWith(
-          color: textTheme.bodyMedium?.color?.withOpacity(0.8),
+          color: textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
         ),
         tableHead: bodyMedium?.copyWith(
           fontSize: fontSize + 2,
@@ -89,20 +89,20 @@ class RichMarkdownBody extends StatelessWidget {
         tableHeadAlign: TextAlign.center,
         tableCellsPadding: const EdgeInsets.all(LayoutConstants.paddingM),
         tableBorder: TableBorder.all(
-          color: theme.colorScheme.onSurface.withOpacity(0.6),
+          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
         ),
       ),
       onTapLink: (_, link, __) => UrlLauncher.launchUrl(link ?? ''),
       syntaxHighlighter: DartSyntaxHighlighter(context),
-      imageBuilder: (uri, _, __) => GestureDetector(
+      sizedImageBuilder: (config) => GestureDetector(
         onTap: () => Navigator.of(context).push(
           PageRouteBuilder(
-            pageBuilder: (_, __, ___) => ImageView(uri: uri),
+            pageBuilder: (_, __, ___) => ImageView(uri: config.uri),
           ),
         ),
         child: Hero(
-          tag: uri,
-          child: Image.asset(uri.path),
+          tag: config.uri,
+          child: Image.asset(config.uri.toString()),
         ),
       ),
       data: data ?? '',

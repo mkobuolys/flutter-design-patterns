@@ -53,7 +53,7 @@ class MainMenuHeader extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(bottom: LayoutConstants.paddingS),
                   child: HeartbeatAnimation(
-                    child: Icon(
+                    child: FaIcon(
                       FontAwesomeIcons.solidHeart,
                       color: Color(0xFFF78888),
                     ),
