@@ -161,7 +161,7 @@ class Directory extends StatelessWidget implements IFile {
 
 ### Example
 
-`CompositeExample` widget contains the `buildMediaDirectory()` method which builds the file structure for the example. This method illustrates the Composite design pattern - even though the components are of a different type, they could be handled in the same manner since the implemented interface of `IFile` is the same for all components. This allows us to put `Directory` objects inside other directories, mix them along with concrete `File` objects hence building the tree structure of `IFile` components.
+`CompositeExample` widget contains the `_buildMediaDirectory()` method which builds the file structure for the example. This method illustrates the Composite design pattern - even though the components are of a different type, they could be handled in the same manner since the implemented interface of `IFile` is the same for all components. This allows us to put `Directory` objects inside other directories, mix them along with concrete `File` objects hence building the tree structure of `IFile` components.
 
 ```dart
 class CompositeExample extends StatelessWidget {

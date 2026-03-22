@@ -43,7 +43,7 @@ class OrderItemsTable extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(Text(orderItem.title)),
-              DataCell(Text(orderItem.packageSize.toString().split('.').last)),
+              DataCell(Text(orderItem.packageSize.toString().split('.').last.toUpperCase())),
               DataCell(Text('\$${orderItem.price.toStringAsFixed(2)}')),
             ],
           ),

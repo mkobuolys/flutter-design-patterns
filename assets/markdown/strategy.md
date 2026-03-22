@@ -59,10 +59,10 @@ class ParcelTerminalShippingStrategy implements IShippingCostsStrategy {
 
   double _getOrderItemShippingPrice(OrderItem orderItem) =>
       switch (orderItem.packageSize) {
-        PackageSize.S => 1.99,
-        PackageSize.M => 2.49,
-        PackageSize.L => 2.99,
-        PackageSize.XL => 3.49,
+        PackageSize.s => 1.99,
+        PackageSize.m => 2.49,
+        PackageSize.l => 2.99,
+        PackageSize.xl => 3.49,
       };
 }
 ```
@@ -128,10 +128,10 @@ A special kind of class - `enumeration` - to define different package size of th
 
 ```dart
 enum PackageSize {
-  S,
-  M,
-  L,
-  XL,
+  s,
+  m,
+  l,
+  xl,
 }
 ```
 

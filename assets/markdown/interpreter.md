@@ -243,7 +243,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
   final _expressionContext = ExpressionContext();
   final List<String> _solutionSteps = [];
 
-  void _solvePrefixExpression() {
+  void _solvePostfixExpression() {
     final solutionSteps = <String>[];
     final expression =
         ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
@@ -271,7 +271,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
           firstChild: PlatformButton(
             materialColor: Colors.black,
             materialTextColor: Colors.white,
-            onPressed: _solvePrefixExpression,
+            onPressed: _solvePostfixExpression,
             text: 'Solve',
           ),
           secondChild: Column(
