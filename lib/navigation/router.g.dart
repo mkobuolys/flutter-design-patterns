@@ -6,28 +6,19 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $mainMenuRoute,
-    ];
+List<RouteBase> get $appRoutes => [$mainMenuRoute];
 
 RouteBase get $mainMenuRoute => GoRouteData.$route(
-      path: '/',
-      factory: $MainMenuRoute._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'pattern/:id',
-          factory: $DesignPatternDetailsRoute._fromState,
-        ),
-      ],
-    );
+  path: '/',
+  factory: $MainMenuRoute._fromState,
+  routes: [GoRouteData.$route(path: 'pattern/:id', factory: $DesignPatternDetailsRoute._fromState)],
+);
 
 mixin $MainMenuRoute on GoRouteData {
   static MainMenuRoute _fromState(GoRouterState state) => const MainMenuRoute();
 
   @override
-  String get location => GoRouteData.$location(
-        '/',
-      );
+  String get location => GoRouteData.$location('/');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -36,8 +27,7 @@ mixin $MainMenuRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+  void pushReplacement(BuildContext context) => context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
@@ -45,16 +35,12 @@ mixin $MainMenuRoute on GoRouteData {
 
 mixin $DesignPatternDetailsRoute on GoRouteData {
   static DesignPatternDetailsRoute _fromState(GoRouterState state) =>
-      DesignPatternDetailsRoute(
-        state.pathParameters['id']!,
-      );
+      DesignPatternDetailsRoute(state.pathParameters['id']!);
 
   DesignPatternDetailsRoute get _self => this as DesignPatternDetailsRoute;
 
   @override
-  String get location => GoRouteData.$location(
-        '/pattern/${Uri.encodeComponent(_self.id)}',
-      );
+  String get location => GoRouteData.$location('/pattern/${Uri.encodeComponent(_self.id)}');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -63,8 +49,7 @@ mixin $DesignPatternDetailsRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+  void pushReplacement(BuildContext context) => context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
@@ -80,27 +65,24 @@ mixin $DesignPatternDetailsRoute on GoRouteData {
 @ProviderFor(router)
 final routerProvider = RouterProvider._();
 
-final class RouterProvider
-    extends $FunctionalProvider<GoRouter, GoRouter, GoRouter>
-    with $Provider<GoRouter> {
+final class RouterProvider extends $FunctionalProvider<GoRouter, GoRouter, GoRouter> with $Provider<GoRouter> {
   RouterProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'routerProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'routerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$routerHash();
 
   @$internal
   @override
-  $ProviderElement<GoRouter> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<GoRouter> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   GoRouter create(Ref ref) {
@@ -109,10 +91,7 @@ final class RouterProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(GoRouter value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<GoRouter>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<GoRouter>(value));
   }
 }
 

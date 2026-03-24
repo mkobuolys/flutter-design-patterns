@@ -5,9 +5,7 @@ import '../../../design_patterns/adapter/adapter.dart';
 class ContactCard extends StatelessWidget {
   final Contact contact;
 
-  const ContactCard({
-    required this.contact,
-  });
+  const ContactCard({required this.contact});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +18,7 @@ class ContactCard extends StatelessWidget {
           foregroundColor: Colors.white,
           child: Text(contact.fullName[0]),
         ),
-        trailing: Icon(
-          contact.favourite ? Icons.star : Icons.star_border,
-        ),
+        trailing: Icon(contact.favourite ? Icons.star : Icons.star_border),
       ),
     );
   }

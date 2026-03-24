@@ -2,9 +2,7 @@ import '../notification_hub.dart';
 import '../team_member.dart';
 
 class TeamNotificationHub implements NotificationHub {
-  TeamNotificationHub({
-    List<TeamMember>? members,
-  }) {
+  TeamNotificationHub({List<TeamMember>? members}) {
     members?.forEach(register);
   }
 
@@ -31,8 +29,7 @@ class TeamNotificationHub implements NotificationHub {
 
   @override
   void sendTo<T extends TeamMember>(TeamMember sender, String message) {
-    final filteredMembers =
-        _teamMembers.where((m) => m != sender).whereType<T>();
+    final filteredMembers = _teamMembers.where((m) => m != sender).whereType<T>();
 
     for (final member in filteredMembers) {
       member.receive(sender.toString(), message);

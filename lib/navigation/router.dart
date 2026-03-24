@@ -9,19 +9,17 @@ part 'router.g.dart';
 
 @riverpod
 GoRouter router(Ref ref) => GoRouter(
-      routes: $appRoutes,
-      redirect: (context, state) {
-        final uri = state.uri.toString();
+  routes: $appRoutes,
+  redirect: (context, state) {
+    final uri = state.uri.toString();
 
-        return uri.isEmpty ? const MainMenuRoute().location : null;
-      },
-    );
+    return uri.isEmpty ? const MainMenuRoute().location : null;
+  },
+);
 
 @TypedGoRoute<MainMenuRoute>(
   path: '/',
-  routes: [
-    TypedGoRoute<DesignPatternDetailsRoute>(path: 'pattern/:id'),
-  ],
+  routes: [TypedGoRoute<DesignPatternDetailsRoute>(path: 'pattern/:id')],
 )
 @immutable
 class MainMenuRoute extends GoRouteData with $MainMenuRoute, _CustomTransitionPageMixin {
@@ -36,8 +34,7 @@ class MainMenuRoute extends GoRouteData with $MainMenuRoute, _CustomTransitionPa
 }
 
 @immutable
-class DesignPatternDetailsRoute extends GoRouteData
-    with $DesignPatternDetailsRoute, _CustomTransitionPageMixin {
+class DesignPatternDetailsRoute extends GoRouteData with $DesignPatternDetailsRoute, _CustomTransitionPageMixin {
   const DesignPatternDetailsRoute(this.id);
 
   final String id;
@@ -51,11 +48,7 @@ class DesignPatternDetailsRoute extends GoRouteData
 }
 
 mixin _CustomTransitionPageMixin on GoRouteData {
-  Page<void> buildCustomTransitionPage(
-    BuildContext context,
-    GoRouterState state,
-    Widget child,
-  ) {
+  Page<void> buildCustomTransitionPage(BuildContext context, GoRouterState state, Widget child) {
     if (kIsWeb) {
       return CustomTransitionPage(
         key: state.pageKey,

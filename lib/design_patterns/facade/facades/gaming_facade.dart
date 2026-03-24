@@ -2,10 +2,7 @@ import '../apis/apis.dart';
 import '../smart_home_state.dart';
 
 class GamingFacade {
-  const GamingFacade({
-    this.playstationApi = const PlaystationApi(),
-    this.cameraApi = const CameraApi(),
-  });
+  const GamingFacade({this.playstationApi = const PlaystationApi(), this.cameraApi = const CameraApi()});
 
   final PlaystationApi playstationApi;
   final CameraApi cameraApi;

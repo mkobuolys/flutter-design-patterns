@@ -9,10 +9,7 @@ class StudentsSection extends StatefulWidget {
   final StudentsBmiCalculator bmiCalculator;
   final String headerText;
 
-  const StudentsSection({
-    required this.bmiCalculator,
-    required this.headerText,
-  });
+  const StudentsSection({required this.bmiCalculator, required this.headerText});
 
   @override
   _StudentsSectionState createState() => _StudentsSectionState();
@@ -36,10 +33,7 @@ class _StudentsSectionState extends State<StudentsSection> {
         const SizedBox(height: LayoutConstants.spaceM),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: _StudentsSectionContent(
-            students: students,
-            onPressed: _calculateBmiAndGetStudentsData,
-          ),
+          child: _StudentsSectionContent(students: students, onPressed: _calculateBmiAndGetStudentsData),
         ),
       ],
     );
@@ -50,10 +44,7 @@ class _StudentsSectionContent extends StatelessWidget {
   final List<Student> students;
   final VoidCallback onPressed;
 
-  const _StudentsSectionContent({
-    required this.students,
-    required this.onPressed,
-  });
+  const _StudentsSectionContent({required this.students, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +55,6 @@ class _StudentsSectionContent extends StatelessWidget {
             onPressed: onPressed,
             text: "Calculate BMI and get students' data",
           )
-        : StudentsDataTable(
-            students: students,
-          );
+        : StudentsDataTable(students: students);
   }
 }

@@ -38,16 +38,12 @@ class _SingletonExampleState extends State<SingletonExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             for (final state in stateList)
               Padding(
-                padding: const EdgeInsets.only(
-                  bottom: LayoutConstants.paddingL,
-                ),
+                padding: const EdgeInsets.only(bottom: LayoutConstants.paddingL),
                 child: SingletonExampleCard(text: state.currentText),
               ),
             const SizedBox(height: LayoutConstants.spaceL),

@@ -14,18 +14,11 @@ class CompositeExample extends StatelessWidget {
     final musicDirectory = Directory('Music')
       ..addFile(const AudioFile(title: 'Darude - Sandstorm.mp3', size: 2612453))
       ..addFile(const AudioFile(title: 'Toto - Africa.mp3', size: 3219811))
-      ..addFile(
-        const AudioFile(
-          title: 'Bag Raiders - Shooting Stars.mp3',
-          size: 3811214,
-        ),
-      );
+      ..addFile(const AudioFile(title: 'Bag Raiders - Shooting Stars.mp3', size: 3811214));
 
     final moviesDirectory = Directory('Movies')
       ..addFile(const VideoFile(title: 'The Matrix.avi', size: 951495532))
-      ..addFile(
-        const VideoFile(title: 'The Matrix Reloaded.mp4', size: 1251495532),
-      );
+      ..addFile(const VideoFile(title: 'The Matrix Reloaded.mp4', size: 1251495532));
 
     final catPicturesDirectory = Directory('Cats')
       ..addFile(const ImageFile(title: 'Cat 1.jpg', size: 844497))
@@ -42,9 +35,7 @@ class CompositeExample extends StatelessWidget {
       ..addFile(moviesDirectory)
       ..addFile(picturesDirectory)
       ..addFile(Directory('New Folder'))
-      ..addFile(
-        const TextFile(title: 'Nothing suspicious there.txt', size: 430791),
-      )
+      ..addFile(const TextFile(title: 'Nothing suspicious there.txt', size: 430791))
       ..addFile(const TextFile(title: 'TeamTrees.txt', size: 104));
 
     return mediaDirectory;
@@ -55,9 +46,7 @@ class CompositeExample extends StatelessWidget {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: _buildMediaDirectory(),
       ),
     );

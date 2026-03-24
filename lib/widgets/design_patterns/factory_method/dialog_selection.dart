@@ -7,11 +7,7 @@ class DialogSelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int?> onChanged;
 
-  const DialogSelection({
-    required this.customDialogList,
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const DialogSelection({required this.customDialogList, required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,7 @@ class DialogSelection extends StatelessWidget {
         child: Column(
           children: <Widget>[
             for (final (i, dialog) in customDialogList.indexed)
-              RadioListTile<int>(
-                title: Text(dialog.getTitle()),
-                value: i,
-                selected: i == selectedIndex,
-              ),
+              RadioListTile<int>(title: Text(dialog.getTitle()), value: i, selected: i == selectedIndex),
           ],
         ),
       ),

@@ -6,10 +6,7 @@ class PizzaSelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int?> onChanged;
 
-  const PizzaSelection({
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const PizzaSelection({required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +25,7 @@ class PizzaSelection extends StatelessWidget {
         child: Column(
           children: <Widget>[
             for (final (i, label) in _labels.indexed)
-              RadioListTile<int>(
-                title: Text(label),
-                value: i,
-                selected: i == selectedIndex,
-              ),
+              RadioListTile<int>(title: Text(label), value: i, selected: i == selectedIndex),
           ],
         ),
       ),

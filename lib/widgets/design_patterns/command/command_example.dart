@@ -33,9 +33,9 @@ class _CommandExampleState extends State<CommandExample> {
   }
 
   void _executeCommand(Command command) => setState(() {
-        command.execute();
-        _commandHistory.add(command);
-      });
+    command.execute();
+    _commandHistory.add(command);
+  });
 
   void _undo() => setState(() => _commandHistory.undo());
 
@@ -44,14 +44,10 @@ class _CommandExampleState extends State<CommandExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
-            ShapeContainer(
-              shape: _shape,
-            ),
+            ShapeContainer(shape: _shape),
             const SizedBox(height: LayoutConstants.spaceM),
             PlatformButton(
               materialColor: Colors.black,
@@ -79,13 +75,7 @@ class _CommandExampleState extends State<CommandExample> {
               text: 'Undo',
             ),
             const SizedBox(height: LayoutConstants.spaceM),
-            Row(
-              children: <Widget>[
-                CommandHistoryColumn(
-                  commandList: _commandHistory.commandHistoryList,
-                ),
-              ],
-            ),
+            Row(children: <Widget>[CommandHistoryColumn(commandList: _commandHistory.commandHistoryList)]),
           ],
         ),
       ),

@@ -7,9 +7,7 @@ import '../../student.dart';
 import '../../students_bmi_calculator.dart';
 
 class TeenageStudentsJsonBmiCalculator extends StudentsBmiCalculator {
-  const TeenageStudentsJsonBmiCalculator({
-    this.api = const JsonStudentsApi(),
-  });
+  const TeenageStudentsJsonBmiCalculator({this.api = const JsonStudentsApi()});
 
   final JsonStudentsApi api;
 
@@ -36,8 +34,6 @@ class TeenageStudentsJsonBmiCalculator extends StudentsBmiCalculator {
   @override
   @protected
   List<Student> doStudentsFiltering(List<Student> studentList) {
-    return studentList
-        .where((student) => student.age > 12 && student.age < 20)
-        .toList();
+    return studentList.where((student) => student.age > 12 && student.age < 20).toList();
   }
 }

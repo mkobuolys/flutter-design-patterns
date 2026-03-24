@@ -12,10 +12,7 @@ class AbstractFactoryExample extends StatefulWidget {
 }
 
 class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
-  final List<IWidgetsFactory> widgetsFactoryList = const [
-    MaterialWidgetsFactory(),
-    CupertinoWidgetsFactory(),
-  ];
+  final List<IWidgetsFactory> widgetsFactoryList = const [MaterialWidgetsFactory(), CupertinoWidgetsFactory()];
 
   var _selectedFactoryIndex = 0;
 
@@ -36,8 +33,7 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
   }
 
   void _createWidgets() {
-    _activityIndicator =
-        widgetsFactoryList[_selectedFactoryIndex].createActivityIndicator();
+    _activityIndicator = widgetsFactoryList[_selectedFactoryIndex].createActivityIndicator();
     _slider = widgetsFactoryList[_selectedFactoryIndex].createSlider();
     _switch = widgetsFactoryList[_selectedFactoryIndex].createSwitch();
   }
@@ -60,9 +56,7 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             FactorySelection(
@@ -71,34 +65,19 @@ class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
               onChanged: _setSelectedFactoryIndex,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            Text(
-              'Widgets showcase',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text('Widgets showcase', style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: LayoutConstants.spaceXL),
-            Text(
-              'Process indicator',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text('Process indicator', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: LayoutConstants.spaceL),
             _activityIndicator.render(),
             const SizedBox(height: LayoutConstants.spaceXL),
-            Text(
-              'Slider ($_sliderValueString%)',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text('Slider ($_sliderValueString%)', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: LayoutConstants.spaceL),
             _slider.render(_sliderValue, _setSliderValue),
             const SizedBox(height: LayoutConstants.spaceXL),
-            Text(
-              'Switch ($_switchValueString)',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text('Switch ($_switchValueString)', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: LayoutConstants.spaceL),
-            _switch.render(
-              value: _switchValue,
-              onChanged: _setSwitchValue,
-            ),
+            _switch.render(value: _switchValue, onChanged: _setSwitchValue),
           ],
         ),
       ),

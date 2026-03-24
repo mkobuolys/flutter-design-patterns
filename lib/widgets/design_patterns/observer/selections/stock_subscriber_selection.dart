@@ -30,11 +30,7 @@ class StockSubscriberSelection extends StatelessWidget {
         child: Column(
           children: <Widget>[
             for (final (i, subscriber) in stockSubscriberList.indexed)
-              RadioListTile<int>(
-                title: Text(subscriber.title),
-                value: i,
-                selected: i == selectedIndex,
-              ),
+              RadioListTile<int>(title: Text(subscriber.title), value: i, selected: i == selectedIndex),
           ],
         ),
       ),

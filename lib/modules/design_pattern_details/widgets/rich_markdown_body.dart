@@ -36,66 +36,37 @@ class RichMarkdownBody extends StatelessWidget {
           vertical: LayoutConstants.paddingM,
         ),
         horizontalRuleDecoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: theme.colorScheme.primary.withValues(alpha: 0.2),
-              width: 3,
-            ),
-          ),
+          border: Border(top: BorderSide(color: theme.colorScheme.primary.withValues(alpha: 0.2), width: 3)),
         ),
         blockquoteDecoration: BoxDecoration(
           color: theme.colorScheme.surface.withValues(alpha: 0.2),
           border: Border(
-            left: BorderSide(
-              color: theme.colorScheme.surface,
-              width: LayoutConstants.spaceS,
-            ),
+            left: BorderSide(color: theme.colorScheme.surface, width: LayoutConstants.spaceS),
           ),
         ),
         codeblockDecoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(LayoutConstants.spaceS),
-          border: Border.all(
-            color: theme.colorScheme.outline.withValues(alpha: 0.2),
-          ),
+          border: Border.all(color: theme.colorScheme.outline.withValues(alpha: 0.2)),
         ),
-        a: bodyMedium?.copyWith(
-          color: theme.colorScheme.primary,
-          decoration: TextDecoration.underline,
-        ),
-        blockquote: bodyMedium?.copyWith(
-          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-        ),
-        code: bodyMedium?.copyWith(
-          color: theme.colorScheme.onSurface,
-          backgroundColor: theme.colorScheme.surface,
-        ),
+        a: bodyMedium?.copyWith(color: theme.colorScheme.primary, decoration: TextDecoration.underline),
+        blockquote: bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
+        code: bodyMedium?.copyWith(color: theme.colorScheme.onSurface, backgroundColor: theme.colorScheme.surface),
         em: bodyMedium?.copyWith(fontStyle: FontStyle.italic),
         strong: bodyMedium?.copyWith(fontWeight: FontWeight.bold),
         img: bodyMedium,
         listBullet: bodyMedium?.copyWith(color: textTheme.bodySmall?.color),
-        listBulletPadding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingXS,
-        ),
-        tableBody: bodyMedium?.copyWith(
-          color: textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
-        ),
-        tableHead: bodyMedium?.copyWith(
-          fontSize: fontSize + 2,
-          color: textTheme.bodyLarge?.color,
-        ),
+        listBulletPadding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingXS),
+        tableBody: bodyMedium?.copyWith(color: textTheme.bodyMedium?.color?.withValues(alpha: 0.8)),
+        tableHead: bodyMedium?.copyWith(fontSize: fontSize + 2, color: textTheme.bodyLarge?.color),
         tableHeadAlign: TextAlign.center,
         tableCellsPadding: const EdgeInsets.all(LayoutConstants.paddingM),
-        tableBorder: TableBorder.all(
-          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-        ),
+        tableBorder: TableBorder.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
       ),
       onTapLink: (_, link, __) => UrlLauncher.launchUrl(link ?? ''),
       syntaxHighlighter: DartSyntaxHighlighter(context),
       imageBuilder: (uri, title, alt) => GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          PageRouteBuilder(pageBuilder: (_, __, ___) => ImageView(uri: uri)),
-        ),
+        onTap: () => Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_, __, ___) => ImageView(uri: uri))),
         child: Hero(tag: uri, child: Image.asset(uri.path)),
       ),
       data: data ?? '',

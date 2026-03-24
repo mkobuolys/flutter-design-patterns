@@ -5,9 +5,7 @@ import '../../../constants/constants.dart';
 class SingletonExampleCard extends StatelessWidget {
   final String text;
 
-  const SingletonExampleCard({
-    required this.text,
-  });
+  const SingletonExampleCard({required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +14,7 @@ class SingletonExampleCard extends StatelessWidget {
         height: 64.0,
         padding: const EdgeInsets.all(LayoutConstants.paddingL),
         child: Center(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.bodyLarge,
-            textAlign: TextAlign.center,
-          ),
+          child: Text(text, style: Theme.of(context).textTheme.bodyLarge, textAlign: TextAlign.center),
         ),
       ),
     );

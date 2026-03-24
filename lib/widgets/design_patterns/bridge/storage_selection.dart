@@ -7,11 +7,7 @@ class StorageSelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int?> onChanged;
 
-  const StorageSelection({
-    required this.storages,
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const StorageSelection({required this.storages, required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,7 @@ class StorageSelection extends StatelessWidget {
         child: Column(
           children: <Widget>[
             for (final (i, storage) in storages.indexed)
-              RadioListTile<int>(
-                title: Text(storage.getTitle()),
-                value: i,
-                selected: i == selectedIndex,
-              ),
+              RadioListTile<int>(title: Text(storage.getTitle()), value: i, selected: i == selectedIndex),
           ],
         ),
       ),

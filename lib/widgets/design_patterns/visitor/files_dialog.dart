@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../../platform_specific/platform_button.dart';
 
 class FilesDialog extends StatelessWidget {
-  const FilesDialog({
-    required this.filesText,
-  });
+  const FilesDialog({required this.filesText});
 
   final String filesText;
 
@@ -16,10 +14,7 @@ class FilesDialog extends StatelessWidget {
       content: ScrollConfiguration(
         behavior: const ScrollBehavior(),
         child: SingleChildScrollView(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(filesText),
-          ),
+          child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Text(filesText)),
         ),
       ),
       actions: <Widget>[

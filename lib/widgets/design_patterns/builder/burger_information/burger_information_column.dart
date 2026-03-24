@@ -7,9 +7,7 @@ import 'burger_information_label.dart';
 class BurgerInformationColumn extends StatelessWidget {
   final Burger burger;
 
-  const BurgerInformationColumn({
-    required this.burger,
-  });
+  const BurgerInformationColumn({required this.burger});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +18,10 @@ class BurgerInformationColumn extends StatelessWidget {
         Text(burger.getFormattedPrice()),
         const SizedBox(height: LayoutConstants.spaceM),
         const BurgerInformationLabel('Ingredients'),
-        Text(
-          burger.getFormattedIngredients(),
-          textAlign: TextAlign.justify,
-        ),
+        Text(burger.getFormattedIngredients(), textAlign: TextAlign.justify),
         const SizedBox(height: LayoutConstants.spaceM),
         const BurgerInformationLabel('Allergens'),
-        Text(
-          burger.getFormattedAllergens(),
-          textAlign: TextAlign.justify,
-        ),
+        Text(burger.getFormattedAllergens(), textAlign: TextAlign.justify),
       ],
     );
   }

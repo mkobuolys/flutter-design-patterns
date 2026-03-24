@@ -7,9 +7,7 @@ import '../../modules/design_pattern_details/layouts/layouts.dart';
 import '../../themes.dart';
 
 class DesignPatternDetailsPage extends ConsumerWidget {
-  const DesignPatternDetailsPage({
-    required this.id,
-  });
+  const DesignPatternDetailsPage({required this.id});
 
   final String id;
 
@@ -30,17 +28,11 @@ class DesignPatternDetailsPage extends ConsumerWidget {
       loading: () => Center(
         child: CircularProgressIndicator(
           backgroundColor: lightBackgroundColor,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            Colors.black.withValues(alpha: 0.65),
-          ),
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.black.withValues(alpha: 0.65)),
         ),
       ),
-      error: (_, __) => Center(
-        child: Text(
-          'Welcome to the Dart side...',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-      ),
+      error: (_, __) =>
+          Center(child: Text('Welcome to the Dart side...', style: Theme.of(context).textTheme.titleMedium)),
     );
   }
 }

@@ -8,11 +8,7 @@ class ShippingOptions extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int?> onChanged;
 
-  const ShippingOptions({
-    required this.shippingOptions,
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const ShippingOptions({required this.shippingOptions, required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +18,7 @@ class ShippingOptions extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Select shipping type:',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text('Select shipping type:', style: Theme.of(context).textTheme.titleMedium),
             RadioTheme(
               data: RadioThemeData(
                 fillColor: WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
@@ -41,11 +34,7 @@ class ShippingOptions extends StatelessWidget {
                 child: Column(
                   children: [
                     for (final (i, option) in shippingOptions.indexed)
-                      RadioListTile<int>(
-                        title: Text(option.label),
-                        value: i,
-                        dense: true,
-                      ),
+                      RadioListTile<int>(title: Text(option.label), value: i, dense: true),
                   ],
                 ),
               ),

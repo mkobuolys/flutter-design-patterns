@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import '../ipositioned_shape.dart';
 
 class Square implements IPositionedShape {
-  const Square({
-    required this.color,
-    required this.width,
-  });
+  const Square({required this.color, required this.width});
 
   final Color color;
   final double width;
@@ -18,11 +15,7 @@ class Square implements IPositionedShape {
     return Positioned(
       left: x,
       bottom: y,
-      child: Container(
-        height: _height,
-        width: width,
-        color: color,
-      ),
+      child: Container(height: _height, width: width, color: color),
     );
   }
 }

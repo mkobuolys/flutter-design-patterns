@@ -8,12 +8,12 @@ class CustomerDetailsService implements ICustomerDetailsService {
 
   @override
   Future<CustomerDetails> getCustomerDetails(String id) => Future.delayed(
-        const Duration(seconds: 2),
-        () => CustomerDetails(
-          customerId: id,
-          email: faker.internet.email(),
-          hobby: faker.sport.name(),
-          position: faker.job.title(),
-        ),
-      );
+    const Duration(seconds: 2),
+    () => CustomerDetails(
+      customerId: id,
+      email: faker.internet.email(),
+      hobby: faker.sport.name(),
+      position: faker.job.title(),
+    ),
+  );
 }

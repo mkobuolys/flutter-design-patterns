@@ -6,9 +6,7 @@ import '../../../../design_patterns/strategy/strategy.dart';
 class OrderItemsTable extends StatelessWidget {
   final List<OrderItem> orderItems;
 
-  const OrderItemsTable({
-    required this.orderItems,
-  });
+  const OrderItemsTable({required this.orderItems});
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +17,13 @@ class OrderItemsTable extends StatelessWidget {
       dataRowMinHeight: LayoutConstants.spaceXL,
       columns: const <DataColumn>[
         DataColumn(
-          label: Text(
-            'Title',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-          ),
+          label: Text('Title', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
         ),
         DataColumn(
-          label: Text(
-            'Package Size',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-          ),
+          label: Text('Package Size', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
         ),
         DataColumn(
-          label: Text(
-            'Price',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-          ),
+          label: Text('Price', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
           numeric: true,
         ),
       ],

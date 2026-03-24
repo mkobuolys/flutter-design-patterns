@@ -18,8 +18,7 @@ class ExpressionHelpers {
       if (_isOperator(symbol)) {
         final rightExpression = expressionStack.removeLast();
         final leftExpression = expressionStack.removeLast();
-        final nonterminalExpression =
-            _getNonterminalExpression(symbol, leftExpression, rightExpression);
+        final nonterminalExpression = _getNonterminalExpression(symbol, leftExpression, rightExpression);
 
         expressionStack.addLast(nonterminalExpression);
       } else {
@@ -40,11 +39,10 @@ class ExpressionHelpers {
     String symbol,
     IExpression leftExpression,
     IExpression rightExpression,
-  ) =>
-      switch (symbol) {
-        '+' => Add(leftExpression, rightExpression),
-        '-' => Subtract(leftExpression, rightExpression),
-        '*' => Multiply(leftExpression, rightExpression),
-        _ => throw Exception('Expression is not defined.'),
-      };
+  ) => switch (symbol) {
+    '+' => Add(leftExpression, rightExpression),
+    '-' => Subtract(leftExpression, rightExpression),
+    '*' => Multiply(leftExpression, rightExpression),
+    _ => throw Exception('Expression is not defined.'),
+  };
 }

@@ -6,9 +6,6 @@ abstract class CustomDialog {
   String getTitle();
   Widget create(BuildContext context);
 
-  Future<void> show(BuildContext context) => showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: create,
-      );
+  Future<void> show(BuildContext context) =>
+      showDialog<void>(context: context, barrierDismissible: false, builder: create);
 }

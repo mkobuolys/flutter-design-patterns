@@ -11,21 +11,14 @@ class OrderButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const OrderButton({
-    required this.iconData,
-    required this.title,
-    required this.onPressed,
-  });
+  const OrderButton({required this.iconData, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     final child = Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(
-          iconData,
-          color: Colors.white,
-        ),
+        Icon(iconData, color: Colors.white),
         const SizedBox(width: LayoutConstants.spaceXS),
         Text(title),
       ],
@@ -42,11 +35,7 @@ class OrderButton extends StatelessWidget {
               onPressed: onPressed,
               child: child,
             )
-          : CupertinoButton(
-              color: Colors.black,
-              onPressed: onPressed,
-              child: child,
-            ),
+          : CupertinoButton(color: Colors.black, onPressed: onPressed, child: child),
     );
   }
 }

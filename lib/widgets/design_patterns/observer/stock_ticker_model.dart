@@ -5,9 +5,7 @@ class StockTickerModel {
 
   bool subscribed = false;
 
-  StockTickerModel({
-    required this.stockTicker,
-  });
+  StockTickerModel({required this.stockTicker});
 
   void toggleSubscribed() {
     subscribed = !subscribed;

@@ -4,12 +4,8 @@ import '../file.dart';
 import '../ivisitor.dart';
 
 class ImageFile extends File {
-  const ImageFile({
-    required this.resolution,
-    required super.title,
-    required super.fileExtension,
-    required super.size,
-  }) : super(icon: Icons.image);
+  const ImageFile({required this.resolution, required super.title, required super.fileExtension, required super.size})
+    : super(icon: Icons.image);
 
   final String resolution;
 

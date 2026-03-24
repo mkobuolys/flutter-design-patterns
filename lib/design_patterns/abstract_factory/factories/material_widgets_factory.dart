@@ -13,8 +13,7 @@ class MaterialWidgetsFactory implements IWidgetsFactory {
   String getTitle() => 'Android widgets';
 
   @override
-  IActivityIndicator createActivityIndicator() =>
-      const AndroidActivityIndicator();
+  IActivityIndicator createActivityIndicator() => const AndroidActivityIndicator();
 
   @override
   ISlider createSlider() => const AndroidSlider();

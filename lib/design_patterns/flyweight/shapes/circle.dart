@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import '../ipositioned_shape.dart';
 
 class Circle implements IPositionedShape {
-  const Circle({
-    required this.color,
-    required this.diameter,
-  });
+  const Circle({required this.color, required this.diameter});
 
   final Color color;
   final double diameter;
@@ -19,10 +16,7 @@ class Circle implements IPositionedShape {
       child: Container(
         height: diameter,
         width: diameter,
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
       ),
     );
   }

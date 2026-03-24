@@ -7,11 +7,7 @@ class FactorySelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int?> onChanged;
 
-  const FactorySelection({
-    required this.widgetsFactoryList,
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const FactorySelection({required this.widgetsFactoryList, required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,7 @@ class FactorySelection extends StatelessWidget {
         child: Column(
           children: <Widget>[
             for (final (i, widgetsFactory) in widgetsFactoryList.indexed)
-              RadioListTile<int>(
-                title: Text(widgetsFactory.getTitle()),
-                value: i,
-                selected: i == selectedIndex,
-              ),
+              RadioListTile<int>(title: Text(widgetsFactory.getTitle()), value: i, selected: i == selectedIndex),
           ],
         ),
       ),

@@ -26,25 +26,17 @@ Future<List<DesignPatternCategory>> designPatternCategories(Ref ref) {
 Future<DesignPattern> designPattern(Ref ref, String id) async {
   final categories = await ref.watch(designPatternCategoriesProvider.future);
 
-  return categories
-      .expand((category) => category.patterns)
-      .firstWhere((pattern) => pattern.id == id);
+  return categories.expand((category) => category.patterns).firstWhere((pattern) => pattern.id == id);
 }
 
 class DesignPatternCategoriesRepository {
   const DesignPatternCategoriesRepository();
 
   Future<List<DesignPatternCategory>> get() async {
-    final menuJson = await rootBundle.loadString(
-      AssetConstants.designPatternsJsonPath,
-    );
+    final menuJson = await rootBundle.loadString(AssetConstants.designPatternsJsonPath);
     final designPatternCategoryJsonList = json.decode(menuJson) as List;
     final mainMenuSections = designPatternCategoryJsonList
-        .map(
-          (categoryJson) => DesignPatternCategory.fromJson(
-            categoryJson as Map<String, dynamic>,
-          ),
-        )
+        .map((categoryJson) => DesignPatternCategory.fromJson(categoryJson as Map<String, dynamic>))
         .toList();
 
     return mainMenuSections;

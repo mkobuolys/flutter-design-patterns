@@ -27,14 +27,10 @@ class MainMenuPage extends ConsumerWidget {
                 const MainMenuHeader(),
                 const SizedBox(height: LayoutConstants.spaceXL),
                 designPatternCategories.when(
-                  data: (categories) => _MainMenuCardsListView(
-                    categories: categories,
-                  ),
+                  data: (categories) => _MainMenuCardsListView(categories: categories),
                   loading: () => CircularProgressIndicator(
                     backgroundColor: lightBackgroundColor,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.black.withValues(alpha: 0.65),
-                    ),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black.withValues(alpha: 0.65)),
                   ),
                   error: (_, __) => const Text('Oops, something went wrong...'),
                 ),
@@ -50,9 +46,7 @@ class MainMenuPage extends ConsumerWidget {
 class _MainMenuCardsListView extends StatelessWidget {
   final List<DesignPatternCategory> categories;
 
-  const _MainMenuCardsListView({
-    required this.categories,
-  });
+  const _MainMenuCardsListView({required this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +59,7 @@ class _MainMenuCardsListView extends StatelessWidget {
 
         if (isDesktop) {
           return ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxHeight: 500,
-              maxWidth: 1500,
-            ),
+            constraints: const BoxConstraints(maxHeight: 500, maxWidth: 1500),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: cardsIterable
@@ -79,11 +70,7 @@ class _MainMenuCardsListView extends StatelessWidget {
           );
         }
 
-        return Column(
-          children: cardsIterable
-              .toList()
-              .addBetween(const SizedBox(height: LayoutConstants.spaceL)),
-        );
+        return Column(children: cardsIterable.toList().addBetween(const SizedBox(height: LayoutConstants.spaceL)));
       },
     );
   }

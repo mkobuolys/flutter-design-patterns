@@ -13,10 +13,7 @@ class FactoryMethodExample extends StatefulWidget {
 }
 
 class _FactoryMethodExampleState extends State<FactoryMethodExample> {
-  final List<CustomDialog> customDialogList = const [
-    AndroidAlertDialog(),
-    IosAlertDialog(),
-  ];
+  final List<CustomDialog> customDialogList = const [AndroidAlertDialog(), IosAlertDialog()];
 
   var _selectedDialogIndex = 0;
 
@@ -37,9 +34,7 @@ class _FactoryMethodExampleState extends State<FactoryMethodExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             DialogSelection(

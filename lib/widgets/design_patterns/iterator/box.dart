@@ -7,11 +7,7 @@ class Box extends StatelessWidget {
   final Color color;
   final Widget? child;
 
-  const Box({
-    required this.nodeId,
-    required this.color,
-    this.child,
-  });
+  const Box({required this.nodeId, required this.color, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +18,7 @@ class Box extends StatelessWidget {
         padding: const EdgeInsets.all(LayoutConstants.paddingM),
         child: Column(
           children: <Widget>[
-            Text(
-              nodeId.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text(nodeId.toString(), style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: LayoutConstants.spaceM),
             if (child != null) child!,
           ],

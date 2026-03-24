@@ -19,8 +19,7 @@ base class StockTicker {
 
   void subscribe(StockSubscriber subscriber) => _subscribers.add(subscriber);
 
-  void unsubscribe(StockSubscriber subscriber) =>
-      _subscribers.removeWhere((s) => s.id == subscriber.id);
+  void unsubscribe(StockSubscriber subscriber) => _subscribers.removeWhere((s) => s.id == subscriber.id);
 
   void notifySubscribers() {
     for (final subscriber in _subscribers) {
@@ -35,9 +34,7 @@ base class StockTicker {
 
     stock = Stock(
       changeAmount: changeAmount.abs(),
-      changeDirection: changeAmount > 0
-          ? StockChangeDirection.growing
-          : StockChangeDirection.falling,
+      changeDirection: changeAmount > 0 ? StockChangeDirection.growing : StockChangeDirection.falling,
       price: price,
       symbol: stockTickerSymbol,
     );

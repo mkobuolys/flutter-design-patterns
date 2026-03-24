@@ -51,9 +51,7 @@ class XmlVisitor implements IVisitor {
 
   @override
   String visitTextFile(TextFile file) {
-    final fileContentPreview = file.content.length > 30
-        ? '${file.content.substring(0, 30)}...'
-        : file.content;
+    final fileContentPreview = file.content.length > 30 ? '${file.content.substring(0, 30)}...' : file.content;
 
     final fileInfo = <String, String>{
       'title': file.title,
@@ -83,9 +81,7 @@ class XmlVisitor implements IVisitor {
     buffer.write('<$type>'.indentAndAddNewLine(2));
 
     for (final entry in fileInfo.entries) {
-      buffer.write(
-        '<${entry.key}>${entry.value}</${entry.key}>'.indentAndAddNewLine(4),
-      );
+      buffer.write('<${entry.key}>${entry.value}</${entry.key}>'.indentAndAddNewLine(4));
     }
 
     buffer.write('</$type>'.indentAndAddNewLine(2));

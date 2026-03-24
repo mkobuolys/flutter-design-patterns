@@ -8,10 +8,7 @@ class OrderSummary extends StatelessWidget {
   final Order order;
   final IShippingCostsStrategy shippingCostsStrategy;
 
-  const OrderSummary({
-    required this.order,
-    required this.shippingCostsStrategy,
-  });
+  const OrderSummary({required this.order, required this.shippingCostsStrategy});
 
   double get shippingPrice => shippingCostsStrategy.calculate(order);
   double get total => order.price + shippingPrice;
@@ -24,28 +21,13 @@ class OrderSummary extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Order summary',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text('Order summary', style: Theme.of(context).textTheme.titleLarge),
             const Divider(),
-            OrderSummaryRow(
-              fontFamily: 'Roboto',
-              label: 'Subtotal',
-              value: order.price,
-            ),
+            OrderSummaryRow(fontFamily: 'Roboto', label: 'Subtotal', value: order.price),
             const SizedBox(height: LayoutConstants.spaceM),
-            OrderSummaryRow(
-              fontFamily: 'Roboto',
-              label: 'Shipping',
-              value: shippingPrice,
-            ),
+            OrderSummaryRow(fontFamily: 'Roboto', label: 'Shipping', value: shippingPrice),
             const Divider(),
-            OrderSummaryRow(
-              fontFamily: 'RobotoMedium',
-              label: 'Order total',
-              value: total,
-            ),
+            OrderSummaryRow(fontFamily: 'RobotoMedium', label: 'Order total', value: total),
           ],
         ),
       ),

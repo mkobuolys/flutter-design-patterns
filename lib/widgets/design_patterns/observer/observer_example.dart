@@ -17,10 +17,7 @@ class ObserverExample extends StatefulWidget {
 }
 
 class _ObserverExampleState extends State<ObserverExample> {
-  final _stockSubscriberList = <StockSubscriber>[
-    DefaultStockSubscriber(),
-    GrowingStockSubscriber(),
-  ];
+  final _stockSubscriberList = <StockSubscriber>[DefaultStockSubscriber(), GrowingStockSubscriber()];
   final _stockTickers = <StockTickerModel>[
     StockTickerModel(stockTicker: GameStopStockTicker()),
     StockTickerModel(stockTicker: GoogleStockTicker()),
@@ -88,9 +85,7 @@ class _ObserverExampleState extends State<ObserverExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             StockSubscriberSelection(
@@ -98,16 +93,8 @@ class _ObserverExampleState extends State<ObserverExample> {
               selectedIndex: _selectedSubscriberIndex,
               onChanged: _setSelectedSubscriberIndex,
             ),
-            StockTickerSelection(
-              stockTickers: _stockTickers,
-              onChanged: _toggleStockTickerSelection,
-            ),
-            Column(
-              children: [
-                for (final stock in _stockEntries.reversed)
-                  StockRow(stock: stock),
-              ],
-            ),
+            StockTickerSelection(stockTickers: _stockTickers, onChanged: _toggleStockTickerSelection),
+            Column(children: [for (final stock in _stockEntries.reversed) StockRow(stock: stock)]),
           ],
         ),
       ),

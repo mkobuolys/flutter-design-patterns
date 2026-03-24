@@ -7,9 +7,7 @@ import '../../platform_specific/platform_button.dart';
 class ExpressionSection extends StatefulWidget {
   final String postfixExpression;
 
-  const ExpressionSection({
-    required this.postfixExpression,
-  });
+  const ExpressionSection({required this.postfixExpression});
 
   @override
   _ExpressionSectionState createState() => _ExpressionSectionState();
@@ -21,8 +19,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
 
   void _solvePrefixExpression() {
     final solutionSteps = <String>[];
-    final expression =
-        ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
+    final expression = ExpressionHelpers.buildExpressionTree(widget.postfixExpression);
     final result = expression.interpret(_expressionContext);
 
     solutionSteps
@@ -37,10 +34,7 @@ class _ExpressionSectionState extends State<ExpressionSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          widget.postfixExpression,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(widget.postfixExpression, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: LayoutConstants.spaceM),
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 250),
@@ -54,15 +48,10 @@ class _ExpressionSectionState extends State<ExpressionSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               for (final solutionStep in _solutionSteps)
-                Text(
-                  solutionStep,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
+                Text(solutionStep, style: Theme.of(context).textTheme.titleSmall),
             ],
           ),
-          crossFadeState: _solutionSteps.isEmpty
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
+          crossFadeState: _solutionSteps.isEmpty ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         ),
         const SizedBox(height: LayoutConstants.spaceXL),
       ],

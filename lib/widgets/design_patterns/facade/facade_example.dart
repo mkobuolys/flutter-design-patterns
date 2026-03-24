@@ -21,8 +21,7 @@ class _FacadeExampleState extends State<FacadeExample> {
   var _gamingModeOn = false;
   var _streamingModeOn = false;
 
-  bool get _isAnyModeOn =>
-      _homeCinemaModeOn || _gamingModeOn || _streamingModeOn;
+  bool get _isAnyModeOn => _homeCinemaModeOn || _gamingModeOn || _streamingModeOn;
 
   void _changeHomeCinemaMode(bool activated) {
     if (activated) {
@@ -59,30 +58,23 @@ class _FacadeExampleState extends State<FacadeExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             ModeSwitcher(
               title: 'Home cinema mode',
               activated: _homeCinemaModeOn,
-              onChanged: !_isAnyModeOn || _homeCinemaModeOn
-                  ? _changeHomeCinemaMode
-                  : null,
+              onChanged: !_isAnyModeOn || _homeCinemaModeOn ? _changeHomeCinemaMode : null,
             ),
             ModeSwitcher(
               title: 'Gaming mode',
               activated: _gamingModeOn,
-              onChanged:
-                  !_isAnyModeOn || _gamingModeOn ? _changeGamingMode : null,
+              onChanged: !_isAnyModeOn || _gamingModeOn ? _changeGamingMode : null,
             ),
             ModeSwitcher(
               title: 'Streaming mode',
               activated: _streamingModeOn,
-              onChanged: !_isAnyModeOn || _streamingModeOn
-                  ? _changeStreamingMode
-                  : null,
+              onChanged: !_isAnyModeOn || _streamingModeOn ? _changeStreamingMode : null,
             ),
             const SizedBox(height: LayoutConstants.spaceXL * 2),
             Column(
@@ -90,36 +82,18 @@ class _FacadeExampleState extends State<FacadeExample> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    DeviceIcon(
-                      iconData: FontAwesomeIcons.tv,
-                      activated: _smartHomeState.tvOn,
-                    ),
-                    DeviceIcon(
-                      iconData: FontAwesomeIcons.film,
-                      activated: _smartHomeState.netflixConnected,
-                    ),
-                    DeviceIcon(
-                      iconData: Icons.speaker,
-                      activated: _smartHomeState.audioSystemOn,
-                    ),
+                    DeviceIcon(iconData: FontAwesomeIcons.tv, activated: _smartHomeState.tvOn),
+                    DeviceIcon(iconData: FontAwesomeIcons.film, activated: _smartHomeState.netflixConnected),
+                    DeviceIcon(iconData: Icons.speaker, activated: _smartHomeState.audioSystemOn),
                   ],
                 ),
                 const SizedBox(height: LayoutConstants.spaceXL),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    DeviceIcon(
-                      iconData: FontAwesomeIcons.playstation,
-                      activated: _smartHomeState.gamingConsoleOn,
-                    ),
-                    DeviceIcon(
-                      iconData: FontAwesomeIcons.video,
-                      activated: _smartHomeState.streamingCameraOn,
-                    ),
-                    DeviceIcon(
-                      iconData: FontAwesomeIcons.lightbulb,
-                      activated: _smartHomeState.lightsOn,
-                    ),
+                    DeviceIcon(iconData: FontAwesomeIcons.playstation, activated: _smartHomeState.gamingConsoleOn),
+                    DeviceIcon(iconData: FontAwesomeIcons.video, activated: _smartHomeState.streamingCameraOn),
+                    DeviceIcon(iconData: FontAwesomeIcons.lightbulb, activated: _smartHomeState.lightsOn),
                   ],
                 ),
               ],

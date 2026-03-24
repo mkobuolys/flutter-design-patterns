@@ -7,9 +7,7 @@ import '../../student.dart';
 import '../../students_bmi_calculator.dart';
 
 class StudentsJsonBmiCalculator extends StudentsBmiCalculator {
-  const StudentsJsonBmiCalculator({
-    this.api = const JsonStudentsApi(),
-  });
+  const StudentsJsonBmiCalculator({this.api = const JsonStudentsApi()});
 
   final JsonStudentsApi api;
 

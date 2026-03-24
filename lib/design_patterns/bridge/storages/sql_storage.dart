@@ -8,8 +8,7 @@ class SqlStorage implements IStorage {
   String getTitle() => 'SQL Storage';
 
   @override
-  List<T> fetchAll<T extends EntityBase>() =>
-      sqlStorage.containsKey(T) ? sqlStorage[T]! as List<T> : [];
+  List<T> fetchAll<T extends EntityBase>() => sqlStorage.containsKey(T) ? sqlStorage[T]! as List<T> : [];
 
   @override
   void store<T extends EntityBase>(T entityBase) {

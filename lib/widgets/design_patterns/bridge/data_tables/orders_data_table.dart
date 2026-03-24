@@ -6,9 +6,7 @@ import '../../../../design_patterns/bridge/bridge.dart';
 class OrdersDatatable extends StatelessWidget {
   final List<Order> orders;
 
-  const OrdersDatatable({
-    required this.orders,
-  });
+  const OrdersDatatable({required this.orders});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +19,10 @@ class OrdersDatatable extends StatelessWidget {
         dataRowMinHeight: LayoutConstants.spaceXL,
         columns: const <DataColumn>[
           DataColumn(
-            label: Text(
-              'Dishes',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('Dishes', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
           ),
           DataColumn(
-            label: Text(
-              'Total',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('Total', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
             numeric: true,
           ),
         ],

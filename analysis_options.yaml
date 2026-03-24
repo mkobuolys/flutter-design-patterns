@@ -4,6 +4,9 @@ analyzer:
   exclude:
     - "**/*.gr.dart"
 
+formatter:
+  page_width: 120
+
 linter:
   rules:
     always_use_package_imports: false

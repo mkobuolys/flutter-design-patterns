@@ -5,11 +5,7 @@ class ModeSwitcher extends StatelessWidget {
   final bool activated;
   final ValueSetter<bool>? onChanged;
 
-  const ModeSwitcher({
-    required this.title,
-    required this.activated,
-    required this.onChanged,
-  });
+  const ModeSwitcher({required this.title, required this.activated, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

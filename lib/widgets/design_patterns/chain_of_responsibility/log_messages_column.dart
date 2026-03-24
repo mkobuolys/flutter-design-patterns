@@ -5,9 +5,7 @@ import '../../../design_patterns/chain_of_responsibility/chain_of_responsibility
 class LogMessagesColumn extends StatelessWidget {
   final List<LogMessage> logMessages;
 
-  const LogMessagesColumn({
-    required this.logMessages,
-  });
+  const LogMessagesColumn({required this.logMessages});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +13,7 @@ class LogMessagesColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         for (final logMessage in logMessages)
-          Row(
-            children: <Widget>[
-              Expanded(child: logMessage.getFormattedMessage()),
-            ],
-          ),
+          Row(children: <Widget>[Expanded(child: logMessage.getFormattedMessage())]),
       ],
     );
   }

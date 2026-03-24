@@ -4,11 +4,9 @@ import '../logger_base.dart';
 import '../services/mail_service.dart';
 
 class ErrorLogger extends LoggerBase {
-  ErrorLogger(
-    LogBloc logBloc, {
-    super.nextLogger,
-  })  : mailService = MailService(logBloc),
-        super(logLevel: LogLevel.error);
+  ErrorLogger(LogBloc logBloc, {super.nextLogger})
+    : mailService = MailService(logBloc),
+      super(logLevel: LogLevel.error);
 
   final MailService mailService;
 

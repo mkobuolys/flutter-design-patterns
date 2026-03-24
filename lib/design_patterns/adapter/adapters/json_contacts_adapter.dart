@@ -5,9 +5,7 @@ import '../contact.dart';
 import '../icontacts_adapter.dart';
 
 class JsonContactsAdapter implements IContactsAdapter {
-  const JsonContactsAdapter({
-    this.api = const JsonContactsApi(),
-  });
+  const JsonContactsAdapter({this.api = const JsonContactsApi()});
 
   final JsonContactsApi api;
 

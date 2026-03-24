@@ -7,11 +7,7 @@ class TreeCollectionSelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int?>? onChanged;
 
-  const TreeCollectionSelection({
-    required this.treeCollections,
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const TreeCollectionSelection({required this.treeCollections, required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,7 @@ class TreeCollectionSelection extends StatelessWidget {
         child: Column(
           children: <Widget>[
             for (final (i, collection) in treeCollections.indexed)
-              RadioListTile<int>(
-                title: Text(collection.getTitle()),
-                value: i,
-                selected: i == selectedIndex,
-              ),
+              RadioListTile<int>(title: Text(collection.getTitle()), value: i, selected: i == selectedIndex),
           ],
         ),
       ),

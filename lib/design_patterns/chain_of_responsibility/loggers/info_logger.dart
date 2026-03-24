@@ -4,11 +4,9 @@ import '../logger_base.dart';
 import '../services/external_logging_service.dart';
 
 class InfoLogger extends LoggerBase {
-  InfoLogger(
-    LogBloc logBloc, {
-    super.nextLogger,
-  })  : externalLoggingService = ExternalLoggingService(logBloc),
-        super(logLevel: LogLevel.info);
+  InfoLogger(LogBloc logBloc, {super.nextLogger})
+    : externalLoggingService = ExternalLoggingService(logBloc),
+      super(logLevel: LogLevel.info);
 
   final ExternalLoggingService externalLoggingService;
 

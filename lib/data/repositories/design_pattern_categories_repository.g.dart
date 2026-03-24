@@ -10,32 +10,33 @@ part of 'design_pattern_categories_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(designPatternCategoriesRepository)
-final designPatternCategoriesRepositoryProvider =
-    DesignPatternCategoriesRepositoryProvider._();
+final designPatternCategoriesRepositoryProvider = DesignPatternCategoriesRepositoryProvider._();
 
 final class DesignPatternCategoriesRepositoryProvider
-    extends $FunctionalProvider<DesignPatternCategoriesRepository,
-        DesignPatternCategoriesRepository, DesignPatternCategoriesRepository>
+    extends
+        $FunctionalProvider<
+          DesignPatternCategoriesRepository,
+          DesignPatternCategoriesRepository,
+          DesignPatternCategoriesRepository
+        >
     with $Provider<DesignPatternCategoriesRepository> {
   DesignPatternCategoriesRepositoryProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'designPatternCategoriesRepositoryProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'designPatternCategoriesRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
-  String debugGetCreateSourceHash() =>
-      _$designPatternCategoriesRepositoryHash();
+  String debugGetCreateSourceHash() => _$designPatternCategoriesRepositoryHash();
 
   @$internal
   @override
-  $ProviderElement<DesignPatternCategoriesRepository> $createElement(
-          $ProviderPointer pointer) =>
+  $ProviderElement<DesignPatternCategoriesRepository> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
@@ -47,43 +48,41 @@ final class DesignPatternCategoriesRepositoryProvider
   Override overrideWithValue(DesignPatternCategoriesRepository value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride:
-          $SyncValueProvider<DesignPatternCategoriesRepository>(value),
+      providerOverride: $SyncValueProvider<DesignPatternCategoriesRepository>(value),
     );
   }
 }
 
-String _$designPatternCategoriesRepositoryHash() =>
-    r'551eabf96adbc84871ba6b4ac1212c1fa4bf6c86';
+String _$designPatternCategoriesRepositoryHash() => r'551eabf96adbc84871ba6b4ac1212c1fa4bf6c86';
 
 @ProviderFor(designPatternCategories)
 final designPatternCategoriesProvider = DesignPatternCategoriesProvider._();
 
-final class DesignPatternCategoriesProvider extends $FunctionalProvider<
-        AsyncValue<List<DesignPatternCategory>>,
-        List<DesignPatternCategory>,
-        FutureOr<List<DesignPatternCategory>>>
-    with
-        $FutureModifier<List<DesignPatternCategory>>,
-        $FutureProvider<List<DesignPatternCategory>> {
+final class DesignPatternCategoriesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<DesignPatternCategory>>,
+          List<DesignPatternCategory>,
+          FutureOr<List<DesignPatternCategory>>
+        >
+    with $FutureModifier<List<DesignPatternCategory>>, $FutureProvider<List<DesignPatternCategory>> {
   DesignPatternCategoriesProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'designPatternCategoriesProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'designPatternCategoriesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$designPatternCategoriesHash();
 
   @$internal
   @override
-  $FutureProviderElement<List<DesignPatternCategory>> $createElement(
-          $ProviderPointer pointer) =>
+  $FutureProviderElement<List<DesignPatternCategory>> $createElement($ProviderPointer pointer) =>
       $FutureProviderElement(pointer);
 
   @override
@@ -92,24 +91,22 @@ final class DesignPatternCategoriesProvider extends $FunctionalProvider<
   }
 }
 
-String _$designPatternCategoriesHash() =>
-    r'64eb21aa9b8a453d7935dc056ac5b831acd68963';
+String _$designPatternCategoriesHash() => r'64eb21aa9b8a453d7935dc056ac5b831acd68963';
 
 @ProviderFor(designPattern)
 final designPatternProvider = DesignPatternFamily._();
 
-final class DesignPatternProvider extends $FunctionalProvider<
-        AsyncValue<DesignPattern>, DesignPattern, FutureOr<DesignPattern>>
+final class DesignPatternProvider
+    extends $FunctionalProvider<AsyncValue<DesignPattern>, DesignPattern, FutureOr<DesignPattern>>
     with $FutureModifier<DesignPattern>, $FutureProvider<DesignPattern> {
-  DesignPatternProvider._(
-      {required DesignPatternFamily super.from, required String super.argument})
-      : super(
-          retry: null,
-          name: r'designPatternProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+  DesignPatternProvider._({required DesignPatternFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'designPatternProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$designPatternHash();
@@ -123,17 +120,12 @@ final class DesignPatternProvider extends $FunctionalProvider<
 
   @$internal
   @override
-  $FutureProviderElement<DesignPattern> $createElement(
-          $ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<DesignPattern> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<DesignPattern> create(Ref ref) {
     final argument = this.argument as String;
-    return designPattern(
-      ref,
-      argument,
-    );
+    return designPattern(ref, argument);
   }
 
   @override
@@ -149,21 +141,17 @@ final class DesignPatternProvider extends $FunctionalProvider<
 
 String _$designPatternHash() => r'6850de04d434e12ead1948cca345849187431451';
 
-final class DesignPatternFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<DesignPattern>, String> {
+final class DesignPatternFamily extends $Family with $FunctionalFamilyOverride<FutureOr<DesignPattern>, String> {
   DesignPatternFamily._()
-      : super(
-          retry: null,
-          name: r'designPatternProvider',
-          dependencies: null,
-          $allTransitiveDependencies: null,
-          isAutoDispose: true,
-        );
+    : super(
+        retry: null,
+        name: r'designPatternProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-  DesignPatternProvider call(
-    String id,
-  ) =>
-      DesignPatternProvider._(argument: id, from: this);
+  DesignPatternProvider call(String id) => DesignPatternProvider._(argument: id, from: this);
 
   @override
   String toString() => r'designPatternProvider';

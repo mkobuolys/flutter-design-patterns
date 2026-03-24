@@ -3,9 +3,7 @@ import 'shape_factory.dart';
 import 'shape_type.dart';
 
 class ShapeFlyweightFactory {
-  ShapeFlyweightFactory({
-    required this.shapeFactory,
-  });
+  ShapeFlyweightFactory({required this.shapeFactory});
 
   final ShapeFactory shapeFactory;
   final Map<ShapeType, IPositionedShape> shapesMap = {};
