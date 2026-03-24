@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart'
     show BuildContext, Color, TextSpan, TextStyle, Theme;
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:highlight/highlight.dart';
 
 class DartSyntaxHighlighter extends SyntaxHighlighter {
@@ -13,9 +13,7 @@ class DartSyntaxHighlighter extends SyntaxHighlighter {
   TextSpan format(String source) {
     return TextSpan(
       style: _syntaxTheme[_rootKey],
-      children: _convert(
-        highlight.parse(source, language: 'dart').nodes!,
-      ),
+      children: _convert(highlight.parse(source, language: 'dart').nodes!),
     );
   }
 
@@ -34,10 +32,7 @@ class DartSyntaxHighlighter extends SyntaxHighlighter {
         final List<TextSpan> tmp = [];
 
         currentSpans.add(
-          TextSpan(
-            children: tmp,
-            style: _syntaxTheme[node.className],
-          ),
+          TextSpan(children: tmp, style: _syntaxTheme[node.className]),
         );
 
         stack.add(currentSpans);

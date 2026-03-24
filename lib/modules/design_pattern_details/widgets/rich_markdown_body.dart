@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 
 import '../../../constants/constants.dart';
 import '../../../helpers/dart_syntax_highlighter.dart';
@@ -73,9 +73,7 @@ class RichMarkdownBody extends StatelessWidget {
         em: bodyMedium?.copyWith(fontStyle: FontStyle.italic),
         strong: bodyMedium?.copyWith(fontWeight: FontWeight.bold),
         img: bodyMedium,
-        listBullet: bodyMedium?.copyWith(
-          color: textTheme.bodySmall?.color,
-        ),
+        listBullet: bodyMedium?.copyWith(color: textTheme.bodySmall?.color),
         listBulletPadding: const EdgeInsets.symmetric(
           horizontal: LayoutConstants.paddingXS,
         ),
@@ -94,16 +92,11 @@ class RichMarkdownBody extends StatelessWidget {
       ),
       onTapLink: (_, link, __) => UrlLauncher.launchUrl(link ?? ''),
       syntaxHighlighter: DartSyntaxHighlighter(context),
-      sizedImageBuilder: (config) => GestureDetector(
+      imageBuilder: (uri, title, alt) => GestureDetector(
         onTap: () => Navigator.of(context).push(
-          PageRouteBuilder(
-            pageBuilder: (_, __, ___) => ImageView(uri: config.uri),
-          ),
+          PageRouteBuilder(pageBuilder: (_, __, ___) => ImageView(uri: uri)),
         ),
-        child: Hero(
-          tag: config.uri,
-          child: Image.asset(config.uri.toString()),
-        ),
+        child: Hero(tag: uri, child: Image.asset(uri.path)),
       ),
       data: data ?? '',
     );

@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ImageView extends StatefulWidget {
-  const ImageView({
-    required this.uri,
-    super.key,
-  });
+  const ImageView({required this.uri, super.key});
 
   final Uri uri;
 
@@ -128,10 +125,7 @@ class _ImageViewState extends State<ImageView>
             child: GestureDetector(
               onTapDown: _onTapDown,
               onDoubleTap: _onDoubleTap,
-              child: Hero(
-                tag: widget.uri,
-                child: Image.asset(widget.uri.toString()),
-              ),
+              child: Hero(tag: widget.uri, child: Image.asset(widget.uri.path)),
             ),
           ),
         ),

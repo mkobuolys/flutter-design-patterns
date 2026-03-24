@@ -54,7 +54,7 @@ final class DesignPatternCategoriesRepositoryProvider
 }
 
 String _$designPatternCategoriesRepositoryHash() =>
-    r'8559a7606a5389938e681acc834e06c7232d95a6';
+    r'551eabf96adbc84871ba6b4ac1212c1fa4bf6c86';
 
 @ProviderFor(designPatternCategories)
 final designPatternCategoriesProvider = DesignPatternCategoriesProvider._();

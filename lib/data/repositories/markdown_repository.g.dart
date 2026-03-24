@@ -51,7 +51,7 @@ final class MarkdownRepositoryProvider extends $FunctionalProvider<
 }
 
 String _$markdownRepositoryHash() =>
-    r'96c291a6f43aeeed5e97a22959991d4137c10138';
+    r'99c276646d289a596d3df35524c722ddc029028b';
 
 @ProviderFor(markdown)
 final markdownProvider = MarkdownFamily._();
