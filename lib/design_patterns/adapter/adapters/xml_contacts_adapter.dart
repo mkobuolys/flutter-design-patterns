@@ -5,9 +5,7 @@ import '../contact.dart';
 import '../icontacts_adapter.dart';
 
 class XmlContactsAdapter implements IContactsAdapter {
-  const XmlContactsAdapter({
-    this.api = const XmlContactsApi(),
-  });
+  const XmlContactsAdapter({this.api = const XmlContactsApi()});
 
   final XmlContactsApi api;
 
@@ -26,17 +24,10 @@ class XmlContactsAdapter implements IContactsAdapter {
     for (final xmlElement in xmlDocument.findAllElements('contact')) {
       final fullName = xmlElement.findElements('fullname').single.innerText;
       final email = xmlElement.findElements('email').single.innerText;
-      final favouriteString =
-          xmlElement.findElements('favourite').single.innerText;
+      final favouriteString = xmlElement.findElements('favourite').single.innerText;
       final favourite = favouriteString.toLowerCase() == 'true';
 
-      contactsList.add(
-        Contact(
-          fullName: fullName,
-          email: email,
-          favourite: favourite,
-        ),
-      );
+      contactsList.add(Contact(fullName: fullName, email: email, favourite: favourite));
     }
 
     return contactsList;

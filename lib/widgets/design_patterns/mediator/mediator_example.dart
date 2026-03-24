@@ -36,31 +36,23 @@ class _MediatorExampleState extends State<MediatorExample> {
 
   void _sendToQa() => setState(() => _admin.sendTo<Tester>('BUG!'));
 
-  void _sendToDevelopers() => setState(
-        () => _admin.sendTo<Developer>('Hello, World!'),
-      );
+  void _sendToDevelopers() => setState(() => _admin.sendTo<Developer>('Hello, World!'));
 
   void _addTeamMember() {
     final name = '${faker.person.firstName()} ${faker.person.lastName()}';
-    final teamMember = faker.randomGenerator.boolean()
-        ? Tester(name: name)
-        : Developer(name: name);
+    final teamMember = faker.randomGenerator.boolean() ? Tester(name: name) : Developer(name: name);
 
     setState(() => _notificationHub.register(teamMember));
   }
 
-  void _sendFromMember(TeamMember member) => setState(
-        () => member.send('Hello from ${member.name}'),
-      );
+  void _sendFromMember(TeamMember member) => setState(() => member.send('Hello from ${member.name}'));
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -90,10 +82,7 @@ class _MediatorExampleState extends State<MediatorExample> {
               onPressed: _addTeamMember,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            NotificationList(
-              members: _notificationHub.getTeamMembers(),
-              onTap: _sendFromMember,
-            ),
+            NotificationList(members: _notificationHub.getTeamMembers(), onTap: _sendFromMember),
           ],
         ),
       ),

@@ -12,21 +12,13 @@ class AdapterExample extends StatelessWidget {
     return const ScrollConfiguration(
       behavior: ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            ContactsSection(
-              adapter: JsonContactsAdapter(),
-              headerText: 'Contacts from JSON API:',
-            ),
+            ContactsSection(adapter: JsonContactsAdapter(), headerText: 'Contacts from JSON API:'),
             SizedBox(height: LayoutConstants.spaceL),
-            ContactsSection(
-              adapter: XmlContactsAdapter(),
-              headerText: 'Contacts from XML API:',
-            ),
+            ContactsSection(adapter: XmlContactsAdapter(), headerText: 'Contacts from XML API:'),
           ],
         ),
       ),

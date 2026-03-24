@@ -7,10 +7,7 @@ class CustomPizzaSelection extends StatelessWidget {
   final Map<int, PizzaToppingData> pizzaToppingsDataMap;
   final Function(int, bool?) onSelected;
 
-  const CustomPizzaSelection({
-    required this.pizzaToppingsDataMap,
-    required this.onSelected,
-  });
+  const CustomPizzaSelection({required this.pizzaToppingsDataMap, required this.onSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +17,7 @@ class CustomPizzaSelection extends StatelessWidget {
       children: <Widget>[
         for (var i = 0; i < pizzaToppingsDataMap.length; i++)
           i == 0
-              ? _ChoiceChip(
-                  label: 'Pizza Base',
-                  selected: true,
-                  onSelected: (_) {},
-                )
+              ? _ChoiceChip(label: 'Pizza Base', selected: true, onSelected: (_) {})
               : _ChoiceChip(
                   label: pizzaToppingsDataMap[i]!.label,
                   selected: pizzaToppingsDataMap[i]!.selected,
@@ -36,11 +29,7 @@ class CustomPizzaSelection extends StatelessWidget {
 }
 
 class _ChoiceChip extends StatelessWidget {
-  const _ChoiceChip({
-    required this.label,
-    required this.selected,
-    required this.onSelected,
-  });
+  const _ChoiceChip({required this.label, required this.selected, required this.onSelected});
 
   final String label;
   final bool selected;
@@ -53,7 +42,7 @@ class _ChoiceChip extends StatelessWidget {
     return ChoiceChip(
       color: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return Colors.black;
+          return null;
         }
 
         return Colors.white;

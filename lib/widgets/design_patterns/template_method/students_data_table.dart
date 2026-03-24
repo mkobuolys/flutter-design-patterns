@@ -6,9 +6,7 @@ import '../../../design_patterns/template_method/template_method.dart';
 class StudentsDataTable extends StatelessWidget {
   final List<Student> students;
 
-  const StudentsDataTable({
-    required this.students,
-  });
+  const StudentsDataTable({required this.students});
 
   @override
   Widget build(BuildContext context) {
@@ -21,37 +19,22 @@ class StudentsDataTable extends StatelessWidget {
         dataRowMinHeight: LayoutConstants.spaceXL,
         columns: const <DataColumn>[
           DataColumn(
-            label: Text(
-              'Name',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('Name', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
           ),
           DataColumn(
-            label: Text(
-              'Age',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('Age', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
             numeric: true,
           ),
           DataColumn(
-            label: Text(
-              'Height',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('Height', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
             numeric: true,
           ),
           DataColumn(
-            label: Text(
-              'Weight',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('Weight', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
             numeric: true,
           ),
           DataColumn(
-            label: Text(
-              'BMI',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
+            label: Text('BMI', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0)),
             numeric: true,
           ),
         ],
@@ -63,12 +46,7 @@ class StudentsDataTable extends StatelessWidget {
                 DataCell(Text(student.age.toString())),
                 DataCell(Text(student.height.toString())),
                 DataCell(Text(student.weight.toString())),
-                DataCell(
-                  Text(
-                    student.bmi.toStringAsFixed(2),
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                DataCell(Text(student.bmi.toStringAsFixed(2), style: const TextStyle(fontWeight: FontWeight.bold))),
               ],
             ),
         ],

@@ -11,8 +11,7 @@ abstract class StockSubscriber {
   final id = faker.guid.guid();
 
   @protected
-  final StreamController<Stock> stockStreamController =
-      StreamController.broadcast();
+  final StreamController<Stock> stockStreamController = StreamController.broadcast();
 
   Stream<Stock> get stockStream => stockStreamController.stream;
 

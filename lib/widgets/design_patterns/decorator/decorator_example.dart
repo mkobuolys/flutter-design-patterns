@@ -40,44 +40,27 @@ class _DecoratorExampleState extends State<DecoratorExample> {
   }
 
   void _setChipSelected(int index, bool selected) => setState(() {
-        _pizzaToppingsDataMap[index]!.setSelected(isSelected: selected);
-      });
+    _pizzaToppingsDataMap[index]!.setSelected(isSelected: selected);
+  });
 
   void _setSelectedPizza(int index) => setState(() {
-        _pizza = pizzaMenu.getPizza(index, _pizzaToppingsDataMap);
-      });
+    _pizza = pizzaMenu.getPizza(index, _pizzaToppingsDataMap);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  'Select your pizza:',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
-            PizzaSelection(
-              selectedIndex: _selectedIndex,
-              onChanged: _onSelectedIndexChanged,
-            ),
+            Row(children: <Widget>[Text('Select your pizza:', style: Theme.of(context).textTheme.titleLarge)]),
+            PizzaSelection(selectedIndex: _selectedIndex, onChanged: _onSelectedIndexChanged),
             if (_selectedIndex == 2)
-              CustomPizzaSelection(
-                pizzaToppingsDataMap: _pizzaToppingsDataMap,
-                onSelected: _onCustomPizzaChipSelected,
-              ),
-            PizzaInformation(
-              pizza: _pizza,
-            ),
+              CustomPizzaSelection(pizzaToppingsDataMap: _pizzaToppingsDataMap, onSelected: _onCustomPizzaChipSelected),
+            PizzaInformation(pizza: _pizza),
           ],
         ),
       ),

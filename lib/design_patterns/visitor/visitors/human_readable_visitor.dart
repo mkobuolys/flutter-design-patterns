@@ -46,9 +46,7 @@ class HumanReadableVisitor implements IVisitor {
 
   @override
   String visitTextFile(TextFile file) {
-    final fileContentPreview = file.content.length > 30
-        ? '${file.content.substring(0, 30)}...'
-        : file.content;
+    final fileContentPreview = file.content.length > 30 ? '${file.content.substring(0, 30)}...' : file.content;
 
     final fileInfo = <String, String>{
       'Type': 'Text',

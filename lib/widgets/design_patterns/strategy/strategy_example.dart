@@ -38,24 +38,16 @@ class _StrategyExampleState extends State<StrategyExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            OrderButtons(
-              onAdd: _addToOrder,
-              onClear: _clearOrder,
-            ),
+            OrderButtons(onAdd: _addToOrder, onClear: _clearOrder),
             const SizedBox(height: LayoutConstants.spaceM),
             Column(
               children: <Widget>[
                 if (_order.items.isEmpty)
-                  Text(
-                    'Your order is empty',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  )
+                  Text('Your order is empty', style: Theme.of(context).textTheme.titleLarge)
                 else
                   OrderItemsTable(orderItems: _order.items),
                 const SizedBox(height: LayoutConstants.spaceM),
@@ -64,11 +56,7 @@ class _StrategyExampleState extends State<StrategyExample> {
                   shippingOptions: _shippingCostsStrategyList,
                   onChanged: _setSelectedStrategyIndex,
                 ),
-                OrderSummary(
-                  shippingCostsStrategy:
-                      _shippingCostsStrategyList[_selectedStrategyIndex],
-                  order: _order,
-                ),
+                OrderSummary(shippingCostsStrategy: _shippingCostsStrategyList[_selectedStrategyIndex], order: _order),
               ],
             ),
           ],

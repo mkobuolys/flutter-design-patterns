@@ -6,9 +6,7 @@ import '../../../../themes.dart';
 import '../widgets/widgets.dart';
 
 class TabsLayout extends StatefulWidget {
-  const TabsLayout({
-    required this.designPattern,
-  });
+  const TabsLayout({required this.designPattern});
 
   final DesignPattern designPattern;
 
@@ -16,18 +14,14 @@ class TabsLayout extends StatefulWidget {
   _TabsLayoutState createState() => _TabsLayoutState();
 }
 
-class _TabsLayoutState extends State<TabsLayout>
-    with SingleTickerProviderStateMixin {
+class _TabsLayoutState extends State<TabsLayout> with SingleTickerProviderStateMixin {
   late final TabController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = TabController(
-      length: 2,
-      vsync: this,
-    );
+    _controller = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -55,14 +49,8 @@ class _TabsLayoutState extends State<TabsLayout>
         unselectedIconTheme: const IconThemeData(size: 20.0),
         unselectedItemColor: Colors.black45,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            label: 'Description',
-            icon: Icon(FontAwesomeIcons.fileLines),
-          ),
-          BottomNavigationBarItem(
-            label: 'Example',
-            icon: Icon(FontAwesomeIcons.lightbulb),
-          ),
+          BottomNavigationBarItem(label: 'Description', icon: FaIcon(FontAwesomeIcons.fileLines)),
+          BottomNavigationBarItem(label: 'Example', icon: FaIcon(FontAwesomeIcons.lightbulb)),
         ],
         onTap: _onBottomNavigationBarItemTap,
       ),

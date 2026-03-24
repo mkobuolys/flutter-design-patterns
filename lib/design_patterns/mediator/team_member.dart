@@ -1,9 +1,7 @@
 import 'notification_hub.dart';
 
 base class TeamMember {
-  TeamMember({
-    required this.name,
-  });
+  TeamMember({required this.name});
 
   final String name;
 

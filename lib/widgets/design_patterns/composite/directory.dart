@@ -29,9 +29,9 @@ class Directory extends StatelessWidget implements IFile {
   Widget render(BuildContext context) {
     return Theme(
       data: ThemeData(
-        expansionTileTheme: Theme.of(context)
-            .expansionTileTheme
-            .copyWith(iconColor: Colors.black, textColor: Colors.black),
+        expansionTileTheme: Theme.of(
+          context,
+        ).expansionTileTheme.copyWith(iconColor: Colors.black, textColor: Colors.black),
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: LayoutConstants.paddingS),

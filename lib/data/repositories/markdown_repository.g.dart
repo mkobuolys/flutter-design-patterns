@@ -6,173 +6,105 @@ part of 'markdown_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$markdownRepositoryHash() =>
-    r'96c291a6f43aeeed5e97a22959991d4137c10138';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [markdownRepository].
 @ProviderFor(markdownRepository)
-final markdownRepositoryProvider =
-    AutoDisposeProvider<MarkdownRepository>.internal(
-  markdownRepository,
-  name: r'markdownRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$markdownRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final markdownRepositoryProvider = MarkdownRepositoryProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef MarkdownRepositoryRef = AutoDisposeProviderRef<MarkdownRepository>;
-String _$markdownHash() => r'2796d0b1e0771c1c7d491f96d27d3e2681d75100';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [markdown].
-@ProviderFor(markdown)
-const markdownProvider = MarkdownFamily();
-
-/// See also [markdown].
-class MarkdownFamily extends Family<AsyncValue<String>> {
-  /// See also [markdown].
-  const MarkdownFamily();
-
-  /// See also [markdown].
-  MarkdownProvider call(
-    String id,
-  ) {
-    return MarkdownProvider(
-      id,
-    );
-  }
-
-  @override
-  MarkdownProvider getProviderOverride(
-    covariant MarkdownProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'markdownProvider';
-}
-
-/// See also [markdown].
-class MarkdownProvider extends AutoDisposeFutureProvider<String> {
-  /// See also [markdown].
-  MarkdownProvider(
-    String id,
-  ) : this._internal(
-          (ref) => markdown(
-            ref as MarkdownRef,
-            id,
-          ),
-          from: markdownProvider,
-          name: r'markdownProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$markdownHash,
-          dependencies: MarkdownFamily._dependencies,
-          allTransitiveDependencies: MarkdownFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  MarkdownProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final String id;
-
-  @override
-  Override overrideWith(
-    FutureOr<String> Function(MarkdownRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: MarkdownProvider._internal(
-        (ref) => create(ref as MarkdownRef),
-        from: from,
-        name: null,
+final class MarkdownRepositoryProvider
+    extends $FunctionalProvider<MarkdownRepository, MarkdownRepository, MarkdownRepository>
+    with $Provider<MarkdownRepository> {
+  MarkdownRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'markdownRepositoryProvider',
+        isAutoDispose: true,
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+      );
 
   @override
-  AutoDisposeFutureProviderElement<String> createElement() {
-    return _MarkdownProviderElement(this);
+  String debugGetCreateSourceHash() => _$markdownRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<MarkdownRepository> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
+
+  @override
+  MarkdownRepository create(Ref ref) {
+    return markdownRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MarkdownRepository value) {
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<MarkdownRepository>(value));
+  }
+}
+
+String _$markdownRepositoryHash() => r'99c276646d289a596d3df35524c722ddc029028b';
+
+@ProviderFor(markdown)
+final markdownProvider = MarkdownFamily._();
+
+final class MarkdownProvider extends $FunctionalProvider<AsyncValue<String>, String, FutureOr<String>>
+    with $FutureModifier<String>, $FutureProvider<String> {
+  MarkdownProvider._({required MarkdownFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'markdownProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$markdownHash();
+
+  @override
+  String toString() {
+    return r'markdownProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<String> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<String> create(Ref ref) {
+    final argument = this.argument as String;
+    return markdown(ref, argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is MarkdownProvider && other.id == id;
+    return other is MarkdownProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin MarkdownRef on AutoDisposeFutureProviderRef<String> {
-  /// The parameter `id` of this provider.
-  String get id;
-}
+String _$markdownHash() => r'2796d0b1e0771c1c7d491f96d27d3e2681d75100';
 
-class _MarkdownProviderElement extends AutoDisposeFutureProviderElement<String>
-    with MarkdownRef {
-  _MarkdownProviderElement(super.provider);
+final class MarkdownFamily extends $Family with $FunctionalFamilyOverride<FutureOr<String>, String> {
+  MarkdownFamily._()
+    : super(
+        retry: null,
+        name: r'markdownProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  MarkdownProvider call(String id) => MarkdownProvider._(argument: id, from: this);
 
   @override
-  String get id => (origin as MarkdownProvider).id;
+  String toString() => r'markdownProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

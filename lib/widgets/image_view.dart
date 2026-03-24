@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ImageView extends StatefulWidget {
-  const ImageView({
-    required this.uri,
-    super.key,
-  });
+  const ImageView({required this.uri, super.key});
 
   final Uri uri;
 
@@ -15,8 +12,7 @@ class ImageView extends StatefulWidget {
   State<ImageView> createState() => _ImageViewState();
 }
 
-class _ImageViewState extends State<ImageView>
-    with SingleTickerProviderStateMixin {
+class _ImageViewState extends State<ImageView> with SingleTickerProviderStateMixin {
   late TransformationController _controller;
   late Animation<Matrix4>? _animationReset;
   late AnimationController _controllerReset;
@@ -26,10 +22,7 @@ class _ImageViewState extends State<ImageView>
   @override
   void initState() {
     super.initState();
-    _controllerReset = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 100),
-    );
+    _controllerReset = AnimationController(vsync: this, duration: const Duration(milliseconds: 100));
     _controller = TransformationController();
   }
 
@@ -45,17 +38,14 @@ class _ImageViewState extends State<ImageView>
   // track issue: (https://github.com/flutter/flutter/issues/10048)
   void _onTapDown(TapDownDetails details) {
     if (_tapPosition == Offset.zero &&
-        !(details.globalPosition.dx - _tapPosition.dx < 20 &&
-            details.globalPosition.dy - _tapPosition.dy < 20)) {
+        !(details.globalPosition.dx - _tapPosition.dx < 20 && details.globalPosition.dy - _tapPosition.dy < 20)) {
       _tapPosition = details.globalPosition;
     }
 
     Timer(const Duration(milliseconds: 500), () => _tapPosition = Offset.zero);
   }
 
-  void _onDoubleTap() => _controller.value == Matrix4.identity()
-      ? _animateScaleIn()
-      : _animateScaleOut();
+  void _onDoubleTap() => _controller.value == Matrix4.identity() ? _animateScaleIn() : _animateScaleOut();
 
   void _animateScaleIn() {
     final size = MediaQuery.of(context).size;
@@ -63,8 +53,8 @@ class _ImageViewState extends State<ImageView>
 
     _animateResetInitialize(
       _controller.value.clone()
-        ..scale(2.5)
-        ..translate(offset.dx, offset.dy),
+        ..scaleByDouble(2.5, 2.5, 2.5, 1.0)
+        ..translateByDouble(offset.dx, offset.dy, 0.0, 1.0),
     );
   }
 
@@ -72,10 +62,7 @@ class _ImageViewState extends State<ImageView>
 
   void _animateResetInitialize(Matrix4 end) {
     _controllerReset.reset();
-    _animationReset = Matrix4Tween(
-      begin: _controller.value,
-      end: end,
-    ).animate(_controllerReset);
+    _animationReset = Matrix4Tween(begin: _controller.value, end: end).animate(_controllerReset);
 
     _animationReset?.addListener(_onAnimateReset);
     _controllerReset.forward();
@@ -128,10 +115,7 @@ class _ImageViewState extends State<ImageView>
             child: GestureDetector(
               onTapDown: _onTapDown,
               onDoubleTap: _onDoubleTap,
-              child: Hero(
-                tag: widget.uri,
-                child: Image.asset(widget.uri.path),
-              ),
+              child: Hero(tag: widget.uri, child: Image.asset(widget.uri.path)),
             ),
           ),
         ),

@@ -7,26 +7,29 @@ class FactorySelection extends StatelessWidget {
   final int selectedIndex;
   final ValueSetter<int?> onChanged;
 
-  const FactorySelection({
-    required this.widgetsFactoryList,
-    required this.selectedIndex,
-    required this.onChanged,
-  });
+  const FactorySelection({required this.widgetsFactoryList, required this.selectedIndex, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        for (final (i, widgetsFactory) in widgetsFactoryList.indexed)
-          RadioListTile(
-            title: Text(widgetsFactory.getTitle()),
-            value: i,
-            groupValue: selectedIndex,
-            selected: i == selectedIndex,
-            activeColor: Colors.black,
-            onChanged: onChanged,
-          ),
-      ],
+    return RadioTheme(
+      data: RadioThemeData(
+        fillColor: WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
+          if (states.contains(WidgetState.selected)) {
+            return Colors.black;
+          }
+          return null;
+        }),
+      ),
+      child: RadioGroup<int>(
+        groupValue: selectedIndex,
+        onChanged: onChanged,
+        child: Column(
+          children: <Widget>[
+            for (final (i, widgetsFactory) in widgetsFactoryList.indexed)
+              RadioListTile<int>(title: Text(widgetsFactory.getTitle()), value: i, selected: i == selectedIndex),
+          ],
+        ),
+      ),
     );
   }
 }

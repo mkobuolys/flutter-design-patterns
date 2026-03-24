@@ -22,9 +22,9 @@ class _MementoExampleState extends State<MementoExample> {
   }
 
   void _executeCommand(ICommand command) => setState(() {
-        command.execute();
-        _commandHistory.add(command);
-      });
+    command.execute();
+    _commandHistory.add(command);
+  });
 
   void _undo() => setState(() => _commandHistory.undo());
 
@@ -33,14 +33,10 @@ class _MementoExampleState extends State<MementoExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
-            ShapeContainer(
-              shape: _originator.state,
-            ),
+            ShapeContainer(shape: _originator.state),
             const SizedBox(height: LayoutConstants.spaceM),
             PlatformButton(
               materialColor: Colors.black,

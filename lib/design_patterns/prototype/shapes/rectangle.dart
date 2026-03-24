@@ -6,14 +6,9 @@ import '../shape.dart';
 class Rectangle extends Shape {
   Rectangle(super.color, this.height, this.width);
 
-  Rectangle.initial([super.color = Colors.black])
-      : height = 100.0,
-        width = 100.0;
+  Rectangle.initial([super.color = Colors.black]) : height = 100.0, width = 100.0;
 
-  Rectangle.clone(Rectangle super.source)
-      : height = source.height,
-        width = source.width,
-        super.clone();
+  Rectangle.clone(Rectangle super.source) : height = source.height, width = source.width, super.clone();
 
   double height;
   double width;
@@ -23,12 +18,7 @@ class Rectangle extends Shape {
 
   @override
   void randomiseProperties() {
-    color = Color.fromRGBO(
-      random.integer(255),
-      random.integer(255),
-      random.integer(255),
-      1.0,
-    );
+    color = Color.fromRGBO(random.integer(255), random.integer(255), random.integer(255), 1.0);
     height = random.integer(100, min: 50).toDouble();
     width = random.integer(100, min: 50).toDouble();
   }
@@ -42,13 +32,8 @@ class Rectangle extends Shape {
           duration: const Duration(milliseconds: 500),
           height: height,
           width: width,
-          decoration: BoxDecoration(
-            color: color,
-          ),
-          child: const Icon(
-            Icons.star,
-            color: Colors.white,
-          ),
+          decoration: BoxDecoration(color: color),
+          child: const Icon(Icons.star, color: Colors.white),
         ),
       ),
     );

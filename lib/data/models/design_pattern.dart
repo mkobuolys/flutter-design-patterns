@@ -1,10 +1,5 @@
 class DesignPattern {
-  const DesignPattern({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.articleUrl,
-  });
+  const DesignPattern({required this.id, required this.title, required this.description, required this.articleUrl});
 
   final String id;
   final String title;

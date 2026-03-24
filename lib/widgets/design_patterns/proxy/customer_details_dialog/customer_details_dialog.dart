@@ -6,10 +6,7 @@ import '../../../platform_specific/platform_button.dart';
 import 'customer_details_column.dart';
 
 class CustomerDetailsDialog extends StatefulWidget {
-  const CustomerDetailsDialog({
-    required this.customer,
-    required this.service,
-  });
+  const CustomerDetailsDialog({required this.customer, required this.service});
 
   final Customer customer;
   final ICustomerDetailsService service;
@@ -23,7 +20,9 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
   void initState() {
     super.initState();
 
-    widget.service.getCustomerDetails(widget.customer.id).then(
+    widget.service
+        .getCustomerDetails(widget.customer.id)
+        .then(
           (CustomerDetails customerDetails) => setState(() {
             widget.customer.details = customerDetails;
           }),
@@ -42,14 +41,10 @@ class _CustomerDetailsDialogState extends State<CustomerDetailsDialog> {
             ? Center(
                 child: CircularProgressIndicator(
                   backgroundColor: lightBackgroundColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.black.withOpacity(0.65),
-                  ),
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black.withValues(alpha: 0.65)),
                 ),
               )
-            : CustomerDetailsColumn(
-                customerDetails: widget.customer.details!,
-              ),
+            : CustomerDetailsColumn(customerDetails: widget.customer.details!),
       ),
       actions: <Widget>[
         Visibility(

@@ -8,9 +8,7 @@ import '../../../../themes.dart';
 import 'rich_markdown_body.dart';
 
 class MarkdownView extends ConsumerWidget {
-  const MarkdownView({
-    required this.designPattern,
-  });
+  const MarkdownView({required this.designPattern});
 
   final DesignPattern designPattern;
 
@@ -38,9 +36,7 @@ class MarkdownView extends ConsumerWidget {
               loading: () => Center(
                 child: CircularProgressIndicator(
                   backgroundColor: lightBackgroundColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.black.withOpacity(0.65),
-                  ),
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black.withValues(alpha: 0.65)),
                 ),
               ),
               error: (_, __) => const Text('Oops, something went wrong...'),

@@ -6,12 +6,10 @@ class Burger {
 
   void addIngredient(Ingredient ingredient) => _ingredients.add(ingredient);
 
-  String getFormattedIngredients() =>
-      _ingredients.map((x) => x.getName()).join(', ');
+  String getFormattedIngredients() => _ingredients.map((x) => x.getName()).join(', ');
 
-  String getFormattedAllergens() => <String>{
-        for (final ingredient in _ingredients) ...ingredient.getAllergens(),
-      }.join(', ');
+  String getFormattedAllergens() =>
+      <String>{for (final ingredient in _ingredients) ...ingredient.getAllergens()}.join(', ');
 
   String getFormattedPrice() => '\$${_price.toStringAsFixed(2)}';
 

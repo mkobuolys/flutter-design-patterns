@@ -7,10 +7,7 @@ class StockTickerSelection extends StatelessWidget {
   final List<StockTickerModel> stockTickers;
   final ValueChanged<int> onChanged;
 
-  const StockTickerSelection({
-    required this.stockTickers,
-    required this.onChanged,
-  });
+  const StockTickerSelection({required this.stockTickers, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +15,7 @@ class StockTickerSelection extends StatelessWidget {
       children: <Widget>[
         for (final (i, stockTickerModel) in stockTickers.indexed)
           Expanded(
-            child: _TickerTile(
-              stockTickerModel: stockTickerModel,
-              index: i,
-              onChanged: onChanged,
-            ),
+            child: _TickerTile(stockTickerModel: stockTickerModel, index: i, onChanged: onChanged),
           ),
       ],
     );
@@ -34,11 +27,7 @@ class _TickerTile extends StatelessWidget {
   final int index;
   final ValueChanged<int> onChanged;
 
-  const _TickerTile({
-    required this.stockTickerModel,
-    required this.index,
-    required this.onChanged,
-  });
+  const _TickerTile({required this.stockTickerModel, required this.index, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +40,7 @@ class _TickerTile extends StatelessWidget {
           child: Text(
             stockTickerModel.stockTicker.title,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: stockTickerModel.subscribed ? Colors.white : Colors.black,
-            ),
+            style: TextStyle(color: stockTickerModel.subscribed ? Colors.white : Colors.black),
           ),
         ),
       ),

@@ -5,9 +5,7 @@ import '../../../../data/models/design_pattern.dart';
 import '../widgets/widgets.dart';
 
 class SinglePageLayout extends StatelessWidget {
-  const SinglePageLayout({
-    required this.designPattern,
-  });
+  const SinglePageLayout({required this.designPattern});
 
   final DesignPattern designPattern;
 
@@ -18,16 +16,9 @@ class SinglePageLayout extends StatelessWidget {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Expanded(
-            child: MarkdownView(designPattern: designPattern),
-          ),
-          const VerticalDivider(
-            indent: LayoutConstants.spaceL,
-            endIndent: LayoutConstants.spaceL,
-          ),
-          Expanded(
-            child: ExampleView(designPatternId: designPattern.id),
-          ),
+          Expanded(child: MarkdownView(designPattern: designPattern)),
+          const VerticalDivider(indent: LayoutConstants.spaceL, endIndent: LayoutConstants.spaceL),
+          Expanded(child: ExampleView(designPatternId: designPattern.id)),
         ],
       ),
     );

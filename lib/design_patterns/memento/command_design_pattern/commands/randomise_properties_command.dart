@@ -6,8 +6,7 @@ import '../../originator.dart';
 import '../icommand.dart';
 
 class RandomisePropertiesCommand implements ICommand {
-  RandomisePropertiesCommand(this.originator)
-      : _backup = originator.createMemento();
+  RandomisePropertiesCommand(this.originator) : _backup = originator.createMemento();
 
   final Originator originator;
   final IMemento _backup;
@@ -16,12 +15,7 @@ class RandomisePropertiesCommand implements ICommand {
   void execute() {
     final shape = originator.state;
 
-    shape.color = Color.fromRGBO(
-      random.integer(255),
-      random.integer(255),
-      random.integer(255),
-      1.0,
-    );
+    shape.color = Color.fromRGBO(random.integer(255), random.integer(255), random.integer(255), 1.0);
     shape.height = random.integer(150, min: 50).toDouble();
     shape.width = random.integer(150, min: 50).toDouble();
   }

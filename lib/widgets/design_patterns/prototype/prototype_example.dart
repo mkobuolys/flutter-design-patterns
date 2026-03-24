@@ -18,28 +18,20 @@ class _PrototypeExampleState extends State<PrototypeExample> {
   Shape? _circleClone;
   Shape? _rectangleClone;
 
-  void _randomiseCircleProperties() => setState(
-        () => _circle.randomiseProperties(),
-      );
+  void _randomiseCircleProperties() => setState(() => _circle.randomiseProperties());
 
   void _cloneCircle() => setState(() => _circleClone = _circle.clone());
 
-  void _randomiseRectangleProperties() => setState(
-        () => _rectangle.randomiseProperties(),
-      );
+  void _randomiseRectangleProperties() => setState(() => _rectangle.randomiseProperties());
 
-  void _cloneRectangle() => setState(
-        () => _rectangleClone = _rectangle.clone(),
-      );
+  void _cloneRectangle() => setState(() => _rectangleClone = _rectangle.clone());
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             ShapeColumn(

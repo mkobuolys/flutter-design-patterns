@@ -13,11 +13,7 @@ class Directory extends StatelessWidget implements IFile {
   final List<IFile> _files = [];
   List<IFile> get files => _files;
 
-  Directory({
-    required this.title,
-    required this.level,
-    this.isInitiallyExpanded = false,
-  });
+  Directory({required this.title, required this.level, this.isInitiallyExpanded = false});
 
   void addFile(IFile file) => _files.add(file);
 
@@ -36,9 +32,9 @@ class Directory extends StatelessWidget implements IFile {
   Widget render(BuildContext context) {
     return Theme(
       data: ThemeData(
-        expansionTileTheme: Theme.of(context)
-            .expansionTileTheme
-            .copyWith(iconColor: Colors.black, textColor: Colors.black),
+        expansionTileTheme: Theme.of(
+          context,
+        ).expansionTileTheme.copyWith(iconColor: Colors.black, textColor: Colors.black),
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: LayoutConstants.paddingS),

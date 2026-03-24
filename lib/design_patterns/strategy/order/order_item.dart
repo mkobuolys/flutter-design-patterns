@@ -3,11 +3,7 @@ import 'package:faker/faker.dart';
 import 'package_size.dart';
 
 class OrderItem {
-  const OrderItem({
-    required this.title,
-    required this.price,
-    required this.packageSize,
-  });
+  const OrderItem({required this.title, required this.price, required this.packageSize});
 
   final String title;
   final double price;

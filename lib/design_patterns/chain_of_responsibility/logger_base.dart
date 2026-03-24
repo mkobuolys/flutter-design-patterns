@@ -3,10 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'log_level.dart';
 
 abstract class LoggerBase {
-  const LoggerBase({
-    required this.logLevel,
-    LoggerBase? nextLogger,
-  }) : _nextLogger = nextLogger;
+  const LoggerBase({required this.logLevel, LoggerBase? nextLogger}) : _nextLogger = nextLogger;
 
   @protected
   final LogLevel logLevel;

@@ -5,10 +5,5 @@ class Student {
   final int weight;
   late final double bmi;
 
-  Student({
-    required this.fullName,
-    required this.age,
-    required this.height,
-    required this.weight,
-  });
+  Student({required this.fullName, required this.age, required this.height, required this.weight});
 }

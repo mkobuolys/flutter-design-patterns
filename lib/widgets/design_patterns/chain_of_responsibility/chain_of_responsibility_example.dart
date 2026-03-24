@@ -10,12 +10,10 @@ class ChainOfResponsibilityExample extends StatefulWidget {
   const ChainOfResponsibilityExample();
 
   @override
-  _ChainOfResponsibilityExampleState createState() =>
-      _ChainOfResponsibilityExampleState();
+  _ChainOfResponsibilityExampleState createState() => _ChainOfResponsibilityExampleState();
 }
 
-class _ChainOfResponsibilityExampleState
-    extends State<ChainOfResponsibilityExample> {
+class _ChainOfResponsibilityExampleState extends State<ChainOfResponsibilityExample> {
   final logBloc = LogBloc();
 
   late final LoggerBase logger;
@@ -24,13 +22,7 @@ class _ChainOfResponsibilityExampleState
   void initState() {
     super.initState();
 
-    logger = DebugLogger(
-      logBloc,
-      nextLogger: InfoLogger(
-        logBloc,
-        nextLogger: ErrorLogger(logBloc),
-      ),
-    );
+    logger = DebugLogger(logBloc, nextLogger: InfoLogger(logBloc, nextLogger: ErrorLogger(logBloc)));
   }
 
   @override
@@ -46,9 +38,7 @@ class _ChainOfResponsibilityExampleState
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             PlatformButton(
@@ -76,8 +66,7 @@ class _ChainOfResponsibilityExampleState
                   child: StreamBuilder<List<LogMessage>>(
                     initialData: const [],
                     stream: logBloc.outLogStream,
-                    builder: (context, snapshot) =>
-                        LogMessagesColumn(logMessages: snapshot.data!),
+                    builder: (context, snapshot) => LogMessagesColumn(logMessages: snapshot.data!),
                   ),
                 ),
               ],

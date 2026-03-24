@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 class HeartbeatAnimation extends StatefulWidget {
   final Widget child;
 
-  const HeartbeatAnimation({
-    required this.child,
-  });
+  const HeartbeatAnimation({required this.child});
 
   @override
   _HeartbeatAnimationState createState() => _HeartbeatAnimationState();
 }
 
-class _HeartbeatAnimationState extends State<HeartbeatAnimation>
-    with SingleTickerProviderStateMixin {
+class _HeartbeatAnimationState extends State<HeartbeatAnimation> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
 
@@ -20,10 +17,7 @@ class _HeartbeatAnimationState extends State<HeartbeatAnimation>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..repeat();
+    _controller = AnimationController(duration: const Duration(seconds: 2), vsync: this)..repeat();
 
     _animation = Tween<double>(begin: 1.0, end: 1.25).animate(
       CurvedAnimation(
@@ -42,10 +36,7 @@ class _HeartbeatAnimationState extends State<HeartbeatAnimation>
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: ScaleTransition(
-        scale: _animation,
-        child: widget.child,
-      ),
+      child: ScaleTransition(scale: _animation, child: widget.child),
     );
   }
 }

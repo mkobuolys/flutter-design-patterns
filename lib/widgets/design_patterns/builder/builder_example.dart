@@ -25,15 +25,9 @@ class _BuilderExampleState extends State<BuilderExample> {
 
     _burgerMenuItems.addAll([
       BurgerMenuItem(label: 'Hamburger', burgerBuilder: HamburgerBuilder()),
-      BurgerMenuItem(
-        label: 'Cheeseburger',
-        burgerBuilder: CheeseburgerBuilder(),
-      ),
+      BurgerMenuItem(label: 'Cheeseburger', burgerBuilder: CheeseburgerBuilder()),
       BurgerMenuItem(label: 'Big Mac\u00AE', burgerBuilder: BigMacBuilder()),
-      BurgerMenuItem(
-        label: 'McChicken\u00AE',
-        burgerBuilder: McChickenBuilder(),
-      ),
+      BurgerMenuItem(label: 'McChicken\u00AE', burgerBuilder: McChickenBuilder()),
     ]);
 
     _selectedBurgerMenuItem = _burgerMenuItems[0];
@@ -47,51 +41,32 @@ class _BuilderExampleState extends State<BuilderExample> {
   }
 
   void _onBurgerMenuItemChanged(BurgerMenuItem? selectedItem) => setState(() {
-        _selectedBurgerMenuItem = selectedItem!;
-        _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
-        _selectedBurger = _prepareSelectedBurger();
-      });
+    _selectedBurgerMenuItem = selectedItem!;
+    _burgerMaker.changeBurgerBuilder(selectedItem.burgerBuilder);
+    _selectedBurger = _prepareSelectedBurger();
+  });
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  'Select menu item:',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
+            Row(children: <Widget>[Text('Select menu item:', style: Theme.of(context).textTheme.titleLarge)]),
             DropdownButton(
               value: _selectedBurgerMenuItem,
               items: _burgerMenuItems
                   .map<DropdownMenuItem<BurgerMenuItem>>(
-                    (BurgerMenuItem item) => DropdownMenuItem(
-                      value: item,
-                      child: Text(item.label),
-                    ),
+                    (BurgerMenuItem item) => DropdownMenuItem(value: item, child: Text(item.label)),
                   )
                   .toList(),
               onChanged: _onBurgerMenuItemChanged,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
-            Row(
-              children: <Widget>[
-                Text(
-                  'Information:',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
+            Row(children: <Widget>[Text('Information:', style: Theme.of(context).textTheme.titleLarge)]),
             const SizedBox(height: LayoutConstants.spaceM),
             BurgerInformationColumn(burger: _selectedBurger),
           ],

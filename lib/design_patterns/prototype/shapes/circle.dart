@@ -8,9 +8,7 @@ class Circle extends Shape {
 
   Circle.initial([super.color = Colors.black]) : radius = 50.0;
 
-  Circle.clone(Circle super.source)
-      : radius = source.radius,
-        super.clone();
+  Circle.clone(Circle super.source) : radius = source.radius, super.clone();
 
   double radius;
 
@@ -19,12 +17,7 @@ class Circle extends Shape {
 
   @override
   void randomiseProperties() {
-    color = Color.fromRGBO(
-      random.integer(255),
-      random.integer(255),
-      random.integer(255),
-      1.0,
-    );
+    color = Color.fromRGBO(random.integer(255), random.integer(255), random.integer(255), 1.0);
     radius = random.integer(50, min: 25).toDouble();
   }
 
@@ -37,14 +30,8 @@ class Circle extends Shape {
           duration: const Duration(milliseconds: 500),
           height: 2 * radius,
           width: 2 * radius,
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.star,
-            color: Colors.white,
-          ),
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          child: const Icon(Icons.star, color: Colors.white),
         ),
       ),
     );

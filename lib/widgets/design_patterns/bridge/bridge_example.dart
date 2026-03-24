@@ -49,9 +49,7 @@ class _BridgeExampleState extends State<BridgeExample> {
   void _addCustomer() {
     _customersRepository.save(Customer());
 
-    setState(
-      () => _customers = _customersRepository.getAll() as List<Customer>,
-    );
+    setState(() => _customers = _customersRepository.getAll() as List<Customer>);
   }
 
   void _addOrder() {
@@ -64,8 +62,7 @@ class _BridgeExampleState extends State<BridgeExample> {
   void initState() {
     super.initState();
 
-    _customersRepository =
-        CustomersRepository(_storages[_selectedCustomerStorageIndex]);
+    _customersRepository = CustomersRepository(_storages[_selectedCustomerStorageIndex]);
     _customers = _customersRepository.getAll() as List<Customer>;
 
     _ordersRepository = OrdersRepository(_storages[_selectedOrderStorageIndex]);
@@ -77,20 +74,11 @@ class _BridgeExampleState extends State<BridgeExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  'Select customers storage:',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
+            Row(children: <Widget>[Text('Select customers storage:', style: Theme.of(context).textTheme.titleLarge)]),
             StorageSelection(
               storages: _storages,
               selectedIndex: _selectedCustomerStorageIndex,
@@ -105,19 +93,9 @@ class _BridgeExampleState extends State<BridgeExample> {
             if (_customers.isNotEmpty)
               CustomersDatatable(customers: _customers)
             else
-              Text(
-                '0 customers found',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
+              Text('0 customers found', style: Theme.of(context).textTheme.titleSmall),
             const Divider(),
-            Row(
-              children: <Widget>[
-                Text(
-                  'Select orders storage:',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
+            Row(children: <Widget>[Text('Select orders storage:', style: Theme.of(context).textTheme.titleLarge)]),
             StorageSelection(
               storages: _storages,
               selectedIndex: _selectedOrderStorageIndex,
@@ -132,10 +110,7 @@ class _BridgeExampleState extends State<BridgeExample> {
             if (_orders.isNotEmpty)
               OrdersDatatable(orders: _orders)
             else
-              Text(
-                '0 orders found',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
+              Text('0 orders found', style: Theme.of(context).textTheme.titleSmall),
           ],
         ),
       ),

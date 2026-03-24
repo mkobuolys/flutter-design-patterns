@@ -36,14 +36,7 @@ class _VisitorExampleState extends State<VisitorExample> {
           size: 2612453,
         ),
       )
-      ..addFile(
-        const AudioFile(
-          title: 'Toto - Africa',
-          albumTitle: 'Toto IV',
-          fileExtension: 'mp3',
-          size: 3219811,
-        ),
-      )
+      ..addFile(const AudioFile(title: 'Toto - Africa', albumTitle: 'Toto IV', fileExtension: 'mp3', size: 3219811))
       ..addFile(
         const AudioFile(
           title: 'Bag Raiders - Shooting Stars',
@@ -55,64 +48,22 @@ class _VisitorExampleState extends State<VisitorExample> {
 
     final moviesDirectory = Directory(title: 'Movies', level: 1)
       ..addFile(
-        const VideoFile(
-          title: 'The Matrix',
-          directedBy: 'The Wachowskis',
-          fileExtension: 'avi',
-          size: 951495532,
-        ),
+        const VideoFile(title: 'The Matrix', directedBy: 'The Wachowskis', fileExtension: 'avi', size: 951495532),
       )
       ..addFile(
-        const VideoFile(
-          title: 'Pulp Fiction',
-          directedBy: 'Quentin Tarantino',
-          fileExtension: 'mp4',
-          size: 1251495532,
-        ),
+        const VideoFile(title: 'Pulp Fiction', directedBy: 'Quentin Tarantino', fileExtension: 'mp4', size: 1251495532),
       );
 
     final catPicturesDirectory = Directory(title: 'Cats', level: 2)
-      ..addFile(
-        const ImageFile(
-          title: 'Cat 1',
-          resolution: '640x480px',
-          fileExtension: 'jpg',
-          size: 844497,
-        ),
-      )
-      ..addFile(
-        const ImageFile(
-          title: 'Cat 2',
-          resolution: '1280x720px',
-          fileExtension: 'jpg',
-          size: 975363,
-        ),
-      )
-      ..addFile(
-        const ImageFile(
-          title: 'Cat 3',
-          resolution: '1920x1080px',
-          fileExtension: 'png',
-          size: 1975363,
-        ),
-      );
+      ..addFile(const ImageFile(title: 'Cat 1', resolution: '640x480px', fileExtension: 'jpg', size: 844497))
+      ..addFile(const ImageFile(title: 'Cat 2', resolution: '1280x720px', fileExtension: 'jpg', size: 975363))
+      ..addFile(const ImageFile(title: 'Cat 3', resolution: '1920x1080px', fileExtension: 'png', size: 1975363));
 
     final picturesDirectory = Directory(title: 'Pictures', level: 1)
       ..addFile(catPicturesDirectory)
-      ..addFile(
-        const ImageFile(
-          title: 'Not a cat',
-          resolution: '2560x1440px',
-          fileExtension: 'png',
-          size: 2971361,
-        ),
-      );
+      ..addFile(const ImageFile(title: 'Not a cat', resolution: '2560x1440px', fileExtension: 'png', size: 2971361));
 
-    final mediaDirectory = Directory(
-      title: 'Media',
-      level: 0,
-      isInitiallyExpanded: true,
-    )
+    final mediaDirectory = Directory(title: 'Media', level: 0, isInitiallyExpanded: true)
       ..addFile(musicDirectory)
       ..addFile(moviesDirectory)
       ..addFile(picturesDirectory)
@@ -160,9 +111,7 @@ class _VisitorExampleState extends State<VisitorExample> {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: [
             FilesVisitorSelection(

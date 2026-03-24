@@ -49,8 +49,7 @@ class _IteratorExampleState extends State<IteratorExample> {
   Future<void> _traverseTree() async {
     _toggleIsTraversing();
 
-    final iterator =
-        treeCollections[_selectedTreeCollectionIndex].createIterator();
+    final iterator = treeCollections[_selectedTreeCollectionIndex].createIterator();
 
     while (iterator.hasNext()) {
       if (!mounted) return;
@@ -67,24 +66,20 @@ class _IteratorExampleState extends State<IteratorExample> {
 
   void _reset() => setState(() => _currentNodeIndex = 0);
 
-  Color _getBackgroundColor(int index) =>
-      _currentNodeIndex == index ? Colors.red[200]! : Colors.white;
+  Color _getBackgroundColor(int index) => _currentNodeIndex == index ? Colors.red[200]! : Colors.white;
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             TreeCollectionSelection(
               treeCollections: treeCollections,
               selectedIndex: _selectedTreeCollectionIndex,
-              onChanged:
-                  !_isTraversing ? _setSelectedTreeCollectionIndex : null,
+              onChanged: !_isTraversing ? _setSelectedTreeCollectionIndex : null,
             ),
             const SizedBox(height: LayoutConstants.spaceL),
             Wrap(
@@ -99,8 +94,7 @@ class _IteratorExampleState extends State<IteratorExample> {
                 PlatformButton(
                   materialColor: Colors.black,
                   materialTextColor: Colors.white,
-                  onPressed:
-                      _isTraversing || _currentNodeIndex == 0 ? null : _reset,
+                  onPressed: _isTraversing || _currentNodeIndex == 0 ? null : _reset,
                   text: 'Reset',
                 ),
               ],
@@ -115,10 +109,7 @@ class _IteratorExampleState extends State<IteratorExample> {
                   Box(
                     nodeId: 2,
                     color: _getBackgroundColor(2),
-                    child: Box(
-                      nodeId: 5,
-                      color: _getBackgroundColor(5),
-                    ),
+                    child: Box(nodeId: 5, color: _getBackgroundColor(5)),
                   ),
                   Box(
                     nodeId: 3,
@@ -126,24 +117,15 @@ class _IteratorExampleState extends State<IteratorExample> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Box(
-                          nodeId: 6,
-                          color: _getBackgroundColor(6),
-                        ),
-                        Box(
-                          nodeId: 7,
-                          color: _getBackgroundColor(7),
-                        ),
+                        Box(nodeId: 6, color: _getBackgroundColor(6)),
+                        Box(nodeId: 7, color: _getBackgroundColor(7)),
                       ],
                     ),
                   ),
                   Box(
                     nodeId: 4,
                     color: _getBackgroundColor(4),
-                    child: Box(
-                      nodeId: 8,
-                      color: _getBackgroundColor(8),
-                    ),
+                    child: Box(nodeId: 8, color: _getBackgroundColor(8)),
                   ),
                 ],
               ),

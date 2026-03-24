@@ -4,9 +4,7 @@ import '../../../../constants/constants.dart';
 import '../../../widgets/design_patterns/design_patterns_factory.dart';
 
 class ExampleView extends StatelessWidget {
-  const ExampleView({
-    required this.designPatternId,
-  });
+  const ExampleView({required this.designPatternId});
 
   final String designPatternId;
 

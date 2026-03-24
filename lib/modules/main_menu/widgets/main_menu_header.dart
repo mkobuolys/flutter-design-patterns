@@ -15,49 +15,29 @@ class MainMenuHeader extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isDesktop = constraints.maxWidth > LayoutConstants.screenDesktop;
-        final headerText =
-            isDesktop ? 'Flutter Design Patterns' : 'Flutter\nDesign Patterns';
+        final headerText = isDesktop ? 'Flutter Design Patterns' : 'Flutter\nDesign Patterns';
 
         return Column(
-          crossAxisAlignment:
-              isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+          crossAxisAlignment: isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
           children: <Widget>[
             Row(
-              mainAxisAlignment: isDesktop
-                  ? MainAxisAlignment.center
-                  : MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: isDesktop ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  headerText,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+                Text(headerText, style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(width: LayoutConstants.spaceS),
-                const LogoButton(
-                  onPressed:
-                      UrlLauncher.launchFlutterDesignPatternsIntroductionPage,
-                ),
+                const LogoButton(onPressed: UrlLauncher.launchFlutterDesignPatternsIntroductionPage),
               ],
             ),
             const SizedBox(height: LayoutConstants.spaceM),
             Row(
-              mainAxisAlignment: isDesktop
-                  ? MainAxisAlignment.center
-                  : MainAxisAlignment.start,
+              mainAxisAlignment: isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Created with Flutter and',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
+                Text('Created with Flutter and', style: Theme.of(context).textTheme.headlineSmall),
                 const SizedBox(width: LayoutConstants.spaceM),
                 const Padding(
                   padding: EdgeInsets.only(bottom: LayoutConstants.paddingS),
-                  child: HeartbeatAnimation(
-                    child: Icon(
-                      FontAwesomeIcons.solidHeart,
-                      color: Color(0xFFF78888),
-                    ),
-                  ),
+                  child: HeartbeatAnimation(child: FaIcon(FontAwesomeIcons.solidHeart, color: Color(0xFFF78888))),
                 ),
               ],
             ),
@@ -65,19 +45,12 @@ class MainMenuHeader extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: 'by ',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(fontWeight: FontWeight.w500),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500),
                 children: [
                   TextSpan(
                     text: 'Mangirdas Kazlauskas',
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = UrlLauncher.launchPersonalPage,
+                    style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
+                    recognizer: TapGestureRecognizer()..onTap = UrlLauncher.launchPersonalPage,
                   ),
                 ],
               ),

@@ -9,10 +9,7 @@ class ContactsSection extends StatefulWidget {
   final IContactsAdapter adapter;
   final String headerText;
 
-  const ContactsSection({
-    required this.adapter,
-    required this.headerText,
-  });
+  const ContactsSection({required this.adapter, required this.headerText});
 
   @override
   _ContactsSectionState createState() => _ContactsSectionState();
@@ -36,10 +33,7 @@ class _ContactsSectionState extends State<ContactsSection> {
         const SizedBox(height: LayoutConstants.spaceM),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: _ContactsSectionContent(
-            contacts: contacts,
-            onPressed: _getContacts,
-          ),
+          child: _ContactsSectionContent(contacts: contacts, onPressed: _getContacts),
         ),
       ],
     );
@@ -50,10 +44,7 @@ class _ContactsSectionContent extends StatelessWidget {
   final List<Contact> contacts;
   final VoidCallback onPressed;
 
-  const _ContactsSectionContent({
-    required this.contacts,
-    required this.onPressed,
-  });
+  const _ContactsSectionContent({required this.contacts, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +55,6 @@ class _ContactsSectionContent extends StatelessWidget {
             onPressed: onPressed,
             text: 'Get contacts',
           )
-        : Column(
-            children: <Widget>[
-              for (final contact in contacts) ContactCard(contact: contact),
-            ],
-          );
+        : Column(children: <Widget>[for (final contact in contacts) ContactCard(contact: contact)]);
   }
 }

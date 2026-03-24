@@ -13,12 +13,7 @@ class IosAlertDialog extends CustomDialog {
     return CupertinoAlertDialog(
       title: Text(getTitle()),
       content: const Text('This is the cupertino-style alert dialog!'),
-      actions: <Widget>[
-        CupertinoButton(
-          onPressed: Navigator.of(context).pop,
-          child: const Text('Close'),
-        ),
-      ],
+      actions: <Widget>[CupertinoButton(onPressed: Navigator.of(context).pop, child: const Text('Close'))],
     );
   }
 }

@@ -74,11 +74,8 @@ class _FlyweightExampleState extends State<FlyweightExample> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SwitchListTile.adaptive(
-              title: const Text(
-                'Use flyweight factory',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              activeColor: Colors.black,
+              title: const Text('Use flyweight factory', style: TextStyle(fontWeight: FontWeight.bold)),
+              activeTrackColor: Colors.black,
               value: _useFlyweightFactory,
               onChanged: _toggleUseFlyweightFactory,
             ),

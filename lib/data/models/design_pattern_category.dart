@@ -1,12 +1,7 @@
 import 'design_pattern.dart';
 
 class DesignPatternCategory {
-  const DesignPatternCategory({
-    required this.id,
-    required this.title,
-    required this.color,
-    required this.patterns,
-  });
+  const DesignPatternCategory({required this.id, required this.title, required this.color, required this.patterns});
 
   final String id;
   final String title;
@@ -16,11 +11,7 @@ class DesignPatternCategory {
   factory DesignPatternCategory.fromJson(Map<String, dynamic> json) {
     final designPatternJsonList = json['patterns'] as List;
     final designPatternList = designPatternJsonList
-        .map(
-          (designPatternJson) => DesignPattern.fromJson(
-            designPatternJson as Map<String, dynamic>,
-          ),
-        )
+        .map((designPatternJson) => DesignPattern.fromJson(designPatternJson as Map<String, dynamic>))
         .toList();
 
     return DesignPatternCategory(

@@ -7,10 +7,7 @@ import '../../../helpers/helpers.dart';
 import '../../../navigation/router.dart';
 
 class MainMenuCard extends StatelessWidget {
-  const MainMenuCard({
-    required this.category,
-    required this.isDesktop,
-  });
+  const MainMenuCard({required this.category, required this.isDesktop});
 
   final DesignPatternCategory category;
   final bool isDesktop;
@@ -34,9 +31,7 @@ class MainMenuCard extends StatelessWidget {
 }
 
 class _CategoryPatternsScrollableView extends StatelessWidget {
-  const _CategoryPatternsScrollableView({
-    required this.category,
-  });
+  const _CategoryPatternsScrollableView({required this.category});
 
   final DesignPatternCategory category;
 
@@ -46,21 +41,13 @@ class _CategoryPatternsScrollableView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: LayoutConstants.paddingL,
-            vertical: LayoutConstants.paddingM,
-          ),
-          child: _CategoryTitle(
-            title: category.title,
-            itemsCount: category.patterns.length,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL, vertical: LayoutConstants.paddingM),
+          child: _CategoryTitle(title: category.title, itemsCount: category.patterns.length),
         ),
         Expanded(
           child: ListView.separated(
             itemBuilder: (context, index) {
-              return _DesignPatternTile(
-                designPattern: category.patterns[index],
-              );
+              return _DesignPatternTile(designPattern: category.patterns[index]);
             },
             itemCount: category.patterns.length,
             separatorBuilder: (context, index) {
@@ -74,29 +61,19 @@ class _CategoryPatternsScrollableView extends StatelessWidget {
 }
 
 class _CategoryPatternsExpandableView extends StatelessWidget {
-  const _CategoryPatternsExpandableView({
-    required this.category,
-  });
+  const _CategoryPatternsExpandableView({required this.category});
 
   final DesignPatternCategory category;
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      tilePadding: const EdgeInsets.symmetric(
-        horizontal: LayoutConstants.paddingL,
-        vertical: LayoutConstants.paddingM,
-      ),
+      tilePadding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL, vertical: LayoutConstants.paddingM),
       iconColor: Colors.white,
       collapsedIconColor: Colors.white,
-      title: _CategoryTitle(
-        title: category.title,
-        itemsCount: category.patterns.length,
-      ),
+      title: _CategoryTitle(title: category.title, itemsCount: category.patterns.length),
       children: category.patterns
-          .map<Widget>(
-            (designPattern) => _DesignPatternTile(designPattern: designPattern),
-          )
+          .map<Widget>((designPattern) => _DesignPatternTile(designPattern: designPattern))
           .toList()
           .addBetween(const SizedBox(height: LayoutConstants.spaceXS)),
     );
@@ -104,10 +81,7 @@ class _CategoryPatternsExpandableView extends StatelessWidget {
 }
 
 class _CategoryTitle extends StatelessWidget {
-  const _CategoryTitle({
-    required this.title,
-    required this.itemsCount,
-  });
+  const _CategoryTitle({required this.title, required this.itemsCount});
 
   final String title;
   final int itemsCount;
@@ -119,18 +93,13 @@ class _CategoryTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontSize: 26.0,
-                color: Colors.white,
-              ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 26.0, color: Colors.white),
           overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(height: LayoutConstants.spaceL),
         Text(
           itemsCount == 1 ? '$itemsCount pattern' : '$itemsCount patterns',
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Colors.white,
-              ),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
         ),
       ],
     );
@@ -138,9 +107,7 @@ class _CategoryTitle extends StatelessWidget {
 }
 
 class _DesignPatternTile extends StatelessWidget {
-  const _DesignPatternTile({
-    required this.designPattern,
-  });
+  const _DesignPatternTile({required this.designPattern});
 
   final DesignPattern designPattern;
 
@@ -158,10 +125,7 @@ class _DesignPatternTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                designPattern.title,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+              Text(designPattern.title, style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: LayoutConstants.spaceM),
               Text(
                 designPattern.description,

@@ -11,13 +11,9 @@ import '../../../helpers/helpers.dart';
 import '../../../widgets/logo_button.dart';
 
 class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const DetailsAppBar({
-    required this.designPattern,
-  }) : compact = false;
+  const DetailsAppBar({required this.designPattern}) : compact = false;
 
-  const DetailsAppBar.compact({
-    required this.designPattern,
-  }) : compact = true;
+  const DetailsAppBar.compact({required this.designPattern}) : compact = true;
 
   final DesignPattern designPattern;
   final bool compact;
@@ -34,10 +30,7 @@ class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       backgroundColor: lightBackgroundColor,
       leading: !kIsWeb ? const PlatformBackButton(color: color) : null,
-      title: Text(
-        designPattern.title,
-        style: const TextStyle(color: color),
-      ),
+      title: Text(designPattern.title, style: const TextStyle(color: color)),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: LayoutConstants.paddingM),
@@ -47,13 +40,7 @@ class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
                   icon: Image.asset('assets/images/logo.png', width: 24.0),
                   label: Row(
                     children: [
-                      Text(
-                        'Read blog post',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.copyWith(color: color),
-                      ),
+                      Text('Read blog post', style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: color)),
                       const SizedBox(width: LayoutConstants.spaceM),
                       const Icon(Icons.open_in_new, size: 16.0, color: color),
                     ],

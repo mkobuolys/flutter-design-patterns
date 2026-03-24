@@ -25,20 +25,13 @@ class ShapeColumn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Expanded(
-              child: _ShapeWithLabel(
-                label: 'Original shape',
-                child: shape.render(),
-              ),
+              child: _ShapeWithLabel(label: 'Original shape', child: shape.render()),
             ),
             Expanded(
               child: _ShapeWithLabel(
                 label: 'Cloned shape',
                 child: shapeClone == null
-                    ? const SizedBox(
-                        height: 120.0,
-                        width: 120.0,
-                        child: Placeholder(),
-                      )
+                    ? const SizedBox(height: 120.0, width: 120.0, child: Placeholder())
                     : shapeClone!.render(),
               ),
             ),
@@ -65,10 +58,7 @@ class _ShapeWithLabel extends StatelessWidget {
   final String label;
   final Widget child;
 
-  const _ShapeWithLabel({
-    required this.label,
-    required this.child,
-  });
+  const _ShapeWithLabel({required this.label, required this.child});
 
   @override
   Widget build(BuildContext context) {

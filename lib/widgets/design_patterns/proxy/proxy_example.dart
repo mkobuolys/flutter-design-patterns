@@ -12,28 +12,21 @@ class ProxyExample extends StatefulWidget {
 }
 
 class _ProxyExampleState extends State<ProxyExample> {
-  final _customerDetailsServiceProxy = CustomerDetailsServiceProxy(
-    const CustomerDetailsService(),
-  );
+  final _customerDetailsServiceProxy = CustomerDetailsServiceProxy(const CustomerDetailsService());
   final _customerList = List.generate(10, (_) => Customer());
 
   void _showCustomerDetails(Customer customer) => showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => CustomerDetailsDialog(
-          service: _customerDetailsServiceProxy,
-          customer: customer,
-        ),
-      );
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => CustomerDetailsDialog(service: _customerDetailsServiceProxy, customer: customer),
+  );
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingL,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingL),
         child: Column(
           children: <Widget>[
             Text(
@@ -47,10 +40,7 @@ class _ProxyExampleState extends State<ProxyExample> {
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundColor: Colors.grey,
-                    child: Text(
-                      customer.name[0],
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                    child: Text(customer.name[0], style: const TextStyle(color: Colors.white)),
                   ),
                   trailing: const Icon(Icons.info_outline),
                   title: Text(customer.name),
