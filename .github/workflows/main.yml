@@ -6,9 +6,21 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Grant GITHUB_TOKEN the permissions required to deploy to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment, skipping runs queued between the run
+# in-progress and the latest queued one
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  web-deploy:
-    name: 🚀 Deploy to flutterdesignpatterns.com
+  build:
+    name: 🔨 Build website
     runs-on: ubuntu-latest
 
     steps:
@@ -19,15 +31,32 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+          cache: true
 
       - name: 🔨 Build website
-        run: flutter build web --release
+        run: flutter build web --release --base-href "/"
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      - name: 🧭 Add SPA fallback for deep links
+        run: cp build/web/index.html build/web/404.html
+
+      - name: ⚙️ Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          server: vapsva.serveriai.lt
-          username: flerns
-          password: ${{ secrets.ftp_password }}
-          local-dir: ./build/web/
-          server-dir: public_html/
+          path: ./build/web
+
+  deploy:
+    name: 🚀 Deploy to flutterdesignpatterns.com
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
