@@ -39,7 +39,7 @@ class MarkdownView extends ConsumerWidget {
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.black.withValues(alpha: 0.65)),
                 ),
               ),
-              error: (_, __) => const Text('Oops, something went wrong...'),
+              error: (_, _) => const Text('Oops, something went wrong...'),
             ),
           ],
         ),

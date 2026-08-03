@@ -31,7 +31,7 @@ class DesignPatternDetailsPage extends ConsumerWidget {
           valueColor: AlwaysStoppedAnimation<Color>(Colors.black.withValues(alpha: 0.65)),
         ),
       ),
-      error: (_, __) =>
+      error: (_, _) =>
           Center(child: Text('Welcome to the Dart side...', style: Theme.of(context).textTheme.titleMedium)),
     );
   }
